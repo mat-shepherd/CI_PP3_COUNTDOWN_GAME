@@ -1,3 +1,11 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+#Imports
+#Python
+from time import sleep
+from itertools import permutations
+
+# Third Party
+from PyDictionary import PyDictionary
+from profanity_check import predict, predict_prob
+import countdown_numbers_solver
+from colorama import init
+from colorama import Fore

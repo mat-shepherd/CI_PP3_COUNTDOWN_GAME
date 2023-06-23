@@ -10,8 +10,8 @@ from PyDictionary import PyDictionary
 from profanity_check import predict, predict_prob
 import countdown_numbers_solver
 from colorama import init
-from colorama import Fore
-import pyfiglet
+from colorama import Fore, Back
+from art import *
 
 
 # Initialize colorama
@@ -49,27 +49,27 @@ class Screen:
     def __init__(self, screen_data_file):
         self.screen_data_file = screen_data_file
 
-    def render(self):
+    def render(self, fore_colour, back_colour):
         # Render screen elements in the terminal
-        self.display_figlet_text()
-        self.display_text()
-        user_prompt = self.display_prompt()
+        self.display_art_text(fore_colour, back_colour)
+        self.display_text(fore_colour, back_colour)
+        user_prompt = self.display_prompt(fore_colour, back_colour)
 
         return user_prompt
 
-    def display_figlet_text(self):
+    def display_art_text(self, fore_colour, back_colour):
         # Output text as ASCII art via Figlet library
         if self.screen_data_file == 'intro_screen_data.txt':
-            result = pyfiglet.figlet_format("COUNTDOWN")
-            print(result)
+            result = text2art("COUNTDOWN", font='eftifont')
+            print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'rules_screen_data.txt':
-            result = pyfiglet.figlet_format("COUNTDOWN RULES")
-            print(result)
+            result = text2art("COUNTDOWN RULES", font='eftifont')
+            print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'start_game_screen_data.txt':
-            result = pyfiglet.figlet_format("ROUND ONE")
-            print(result)
+            result = text2art("ROUND ONE", font='eftifont')
+            print(fore_colour + back_colour + result)
 
-    def display_text(self):
+    def display_text(self, fore_colour, back_colour):
         # Retrieve screen text from data files
         try:
             with open(self.screen_data_file) as f:
@@ -79,7 +79,7 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
-    def display_prompt(self):
+    def display_prompt(self, fore_colour, back_colour):
         # Display relevant screen prompt
         if self.screen_data_file == 'intro_screen_data.txt':
             user_prompt = input(
@@ -134,10 +134,11 @@ def main():
     """
     Run all program functions
     """
-    intro_screen = Screen("intro_screen_data.txt")
-    user_response = intro_screen.render()
+    intro_screen = Screen('intro_screen_data.txt')
+    user_response = intro_screen.render(Fore.WHITE, Back.BLUE)
     print(user_response)
     # Player(name,score,high_score,round_time,current_round,chosen_letters,chosen_numbers)
 
 # Call main game function
 main()
+

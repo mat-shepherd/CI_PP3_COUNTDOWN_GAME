@@ -11,6 +11,8 @@ from profanity_check import predict, predict_prob
 import countdown_numbers_solver
 from colorama import init
 from colorama import Fore
+import pyfiglet
+
 
 # Initialize colorama
 init(autoreset=True)
@@ -38,6 +40,7 @@ class Player:
         self.chosen_letters = chosen_letters
         self.chosen_numbers = chosen_numbers
 
+
 class Screen:
     """
     The Screen class to contain all screen
@@ -48,8 +51,23 @@ class Screen:
 
     def render(self):
         # Render screen elements in the terminal
+        self.display_figlet_text()
         self.display_text()
-        self.display_prompt()
+        user_prompt = self.display_prompt()
+
+        return user_prompt
+
+    def display_figlet_text(self):
+        # Output text as ASCII art via Figlet library
+        if self.screen_data_file == 'intro_screen_data.txt':
+            result = pyfiglet.figlet_format("COUNTDOWN")
+            print(result)
+        elif self.screen_data_file == 'rules_screen_data.txt':
+            result = pyfiglet.figlet_format("COUNTDOWN RULES")
+            print(result)
+        elif self.screen_data_file == 'start_game_screen_data.txt':
+            result = pyfiglet.figlet_format("ROUND ONE")
+            print(result)
 
     def display_text(self):
         # Retrieve screen text from data files
@@ -70,10 +88,13 @@ class Screen:
                 )
         elif self.screen_data_file == 'rules_screen_data.txt':
             user_prompt = input(
-                'Enter 1 to start the game or 2 to return to the intro screen\n'
+                'Enter 1 to start the game or 2'
+                ' to return to the intro screen\n'
                 )
         elif self.screen_data_file == 'start_game_screen_data.txt':
             user_prompt = input('Please Enter Your Name\n')
+        
+        return user_prompt
 
 
 class Letters:
@@ -114,7 +135,8 @@ def main():
     Run all program functions
     """
     intro_screen = Screen("intro_screen_data.txt")
-    intro_screen.render()
+    user_response = intro_screen.render()
+    print(user_response)
     # Player(name,score,high_score,round_time,current_round,chosen_letters,chosen_numbers)
 
 # Call main game function

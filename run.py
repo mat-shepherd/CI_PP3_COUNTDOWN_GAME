@@ -11,11 +11,12 @@ from profanity_check import predict, predict_prob
 import countdown_numbers_solver
 from colorama import init
 from colorama import Fore, Back
-from art import *
+from colorama.ansi import clear_screen
+from art import text2art
 
 
 # Initialize colorama
-init(autoreset=True)
+init()
 
 # Classes
 
@@ -50,7 +51,9 @@ class Screen:
         self.screen_data_file = screen_data_file
 
     def render(self, fore_colour, back_colour):
-        # Render screen elements in the terminal
+        # Set screen bg to blue and render screen elements in the terminal
+        print(Back.BLUE)
+        print(clear_screen())
         self.display_art_text(fore_colour, back_colour)
         self.display_text(fore_colour, back_colour)
         user_prompt = self.display_prompt(fore_colour, back_colour)
@@ -60,13 +63,13 @@ class Screen:
     def display_art_text(self, fore_colour, back_colour):
         # Output text as ASCII art via Figlet library
         if self.screen_data_file == 'intro_screen_data.txt':
-            result = text2art("COUNTDOWN", font='eftifont')
+            result = text2art("COUNTDOWN", font='1943')
             print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'rules_screen_data.txt':
-            result = text2art("COUNTDOWN RULES", font='eftifont')
+            result = text2art("COUNTDOWN RULES", font='1943')
             print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'start_game_screen_data.txt':
-            result = text2art("ROUND ONE", font='eftifont')
+            result = text2art("ROUND ONE", font='1943')
             print(fore_colour + back_colour + result)
 
     def display_text(self, fore_colour, back_colour):
@@ -135,7 +138,7 @@ def main():
     Run all program functions
     """
     intro_screen = Screen('intro_screen_data.txt')
-    user_response = intro_screen.render(Fore.WHITE, Back.BLUE)
+    user_response = intro_screen.render(Fore.BLACK, Fore.WHITE)
     print(user_response)
     # Player(name,score,high_score,round_time,current_round,chosen_letters,chosen_numbers)
 

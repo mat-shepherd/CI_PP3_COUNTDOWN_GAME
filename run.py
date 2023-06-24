@@ -63,13 +63,13 @@ class Screen:
     def display_art_text(self, fore_colour, back_colour):
         # Output text as ASCII art via Figlet library
         if self.screen_data_file == 'intro_screen_data.txt':
-            result = text2art("COUNTDOWN", font='1943')
+            result = text2art("COUNTDOWN", font='block')
             print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'rules_screen_data.txt':
-            result = text2art("COUNTDOWN RULES", font='1943')
+            result = text2art("COUNTDOWN RULES", font='block')
             print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'start_game_screen_data.txt':
-            result = text2art("ROUND ONE", font='1943')
+            result = text2art("ROUND ONE", font='block')
             print(fore_colour + back_colour + result)
 
     def display_text(self, fore_colour, back_colour):
@@ -96,7 +96,7 @@ class Screen:
                 )
         elif self.screen_data_file == 'start_game_screen_data.txt':
             user_prompt = input('Please Enter Your Name\n')
-                   
+
         return user_prompt
 
 

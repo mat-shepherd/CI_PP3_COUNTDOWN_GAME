@@ -1,9 +1,7 @@
-                +---+---+---+---+---+---+---+---+---+
-                |   |   |   |   |   |   |   |   |   |
-                +---+---+---+---+---+---+---+---+---+ 
+                     +---+---+---+---+---+---+---+---+---+
+                     |   |   |   |   |   |   |   |   |   |
+                     +---+---+---+---+---+---+---+---+---+ 
 
-                        WELCOME TO COUNTDOWN!
-                    THIS IS A CODE INSTITUTE
-                    PROJECT BY MATTHEW SHEPHERD
-
-                    
+                             WELCOME TO COUNTDOWN!
+                           THIS IS A CODE INSTITUTE
+                         PROJECT BY MATTHEW SHEPHERD

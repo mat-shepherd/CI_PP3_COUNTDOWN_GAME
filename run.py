@@ -63,7 +63,7 @@ class Screen:
     def display_art_text(self, fore_colour, back_colour):
         # Output text as ASCII art via Figlet library
         if self.screen_data_file == 'intro_screen_data.txt':
-            result = text2art("COUNTDOWN", font='small')
+            result = text2art("     COUNTDOWN", font='small')
             print(fore_colour + back_colour + result)
         elif self.screen_data_file == 'rules_screen_data.txt':
             result = text2art("COUNTDOWN RULES", font='small')

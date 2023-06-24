@@ -96,7 +96,7 @@ class Screen:
                 )
         elif self.screen_data_file == 'start_game_screen_data.txt':
             user_prompt = input('Please Enter Your Name\n')
-        
+                   
         return user_prompt
 
 

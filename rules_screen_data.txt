@@ -1,1 +1,4 @@
-Here's the rules screen text!
+This isn't countdown, this is just a tribute!
+The game consists of three letters rounds, one number round and one conundrum.
+You score points based on time taken to form a word or number and based on
+the length of your words. 

@@ -85,33 +85,41 @@ class Screen:
     def display_prompt(self):
         # Display relevant screen prompt
         if self.screen_data_file == 'intro_screen_data.txt':
-            try:
-                user_prompt = input(
-                    'Enter 1 to Start the Game or 2'
-                    ' to Read the Game Rules\n'
-                    )
-                if not (1 <= int(user_prompt) <= 2):
-                    raise ValueError
-            except ValueError:
-                print(Fore.RED + 'Please enter only 1 or 2')
+            while True:
+                try:
+                    user_prompt = input(Fore.WHITE + 
+                        'Enter 1 to Start the Game or 2'
+                        ' to Read the Game Rules\n'
+                        )
+                    if not (1 <= int(user_prompt) <= 2):
+                        raise ValueError
+                    else:
+                        break
+                except ValueError:
+                    print(Fore.RED + 'Please enter only 1 or 2')
+                    continue
         elif self.screen_data_file == 'rules_screen_data.txt':
-            try:
-                user_prompt = input(
-                    'Enter 1 to Start the Game or 2'
-                    ' to Return to the Intro Screen\n'
-                    )
-                if not (1 <= int(user_prompt) <= 2):
-                    raise ValueError
-            except ValueError:
-                print(Fore.RED + 'Please enter only 1 or 2')
+            while True:            
+                try:
+                    user_prompt = input(Fore.WHITE +
+                        'Enter 1 to Start the Game or 2'
+                        ' to Return to the Intro Screen\n'
+                        )
+                    if not (1 <= int(user_prompt) <= 2):
+                        raise ValueError
+                    else:
+                        break
+                except ValueError:
+                    print(Fore.RED + 'Please enter only 1 or 2')
+                    continue
         elif self.screen_data_file == 'start_game_screen_data.txt':
             while True:
                 try:
-                    user_prompt = input('Please Enter Your Name\n')
+                    user_prompt = input(Fore.WHITE + 'Please Enter Your Name\n')
                     if (len(user_prompt) > 2 and user_prompt.isalpha()):
                         break
-                else:
-                    raise Exception
+                    else:
+                        raise Exception
                 except TypeError:
                     print(Fore.RED + 'Please enter letters only')
                     continue

@@ -108,8 +108,8 @@ class Screen:
             while True:
                 try:
                     user_prompt = input('Please Enter Your Name\n')
-                    if (len(user_prompt) > 2 AND user_prompt.isalpha()):
-                    break
+                    if (len(user_prompt) > 2 and user_prompt.isalpha()):
+                        break
                 else:
                     raise Exception
                 except TypeError:

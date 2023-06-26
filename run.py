@@ -4,8 +4,11 @@
 from time import sleep
 from itertools import permutations
 import os
+# Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from validation import validate_name, validate_menu_value
 # Third Party
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from PyDictionary import PyDictionary
 from profanity_check import predict, predict_prob
 import countdown_numbers_solver
@@ -51,17 +54,22 @@ class Screen:
         self.screen_data_file = screen_data_file
 
     def render(self):
-        # Set screen bg to blue and render screen elements in the terminal
+        """ 
+        Set screen bg to blue and render 
+        screen text and prompt in the terminal
+        """
         print(Back.BLUE)
         print(clear_screen())
-        self.display_art_text()
+        self.display_text_art()
         self.display_text()
         user_prompt = self.display_prompt()
 
         return user_prompt
 
-    def display_art_text(self):
-        # Output text as ASCII art via Figlet library
+    def display_text_art(self):
+        """
+        Output text as ASCII art via Art library
+        """
         if self.screen_data_file == 'intro_screen_data.txt':
             result = text2art("        COUNTDOWN", font='small')
             print(result)
@@ -73,7 +81,9 @@ class Screen:
             print(result)
 
     def display_text(self):
-        # Retrieve screen text from data files
+        """
+        Retrieve screen text from data files
+        """
         try:
             with open(self.screen_data_file) as f:
                 text = f.read()
@@ -83,50 +93,36 @@ class Screen:
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
     def display_prompt(self):
-        # Display relevant screen prompt
+        """
+        Display relevant screen prompt
+        """
         if self.screen_data_file == 'intro_screen_data.txt':
             while True:
-                try:
-                    user_prompt = input(Fore.WHITE + 
-                        'Enter 1 to Start the Game or 2'
-                        ' to Read the Game Rules\n'
-                        )
-                    if not (1 <= int(user_prompt) <= 2):
-                        raise ValueError
-                    else:
-                        break
-                except ValueError:
-                    print(Fore.RED + 'Please enter only 1 or 2')
+                user_prompt = input(Fore.WHITE +
+                    'Enter 1 to Start the Game or 2'
+                    ' to Return to the Intro Screen\n'
+                    )
+                if validate_menu_value(user_prompt):
+                    break
+                else:
                     continue
         elif self.screen_data_file == 'rules_screen_data.txt':
             while True:            
-                try:
-                    user_prompt = input(Fore.WHITE +
-                        'Enter 1 to Start the Game or 2'
-                        ' to Return to the Intro Screen\n'
-                        )
-                    if not (1 <= int(user_prompt) <= 2):
-                        raise ValueError
-                    else:
-                        break
-                except ValueError:
-                    print(Fore.RED + 'Please enter only 1 or 2')
+                user_prompt = input(Fore.WHITE +
+                    'Enter 1 to Start the Game or 2'
+                    ' to Return to the Intro Screen\n'
+                    )
+                if validate_menu_value(user_prompt):
+                    break
+                else:
                     continue
         elif self.screen_data_file == 'start_game_screen_data.txt':
             while True:
-                try:
-                    user_prompt = input(Fore.WHITE + 'Please Enter Your Name\n')
-                    if (len(user_prompt) > 2 and user_prompt.isalpha()):
-                        break
-                    else:
-                        raise Exception
-                except TypeError:
-                    print(Fore.RED + 'Please enter letters only')
+                user_prompt = input(Fore.WHITE + 'Please Enter Your Name\n')
+                if validate_name(user_prompt):
+                    break
+                else:
                     continue
-                except EOFError:
-                    print(Fore.RED + 'Please enter your name')
-                    continue
-
         return user_prompt
 
 

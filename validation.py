@@ -9,21 +9,22 @@ def validate_name(name):
     try:
         if (len(name) > 2 and name.isalpha()):
             return True
+        elif name == '':
+            raise ValueError('Please enter some text')
+        elif len(name) < 2:
+            raise ValueError('Please enter a name more than 2 characters long')
         else:
-            raise Exception
-    except TypeError:
-        print(Fore.RED + 'Please enter letters only')
-        return False
-    except EOFError:
-        print(Fore.RED + 'Please enter your name')
+            raise ValueError('Please enter letters only')            
+    except TypeError as e:
+        print(Fore.RED + str(e))
         return False
 
-def validate_menu_value(name):
+def validate_menu_value(number):
     """
     Check menu values are 1 or 2
     """
     try:
-        if 1 <= int(name) <= 2:
+        if 1 <= int(number) <= 2:
             return True
         else:
             raise ValueError

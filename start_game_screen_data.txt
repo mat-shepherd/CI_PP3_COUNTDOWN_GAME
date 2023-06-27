@@ -1,1 +1,7 @@
+                     +---+---+---+---+---+---+---+---+---+ 
+                     | C | O | U | N | T | D | O | W | N | 
+                     +---+---+---+---+---+---+---+---+---+  
+
+                             LET'S PLAY COUNTDOWN!
+
 Here's the game screen text!

@@ -100,7 +100,7 @@ class Screen:
             while True:
                 user_prompt = input(Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
-                    ' to Return to the Intro Screen\n'
+                    ' to See the Game Rules\n'
                     )
                 if validate_menu_value(user_prompt):
                     break
@@ -164,8 +164,22 @@ def main():
     Run all program functions
     """
     intro_screen = Screen('intro_screen_data.txt')
+    game_screen = Screen('start_game_screen_data.txt')
+    rules_screen = Screen('rules_screen_data.txt')
     user_response = intro_screen.render()
-    print(user_response)
+    while True:
+        if int(user_response) == 1:
+            user_response = game_screen.render()
+            break
+        else:
+            user_response = rules_screen.render()
+            if int(user_response) == 1:
+                user_response = game_screen.render()
+                break
+            else:
+                user_response = intro_screen.render()
+                continue
+
     # Player(name,score,high_score,round_time,current_round,chosen_letters,chosen_numbers)
 
 # Call main game function

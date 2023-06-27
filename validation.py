@@ -19,6 +19,7 @@ def validate_name(name):
         print(Fore.RED + str(e))
         return False
 
+
 def validate_menu_value(number):
     """
     Check menu values are 1 or 2
@@ -32,16 +33,34 @@ def validate_menu_value(number):
         print(Fore.RED + 'Please enter only 1 or 2')
         return False
 
-def validate_user_word():
+
+def validate_vowels(user_value):
+    """
+    Check player has selected correct number of valid
+    vowel letters
+    """
+    pass
+
+
+def validate_consonants(user_value):
+    """
+    Check player has selected correct number of valid
+    consonant letters
+    """
+    pass
+
+
+def validate_user_word(user_word):
     """
     Check user letters round word is valid,
     using only the letters provided
-    """    
+    """
     pass
 
-def validate_user_conundrum():
+
+def validate_user_conundrum(user_word):
     """
     Check user conundrum word is valid, 
     using only the letters provided
-    """        
+    """
     pass

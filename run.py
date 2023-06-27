@@ -16,6 +16,7 @@ from colorama import init
 from colorama import Fore, Back
 from colorama.ansi import clear_screen
 from art import text2art
+from num2words import num2words
 
 
 # Initialize colorama
@@ -50,8 +51,18 @@ class Screen:
     The Screen class to contain all screen
     definitions and attributes
     """
+    screen_data = {
+        'intro' : 'intro_screen_data.txt',
+        'rules' : 'rules_screen_data.txt',
+        'game_round' : 'game_screen_data.txt',
+        'game_over' : 'game_over_screen_data.txt'
+    }
+
+    round_number = 1
+
     def __init__(self, screen_data_file):
-        self.screen_data_file = screen_data_file
+        self.screen_data_param = screen_data_file
+        self.screen_data_file = Screen.screen_data[screen_data_file]
 
     def render(self):
         """ 
@@ -70,15 +81,17 @@ class Screen:
         """
         Output text as ASCII art via Art library
         """
-        if self.screen_data_file == 'intro_screen_data.txt':
-            result = text2art("        COUNTDOWN", font='small')
+        if self.screen_data_param == 'intro':
+            result = text2art('        COUNTDOWN', font='small')
             print(result)
-        elif self.screen_data_file == 'rules_screen_data.txt':
-            result = text2art("        COUNTDOWN RULES", font='small')
+        elif self.screen_data_param == 'rules':
+            result = text2art('        COUNTDOWN RULES', font='small')
             print(result)
-        elif self.screen_data_file == 'start_game_screen_data.txt':
-            result = text2art("        ROUND ONE", font='small')
+        elif self.screen_data_param == 'game_round':
+            round_word = num2words(self.round_number, lang='en').upper()
+            result = text2art(f'        ROUND {round_word}', font='small')
             print(result)
+            Screen.round_number += 1
 
     def display_text(self):
         """
@@ -96,7 +109,7 @@ class Screen:
         """
         Display relevant screen prompt
         """
-        if self.screen_data_file == 'intro_screen_data.txt':
+        if self.screen_data_param == 'intro':
             while True:
                 user_prompt = input(Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
@@ -106,7 +119,7 @@ class Screen:
                     break
                 else:
                     continue
-        elif self.screen_data_file == 'rules_screen_data.txt':
+        elif self.screen_data_param == 'rules':
             while True:            
                 user_prompt = input(Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
@@ -116,7 +129,7 @@ class Screen:
                     break
                 else:
                     continue
-        elif self.screen_data_file == 'start_game_screen_data.txt':
+        elif self.screen_data_param == 'game_round':
             while True:
                 user_prompt = input(Fore.WHITE + 'Please Enter Your Name\n')
                 if validate_name(user_prompt):
@@ -163,9 +176,9 @@ def main():
     """
     Run all program functions
     """
-    intro_screen = Screen('intro_screen_data.txt')
-    game_screen = Screen('start_game_screen_data.txt')
-    rules_screen = Screen('rules_screen_data.txt')
+    intro_screen = Screen('intro')
+    rules_screen = Screen('rules')
+    game_screen = Screen('game_round')
     user_response = intro_screen.render()
     while True:
         if int(user_response) == 1:

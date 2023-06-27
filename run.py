@@ -89,7 +89,7 @@ class Screen:
             print(result)
         elif self.screen_data_param == 'game_round':
             round_word = num2words(self.round_number, lang='en').upper()
-            result = text2art(f'        ROUND {round_word}', font='small')
+            result = text2art(f'            ROUND {round_word}', font='small')
             print(result)
             Screen.round_number += 1
 
@@ -130,12 +130,40 @@ class Screen:
                 else:
                     continue
         elif self.screen_data_param == 'game_round':
-            while True:
-                user_prompt = input(Fore.WHITE + 'Please Enter Your Name\n')
-                if validate_name(user_prompt):
-                    break
-                else:
-                    continue
+            if Screen.round_number == 1:
+                while True:
+                    user_prompt = input(Fore.WHITE + 'Please enter your name\n')
+                    if validate_name(user_prompt):
+                        break
+                    else:
+                        continue
+            elif Screen.round_number <= 3:
+                while True:
+                    user_prompt = input(Fore.WHITE + 
+                    'Using the letters above, please '
+                    'enter your word\n')
+                    if validate_user_word(user_prompt):
+                        break
+                    else:
+                        continue                        
+            elif Screen.round_number == 4:
+                while True:
+                    user_prompt = input(Fore.WHITE + 
+                    'Using the letters above, please '
+                    'enter your word\n')
+                    if validate_user_word(user_prompt):
+                        break
+                    else:
+                        continue            
+            else:
+                while True:
+                    user_prompt = input(Fore.WHITE + 
+                    'Using the letters above, please enter' 
+                    'your solution to the conundrum\n')
+                    if validate_user_conundrum(user_prompt):
+                        break
+                    else:
+                        continue                    
         return user_prompt
 
 
@@ -170,6 +198,8 @@ class Conundrum:
         self.target = target
         self.scrambled = scrambled
 
+def round_handler():
+    pass
 
 # Main game functions
 def main():

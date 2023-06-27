@@ -31,3 +31,17 @@ def validate_menu_value(number):
     except ValueError:
         print(Fore.RED + 'Please enter only 1 or 2')
         return False
+
+def validate_user_word():
+    """
+    Check user letters round word is valid,
+    using only the letters provided
+    """    
+    pass
+
+def validate_user_conundrum():
+    """
+    Check user conundrum word is valid, 
+    using only the letters provided
+    """        
+    pass

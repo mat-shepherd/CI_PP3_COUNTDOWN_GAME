@@ -1,4 +1,47 @@
+                     +---+---+---+---+---+---+---+---+---+ 
+                     | C | O | U | N | T | D | O | W | N | 
+                     +---+---+---+---+---+---+---+---+---+  
+                     +---+---+---+---+---+---+---+---+---+ 
+                     |   |   | R | U | L | E | S |   |   | 
+                     +---+---+---+---+---+---+---+---+---+  
+
 This isn't countdown, this is just a tribute!
-The game consists of three letters rounds, one number round and one conundrum.
-You score points based on time taken to form a word or number and based on
-the length of your words. 
+This game is variation on the Countdown game you have seen on TV.
+
+* This is a one-player game consisting of three letters rounds, one
+numbers round, and one conundrum round.
+
+* In each letters round, you are given nine random letters and must form
+valid words using those letters within 30 seconds. To be valid, words 
+need to be found in PyDictionary and more than 2 letters long. You earn
+points based on the length of your word multiplied by the time remaining.
+
+* In the numbers round, you are asked to choose six numbers which will be 
+randomly selected from two groups of numbers: 
+'large numbers' (25, 50, 75, 100) and 'small numbers' (1 to 10).
+
+You can choose from 0 to 4 'large numbers', and the remaining numbers will
+be selected from the 'small numbers group'. You are then provided with a 
+random 3 digit target number.
+
+Your goal is to use your 6 numbers and basic mathematical operations
+(+ - * /) to reach the target number. Here's an example input to reach a 
+target number of 304:
+
+100 * 3 + 12 / 3
+
+Remember order of operations when constructing your expression: 
+Parentheses, Exponents, Multiplication, and Division (from left to right),
+Addition and Subtraction (from left to right). 
+
+You earn points based on the time remaining multiplied by 10 for
+each valid solution you find.
+
+* The conundrum round features a nine-letter anagram that you need to 
+unscramble within the given time limit. You earn 10 points for a correct
+guess based multiplied by your time remaining If you guess a word
+that is valid but not our target word, we'll let you know, and you still
+score 10 points!
+
+* Your total score is calculated by summing the points earned in each 
+round.

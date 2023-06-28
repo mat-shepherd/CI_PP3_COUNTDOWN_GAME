@@ -65,7 +65,7 @@ class Screen:
         'game_over': 'game_over_screen_data.txt'
     }
 
-    round_number = 0
+    round_number = 1
 
     def __init__(self, screen_data_file):
         self.screen_data_param = screen_data_file
@@ -95,8 +95,6 @@ class Screen:
             result = text2art('        COUNTDOWN RULES', font='small')
             print(result)
         elif self.screen_data_param == 'game_round':
-            Screen.round_number += 1
-            print(f'Round: {Screen.round_number}')
             round_word = num2words(self.round_number, lang='en').upper()
             result = text2art(f'            ROUND {round_word}', font='small')
             print(result)
@@ -140,6 +138,10 @@ class Screen:
                 else:
                     continue
         elif self.screen_data_param == 'game_round':
+            # Only update round number after first round
+            if Screen.round_number > 1:
+                Screen.round_number += 1
+            # First 3 letter rounds
             if Screen.round_number <= 3:
                 if Screen.round_number == 1:
                     while True:
@@ -150,7 +152,9 @@ class Screen:
                         if validate_name(user_prompt):
                             new_player = Player(user_prompt)
                             print(clear_screen())
-                            print(f'Welcome to Countdown {new_player.name}')
+                            self.display_text_art()
+                            self.display_text()
+                            print_centered(f"{new_player.name.upper()}, LET'S PLAY COUNTDOWN!\n")
                             break
                         else:
                             continue
@@ -168,6 +172,7 @@ class Screen:
                         break
                     else:
                         continue
+            # Numbers round
             elif Screen.round_number == 4:
                 print(
                     f'Choose six numbers in total from the '
@@ -185,6 +190,7 @@ class Screen:
                         break
                     else:
                         continue
+            # Conundrum round
             else:
                 while True:
                     user_prompt = input(
@@ -244,6 +250,15 @@ class Conundrum:
         self.target = Conundrum.target
         self.scrambled = Conundrum.scrambled
 
+# Helper Functions
+
+def print_centered(text):
+    """
+    Print text centered in terminal
+    """
+    terminal_width = 80
+    centered_text = text.center(terminal_width)
+    print(centered_text)
 
 def round_handler():
     """
@@ -259,20 +274,19 @@ def round_handler():
     user_response, new_player = intro_screen.render()
     # Render intro, rules and first round screens
     while True:
-        if user_response == '1':
+        if user_response[0] == '1':
             user_response = game_screen.render()
-        elif user_response == '2':
+        elif user_response[0] == '2':
             user_response = rules_screen.render()
             # Inner loop to loop between intro screen
             # and rules screen until 1 selected
             # then continue to outer loop
             while True:
-                if user_response == '1':
+                if user_response[0] == '1':
                     break
                 else:
                     user_response, new_player = intro_screen.render()
                     break
-            continue
 
 # Main game functions
 

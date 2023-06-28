@@ -218,8 +218,54 @@ class Letters:
     consonants = []
 
     def __init__(self):
-        self.vowels = Letters.vowels
-        self.consonants = Letters.consonants
+        self.vowels = populate_vowels()
+        self.consonants = populate_consonants()
+    
+    def populate_vowels:
+        """
+        Add a selection of vowels with
+        weighting used in Scrabble
+        """
+        vowel_counts = {
+            'A': 9,
+            'E': 12,
+            'I': 9,
+            'O': 8,
+            'U': 4
+        }
+        for vowel, count in vowel_counts.items():
+            vowels.extend([vowel] * count)
+        
+        def populate_consonants:
+        """
+        Add a selection of consonants with
+        weighting used in Scrabble
+        """
+        consonant_counts = {
+            'B': 2,
+            'C': 2,
+            'D': 4,
+            'F': 2,
+            'G': 3,
+            'H': 2,
+            'J': 1,
+            'K': 1,
+            'L': 4,
+            'M': 2,
+            'N': 6,
+            'P': 2,
+            'Q': 1,
+            'R': 6,
+            'S': 4,
+            'T': 6,
+            'V': 2,
+            'W': 2,
+            'X': 1,
+            'Y': 2,
+            'Z': 1
+        }
+        for consonant, count in consonant_counts.items():
+            consonants.extend([consonant] * count)
 
 
 class Numbers:

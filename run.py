@@ -65,15 +65,15 @@ class Screen:
         'game_over': 'game_over_screen_data.txt'
     }
 
-    round_number = 1
+    round_number = 0
 
     def __init__(self, screen_data_file):
         self.screen_data_param = screen_data_file
         self.screen_data_file = Screen.screen_data[screen_data_file]
 
     def render(self, new_player=None):
-        """ 
-        Set screen bg to blue and render 
+        """
+        Set screen bg to blue and render
         screen text and prompt in the terminal
         """
         print(Back.BLUE)
@@ -95,10 +95,10 @@ class Screen:
             result = text2art('        COUNTDOWN RULES', font='small')
             print(result)
         elif self.screen_data_param == 'game_round':
+            Screen.round_number += 1
             round_word = num2words(self.round_number, lang='en').upper()
             result = text2art(f'            ROUND {round_word}', font='small')
             print(result)
-            Screen.round_number += 1
 
     def display_text(self):
         """
@@ -142,9 +142,9 @@ class Screen:
             if Screen.round_number == 1:
                 while True:
                     user_prompt = input(
-                        Fore.WHITE + 
+                        Fore.WHITE +
                         'Please enter your name\n'
-                        )
+                    )
                     if validate_name(user_prompt):
                         new_player = Player(user_prompt)
                         break
@@ -154,49 +154,49 @@ class Screen:
                 print(
                     f'Choose nine letters in total from the '
                     'following selection of Vowels and Consonants'
-                    )              
+                    )
                 while True:
                     user_prompt = input(
-                        Fore.WHITE + 
+                        Fore.WHITE +
                         'How many vowels would you like for your word?'
                         '(Enter a value between 3 and 9)\n'
-                        )
+                    )
                     if validate_vowels(user_prompt):
                         break
                     else:
-                        continue                        
+                        continue
             elif Screen.round_number == 4:
                 print(
                     f'Choose six numbers in total from the '
                     'following selection of Big Numbers and Small'
                     'Numbers'
-                    )
+                )
                 while True:
                     user_prompt = input(
-                        Fore.WHITE + 
+                        Fore.WHITE +
                         'How many big numbers (25, 50, 75, 100) '
                         'would you like to select?'
                         '(Enter a value between 0 and 4)\n'
-                        )
+                    )
                     if validate_user_word(user_prompt):
                         break
                     else:
-                        continue            
+                        continue
             else:
                 while True:
                     user_prompt = input(
-                        Fore.WHITE + 
-                        'Using the letters above, please enter' 
+                        Fore.WHITE +
+                        'Using the letters above, please enter'
                         'your solution to the conundrum\n'
-                        )
+                    )
                     if validate_user_conundrum(user_prompt):
                         break
                     else:
                         continue
         # Return the user_prompt value and the player object
-        # back to round_handler so we know which screen to 
+        # back to round_handler so we know which screen to
         # render next and so that player details can be
-        # accessed when rendering new screens              
+        # accessed when rendering new screens
         return user_prompt, new_player
 
 
@@ -237,21 +237,21 @@ def round_handler():
     Load the initial game screen and
     create the next screen based on
     user input
-    """    
+    """
     intro_screen = Screen('intro')
     rules_screen = Screen('rules')
     game_screen = Screen('game_round')
-    # Capture user input and player object 
+    # Capture user input and player object
     # when screens are rendered
     user_response, new_player = intro_screen.render()
     # Render intro, rules and first round screens
     while True:
-        if int(user_response) == 1:
+        if user_response == '1':
             user_response = game_screen.render()
             break
         else:
             user_response = rules_screen.render()
-            if int(user_response) == 1:
+            if user_response == '1':
                 user_response = game_screen.render()
                 break
             else:

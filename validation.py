@@ -16,7 +16,7 @@ def validate_name(name):
             raise ValueError('Please enter a name more than 2 characters long')
         else:
             raise ValueError('Please enter letters only')
-    except TypeError as e:
+    except ValueError as e:
         print(Fore.RED + str(e))
         return False
 

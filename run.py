@@ -96,6 +96,7 @@ class Screen:
             print(result)
         elif self.screen_data_param == 'game_round':
             Screen.round_number += 1
+            print(f'Round: {Screen.round_number}')
             round_word = num2words(self.round_number, lang='en').upper()
             result = text2art(f'            ROUND {round_word}', font='small')
             print(result)
@@ -139,18 +140,20 @@ class Screen:
                 else:
                     continue
         elif self.screen_data_param == 'game_round':
-            if Screen.round_number == 1:
-                while True:
-                    user_prompt = input(
-                        Fore.WHITE +
-                        'Please enter your name\n'
-                    )
-                    if validate_name(user_prompt):
-                        new_player = Player(user_prompt)
-                        break
-                    else:
-                        continue
-            elif Screen.round_number <= 3:
+            if Screen.round_number <= 3:
+                if Screen.round_number == 1:
+                    while True:
+                        user_prompt = input(
+                            Fore.WHITE +
+                            'Please enter your name\n'
+                        )
+                        if validate_name(user_prompt):
+                            new_player = Player(user_prompt)
+                            print(clear_screen())
+                            print(f'Welcome to Countdown {new_player.name}')
+                            break
+                        else:
+                            continue
                 print(
                     f'Choose nine letters in total from the '
                     'following selection of Vowels and Consonants'
@@ -205,9 +208,12 @@ class Letters:
     The Letters class to contain all letters
     to choose from in the letters round
     """
-    def __init__(self, vowels, consonants):
-        self.vowels = vowels
-        self.consonants = consonants
+    vowels = []
+    consonants = []
+
+    def __init__(self):
+        self.vowels = Letters.vowels
+        self.consonants = Letters.consonants
 
 
 class Numbers:
@@ -215,10 +221,14 @@ class Numbers:
     The Numbers class to contain all numbers
     to choose from in the numbers round
     """
+    big = []
+    small = []
+    target = 999
+
     def __init__(self, big, small, target):
-        self.big = big
-        self.small = small
-        self.target = target
+        self.big = Numbers.big
+        self.small = Numbers.small
+        self.target = Numbers.target
 
 
 class Conundrum:
@@ -227,9 +237,12 @@ class Conundrum:
     Conundrum word attributes for the
     Conundrum round
     """
-    def __init__(self, target, scrambled):
-        self.target = target
-        self.scrambled = scrambled
+    target = "Conundrum"
+    scrambled = []
+
+    def __init__(self):
+        self.target = Conundrum.target
+        self.scrambled = Conundrum.scrambled
 
 
 def round_handler():
@@ -248,19 +261,18 @@ def round_handler():
     while True:
         if user_response == '1':
             user_response = game_screen.render()
-            break
-        else:
+        elif user_response == '2':
             user_response = rules_screen.render()
-            if user_response == '1':
-                user_response = game_screen.render()
-                break
-            else:
-                user_response = intro_screen.render()
-                continue
-    # Validate user response and render subsequent
-    # round screens
-    while True:
-        pass
+            # Inner loop to loop between intro screen
+            # and rules screen until 1 selected
+            # then continue to outer loop
+            while True:
+                if user_response == '1':
+                    break
+                else:
+                    user_response, new_player = intro_screen.render()
+                    break
+            continue
 
 # Main game functions
 

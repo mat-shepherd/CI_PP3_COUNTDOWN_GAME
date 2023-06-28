@@ -5,6 +5,7 @@ from colorama import Fore
 
 # Validation functions
 
+
 def validate_name(name):
     try:
         if (len(name) > 2 and name.isalpha()):
@@ -14,7 +15,7 @@ def validate_name(name):
         elif len(name) < 2:
             raise ValueError('Please enter a name more than 2 characters long')
         else:
-            raise ValueError('Please enter letters only')            
+            raise ValueError('Please enter letters only')
     except TypeError as e:
         print(Fore.RED + str(e))
         return False
@@ -60,7 +61,7 @@ def validate_user_word(user_word):
 
 def validate_user_conundrum(user_word):
     """
-    Check user conundrum word is valid, 
+    Check user conundrum word is valid,
     using only the letters provided
     """
     pass

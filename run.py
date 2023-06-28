@@ -59,10 +59,10 @@ class Screen:
     definitions and attributes
     """
     screen_data = {
-        'intro' : 'intro_screen_data.txt',
-        'rules' : 'rules_screen_data.txt',
-        'game_round' : 'game_screen_data.txt',
-        'game_over' : 'game_over_screen_data.txt'
+        'intro': 'intro_screen_data.txt',
+        'rules': 'rules_screen_data.txt',
+        'game_round': 'game_screen_data.txt',
+        'game_over': 'game_over_screen_data.txt'
     }
 
     round_number = 1
@@ -118,20 +118,22 @@ class Screen:
         """
         if self.screen_data_param == 'intro':
             while True:
-                user_prompt = input(Fore.WHITE +
+                user_prompt = input(
+                    Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
                     ' to See the Game Rules\n'
-                    )
+                )
                 if validate_menu_value(user_prompt):
                     break
                 else:
                     continue
         elif self.screen_data_param == 'rules':
-            while True:            
-                user_prompt = input(Fore.WHITE +
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
                     ' to Return to the Intro Screen\n'
-                    )
+                )
                 if validate_menu_value(user_prompt):
                     break
                 else:
@@ -139,41 +141,54 @@ class Screen:
         elif self.screen_data_param == 'game_round':
             if Screen.round_number == 1:
                 while True:
-                    user_prompt = input(Fore.WHITE + 'Please enter your name\n')
+                    user_prompt = input(
+                        Fore.WHITE + 
+                        'Please enter your name\n'
+                        )
                     if validate_name(user_prompt):
                         new_player = Player(user_prompt)
                         break
                     else:
                         continue
             elif Screen.round_number <= 3:
-                print(f'Choose nine letters in total from the '
-                'following selection of Vowels and Consonants')                
+                print(
+                    f'Choose nine letters in total from the '
+                    'following selection of Vowels and Consonants'
+                    )              
                 while True:
-                    user_prompt = input(Fore.WHITE + 
-                    'How many vowels would you like for your word?'
-                    '(Enter a value between 3 and 9)\n')
+                    user_prompt = input(
+                        Fore.WHITE + 
+                        'How many vowels would you like for your word?'
+                        '(Enter a value between 3 and 9)\n'
+                        )
                     if validate_vowels(user_prompt):
                         break
                     else:
                         continue                        
             elif Screen.round_number == 4:
-                print(f'Choose six numbers in total from the '
-                'following selection of Big Numbers and Small'
-                'Numbers')
+                print(
+                    f'Choose six numbers in total from the '
+                    'following selection of Big Numbers and Small'
+                    'Numbers'
+                    )
                 while True:
-                    user_prompt = input(Fore.WHITE + 
-                    'How many big numbers (25, 50, 75, 100) '
-                    'would you like to select?'
-                    '(Enter a value between 0 and 4)\n')
+                    user_prompt = input(
+                        Fore.WHITE + 
+                        'How many big numbers (25, 50, 75, 100) '
+                        'would you like to select?'
+                        '(Enter a value between 0 and 4)\n'
+                        )
                     if validate_user_word(user_prompt):
                         break
                     else:
                         continue            
             else:
                 while True:
-                    user_prompt = input(Fore.WHITE + 
-                    'Using the letters above, please enter' 
-                    'your solution to the conundrum\n')
+                    user_prompt = input(
+                        Fore.WHITE + 
+                        'Using the letters above, please enter' 
+                        'your solution to the conundrum\n'
+                        )
                     if validate_user_conundrum(user_prompt):
                         break
                     else:
@@ -248,6 +263,7 @@ def round_handler():
         pass
 
 # Main game functions
+
 
 def main():
     """

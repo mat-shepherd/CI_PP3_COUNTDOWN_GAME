@@ -221,7 +221,7 @@ class Letters:
         self.vowels = populate_vowels()
         self.consonants = populate_consonants()
     
-    def populate_vowels:
+    def populate_vowels(self):
         """
         Add a selection of vowels with
         weighting used in Scrabble
@@ -233,10 +233,11 @@ class Letters:
             'O': 8,
             'U': 4
         }
+        
         for vowel, count in vowel_counts.items():
             vowels.extend([vowel] * count)
         
-        def populate_consonants:
+    def populate_consonants(self):
         """
         Add a selection of consonants with
         weighting used in Scrabble
@@ -264,6 +265,7 @@ class Letters:
             'Y': 2,
             'Z': 1
         }
+        
         for consonant, count in consonant_counts.items():
             consonants.extend([consonant] * count)
 

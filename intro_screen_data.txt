@@ -1,8 +1,7 @@
                      +---+---+---+---+---+---+---+---+---+ 
-                     | C | O | U | N | T | D | O | W | N | 
+                     |   | W | E | L | C | O | M | E |   | 
                      +---+---+---+---+---+---+---+---+---+  
 
-                             WELCOME TO COUNTDOWN!
                            THIS IS A CODE INSTITUTE
                          PROJECT BY MATTHEW SHEPHERD
 

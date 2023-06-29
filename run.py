@@ -64,6 +64,7 @@ class Screen:
         'intro': 'intro_screen_data.txt',
         'rules': 'rules_screen_data.txt',
         'game_round': 'game_screen_data.txt',
+        'letters_round': 'game_screen_data.txt',
         'game_over': 'game_over_screen_data.txt'
     }
 
@@ -107,17 +108,12 @@ class Screen:
         """
         Output text as ASCII art via Art library
         """
-        if self.screen_data_param == 'intro':
+        if self.screen_data_param in ['intro', 'rules']:
             result = text2art(
                 '        COUNTDOWN', font='small'
                 )
             print(result)
-        elif self.screen_data_param == 'rules':
-            result = text2art(
-                '        COUNTDOWN RULES', font='small'
-                )
-            print(result)
-        elif self.screen_data_param == 'game_round':
+        elif self.screen_data_param in ['game_round', 'letters_round']:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
@@ -252,7 +248,7 @@ class Screen:
                             'Your letters are displayed above. '
                             'Ready to play?\n'
                         )
-                        round_timer()
+                        # round_timer()
                         break
                     else:
                         continue
@@ -465,7 +461,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                                                         new_conundrum
                                                         )
                     break
-
+    print('Break out of round handler')
 
 # Main game functions
 

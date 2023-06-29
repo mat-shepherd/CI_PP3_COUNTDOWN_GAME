@@ -4,13 +4,13 @@
 from time import sleep
 from itertools import permutations
 import os
+import random
 # Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from validation import (
     validate_name,
     validate_menu_value,
     validate_vowels,
-    validate_consonants,
     validate_user_word,
     validate_user_conundrum
 )
@@ -40,10 +40,10 @@ class Player:
                  name='Player',
                  score=0,
                  high_score=0,
-                 round_time=None,
-                 current_round=None,
-                 chosen_letters=None,
-                 chosen_numbers=None
+                 round_time=0,
+                 current_round=0,
+                 chosen_letters=[],
+                 chosen_numbers=[]
                  ):
         self.name = name
         self.score = score
@@ -191,30 +191,34 @@ class Screen:
                         else:
                             continue
                 print(
-                    f'Choose nine letters in total from the '
+                    f'Choose nine letters in total from '
                     'a selection of Vowels and Consonants'
                     )
                 # Get number of vowels and validate number
                 while True:
                     user_prompt = input(
                         Fore.WHITE +
-                        'How many vowels would you like for your word?'
+                        'How many vowels would you like for your word?\n'
+                        'Your remaining letters will be consonants.'
                         '(Enter a value between 3 and 9)\n'
                     )
                     if validate_vowels(user_prompt):
-                        # Pick vowels and store in Player object
-                        # Get number of consonants and validate number
-                        while True:
-                            user_prompt = input(
-                                Fore.WHITE +
-                                'How many consonants would you like for '
-                                'your word?'
-                                '(Enter a value between 3 and 9)\n'
+                        # Pick vowels and store in Player attribute
+                        new_player.chosen_letters.extend(
+                            new_letters.random_letters(
+                                'vowels', int(user_prompt)
+                                )
                             )
-                            if validate_consonants(user_prompt):
-                                break
-                            else:
-                                continue
+                        print(new_player.chosen_letters)
+                        # Select remaining letters as random consonants
+                        # and store in Player attribute
+                        max_consonants = 9 - int(user_prompt)
+                        new_player.chosen_letters.extend(
+                            new_letters.random_letters(
+                                'consonants', max_consonants
+                                )
+                            )
+                        print(new_player.chosen_letters)
                         break
                     else:
                         continue
@@ -276,10 +280,11 @@ class Letters:
             'O': 8,
             'U': 4
         }
-
+        # Populate vowels  with letters from dictionary
         for vowel, count in vowel_counts.items():
             vowels.extend([vowel] * count)
-
+        # Shuffle letters in new list
+        random.shuffle(vowels)
         return vowels
 
     def populate_consonants(self):
@@ -311,11 +316,20 @@ class Letters:
             'Y': 2,
             'Z': 1
         }
-
+        # Populate consonants with letters from dictionary
         for consonant, count in consonant_counts.items():
             consonants.extend([consonant] * count)
-
+        # Shuffle letters in new list
+        random.shuffle(consonants)
         return consonants
+
+    def random_letters(self, type, count):
+        """
+        Return the requested count of letters
+        from the requested set of letters
+        """
+        letter_set = self.vowels if type == 'vowels' else self.consonants
+        return random.sample(letter_set, count)
 
 
 class Numbers:
@@ -416,7 +430,7 @@ def main():
     Run all program functions
     """
     new_player = Player()
-    new_letters = Letters()   
+    new_letters = Letters()
     new_numbers = Numbers()
     # print(new_numbers.numbers)
     # sleep(5)

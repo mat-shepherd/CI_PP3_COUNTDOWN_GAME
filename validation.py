@@ -49,14 +49,6 @@ def validate_vowels(number):
         return False
 
 
-def validate_consonants(user_value):
-    """
-    Check player has selected correct number of
-    consonant letters
-    """
-    pass
-
-
 def validate_user_word(user_word):
     """
     Check user letters round word is valid,

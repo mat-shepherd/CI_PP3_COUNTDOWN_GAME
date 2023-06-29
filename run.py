@@ -5,6 +5,7 @@ from time import sleep
 from itertools import permutations
 import os
 import random
+import sys
 # Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from validation import (
@@ -92,7 +93,8 @@ class Screen:
         print(clear_screen())
         self.display_text_art()
         self.display_text()
-        self.display_score(new_player)
+        if self.screen_data_param == 'game_round':
+            self.display_score(new_player)
         user_prompt = self.display_prompt(new_player,
                                           new_letters,
                                           new_numbers,
@@ -413,9 +415,11 @@ def round_timer():
     Round timer function that runs for 30 seconds
     """
     for i in range(30, 0, -1):
-        print(f"\rTime remaining: {i} seconds\n")
+        sys.stdout.write("\rTime remaining: " + str(i) + "seconds")
+        sys.stdout.flush()
         sleep(1)
-    print("Time's Up!")
+    sys.stdout.write("\rTime's up!                             \n")
+    sys.stdout.flush()
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

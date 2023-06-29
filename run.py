@@ -65,6 +65,8 @@ class Screen:
         'rules': 'rules_screen_data.txt',
         'game_round': 'game_screen_data.txt',
         'letters_round': 'game_screen_data.txt',
+        'numbers_round': 'game_screen_data.txt',
+        'conundrum_round': 'game_screen_data.txt',               
         'game_over': 'game_over_screen_data.txt'
     }
 
@@ -212,7 +214,7 @@ class Screen:
                         else:
                             continue
                 print(
-                    f'Choose nine letters in total from '
+                    f'Choose 9 letters in total from '
                     'a selection of Vowels and Consonants'
                     )
                 # Get number of vowels and validate number
@@ -220,7 +222,7 @@ class Screen:
                     user_prompt = input(
                         Fore.WHITE +
                         'How many vowels would you like for your word?\n'
-                        'Your remaining letters will be consonants.'
+                        'Your remaining letters will be consonants. '
                         '(Enter a value between 3 and 9)\n'
                     )
                     if validate_vowels(user_prompt):

@@ -37,10 +37,11 @@ def validate_menu_value(number):
 
 def validate_vowels(number):
     """
-    Check player has selected no more than 9 vowels
+    Check player has selected no less than 3 and no
+    more than 9 vowels
     """
     try:
-        if 1 <= int(number) <= 9:
+        if 3 <= int(number) <= 9:
             return True
         else:
             raise ValueError

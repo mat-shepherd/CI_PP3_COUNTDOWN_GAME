@@ -43,7 +43,8 @@ class Player:
                  round_time=None,
                  current_round=None,
                  chosen_letters=None,
-                 chosen_numbers=None):
+                 chosen_numbers=None
+                 ):
         self.name = name
         self.score = score
         self.high_score = high_score
@@ -71,7 +72,12 @@ class Screen:
         self.screen_data_param = screen_data_file
         self.screen_data_file = Screen.screen_data[screen_data_file]
 
-    def render(self, new_player=None):
+    def render(self,
+               new_player=None,
+               new_letters=None,
+               new_numbers=None,
+               new_conundrum=None
+               ):
         """
         Set screen bg to blue and render
         screen text and prompt in the terminal
@@ -80,7 +86,11 @@ class Screen:
         print(clear_screen())
         self.display_text_art()
         self.display_text()
-        user_prompt = self.display_prompt(new_player)
+        user_prompt = self.display_prompt(new_player,
+                                          new_letters,
+                                          new_numbers,
+                                          new_conundrum
+                                          )
 
         return user_prompt
 
@@ -111,19 +121,24 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
-    def display_timer(self):
+    def display_timer(self, new_player=None):
         """
         Show Timer
         """
         pass
 
-    def display_score(self):
+    def display_score(self, new_player=None):
         """
         Show Timer
         """
-        pass    
+        pass   
 
-    def display_prompt(self, new_player=None):
+    def display_prompt(self,
+                       new_player=None,
+                       new_letters=None,
+                       new_numbers=None,
+                       new_conundrum=None
+                       ):
         """
         Display relevant screen prompt
         """
@@ -162,7 +177,7 @@ class Screen:
                             'Please enter your name\n'
                         )
                         if validate_name(user_prompt):
-                            new_player = Player(user_prompt)
+                            new_player.name = user_prompt
                             print(clear_screen())
                             self.display_text_art()
                             self.display_text()
@@ -175,8 +190,9 @@ class Screen:
                             continue
                 print(
                     f'Choose nine letters in total from the '
-                    'following selection of Vowels and Consonants'
+                    'a selection of Vowels and Consonants'
                     )
+                # Get number of vowels and validate number
                 while True:
                     user_prompt = input(
                         Fore.WHITE +
@@ -184,6 +200,20 @@ class Screen:
                         '(Enter a value between 3 and 9)\n'
                     )
                     if validate_vowels(user_prompt):
+                        # Pick vowels and store in Player object
+                        
+                        # Get number of consonants and validate number
+                        while True:
+                            user_prompt = input(
+                                Fore.WHITE +
+                                'How many consonants would you like for '
+                                'your word?'
+                                '(Enter a value between 3 and 9)\n'
+                            )
+                            if validate_consonants(user_prompt):
+                                break
+                            else:
+                                continue
                         break
                     else:
                         continue
@@ -217,11 +247,9 @@ class Screen:
                         break
                     else:
                         continue
-        # Return the user_prompt value and the player object
-        # back to round_handler so we know which screen to
-        # render next and so that player details can be
-        # accessed when rendering new screens
-        return user_prompt, new_player
+        # Return the user_prompt value back to round_handler
+        # so we know which screen to render next
+        return user_prompt
 
 
 class Letters:
@@ -229,18 +257,17 @@ class Letters:
     The Letters class to contain all letters
     to choose from in the letters round
     """
-    vowels = []
-    consonants = []
 
     def __init__(self):
-        self.vowels = populate_vowels()
-        self.consonants = populate_consonants()
+        self.vowels = self.populate_vowels()
+        self.consonants = self.populate_consonants()
 
     def populate_vowels(self):
         """
         Add a selection of vowels with
         weighting used in Scrabble
         """
+        vowels = []
         vowel_counts = {
             'A': 9,
             'E': 12,
@@ -252,11 +279,14 @@ class Letters:
         for vowel, count in vowel_counts.items():
             vowels.extend([vowel] * count)
 
+        return vowels
+
     def populate_consonants(self):
         """
         Add a selection of consonants with
         weighting used in Scrabble
         """
+        consonants = []
         consonant_counts = {
             'B': 2,
             'C': 2,
@@ -284,6 +314,8 @@ class Letters:
         for consonant, count in consonant_counts.items():
             consonants.extend([consonant] * count)
 
+        return consonants
+
 
 class Numbers:
     """
@@ -294,7 +326,11 @@ class Numbers:
     small = []
     target = 999
 
-    def __init__(self, big, small, target):
+    def __init__(self,
+                 big=None,
+                 small=None,
+                 target=None
+                 ):
         self.big = Numbers.big
         self.small = Numbers.small
         self.target = Numbers.target
@@ -325,7 +361,7 @@ def print_centered(text):
     print(centered_text)
 
 
-def round_handler():
+def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
     Load the initial game screen and
     create the next screen based on
@@ -336,21 +372,37 @@ def round_handler():
     game_screen = Screen('game_round')
     # Capture user input and player object
     # when screens are rendered
-    user_response, new_player = intro_screen.render()
+    user_response = intro_screen.render(new_player,
+                                        new_letters,
+                                        new_numbers,
+                                        new_conundrum
+                                        )
     # Render intro, rules and first round screens
     while True:
-        if user_response[0] == '1':
-            user_response = game_screen.render()
-        elif user_response[0] == '2':
-            user_response = rules_screen.render()
+        if user_response == '1':
+            user_response = game_screen.render(new_player,
+                                               new_letters,
+                                               new_numbers,
+                                               new_conundrum
+                                               )
+        elif user_response == '2':
+            user_response = rules_screen.render(new_player,
+                                                new_letters,
+                                                new_numbers,
+                                                new_conundrum
+                                                )
             # Inner loop to loop between intro screen
             # and rules screen until 1 selected
             # then continue to outer loop
             while True:
-                if user_response[0] == '1':
+                if user_response == '1':
                     break
                 else:
-                    user_response, new_player = intro_screen.render()
+                    user_response = intro_screen.render(new_player,
+                                                        new_letters,
+                                                        new_numbers,
+                                                        new_conundrum
+                                                        )
                     break
 
 
@@ -359,10 +411,17 @@ def round_handler():
 
 def main():
     """
+    Create game objects
     Run all program functions
     """
-    round_handler()
-    # Player(name,score,high_score,round_time,current_round,chosen_letters,chosen_numbers)
+    new_player = Player()
+    new_letters = Letters()
+    print(new_letters.vowels)    
+    print(new_letters.consonants)
+    sleep(5)
+    new_numbers = Numbers() 
+    new_conundrum = Conundrum()
+    round_handler(new_player, new_letters, new_numbers, new_conundrum)
 
 # Call main game function
 

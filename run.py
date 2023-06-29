@@ -203,7 +203,6 @@ class Screen:
                     )
                     if validate_vowels(user_prompt):
                         # Pick vowels and store in Player object
-                        
                         # Get number of consonants and validate number
                         while True:
                             user_prompt = input(

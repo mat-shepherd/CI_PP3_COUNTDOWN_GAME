@@ -35,17 +35,23 @@ def validate_menu_value(number):
         return False
 
 
-def validate_vowels(user_value):
+def validate_vowels(number):
     """
-    Check player has selected correct number of valid
-    vowel letters
+    Check player has selected no more than 9 vowels
     """
-    pass
+    try:
+        if 1 <= int(number) <= 9:
+            return True
+        else:
+            raise ValueError
+    except ValueError:
+        print(Fore.RED + 'Please enter only numbers between 3 and 9')
+        return False
 
 
 def validate_consonants(user_value):
     """
-    Check player has selected correct number of valid
+    Check player has selected correct number of
     consonant letters
     """
     pass

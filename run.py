@@ -38,8 +38,8 @@ class Player:
     """
     def __init__(self,
                  name='Player',
-                 score=None,
-                 high_score=None,
+                 score=0,
+                 high_score=0,
                  round_time=None,
                  current_round=None,
                  chosen_letters=None,
@@ -86,6 +86,7 @@ class Screen:
         print(clear_screen())
         self.display_text_art()
         self.display_text()
+        self.display_score(new_player)        
         user_prompt = self.display_prompt(new_player,
                                           new_letters,
                                           new_numbers,
@@ -106,7 +107,7 @@ class Screen:
             print(result)
         elif self.screen_data_param == 'game_round':
             round_word = num2words(self.round_number, lang='en').upper()
-            result = text2art(f'            ROUND {round_word}', font='small')
+            result = text2art(f'               ROUND {round_word}', font='small')
             print(result)
 
     def display_text(self):
@@ -129,9 +130,9 @@ class Screen:
 
     def display_score(self, new_player=None):
         """
-        Show Timer
+        Display the user score
         """
-        pass   
+        print_centered(f'Your Score: {new_player.score}\n') 
 
     def display_prompt(self,
                        new_player=None,
@@ -181,6 +182,7 @@ class Screen:
                             print(clear_screen())
                             self.display_text_art()
                             self.display_text()
+                            self.display_score(new_player)                            
                             print_centered(
                                 f"{new_player.name.upper()}, "
                                 "LET'S PLAY COUNTDOWN!\n"
@@ -415,11 +417,10 @@ def main():
     Run all program functions
     """
     new_player = Player()
-    new_letters = Letters()
-    print(new_letters.vowels)    
-    print(new_letters.consonants)
-    sleep(5)
-    new_numbers = Numbers() 
+    new_letters = Letters()   
+    new_numbers = Numbers()
+    # print(new_numbers.numbers)
+    # sleep(5)
     new_conundrum = Conundrum()
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
 

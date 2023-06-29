@@ -246,9 +246,11 @@ class Screen:
                         print_centered(self.letter_tiles)
                         self.display_score(new_player)
                         print(
-                            f"{new_player.name}, "
-                            "Your letters are displayed above. Ready to play?\n"
+                            f'{new_player.name}, '
+                            'Your letters are displayed above. '
+                            'Ready to play?\n'
                         )
+                        round_timer()
                         break
                     else:
                         continue
@@ -404,6 +406,16 @@ def print_centered(text):
     terminal_width = 80
     centered_text = text.center(terminal_width)
     print(centered_text)
+
+
+def round_timer():
+    """
+    Round timer function that runs for 30 seconds
+    """
+    for i in range(30, 0, -1):
+        print(f"\rTime remaining: {i} seconds\n")
+        sleep(1)
+    print("Time's Up!")
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

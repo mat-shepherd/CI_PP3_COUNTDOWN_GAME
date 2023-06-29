@@ -111,6 +111,18 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
+    def display_timer(self):
+        """
+        Show Timer
+        """
+        pass
+
+    def display_score(self):
+        """
+        Show Timer
+        """
+        pass    
+
     def display_prompt(self, new_player=None):
         """
         Display relevant screen prompt
@@ -154,7 +166,10 @@ class Screen:
                             print(clear_screen())
                             self.display_text_art()
                             self.display_text()
-                            print_centered(f"{new_player.name.upper()}, LET'S PLAY COUNTDOWN!\n")
+                            print_centered(
+                                f"{new_player.name.upper()}, "
+                                "LET'S PLAY COUNTDOWN!\n"
+                            )
                             break
                         else:
                             continue
@@ -220,7 +235,7 @@ class Letters:
     def __init__(self):
         self.vowels = populate_vowels()
         self.consonants = populate_consonants()
-    
+
     def populate_vowels(self):
         """
         Add a selection of vowels with
@@ -233,10 +248,10 @@ class Letters:
             'O': 8,
             'U': 4
         }
-        
+
         for vowel, count in vowel_counts.items():
             vowels.extend([vowel] * count)
-        
+
     def populate_consonants(self):
         """
         Add a selection of consonants with
@@ -265,7 +280,7 @@ class Letters:
             'Y': 2,
             'Z': 1
         }
-        
+
         for consonant, count in consonant_counts.items():
             consonants.extend([consonant] * count)
 
@@ -300,6 +315,7 @@ class Conundrum:
 
 # Helper Functions
 
+
 def print_centered(text):
     """
     Print text centered in terminal
@@ -307,6 +323,7 @@ def print_centered(text):
     terminal_width = 80
     centered_text = text.center(terminal_width)
     print(centered_text)
+
 
 def round_handler():
     """
@@ -335,6 +352,7 @@ def round_handler():
                 else:
                     user_response, new_player = intro_screen.render()
                     break
+
 
 # Main game functions
 

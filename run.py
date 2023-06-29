@@ -66,6 +66,12 @@ class Screen:
         'game_over': 'game_over_screen_data.txt'
     }
 
+    letter_tiles = """
+                     +---+---+---+---+---+---+---+---+---+ 
+                     | * | * | * | * | * | * | * | * | * | 
+                     +---+---+---+---+---+---+---+---+---+  
+    """
+
     round_number = 1
 
     def __init__(self, screen_data_file):
@@ -86,7 +92,7 @@ class Screen:
         print(clear_screen())
         self.display_text_art()
         self.display_text()
-        self.display_score(new_player)        
+        self.display_score(new_player)
         user_prompt = self.display_prompt(new_player,
                                           new_letters,
                                           new_numbers,
@@ -100,14 +106,22 @@ class Screen:
         Output text as ASCII art via Art library
         """
         if self.screen_data_param == 'intro':
-            result = text2art('        COUNTDOWN', font='small')
+            result = text2art(
+                '        COUNTDOWN', font='small'
+                )
             print(result)
         elif self.screen_data_param == 'rules':
-            result = text2art('        COUNTDOWN RULES', font='small')
+            result = text2art(
+                '        COUNTDOWN RULES', font='small'
+                )
             print(result)
         elif self.screen_data_param == 'game_round':
-            round_word = num2words(self.round_number, lang='en').upper()
-            result = text2art(f'               ROUND {round_word}', font='small')
+            round_word = num2words(
+                self.round_number, lang='en'
+                ).upper()
+            result = text2art(
+                f'               ROUND {round_word}', font='small'
+                )
             print(result)
 
     def display_text(self):
@@ -132,7 +146,16 @@ class Screen:
         """
         Display the user score
         """
-        print_centered(f'Your Score: {new_player.score}\n') 
+        print_centered(f'Your Score: {new_player.score}\n')
+
+    def update_tiles(self, new_player=None):
+        """
+        Update letters tiles with chosen letters
+        """
+        for char in new_player.chosen_letters:
+            # Loop through player chosen letters and use
+            # each letter to repalce letter tile
+            self.letter_tiles = self.letter_tiles.replace('*', char, 1)
 
     def display_prompt(self,
                        new_player=None,
@@ -181,8 +204,8 @@ class Screen:
                             new_player.name = user_prompt
                             print(clear_screen())
                             self.display_text_art()
-                            self.display_text()
-                            self.display_score(new_player)                            
+                            print_centered(self.letter_tiles)
+                            self.display_score(new_player)
                             print_centered(
                                 f"{new_player.name.upper()}, "
                                 "LET'S PLAY COUNTDOWN!\n"
@@ -209,7 +232,6 @@ class Screen:
                                 'vowels', int(user_prompt)
                                 )
                             )
-                        print(new_player.chosen_letters)
                         # Select remaining letters as random consonants
                         # and store in Player attribute
                         max_consonants = 9 - int(user_prompt)
@@ -218,7 +240,15 @@ class Screen:
                                 'consonants', max_consonants
                                 )
                             )
-                        print(new_player.chosen_letters)
+                        print(clear_screen())
+                        self.display_text_art()
+                        self.update_tiles(new_player)
+                        print_centered(self.letter_tiles)
+                        self.display_score(new_player)
+                        print(
+                            f"{new_player.name}, "
+                            "Your letters are displayed above. Ready to play?\n"
+                        )
                         break
                     else:
                         continue

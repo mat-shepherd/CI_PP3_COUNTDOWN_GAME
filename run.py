@@ -138,9 +138,14 @@ class Screen:
 
     def display_timer(self, new_player=None):
         """
-        Show Timer
+        Display round timer function that runs for 30 seconds
         """
-        pass
+        for i in range(30, 0, -1):
+            sys.stdout.write("\rTime remaining: " + str(i) + "seconds")
+            sys.stdout.flush()
+            sleep(1)
+        sys.stdout.write("\rTime's up!                             \n")
+        sys.stdout.flush()
 
     def display_score(self, new_player=None):
         """
@@ -406,18 +411,6 @@ def print_centered(text):
     terminal_width = 80
     centered_text = text.center(terminal_width)
     print(centered_text)
-
-
-def round_timer():
-    """
-    Round timer function that runs for 30 seconds
-    """
-    for i in range(30, 0, -1):
-        sys.stdout.write("\rTime remaining: " + str(i) + "seconds")
-        sys.stdout.flush()
-        sleep(1)
-    sys.stdout.write("\rTime's up!                             \n")
-    sys.stdout.flush()
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

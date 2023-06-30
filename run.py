@@ -63,10 +63,10 @@ class Screen:
     screen_data = {
         'intro': 'intro_screen_data.txt',
         'rules': 'rules_screen_data.txt',
-        'first_round': 'game_screen_data.txt',
+        'enter_name': 'game_screen_data.txt',
         'letters_round': 'game_screen_data.txt',
         'numbers_round': 'game_screen_data.txt',
-        'conundrum_round': 'game_screen_data.txt',               
+        'conundrum_round': 'game_screen_data.txt',                        
         'game_over': 'game_over_screen_data.txt'
     }
 
@@ -76,7 +76,7 @@ class Screen:
                      +---+---+---+---+---+---+---+---+---+  
     """
 
-    round_number = 1
+    round_number = 0
 
     def __init__(self, screen_data_file):
         self.screen_data_param = screen_data_file
@@ -89,20 +89,61 @@ class Screen:
                new_conundrum=None
                ):
         """
+        Render screen elements to the terminal.
+
         Set screen bg to blue and render
-        screen text and prompt in the terminal
+        screen text, score, timer,  and prompt
+        in the terminal.
+
+        Parameters
+        ----------
+        new_player : object
+            Current Player Object
+        new_letters : object
+            Current Letters Object
+        new_numbers : object
+            Current Numbers Object
+        new_conundrum : object
+            Current Conundrum Object
+
+        Returns
+        -------
+        user_prompt : string
+            User inputted string
         """
         print(Back.BLUE)
         print(clear_screen())
         self.display_text_art()
-        self.display_text()
-        if self.screen_data_param == 'first_round':
+        if self.screen_data_param in [
+            'intro',
+            'rules',
+            'game_over'
+        ]:
+            self.display_text()
+        # Update tiles for enter_name screen
+        if self.screen_data_param in ['enter_name']:
+            self.update_tiles(new_player)
+        # Only print tiles and score during rounds
+        if self.screen_data_param in [
+            'enter_name'
+            'letters_round',
+            'numbers_round',
+            'conundrum_round'
+        ]:
+            print_centered(self.letter_tiles)
             self.display_score(new_player)
-        user_prompt = self.display_prompt(new_player,
-                                          new_letters,
-                                          new_numbers,
-                                          new_conundrum
-                                          )
+        # Only print on first round
+        if Screen.round_number == 1:
+            print_centered(
+                f"{new_player.name.upper()}, "
+                "LET'S PLAY COUNTDOWN!\n"
+            )
+        user_prompt = self.display_prompt(
+            new_player,
+            new_letters,
+            new_numbers,
+            new_conundrum
+        )
 
         return user_prompt
 
@@ -110,12 +151,16 @@ class Screen:
         """
         Output text as ASCII art via Art library
         """
-        if self.screen_data_param in ['intro', 'rules']:
+        if self.screen_data_param in ['intro', 'rules', 'enter_name']:
             result = text2art(
                 '        COUNTDOWN', font='small'
                 )
             print(result)
-        elif self.screen_data_param in ['first_round', 'letters_round']:
+        elif self.screen_data_param in [
+            'letters_round',
+            'numbers_round',
+            'conundrum_round'
+        ]:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
@@ -157,6 +202,9 @@ class Screen:
         """
         Update letters tiles with chosen letters
         """
+        # If enter_name screen populate letters with Ready? 
+        if len(new_player.chosen_letters) == 0:
+            new_player.chosen_letters = ['R', 'e', 'a', 'd', 'y', '?']
         for char in new_player.chosen_letters:
             # Loop through player chosen letters and use
             # each letter to repalce letter tile
@@ -169,7 +217,29 @@ class Screen:
                        new_conundrum=None
                        ):
         """
-        Display relevant screen prompt
+        Display relevant user prompt for screen.
+
+        Checks which screen is being rendered and
+        provides the relevant set of prompts. Passes
+        input to be validated, updates relevant
+        objects with user input and then returns
+        user_prompt to round_handler.
+
+        Parameters
+        ----------
+        new_player : object
+            Current Player Object
+        new_letters : object
+            Current Letters Object
+        new_numbers : object
+            Current Numbers Object
+        new_conundrum : object
+            Current Conundrum Object
+
+        Returns
+        -------
+        user_prompt : string
+            User inputted string
         """
         if self.screen_data_param == 'intro':
             while True:
@@ -193,105 +263,101 @@ class Screen:
                     break
                 else:
                     continue
-        elif self.screen_data_param == 'first_round':
-            # Only update round number after first round
-            if Screen.round_number > 1:
-                Screen.round_number += 1
-            # First 3 letter rounds
-            if Screen.round_number <= 3:
-                if Screen.round_number == 1:
-                    while True:
-                        user_prompt = input(
-                            Fore.WHITE +
-                            'Please enter your name\n'
-                        )
-                        if validate_name(user_prompt):
-                            new_player.name = user_prompt
-                            print(clear_screen())
-                            self.display_text_art()
-                            print_centered(self.letter_tiles)
-                            self.display_score(new_player)
-                            print_centered(
-                                f"{new_player.name.upper()}, "
-                                "LET'S PLAY COUNTDOWN!\n"
-                            )
-                            break
-                        else:
-                            continue
-                print(
-                    Fore.YELLOW +
-                    f'Choose 9 letters in total from '
-                    'a selection of Vowels and Consonants\n'
-                    '(Once you choose a number of vowels, the '
-                    'remaining letters will be made up '
-                    'of consonants)\n'
-                    )
-                # Get number of vowels and validate number
-                while True:
-                    user_prompt = input(
-                        Fore.WHITE +
-                        'How many vowels would you like for your word?\n'
-                        '(Enter a value between 3 and 9)'
-                    )
-                    if validate_vowels(user_prompt):
-                        # Pick vowels and store in Player attribute
-                        new_player.chosen_letters.extend(
-                            new_letters.random_letters(
-                                'vowels', int(user_prompt)
-                                )
-                            )
-                        # Select remaining letters as random consonants
-                        # and store in Player attribute
-                        max_consonants = 9 - int(user_prompt)
-                        new_player.chosen_letters.extend(
-                            new_letters.random_letters(
-                                'consonants', max_consonants
-                                )
-                            )
-                        print(clear_screen())
-                        self.display_text_art()
-                        self.update_tiles(new_player)
-                        print_centered(self.letter_tiles)
-                        self.display_score(new_player)
-                        print(
-                            f'{new_player.name}, '
-                            'Your letters are displayed above. '
-                            'Ready to play?\n'
-                        )
-                        # round_timer()
-                        break
-                    else:
-                        continue
-            # Numbers round
-            elif Screen.round_number == 4:
-                print(
-                    f'Choose six numbers in total from the '
-                    'following selection of Big Numbers and Small'
-                    'Numbers'
+        elif self.screen_data_param == 'enter_name':
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
+                    'Please enter your name\n'
                 )
-                while True:
-                    user_prompt = input(
-                        Fore.WHITE +
-                        'How many big numbers (25, 50, 75, 100) '
-                        'would you like to select?'
-                        '(Enter a value between 0 and 4)\n'
+                if validate_name(user_prompt):
+                    new_player.name = user_prompt
+                    # Return start_ga,e flag to 
+                    # round_handler to break out of 
+                    # first loop
+                    user_prompt = 'start_rounds'
+                    print(f'Prompt being returned: {user_prompt}')
+                    break
+                else:
+                    continue
+        # Letters round
+        elif self.screen_data_param == 'letters_round':
+            print(
+                Fore.YELLOW +
+                f'Choose 9 letters in total from '
+                'a selection of Vowels and Consonants\n'
+                '(Once you choose a number of vowels, the '
+                'remaining letters will be made up '
+                'of consonants)\n'
+                )
+            # Get number of vowels and validate number
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
+                    'How many vowels would you like for your word?\n'
+                    '(Enter a value between 3 and 9)'
+                )
+                if validate_vowels(user_prompt):
+                    # Pick vowels and store in Player attribute
+                    new_player.chosen_letters.extend(
+                        new_letters.random_letters(
+                            'vowels', int(user_prompt)
+                            )
+                        )
+                    # Select remaining letters as random consonants
+                    # and store in Player attribute
+                    max_consonants = 9 - int(user_prompt)
+                    new_player.chosen_letters.extend(
+                        new_letters.random_letters(
+                            'consonants', max_consonants
+                            )
+                        )
+                    print(clear_screen())
+                    self.display_text_art()
+                    self.update_tiles(new_player)
+                    print_centered(self.letter_tiles)
+                    self.display_score(new_player)
+                    print(
+                        f'{new_player.name}, '
+                        'Your letters are displayed above. '
+                        'Ready to play?\n'
                     )
-                    if validate_user_word(user_prompt):
-                        break
-                    else:
-                        continue
-            # Conundrum round
-            else:
-                while True:
-                    user_prompt = input(
-                        Fore.WHITE +
-                        'Using the letters above, please enter'
-                        'your solution to the conundrum\n'
-                    )
-                    if validate_user_conundrum(user_prompt):
-                        break
-                    else:
-                        continue
+                    # round_timer()
+                    break
+                else:
+                    continue
+        # Numbers round
+        elif self.screen_data_param == 'numbers_round':
+            print(
+                f'Choose six numbers in total from the '
+                'following selection of Big Numbers and Small'
+                'Numbers'
+            )
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
+                    'How many big numbers (25, 50, 75, 100) '
+                    'would you like to select?'
+                    '(Enter a value between 0 and 4)\n'
+                )
+                if validate_user_word(user_prompt):
+                    break
+                else:
+                    continue
+        # Conundrum round
+        elif self.screen_data_param == 'conundrum_round':
+            pass
+        # Else game is over
+        else:
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
+                    'Using the letters above, please enter'
+                    'your solution to the conundrum\n'
+                )
+                if validate_user_conundrum(user_prompt):
+                    break
+                else:
+                    continue
         # Return the user_prompt value back to round_handler
         # so we know which screen to render next
         return user_prompt
@@ -424,32 +490,35 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
     intro_screen = Screen('intro')
     rules_screen = Screen('rules')
-    first_screen = Screen('first_round')
+    name_screen = Screen('enter_name')
     letters_screen = Screen('letters_round')
     numbers_screen = Screen('numbers_round')
     conundrum_screen = Screen('conundrum_round')
-    game_over_screen = Screen('game_over') 
+    game_over_screen = Screen('game_over')
     # Capture user input and player object
     # when screens are rendered
-    user_response = intro_screen.render(new_player,
-                                        new_letters,
-                                        new_numbers,
-                                        new_conundrum
-                                        )
+    user_response = intro_screen.render(
+        new_player,
+        new_letters,
+        new_numbers,
+        new_conundrum
+    )
     # Render intro, rules and first round screens
     while True:
         if user_response == '1':
-            user_response = first_screen.render(new_player,
-                                               new_letters,
-                                               new_numbers,
-                                               new_conundrum
-                                               )
+            user_response = name_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
         elif user_response == '2':
-            user_response = rules_screen.render(new_player,
-                                                new_letters,
-                                                new_numbers,
-                                                new_conundrum
-                                                )
+            user_response = rules_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
             # Inner loop to loop between intro screen
             # and rules screen until 1 selected
             # then continue to outer loop
@@ -457,13 +526,25 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 if user_response == '1':
                     break
                 else:
-                    user_response = intro_screen.render(new_player,
-                                                        new_letters,
-                                                        new_numbers,
-                                                        new_conundrum
-                                                        )
+                    user_response = intro_screen.render(
+                        new_player,
+                        new_letters,
+                        new_numbers,
+                        new_conundrum
+                    )
                     break
-    print('Break out of round handler')
+        elif user_response == 'start_rounds':
+            # Update round number in Screen
+            Screen.round_number += 1
+            user_response = letters_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        else:
+            print('Break out of round handler')
+            break
 
 # Main game functions
 
@@ -480,6 +561,7 @@ def main():
     # sleep(5)
     new_conundrum = Conundrum()
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
+    print('Back in main')
 
 # Call main game function
 

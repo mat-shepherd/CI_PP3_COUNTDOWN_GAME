@@ -63,7 +63,7 @@ class Screen:
     screen_data = {
         'intro': 'intro_screen_data.txt',
         'rules': 'rules_screen_data.txt',
-        'game_round': 'game_screen_data.txt',
+        'first_round': 'game_screen_data.txt',
         'letters_round': 'game_screen_data.txt',
         'numbers_round': 'game_screen_data.txt',
         'conundrum_round': 'game_screen_data.txt',               
@@ -96,7 +96,7 @@ class Screen:
         print(clear_screen())
         self.display_text_art()
         self.display_text()
-        if self.screen_data_param == 'game_round':
+        if self.screen_data_param == 'first_round':
             self.display_score(new_player)
         user_prompt = self.display_prompt(new_player,
                                           new_letters,
@@ -115,7 +115,7 @@ class Screen:
                 '        COUNTDOWN', font='small'
                 )
             print(result)
-        elif self.screen_data_param in ['game_round', 'letters_round']:
+        elif self.screen_data_param in ['first_round', 'letters_round']:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
@@ -193,7 +193,7 @@ class Screen:
                     break
                 else:
                     continue
-        elif self.screen_data_param == 'game_round':
+        elif self.screen_data_param == 'first_round':
             # Only update round number after first round
             if Screen.round_number > 1:
                 Screen.round_number += 1
@@ -219,16 +219,19 @@ class Screen:
                         else:
                             continue
                 print(
+                    Fore.YELLOW +
                     f'Choose 9 letters in total from '
-                    'a selection of Vowels and Consonants'
+                    'a selection of Vowels and Consonants\n'
+                    '(Once you choose a number of vowels, the '
+                    'remaining letters will be made up '
+                    'of consonants)\n'
                     )
                 # Get number of vowels and validate number
                 while True:
                     user_prompt = input(
                         Fore.WHITE +
                         'How many vowels would you like for your word?\n'
-                        'Your remaining letters will be consonants. '
-                        '(Enter a value between 3 and 9)\n'
+                        '(Enter a value between 3 and 9)'
                     )
                     if validate_vowels(user_prompt):
                         # Pick vowels and store in Player attribute
@@ -421,7 +424,11 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
     intro_screen = Screen('intro')
     rules_screen = Screen('rules')
-    game_screen = Screen('game_round')
+    first_screen = Screen('first_round')
+    letters_screen = Screen('letters_round')
+    numbers_screen = Screen('numbers_round')
+    conundrum_screen = Screen('conundrum_round')
+    game_over_screen = Screen('game_over') 
     # Capture user input and player object
     # when screens are rendered
     user_response = intro_screen.render(new_player,
@@ -432,7 +439,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     # Render intro, rules and first round screens
     while True:
         if user_response == '1':
-            user_response = game_screen.render(new_player,
+            user_response = first_screen.render(new_player,
                                                new_letters,
                                                new_numbers,
                                                new_conundrum

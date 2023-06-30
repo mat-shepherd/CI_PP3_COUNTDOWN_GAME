@@ -45,8 +45,8 @@ class Player:
                  current_round=0,
                  chosen_letters=[],
                  chosen_numbers=[],
-                 guessed_words=[],
-                 guessed_solutions=[]
+                 guessed_words=['', '', ''],
+                 guessed_solutions=['', '', '']
                  ):
         self.name = name
         self.score = score
@@ -207,9 +207,13 @@ class Screen:
         Display round timer function that runs for 30 seconds
         """
         for i in range(30, 0, -1):
-            sys.stdout.write("\rTime remaining: " + str(i) + "seconds")
+            sys.stdout.write("\rTime remaining: " + str(i) + " seconds")
+            # Update player's current round time
             sys.stdout.flush()
             sleep(1)
+            if new_player.guessed_words[Screen.round_number-1] != '':
+                new_player.round_time = i
+                break
         sys.stdout.write("\rTime's up!                             \n")
         sys.stdout.flush()
 
@@ -370,6 +374,7 @@ class Screen:
         elif self.screen_data_param == 'letters_guess':
             # Get word guess
             while True:
+                self.display_timer(new_player)
                 user_prompt = input(
                     Fore.WHITE +
                     'You have 30 seconds. Enter your longest word... '

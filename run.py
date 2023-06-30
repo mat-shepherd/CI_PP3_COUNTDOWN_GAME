@@ -21,7 +21,7 @@ from PyDictionary import PyDictionary
 from profanity_check import predict, predict_prob
 import countdown_numbers_solver
 from colorama import init
-from colorama import Fore, Back
+from colorama import Fore, Back, Style
 from colorama.ansi import clear_screen
 from art import text2art
 from num2words import num2words
@@ -44,7 +44,9 @@ class Player:
                  round_time=0,
                  current_round=0,
                  chosen_letters=[],
-                 chosen_numbers=[]
+                 chosen_numbers=[],
+                 guessed_words=[],
+                 guessed_solutions=[]
                  ):
         self.name = name
         self.score = score
@@ -53,6 +55,8 @@ class Player:
         self.current_round = current_round
         self.chosen_letters = chosen_letters
         self.chosen_numbers = chosen_numbers
+        self.guessed_words = guessed_words
+        self.guessed_solutions = guessed_solutions
 
 
 class Screen:
@@ -65,8 +69,17 @@ class Screen:
         'rules': 'rules_screen_data.txt',
         'enter_name': 'game_screen_data.txt',
         'letters_round': 'game_screen_data.txt',
+        'show_letters': 'game_screen_data.txt',
+        'letters_guess': 'game_screen_data.txt',
+        'letters_feedback': 'game_screen_data.txt',
         'numbers_round': 'game_screen_data.txt',
-        'conundrum_round': 'game_screen_data.txt',                        
+        'show_numbers': 'game_screen_data.txt',
+        'numbers_guess': 'game_screen_data.txt',
+        'numbers_feedback': 'game_screen_data.txt',
+        'conundrum_round': 'game_screen_data.txt',
+        'show_conundrum': 'game_screen_data.txt',
+        'conundrum_guess': 'game_screen_data.txt',
+        'conundrum_feedback': 'game_screen_data.txt',
         'game_over': 'game_over_screen_data.txt'
     }
 
@@ -120,18 +133,29 @@ class Screen:
             'game_over'
         ]:
             self.display_text()
-        # Update tiles for enter_name screen
-        if self.screen_data_param in ['enter_name']:
-            self.update_tiles(new_player)
-        # Only print tiles and score during 
-        # enter name and rounds
+        # Update tiles on enter_name or show screens
         if self.screen_data_param in [
             'enter_name',
-            'letters_round',
-            'numbers_round',
-            'conundrum_round'
+            'show_letters',
+            'letters_guess',
+            'show_numbers',
+            'nubmers_guess',
+            'show_conundrum'
+            'conundrum_guess'
         ]:
-            print_centered(self.letter_tiles)
+            self.update_tiles(new_player)
+        # Only print tiles and score during
+        # enter name, rounds, and feedback screens
+        if self.screen_data_param not in [
+            'intro',
+            'rules',
+            'game_over'
+        ]:
+            print_centered(
+                Fore.YELLOW +
+                self.letter_tiles +
+                Fore.RESET
+                )
             self.display_score(new_player)
         # Only print on first round
         if Screen.round_number == 1:
@@ -157,11 +181,7 @@ class Screen:
                 '        COUNTDOWN', font='small'
                 )
             print(result)
-        elif self.screen_data_param in [
-            'letters_round',
-            'numbers_round',
-            'conundrum_round'
-        ]:
+        elif self.screen_data_param not in ['intro', 'rules', 'enter_name']:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
@@ -282,8 +302,8 @@ class Screen:
                 )
                 if validate_name(user_prompt):
                     new_player.name = user_prompt
-                    # Return start_ga,e flag to 
-                    # round_handler to break out of 
+                    # Return start_game flag to
+                    # round_handler to break out of
                     # first loop
                     user_prompt = 'start_rounds'
                     print(f'Prompt being returned: {user_prompt}')
@@ -293,22 +313,25 @@ class Screen:
         # Letters round
         elif self.screen_data_param == 'letters_round':
             print(
-                Fore.YELLOW +
+                Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 f'Choose 9 letters in total from '
                 'a selection of Vowels and Consonants\n'
                 '(Once you choose a number of vowels, the '
-                'remaining letters will be made up '
-                'of consonants)\n'
+                'remaining letters will be \n'
+                'made up of consonants)\n'
+                + Style.NORMAL
                 )
             # Get number of vowels and validate number
             while True:
                 user_prompt = input(
                     Fore.WHITE +
                     'How many vowels would you like for your word?\n'
-                    '(Enter a value between 3 and 9)'
+                    '(Enter a value between 3 and 9)\n'
                 )
                 if validate_vowels(user_prompt):
-                    # Pick vowels and store in Player attribute
+                    # Empty player chosen letters then
+                    # pick vowels and store in Player attribute
+                    new_player.chosen_letters = []
                     new_player.chosen_letters.extend(
                         new_letters.random_letters(
                             'vowels', int(user_prompt)
@@ -322,17 +345,40 @@ class Screen:
                             'consonants', max_consonants
                             )
                         )
-                    print(clear_screen())
-                    self.display_text_art()
-                    self.update_tiles(new_player)
-                    print_centered(self.letter_tiles)
-                    self.display_score(new_player)
-                    print(
-                        f'{new_player.name}, '
-                        'Your letters are displayed above. '
-                        'Ready to play?\n'
-                    )
-                    # round_timer()
+                    # return flag to move to show letters
+                    user_prompt = 'show_letters'
+                    break
+                else:
+                    continue
+        # Show letters and check if ready
+        elif self.screen_data_param == 'show_letters':
+            print(
+                Style.BRIGHT + Fore.LIGHTGREEN_EX +
+                f'Make the longest word possible using only '
+                'the letters in the tiles above!\n'
+                'The word must be longer than 2 letters long.\n'
+                'You can only use the letters as often as they are '
+                'shown above!\n'
+                + Style.NORMAL
+            )            
+            input(
+                Fore.WHITE +
+                'Ready to play? Press any key to start your timer...\n'
+            )
+            user_prompt = 'letters_guess'
+        # Letters round guessing prompt
+        elif self.screen_data_param == 'letters_guess':
+            # Get word guess
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
+                    'You have 30 seconds. Enter your longest word... '
+                )
+                if validate_user_word(user_prompt):
+                    # Store guessed words in Player attribute
+                    new_player.guessed_words.extend(user_prompt)
+                    # return flag to move to letters feedback
+                    user_prompt = 'letters_feedback'
                     break
                 else:
                     continue
@@ -341,7 +387,7 @@ class Screen:
             print(
                 f'Choose six numbers in total from the '
                 'following selection of Big Numbers and Small'
-                'Numbers'
+                'Numbers...\n'
             )
             while True:
                 user_prompt = input(
@@ -503,8 +549,17 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     rules_screen = Screen('rules')
     name_screen = Screen('enter_name')
     letters_screen = Screen('letters_round')
+    show_letters = Screen('show_letters')
+    letters_guess = Screen('letters_guess')
+    letters_feedback = Screen('letters_feedback')
     numbers_screen = Screen('numbers_round')
+    show_numbers = Screen('show_numbers')
+    numbers_guess = Screen('numbers_guess')
+    numbers_feedback = Screen('numbers_feedback')
     conundrum_screen = Screen('conundrum_round')
+    show_conundrum = Screen('show_conundrum')
+    conundrum_guess = Screen('conundrum_guess')
+    conundrum_feedback = Screen('conundrum_feedback')
     game_over_screen = Screen('game_over')
     # Capture user input and player object
     # when screens are rendered
@@ -553,6 +608,36 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_numbers,
                 new_conundrum
             )
+        elif user_response == 'show_letters':
+            user_response = show_letters.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        elif user_response == 'letters_guess':
+            user_response = letters_guess.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        elif user_response == 'letters_feedback':
+            # Get player's last guessed word
+            player_word = new_player.guessed_words[Screen.round_number-1]
+            word_length = len(player_word)
+            if player_word != '':
+                print(
+                    f'{new_player.name}, '
+                    f'You got a {word_length} letter word!'
+                    f'{player_word}'
+                )
+            else:
+                print(
+                    f'Sorry {new_player.name}! '
+                    f"You ran out of time and didn't guess "
+                    f'a word. Better luck next round!'
+                )
         else:
             print('Break out of round handler')
             break

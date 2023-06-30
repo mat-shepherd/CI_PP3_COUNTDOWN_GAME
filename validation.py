@@ -55,7 +55,18 @@ def validate_user_word(user_word):
     Check user letters round word is valid,
     using only the letters provided
     """
-    pass
+    try:
+        if (len(user_word) > 2 and user_word.isalpha()):
+            return True
+        elif user_word == '':
+            raise ValueError('Please enter a word!')
+        elif len(user_word) < 2:
+            raise ValueError('Your word must be longer than 2 letters!')
+        else:
+            raise ValueError('Please enter letters only')
+    except ValueError as e:
+        print(Fore.RED + str(e))
+        return False
 
 
 def validate_user_conundrum(user_word):

@@ -123,9 +123,10 @@ class Screen:
         # Update tiles for enter_name screen
         if self.screen_data_param in ['enter_name']:
             self.update_tiles(new_player)
-        # Only print tiles and score during rounds
+        # Only print tiles and score during 
+        # enter name and rounds
         if self.screen_data_param in [
-            'enter_name'
+            'enter_name',
             'letters_round',
             'numbers_round',
             'conundrum_round'
@@ -202,9 +203,19 @@ class Screen:
         """
         Update letters tiles with chosen letters
         """
-        # If enter_name screen populate letters with Ready? 
+        # If enter_name screen populate letters with Ready?
         if len(new_player.chosen_letters) == 0:
-            new_player.chosen_letters = ['R', 'e', 'a', 'd', 'y', '?']
+            new_player.chosen_letters = [
+                ' ',
+                ' ',
+                'R',
+                'E',
+                'A',
+                'D',
+                'Y',
+                '?',
+                ' '
+            ]
         for char in new_player.chosen_letters:
             # Loop through player chosen letters and use
             # each letter to repalce letter tile

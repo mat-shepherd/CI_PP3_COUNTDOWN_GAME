@@ -85,14 +85,8 @@ def print_word_meaning(word, new_player):
     else:
         valid_word = True
         formatted_word = word.lower().capitalize()
-        word_length = len(word)
         print(
-            f'{new_player.name}, '
-            f'You got a {word_length} letter word!\n'
-            f'{formatted_word}\n'
-        )
-        print(
-            f"According to our dictionary the top "
+            f"\nAccording to our dictionary the top "
             f"definitions of '{formatted_word}' are:\n"
             )
         count = 0

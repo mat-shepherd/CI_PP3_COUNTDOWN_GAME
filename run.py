@@ -2,7 +2,6 @@
 # Python
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from time import time, sleep
-from threading import Timer
 from itertools import permutations
 import os
 import random
@@ -67,7 +66,6 @@ class Player:
         remaining
         """
         if 1 <= Screen.round_number <= 3:
-            print(f'Update score: {len(self.guessed_words[Screen.round_number-1])} * {self.round_time}')
             self.score += (
                 len(self.guessed_words[Screen.round_number-1]) *
                 self.round_time
@@ -410,7 +408,10 @@ class Screen:
             timer_prompt = (
                 Fore.WHITE + 'Enter your longest word...'
             )
-            user_prompt, time_remaining = self.timed_input(new_player, timer_prompt)
+            user_prompt, time_remaining = self.timed_input(
+                new_player,
+                timer_prompt
+            )
             # If valid word store player's round time
             if user_prompt:
                 new_player.round_time = time_remaining
@@ -661,7 +662,12 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
             valid_word = print_word_meaning(user_word, new_player)
             if valid_word:
                 new_player.update_score()
-            print(f"Player's score: {new_player.score}")
+                print(
+                    f"\n{new_player.name}, that's a {len(user_word)} "
+                    f"letter word in {new_player.round_time} seconds.\n"
+                    f"You scored {new_player.score} points for round "
+                    f"{Screen.round_number}!"
+                )
             break
         else:
             print('Break out of round handler')

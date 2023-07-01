@@ -204,21 +204,33 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
-    def display_timer(self, new_player=None, timer_prompt=None):
+    def timed_input(self, new_player=None, timer_prompt=None):
         """
-        Display round timer function that runs for 30 seconds
+        Display timed input for 30 seconds
         """
         countdown = 30
         start_time = time()
 
-        try:
-            user_prompt = inputimeout(prompt=timer_prompt, timeout=countdown)
-        except TimeoutOccurred:
-            print("Time's Up!")
+        while True:
+            try:
+                user_prompt = inputimeout(
+                    prompt=timer_prompt,
+                    timeout=countdown
+                )
+                if validate_user_word(user_prompt):
+                    # Store guessed words in Player attribute
+                    # at index one less than round number
+                    new_player.guessed_words.insert(
+                        Screen.round_number - 1,
+                        user_prompt
+                    )
+                    break
+            except TimeoutOccurred:
+                print("Time's Up!")
 
-        time_remaining = countdown - (time() - start_time)
-        if time_remaining > 0:
-            print('You had :', int(time_remaining), 'seconds remaining!')
+            time_remaining = countdown - (time() - start_time)
+            if time_remaining > 0:
+                print('You had :', int(time_remaining), 'seconds remaining!')
 
         return user_prompt
 
@@ -378,18 +390,12 @@ class Screen:
         # Letters round guessing prompt
         elif self.screen_data_param == 'letters_guess':
             # Get word guess
-            while True:
-                timer_prompt = Fore.WHITE + 'You have 30 seconds. Enter your longest word... '
-                user_prompt = self.display_timer(new_player, timer_prompt)
-                print(user_prompt)
-                if validate_user_word(user_prompt):
-                    # Store guessed words in Player attribute
-                    new_player.guessed_words.extend(user_prompt)
-                    # return flag to move to letters feedback
-                    user_prompt = 'letters_feedback'
-                    break
-                else:
-                    continue
+            timer_prompt = (
+                Fore.WHITE + 'You have 30 seconds. '
+                'Enter your longest word... '
+            )
+            user_prompt = self.timed_input(new_player, timer_prompt)
+            user_prompt = 'letters_feedback'
         # Numbers round
         elif self.screen_data_param == 'numbers_round':
             print(
@@ -637,15 +643,24 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
             if player_word != '':
                 print(
                     f'{new_player.name}, '
-                    f'You got a {word_length} letter word!'
+                    f'You got a {word_length} letter word!\n'
                     f'{player_word}'
                 )
+                attributes = vars(new_player)
+                for attribute, value in attributes.items():
+                    print(attribute, "=", value)
+                break
             else:
-                print(
-                    f'Sorry {new_player.name}! '
-                    f"You ran out of time and didn't guess "
-                    f'a word. Better luck next round!'
-                )
+                print(f'End of round: {Screen.round_number}. Word guessed: {player_word}')
+                # print(
+                #    f'Sorry {new_player.name}! '
+                #    f"You ran out of time and didn't guess "
+                #    f'a word. Better luck next round!'
+                # )
+                attributes = vars(new_player)
+                for attribute, value in attributes.items():
+                    print(attribute, "=", value)
+                break
         else:
             print('Break out of round handler')
             break

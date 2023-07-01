@@ -669,6 +669,22 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                     f"You scored {new_player.score} points for round "
                     f"{Screen.round_number}!"
                 )
+            # Pause for input to progress to next round
+            input(
+                Fore.WHITE +
+                '\nReady for the next round? Press any key to continue...\n'
+            )
+            # If still in first 3 letter rounds
+            # update round number and loop back
+            # to letters screen
+            if Screen.round_number <= 3:
+                Screen.round_number += 1
+                user_response = letters_screen.render(
+                    new_player,
+                    new_letters,
+                    new_numbers,
+                    new_conundrum
+                )
             break
         else:
             print('Break out of round handler')

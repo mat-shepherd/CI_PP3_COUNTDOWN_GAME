@@ -230,7 +230,7 @@ class Screen:
                     prompt=timer_prompt,
                     timeout=countdown
                 )
-                if validate_user_word(user_prompt):
+                if validate_user_word(user_prompt, new_player):
                     # Store guessed words in Player attribute
                     # at index one less than round number
                     new_player.guessed_words.insert(
@@ -241,6 +241,7 @@ class Screen:
                     break
             except TimeoutOccurred:
                 print("Time's Up!")
+                break
 
             time_remaining = int(countdown - (time() - start_time))
             if time_remaining > 0:
@@ -430,7 +431,7 @@ class Screen:
                     'would you like to select?'
                     '(Enter a value between 0 and 4)\n'
                 )
-                if validate_user_word(user_prompt):
+                if validate_user_word(user_prompt, new_player):
                     break
                 else:
                     continue

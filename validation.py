@@ -4,6 +4,7 @@
 from colorama import Fore
 from profanity_check import predict
 from PyDictionary import PyDictionary
+from collections import Counter
 import countdown_numbers_solver
 
 # Validation functions
@@ -100,14 +101,32 @@ def print_word_meaning(word, new_player):
     return valid_word
 
 
-def validate_user_word(user_word):
+def check_letters_used(word, new_player):
+    """
+    Check if the player's word uses only
+    the letters chosen for this round
+    """
+    # Convert chosen_letters and word to counters
+    chosen_counter = Counter(new_player.chosen_letters)
+    word_counter = Counter(word.lower())
+
+    for char, count in word_counter.items():
+        if char not in chosen_counter or count > chosen_counter[char]:
+            return False
+
+    return True
+
+
+def validate_user_word(user_word, new_player):
     """
     Check user letters round word is valid,
     using only the letters provided
     """
     try:
         # Check if word is profane
-        if check_profanity(user_word) == 1:
+        if check_letters_used(user_word, new_player) is False:
+            raise ValueError("You can only user the letters above!")
+        elif check_profanity(user_word) == 1:
             raise ValueError("That word is not allowed")
         elif user_word == '':
             raise ValueError('Please enter a word!')

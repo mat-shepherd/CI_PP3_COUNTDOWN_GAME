@@ -337,7 +337,7 @@ class Screen:
                     'Please enter your name\n'
                 )
                 if validate_name(user_prompt):
-                    new_player.name = user_prompt
+                    new_player.name = user_prompt.lower().capitalize()
                     # Return start_game flag to
                     # round_handler to break out of
                     # first loop

@@ -113,7 +113,7 @@ def check_letters_used(word, new_player):
     chosen_counter = Counter(
         char.lower() for char in new_player.chosen_letters
     )
-    word_counter = Counter(word.lower())  
+    word_counter = Counter(word.lower())
 
     for char, count in word_counter.items():
         if char not in chosen_counter or count > chosen_counter[char]:

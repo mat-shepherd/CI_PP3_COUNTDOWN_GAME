@@ -60,6 +60,21 @@ class Player:
         self.guessed_words = guessed_words
         self.guessed_solutions = guessed_solutions
 
+    def update_score(self):
+        """
+        Update the Player score for the current
+        round based on the player's guess and time
+        remaining
+        """
+        if 1 <= Screen.round_number <= 3:
+            print(f'Update score: {len(self.guessed_words[Screen.round_number-1])} * {self.round_time}')
+            self.score += (
+                len(self.guessed_words[Screen.round_number-1]) *
+                self.round_time
+            )
+        elif 4 <= Screen.round_number <= 5:
+            self.score += 10 * self.round_time
+
 
 class Screen:
     """
@@ -224,15 +239,16 @@ class Screen:
                         Screen.round_number - 1,
                         user_prompt
                     )
+                    time_remaining = int(countdown - (time() - start_time))
                     break
             except TimeoutOccurred:
                 print("Time's Up!")
 
-            time_remaining = countdown - (time() - start_time)
+            time_remaining = int(countdown - (time() - start_time))
             if time_remaining > 0:
-                print('You had :', int(time_remaining), 'seconds remaining!')
+                print('You have :', time_remaining, 'seconds remaining!')
 
-        return user_prompt
+        return user_prompt, time_remaining
 
     def display_score(self, new_player=None):
         """
@@ -381,20 +397,23 @@ class Screen:
                 'You can only use the letters as often as they are '
                 'shown above!\n'
                 + Style.NORMAL
-            )            
+            )
             input(
                 Fore.WHITE +
-                'Ready to play? Press any key to start your timer...\n'
+                'Ready to play? Press any key to start the timer...\n'
             )
             user_prompt = 'letters_guess'
         # Letters round guessing prompt
         elif self.screen_data_param == 'letters_guess':
+            print('You have 30 seconds...\n')
             # Get word guess
             timer_prompt = (
-                Fore.WHITE + 'You have 30 seconds. '
-                'Enter your longest word... '
+                Fore.WHITE + 'Enter your longest word...'
             )
-            user_prompt = self.timed_input(new_player, timer_prompt)
+            user_prompt, time_remaining = self.timed_input(new_player, timer_prompt)
+            # If valid word store player's round time
+            if user_prompt:
+                new_player.round_time = time_remaining
             user_prompt = 'letters_feedback'
         # Numbers round
         elif self.screen_data_param == 'numbers_round':
@@ -638,29 +657,12 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
             )
         elif user_response == 'letters_feedback':
             # Get player's last guessed word
-            player_word = new_player.guessed_words[Screen.round_number-1]
-            word_length = len(player_word)
-            if player_word != '':
-                print(
-                    f'{new_player.name}, '
-                    f'You got a {word_length} letter word!\n'
-                    f'{player_word}'
-                )
-                attributes = vars(new_player)
-                for attribute, value in attributes.items():
-                    print(attribute, "=", value)
-                break
-            else:
-                print(f'End of round: {Screen.round_number}. Word guessed: {player_word}')
-                # print(
-                #    f'Sorry {new_player.name}! '
-                #    f"You ran out of time and didn't guess "
-                #    f'a word. Better luck next round!'
-                # )
-                attributes = vars(new_player)
-                for attribute, value in attributes.items():
-                    print(attribute, "=", value)
-                break
+            user_word = new_player.guessed_words[Screen.round_number-1]
+            valid_word = print_word_meaning(user_word, new_player)
+            if valid_word:
+                new_player.update_score()
+            print(f"Player's score: {new_player.score}")
+            break
         else:
             print('Break out of round handler')
             break

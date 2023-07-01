@@ -69,20 +69,41 @@ def check_dictionary(word):
     return word_meaning
 
 
-def print_word_meaning(word):
+def print_word_meaning(word, new_player):
     """
     Check if word is used in PyDictionary
-    and print the word meaning
+    and print the word length and meaning
     """
     word_meaning_found = check_dictionary(word)
     if word_meaning_found is None:
-        print(f"It appears '{word}' is NOT a word found in the dictionary.")
+        print(
+            f"It appears '{word}' is NOT a word "
+            "found in our  dictionary. Better luck "
+            "next time!"
+        )
+        valid_word = False
     else:
-        print(f"You're in luck, '{word}' IS found in the dictionary!")
-        print(f"The definition of '{word}' is:")
+        valid_word = True
+        formatted_word = word.lower().capitalize()
+        word_length = len(word)
+        print(
+            f'{new_player.name}, '
+            f'You got a {word_length} letter word!\n'
+            f'{formatted_word}\n'
+        )
+        print(
+            f"According to our dictionary the top "
+            f"definitions of '{formatted_word}' are:\n"
+            )
+        count = 0
         for part_of_speech, meanings in word_meaning_found.items():
             for meaning in meanings:
                 print(f"{part_of_speech} - {meaning}")
+                # Only print the first 3 meanings
+                count += 1
+                if count >= 2:
+                    break
+    return valid_word
 
 
 def validate_user_word(user_word):
@@ -91,21 +112,21 @@ def validate_user_word(user_word):
     using only the letters provided
     """
     try:
-        if (len(user_word) > 2 and user_word.isalpha()):
-            return True
         # Check if word is profane
         if check_profanity(user_word) == 1:
-            print(f"That word is not allowed")
+            raise ValueError("That word is not allowed")
         elif user_word == '':
             raise ValueError('Please enter a word!')
         elif user_word.isalpha() is False:
             raise ValueError('Please enter letters only')
         elif len(user_word) < 2:
             raise ValueError('Your word must be longer than 2 letters!')
+        elif (len(user_word) > 2 and user_word.isalpha()):
+            return True
         else:
             raise ValueError("Your word isn't valid!")
     except ValueError as e:
-        print(Fore.RED + str(e))
+        print(Fore.LIGHTRED_EX + str(e))
         return False
 
 

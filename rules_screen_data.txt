@@ -11,7 +11,7 @@ numbers round, and one conundrum round.
 * In each letters round, you are given nine random letters and must form
 valid words using those letters within 30 seconds. To be valid, words 
 need to be found in PyDictionary and more than 2 letters long. You earn
-points based on the length of your word multiplied by the time remaining.
+1 point for each letter in your word multiplied by the time remaining.
 
 * In the numbers round, you are asked to choose six numbers which will be 
 randomly selected from two groups of numbers: 

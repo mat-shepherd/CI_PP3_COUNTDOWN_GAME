@@ -19,9 +19,6 @@ from validation import (
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from inputimeout import inputimeout, TimeoutOccurred
-from PyDictionary import PyDictionary
-from profanity_check import predict, predict_prob
-import countdown_numbers_solver
 from colorama import init
 from colorama import Fore, Back, Style
 from colorama.ansi import clear_screen
@@ -47,8 +44,8 @@ class Player:
                  current_round=0,
                  chosen_letters=[],
                  chosen_numbers=[],
-                 guessed_words=['', '', ''],
-                 guessed_solutions=['', '', '']
+                 guessed_words=[''],
+                 guessed_solutions=['']
                  ):
         self.name = name
         self.score = score

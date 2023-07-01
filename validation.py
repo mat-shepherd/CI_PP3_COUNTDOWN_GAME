@@ -2,6 +2,9 @@
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from colorama import Fore
+from profanity_check import predict
+from PyDictionary import PyDictionary
+import countdown_numbers_solver
 
 # Validation functions
 
@@ -50,6 +53,17 @@ def validate_vowels(number):
         return False
 
 
+def check_profanity(word):
+    """
+    Check if word uses profanity
+    """
+    return predict([word])
+
+def check_if_word_in_dictionary(word):
+    dictionary = PyDictionary()
+    word_meaning = dictionary.meaning(word)
+    return word_meaning
+
 def validate_user_word(user_word):
     """
     Check user letters round word is valid,
@@ -58,12 +72,17 @@ def validate_user_word(user_word):
     try:
         if (len(user_word) > 2 and user_word.isalpha()):
             return True
+        # Check if word is profane
+        if check_profanity(user_word) == 1:
+            print(f"That word is not allowed")
         elif user_word == '':
             raise ValueError('Please enter a word!')
+        elif user_word.isalpha() is False:
+            raise ValueError('Please enter letters only')            
         elif len(user_word) < 2:
             raise ValueError('Your word must be longer than 2 letters!')
         else:
-            raise ValueError('Please enter letters only')
+            raise ValueError("Your word isn't valid!")
     except ValueError as e:
         print(Fore.RED + str(e))
         return False

@@ -104,16 +104,20 @@ def print_word_meaning(word, new_player):
 def check_letters_used(word, new_player):
     """
     Check if the player's word uses only
-    the letters chosen for this round
+    the letters chosen for this round.
+    Code adapted from answer by ChatGPT by
+    https://openai.com.
     """
-    # Convert chosen_letters and word to counters
-    chosen_counter = Counter(new_player.chosen_letters)
-    word_counter = Counter(word.lower())
+    # Convert chosen_letters and word to counter
+    # dictionaries in lowercase
+    chosen_counter = Counter(
+        char.lower() for char in new_player.chosen_letters
+    )
+    word_counter = Counter(word.lower())  
 
     for char, count in word_counter.items():
         if char not in chosen_counter or count > chosen_counter[char]:
             return False
-
     return True
 
 

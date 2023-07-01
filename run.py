@@ -1,7 +1,8 @@
 # Imports
 # Python
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-from time import sleep
+from time import time, sleep
+from threading import Timer
 from itertools import permutations
 import os
 import random
@@ -17,6 +18,7 @@ from validation import (
 )
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from inputimeout import inputimeout, TimeoutOccurred
 from PyDictionary import PyDictionary
 from profanity_check import predict, predict_prob
 import countdown_numbers_solver
@@ -202,20 +204,23 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
-    def display_timer(self, new_player=None):
+    def display_timer(self, new_player=None, timer_prompt=None):
         """
         Display round timer function that runs for 30 seconds
         """
-        for i in range(30, 0, -1):
-            sys.stdout.write("\rTime remaining: " + str(i) + " seconds")
-            # Update player's current round time
-            sys.stdout.flush()
-            sleep(1)
-            if new_player.guessed_words[Screen.round_number-1] != '':
-                new_player.round_time = i
-                break
-        sys.stdout.write("\rTime's up!                             \n")
-        sys.stdout.flush()
+        countdown = 30
+        start_time = time()
+
+        try:
+            user_prompt = inputimeout(prompt=timer_prompt, timeout=countdown)
+        except TimeoutOccurred:
+            print("Time's Up!")
+
+        time_remaining = countdown - (time() - start_time)
+        if time_remaining > 0:
+            print('You had :', int(time_remaining), 'seconds remaining!')
+
+        return user_prompt
 
     def display_score(self, new_player=None):
         """
@@ -374,11 +379,9 @@ class Screen:
         elif self.screen_data_param == 'letters_guess':
             # Get word guess
             while True:
-                self.display_timer(new_player)
-                user_prompt = input(
-                    Fore.WHITE +
-                    'You have 30 seconds. Enter your longest word... '
-                )
+                timer_prompt = Fore.WHITE + 'You have 30 seconds. Enter your longest word... '
+                user_prompt = self.display_timer(new_player, timer_prompt)
+                print(user_prompt)
                 if validate_user_word(user_prompt):
                     # Store guessed words in Player attribute
                     new_player.guessed_words.extend(user_prompt)

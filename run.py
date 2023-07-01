@@ -13,6 +13,9 @@ from validation import (
     validate_name,
     validate_menu_value,
     validate_vowels,
+    check_profanity,
+    check_dictionary,
+    print_word_meaning,
     validate_user_word,
     validate_user_conundrum
 )

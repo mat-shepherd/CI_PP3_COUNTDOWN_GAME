@@ -59,10 +59,31 @@ def check_profanity(word):
     """
     return predict([word])
 
-def check_if_word_in_dictionary(word):
+
+def check_dictionary(word):
+    """
+    Check if word is used in PyDictionary
+    """
     dictionary = PyDictionary()
     word_meaning = dictionary.meaning(word)
     return word_meaning
+
+
+def print_word_meaning(word):
+    """
+    Check if word is used in PyDictionary
+    and print the word meaning
+    """
+    word_meaning_found = check_dictionary(word)
+    if word_meaning_found is None:
+        print(f"It appears '{word}' is NOT a word found in the dictionary.")
+    else:
+        print(f"You're in luck, '{word}' IS found in the dictionary!")
+        print(f"The definition of '{word}' is:")
+        for part_of_speech, meanings in word_meaning_found.items():
+            for meaning in meanings:
+                print(f"{part_of_speech} - {meaning}")
+
 
 def validate_user_word(user_word):
     """
@@ -78,7 +99,7 @@ def validate_user_word(user_word):
         elif user_word == '':
             raise ValueError('Please enter a word!')
         elif user_word.isalpha() is False:
-            raise ValueError('Please enter letters only')            
+            raise ValueError('Please enter letters only')
         elif len(user_word) < 2:
             raise ValueError('Your word must be longer than 2 letters!')
         else:

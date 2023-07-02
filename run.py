@@ -3,9 +3,8 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from time import time, sleep
 from itertools import permutations
-import os
+from re import sub
 import random
-import sys
 # Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from validation import (
@@ -26,7 +25,6 @@ from colorama import Fore, Back, Style
 from colorama.ansi import clear_screen
 from art import text2art
 from num2words import num2words
-
 
 # Initialize colorama
 init()
@@ -176,11 +174,21 @@ class Screen:
                 Fore.RESET
                 )
             self.display_score(new_player)
-        # Only print on first round
+        # Only print subheading on certain rounds
         if Screen.round_number == 1:
             print_centered(
                 f"{new_player.name.upper()}, "
                 "LET'S PLAY COUNTDOWN!\n"
+            )
+        elif Screen.round_number == 4:
+            print_centered(
+                f"{new_player.name.upper()}, "
+                "WELCOME TO THE NUMBERS ROUND!\n"
+            )
+        elif Screen.round_number == 5:
+            print_centered(
+                f"{new_player.name.upper()}, "
+                "WELCOME TO THE CONUNDRUM ROUND!\n"
             )
         user_prompt = self.display_prompt(
             new_player,
@@ -278,10 +286,12 @@ class Screen:
                 '?',
                 ' '
             ]
+        # Reset letter tiles
+        self.letter_tiles = sub(r'[a-zA-Z]', '*', self.letter_tiles)
         for char in new_player.chosen_letters:
             # Loop through player chosen letters and use
-            # each letter to repalce letter tile
-            self.letter_tiles = self.letter_tiles.replace('*', char, 1)
+            # each letter to replace letter tile
+            self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
 
     def display_prompt(self,
                        new_player=None,

@@ -66,12 +66,16 @@ class Player:
         remaining
         """
         if 1 <= Screen.round_number <= 3:
-            self.score += (
+            round_score = (
                 len(self.guessed_words[Screen.round_number-1]) *
                 self.round_time
             )
+            self.score += round_score
         elif 4 <= Screen.round_number <= 5:
-            self.score += 10 * self.round_time
+            round_score = 10 * self.round_time
+            self.score += round_score
+        
+        return round_score
 
 
 class Screen:
@@ -155,7 +159,7 @@ class Screen:
             'letters_guess',
             'show_numbers',
             'nubmers_guess',
-            'show_conundrum'
+            'show_conundrum',
             'conundrum_guess'
         ]:
             self.update_tiles(new_player)
@@ -241,6 +245,8 @@ class Screen:
                     break
             except TimeoutOccurred:
                 print("Time's Up!")
+                user_prompt = False
+                time_remaining = 0
                 break
 
             time_remaining = int(countdown - (time() - start_time))
@@ -372,7 +378,7 @@ class Screen:
                         new_letters.random_letters(
                             'vowels', int(user_prompt)
                             )
-                        )
+                    )
                     # Select remaining letters as random consonants
                     # and store in Player attribute
                     max_consonants = 9 - int(user_prompt)
@@ -406,6 +412,7 @@ class Screen:
         elif self.screen_data_param == 'letters_guess':
             print('You have 30 seconds...\n')
             # Get word guess
+            print(f'{new_player.chosen_letters}')
             timer_prompt = (
                 Fore.WHITE + 'Enter your longest word...'
             )
@@ -421,7 +428,7 @@ class Screen:
         elif self.screen_data_param == 'numbers_round':
             print(
                 f'Choose six numbers in total from the '
-                'following selection of Big Numbers and Small'
+                'following selection of Big Numbers and Small '
                 'Numbers...\n'
             )
             while True:
@@ -634,61 +641,88 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                         new_conundrum
                     )
                     break
-        elif user_response == 'start_rounds':
-            # Update round number in Screen
-            Screen.round_number += 1
-            user_response = letters_screen.render(
-                new_player,
-                new_letters,
-                new_numbers,
-                new_conundrum
-            )
-        elif user_response == 'show_letters':
-            user_response = show_letters.render(
-                new_player,
-                new_letters,
-                new_numbers,
-                new_conundrum
-            )
-        elif user_response == 'letters_guess':
-            user_response = letters_guess.render(
-                new_player,
-                new_letters,
-                new_numbers,
-                new_conundrum
-            )
-        elif user_response == 'letters_feedback':
-            # Get player's last guessed word
-            user_word = new_player.guessed_words[Screen.round_number-1]
-            valid_word = print_word_meaning(user_word, new_player)
-            if valid_word:
-                new_player.update_score()
-                print(
-                    f"\n{new_player.name}, that's a {len(user_word)} "
-                    f"letter word in {new_player.round_time} seconds.\n"
-                    f"You scored {new_player.score} points for round "
-                    f"{Screen.round_number}!"
-                )
-            # Pause for input to progress to next round
-            input(
-                Fore.WHITE +
-                '\nReady for the next round? Press any key to continue...\n'
-            )
-            # If still in first 3 letter rounds
-            # update round number and loop back
-            # to letters screen
+        # If still in first 3 letter rounds
+        # loop again
+        while True:
             if Screen.round_number <= 3:
-                Screen.round_number += 1
-                user_response = letters_screen.render(
-                    new_player,
-                    new_letters,
-                    new_numbers,
-                    new_conundrum
-                )
-            break
+                if user_response == 'start_rounds':
+                    # Update round number in Screen
+                    Screen.round_number += 1
+                    user_response = letters_screen.render(
+                        new_player,
+                        new_letters,
+                        new_numbers,
+                        new_conundrum
+                    )
+                elif user_response == 'show_letters':
+                    user_response = show_letters.render(
+                        new_player,
+                        new_letters,
+                        new_numbers,
+                        new_conundrum
+                    )
+                elif user_response == 'letters_guess':
+                    user_response = letters_guess.render(
+                        new_player,
+                        new_letters,
+                        new_numbers,
+                        new_conundrum
+                    )
+                elif user_response == 'letters_feedback':
+                    # Get player's last guessed word
+                    user_word = new_player.guessed_words[Screen.round_number-1]
+                    if user_word == '':
+                        print(
+                            f"\n{new_player.name}, you didn't guess a word "
+                            f"within the time limit. Better luck next round!"
+                        )
+                    else:
+                        valid_word = print_word_meaning(user_word, new_player)
+                        if valid_word:
+                            round_score = new_player.update_score()
+                            print(
+                                f"\n{new_player.name}, that's a {len(user_word)} "
+                                f"letter word in {new_player.round_time} "
+                                f"seconds.\n"
+                                f"You scored {round_score} points for "
+                                f"round {Screen.round_number}!"
+                            )
+                    # If still in first 3 rounds set user response
+                    # to loop back to start next round
+                    if Screen.round_number <= 2:
+                        user_response = 'start_rounds'
+                    else:
+                        user_response = 'numbers_screen'
+                        break
+                    # Pause for input to progress to next round
+                    input(
+                        Fore.WHITE +
+                        '\nReady for the next round? Press any key to '
+                        'continue...\n'
+                    )
+        # Numbers round
+        print(user_response)
+        if user_response == 'numbers_screen':
+            Screen.round_number += 1
+            user_response = numbers_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        # Conundrum round
+        elif user_response == 'conundrum_screen':
+            Screen.round_number += 1
+            user_response = conundrum_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
         else:
-            print('Break out of round handler')
+            print ('No more screens')
             break
+
 
 # Main game functions
 

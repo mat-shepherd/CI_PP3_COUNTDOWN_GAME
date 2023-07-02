@@ -4,6 +4,7 @@
 from time import time, sleep
 from itertools import permutations
 from re import sub
+import threading
 import random
 import termios
 import sys
@@ -216,7 +217,7 @@ class Screen:
                 self.round_number, lang='en'
                 ).upper()
             result = text2art(
-                f'           ROUND {round_word}', font='small'
+                f'            ROUND {round_word}', font='small'
                 )
             print(result)
 
@@ -255,6 +256,54 @@ class Screen:
                     time_remaining = int(countdown - (time() - start_time))
                     break
             except TimeoutOccurred:
+                print("Time's Up!")
+                user_prompt = False
+                time_remaining = 0
+                break
+
+            time_remaining = int(countdown - (time() - start_time))
+            if time_remaining > 0:
+                print('You have :', time_remaining, 'seconds remaining!')
+
+        return user_prompt, time_remaining
+
+    def prompt_with_timeout(self, new_player=None, timer_prompt=None):
+        """
+        Timed input
+        Show input for 30 seconds and after timeout
+        show timeout message.
+        Code adapted from answer by ChatGPT
+        by Openai.com
+        """
+        user_prompt = None
+        countdown = 30
+        start_time = time()
+        timeout_occurred = False
+
+        def get_input():
+            nonlocal user_prompt
+            user_prompt = input()
+
+        input_thread = threading.Thread(target=get_input)
+        input_thread.start()
+
+        while True:
+            print(timer_prompt)
+            input_thread.join(countdown)
+
+            if user_prompt:
+                if validate_user_word(user_prompt, new_player):
+                    # Store guessed words in Player attribute
+                    # at index one less than round number
+                    new_player.guessed_words.insert(
+                        Screen.round_number - 1,
+                        user_prompt
+                    )
+                    time_remaining = int(countdown - (time() - start_time))
+                    break
+
+            if not input_thread.is_alive():
+                # Timeout occurred
                 print("Time's Up!")
                 user_prompt = False
                 time_remaining = 0

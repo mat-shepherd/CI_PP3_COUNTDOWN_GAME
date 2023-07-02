@@ -5,6 +5,9 @@ from time import time, sleep
 from itertools import permutations
 from re import sub
 import random
+import termios
+import sys
+import tty
 # Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from validation import (
@@ -213,7 +216,7 @@ class Screen:
                 self.round_number, lang='en'
                 ).upper()
             result = text2art(
-                f'               ROUND {round_word}', font='small'
+                f'           ROUND {round_word}', font='small'
                 )
             print(result)
 
@@ -413,9 +416,10 @@ class Screen:
                 'shown above!\n'
                 + Style.NORMAL
             )
-            input(
+            # Pause execution and wait for keypress
+            wait_for_keypress(
                 Fore.WHITE +
-                'Ready to play? Press any key to start the timer...\n'
+                'Ready to play? Press any key to start the timer...'
             )
             user_prompt = 'letters_guess'
         # Letters round guessing prompt
@@ -590,6 +594,19 @@ def print_centered(text):
     centered_text = text.center(terminal_width)
     print(centered_text)
 
+def wait_for_keypress(text):
+    """
+    Block code execution and wait for keypress
+    Code from answer by ChatGPT by openai.com
+    """
+    print(text)
+    sys.stdin.flush()
+    old_settings = termios.tcgetattr(sys.stdin)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
@@ -704,11 +721,11 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                     else:
                         user_response = 'numbers_screen'
                         break
-                    # Pause for input to progress to next round
-                    input(
+                    # Pause execution for key press to progress
+                    wait_for_keypress(
                         Fore.WHITE +
                         '\nReady for the next round? Press any key to '
-                        'continue...\n'
+                        'continue...'
                     )
         # Numbers round
         print(user_response)

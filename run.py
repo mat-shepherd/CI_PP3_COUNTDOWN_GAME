@@ -75,7 +75,7 @@ class Player:
         elif 4 <= Screen.round_number <= 5:
             round_score = 10 * self.round_time
             self.score += round_score
-        
+       
         return round_score
 
 
@@ -361,7 +361,6 @@ class Screen:
                     # round_handler to break out of
                     # first loop
                     user_prompt = 'start_rounds'
-                    print(f'Prompt being returned: {user_prompt}')
                     break
                 else:
                     continue
@@ -594,6 +593,7 @@ def print_centered(text):
     centered_text = text.center(terminal_width)
     print(centered_text)
 
+
 def wait_for_keypress(text):
     """
     Block code execution and wait for keypress
@@ -607,6 +607,7 @@ def wait_for_keypress(text):
         sys.stdin.read(1)
     finally:
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
@@ -647,6 +648,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_numbers,
                 new_conundrum
             )
+            break
         elif user_response == '2':
             user_response = rules_screen.render(
                 new_player,
@@ -668,65 +670,66 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                         new_conundrum
                     )
                     break
-        # If still in first 3 letter rounds
-        # loop again
-        while True:
-            if Screen.round_number <= 3:
-                if user_response == 'start_rounds':
-                    # Update round number in Screen
-                    Screen.round_number += 1
-                    user_response = letters_screen.render(
-                        new_player,
-                        new_letters,
-                        new_numbers,
-                        new_conundrum
+    # If still in first 3 letter rounds
+    # loop again
+    while True:
+        if Screen.round_number <= 3:
+            if user_response == 'start_rounds':
+                # Update round number in Screen
+                Screen.round_number += 1
+                user_response = letters_screen.render(
+                    new_player,
+                    new_letters,
+                    new_numbers,
+                    new_conundrum
+                )
+            elif user_response == 'show_letters':
+                user_response = show_letters.render(
+                    new_player,
+                    new_letters,
+                    new_numbers,
+                    new_conundrum
+                )
+            elif user_response == 'letters_guess':
+                user_response = letters_guess.render(
+                    new_player,
+                    new_letters,
+                    new_numbers,
+                    new_conundrum
+                )
+            elif user_response == 'letters_feedback':
+                # Get player's last guessed word
+                user_word = new_player.guessed_words[Screen.round_number-1]
+                if user_word == '':
+                    print(
+                        f"\n{new_player.name}, you didn't guess a word "
+                        f"within the time limit. Better luck next round!"
                     )
-                elif user_response == 'show_letters':
-                    user_response = show_letters.render(
-                        new_player,
-                        new_letters,
-                        new_numbers,
-                        new_conundrum
-                    )
-                elif user_response == 'letters_guess':
-                    user_response = letters_guess.render(
-                        new_player,
-                        new_letters,
-                        new_numbers,
-                        new_conundrum
-                    )
-                elif user_response == 'letters_feedback':
-                    # Get player's last guessed word
-                    user_word = new_player.guessed_words[Screen.round_number-1]
-                    if user_word == '':
+                else:
+                    valid_word = print_word_meaning(user_word, new_player)
+                    if valid_word:
+                        round_score = new_player.update_score()
                         print(
-                            f"\n{new_player.name}, you didn't guess a word "
-                            f"within the time limit. Better luck next round!"
+                            f"\n{new_player.name}, that's a "
+                            f"{len(user_word)} letter word in "
+                            f"{new_player.round_time} seconds. \n"
+                            f"You scored {round_score} points for "
+                            f"round {Screen.round_number}!"
                         )
-                    else:
-                        valid_word = print_word_meaning(user_word, new_player)
-                        if valid_word:
-                            round_score = new_player.update_score()
-                            print(
-                                f"\n{new_player.name}, that's a {len(user_word)} "
-                                f"letter word in {new_player.round_time} "
-                                f"seconds.\n"
-                                f"You scored {round_score} points for "
-                                f"round {Screen.round_number}!"
-                            )
-                    # If still in first 3 rounds set user response
-                    # to loop back to start next round
-                    if Screen.round_number <= 2:
-                        user_response = 'start_rounds'
-                    else:
-                        user_response = 'numbers_screen'
-                        break
-                    # Pause execution for key press to progress
-                    wait_for_keypress(
-                        Fore.WHITE +
-                        '\nReady for the next round? Press any key to '
-                        'continue...'
-                    )
+                # If still in first 3 rounds set user response
+                # to loop back to start next round
+                if Screen.round_number <= 2:
+                    user_response = 'start_rounds'
+                else:
+                    user_response = 'numbers_screen'
+                    break
+                # Pause execution for key press to progress
+                wait_for_keypress(
+                    Fore.WHITE +
+                    '\nReady for the next round? Press any key to '
+                    'continue...'
+                )
+    while True:
         # Numbers round
         print(user_response)
         if user_response == 'numbers_screen':
@@ -747,7 +750,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_conundrum
             )
         else:
-            print ('No more screens')
+            print('No more screens')
             break
 
 

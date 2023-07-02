@@ -425,7 +425,6 @@ class Screen:
         elif self.screen_data_param == 'letters_guess':
             print('You have 30 seconds...\n')
             # Get word guess
-            print(f'{new_player.chosen_letters}')
             timer_prompt = (
                 Fore.WHITE + 'Enter your longest word...'
             )
@@ -716,6 +715,12 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                             f"You scored {round_score} points for "
                             f"round {Screen.round_number}!"
                         )
+                # Pause execution for key press to progress
+                wait_for_keypress(
+                    Fore.WHITE +
+                    '\nReady for the next round? Press any key to '
+                    'continue...'
+                )                        
                 # If still in first 3 rounds set user response
                 # to loop back to start next round
                 if Screen.round_number <= 2:
@@ -723,15 +728,8 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 else:
                     user_response = 'numbers_screen'
                     break
-                # Pause execution for key press to progress
-                wait_for_keypress(
-                    Fore.WHITE +
-                    '\nReady for the next round? Press any key to '
-                    'continue...'
-                )
+    # Render Numbers and Conundrum round screens
     while True:
-        # Numbers round
-        print(user_response)
         if user_response == 'numbers_screen':
             Screen.round_number += 1
             user_response = numbers_screen.render(

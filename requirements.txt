@@ -1,4 +1,5 @@
 alt-profanity-check==1.2.2
+anagram-solver==1.1.0
 art==6.0
 bs4==0.0.1
 click==8.1.3

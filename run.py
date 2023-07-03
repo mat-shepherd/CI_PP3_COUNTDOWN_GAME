@@ -529,6 +529,17 @@ class Screen:
                         f"{new_player.name}, you scored {round_score} points for "
                         f"round {Screen.round_number}!"
                     )
+            # Print longest word if anagram solver can find one
+            longest_words, word_len = new_letters.longest_word(new_player.chosen_letters)
+            if longest_words:
+                print(
+                    f"\nHere's a {word_len} letter word that we found!\n"
+                    )
+                for item in set(longest_words):
+                    # Running through in set form prevents duplicates
+                    print(item)
+            else:
+                print("\nWe couldn't find any 9 letter words ourselves!")
             # Pause execution for key press to progress
             wait_for_keypress(
                 Fore.LIGHTGREEN_EX +
@@ -703,26 +714,29 @@ class Letters:
         letter_set = self.vowels if type == 'vowels' else self.consonants
         return random.sample(letter_set, count)
 
-    def longest_word(self):
+    def longest_word(self, anagram):
         """
         Return the longest word we can find
         Code adapted from 
         https://github.com/patrickleweryharris/anagram-solver
         """
         anagram_lst = []
-        anagram = 'ethnaple'
         for char in anagram:
                 anagram_lst.append(char)
                 
         words = find_possible(anagram_lst)
-        print(words)
         actual_words = return_words(words, word_set)
 
-        print('Solutions:')
         if len(actual_words) == 0:
-            return False
+            anagram_lst.pop(-1)
+            eight_letters = ''.join(anagram_lst)
+            self.longest_word(eight_letters)
+            if len(actual_words) == 0:
+                return '' ,0
+            else:
+                return actual_words, 8
         else:
-            return actual_words
+            return actual_words, 9
 
 
 class Numbers:

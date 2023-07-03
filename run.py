@@ -2,7 +2,6 @@
 # Python
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from time import time, sleep
-from itertools import permutations
 from re import sub
 import random
 import termios
@@ -549,8 +548,15 @@ class Screen:
                 new_player.chosen_letters
             )
             if longest_words:
-                print(
-                    f"\nHere's a {word_len} letter word that we found!\n"
+                if len(longest_words) == 1:
+                    print(
+                        f"\nHere's a {word_len} letter word that our "
+                        f"dictionary corner found!\n"
+                        )
+                else:
+                    print(
+                        f"\nHere are some {word_len} letter words that our "
+                        f"dictionary corner found!\n"
                     )
                 for item in set(longest_words):
                     # Running through in set form prevents duplicates
@@ -558,7 +564,7 @@ class Screen:
             else:
                 print(
                     "\nOur dictionary corner couldn't find any "
-                    "9 letter word either!"
+                    "better words either!"
                 )
             # Pause execution for key press to progress
             wait_for_keypress(
@@ -739,7 +745,7 @@ class Letters:
     def longest_word(self, anagram):
         """
         Return the longest word we can find
-        Code adapted from 
+        Code adapted from
         https://github.com/patrickleweryharris/anagram-solver
         """
         anagram_lst = []
@@ -748,17 +754,16 @@ class Letters:
 
         words = find_possible(anagram_lst)
         actual_words = return_words(words, word_set)
-
-        if len(actual_words) == 0:
+        # Recurse the function by popping one letter off
+        # to see if we can quickly find a word
+        # without creating all permutations
+        if len(actual_words) == 0 and len(anagram) >= 5:
             anagram_lst.pop(-1)
             eight_letters = ''.join(anagram_lst)
-            self.longest_word(eight_letters)
-            if len(actual_words) == 0:
-                return '', 0
-            else:
-                return actual_words, 8
+            new_actual_words, len_word = self.longest_word(eight_letters)
+            return new_actual_words, len_word
         else:
-            return actual_words, 9
+            return actual_words, len(anagram)
 
 
 class Numbers:

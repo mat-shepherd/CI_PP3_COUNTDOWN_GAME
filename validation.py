@@ -82,7 +82,7 @@ def check_dictionary(word):
     Check if word is used in PyDictionary
     """
     try:
-        word_meaning = dictionary.meaning(word)
+        word_meaning = dictionary.meaning(word, disable_errors=True)
     except IndexError:
         return None
     else:

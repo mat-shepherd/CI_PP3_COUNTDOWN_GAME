@@ -2,7 +2,7 @@
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from colorama import Fore
-from profanity_check import predict
+from profanity_check import predict_prob
 from PyDictionary import PyDictionary
 from collections import Counter
 import countdown_numbers_solver
@@ -72,10 +72,10 @@ def check_profanity(word):
     """
     Check if word uses profanity
     """
-    return predict([word])
+    return predict_prob([word])
 
 
-def check_dictionary(word):
+def check_dictionary(word, new_player):
     """
     Check if word is used in PyDictionary
     """
@@ -144,7 +144,7 @@ def validate_user_word(user_word, new_player):
         # Check if word is profane
         if check_letters_used(user_word, new_player) is False:
             raise ValueError("You can only user the letters above!")
-        elif check_profanity(user_word) == 1:
+        elif check_profanity(user_word) >= 0.9:
             raise ValueError("That word is on our profanity list and is not allowed.")
         elif user_word == '':
             raise ValueError('Please enter a word!')

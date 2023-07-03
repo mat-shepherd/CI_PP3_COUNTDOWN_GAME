@@ -163,7 +163,7 @@ class Screen:
             'letters_guess',
             'letters_feedback',
             'show_numbers',
-            'nubmers_guess',
+            'numbers_guess',
             'numbers_feedback',
             'show_conundrum',
             'conundrum_guess',
@@ -177,12 +177,12 @@ class Screen:
             'rules',
             'game_over'
         ]:
+            self.display_score(new_player)
             print_centered(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 self.letter_tiles +
                 Fore.RESET
-                )
-            self.display_score(new_player)
+            )
         # Only print subheading on certain rounds
         if (
             Screen.round_number == 1
@@ -194,11 +194,32 @@ class Screen:
                 f"{new_player.name.upper()}, "
                 "LET'S PLAY COUNTDOWN!\n"
             )
-        elif self.screen_data_param == 'show_numbers':
+        elif (
+            Screen.round_number == 4
+            and self.screen_data_param not in [
+                'show_numbers',
+                'numbers_guess',
+                'numbers_feedback'
+                ]
+            ):
             print_centered(
                 f"{new_player.name.upper()}, "
                 "WELCOME TO THE NUMBERS ROUND!\n"
             )
+        # Print Target Number in numbers round
+        elif (
+            Screen.round_number == 4
+            and self.screen_data_param in [
+                'show_numbers',
+                'numbers_guess',
+                'numbers_feedback'
+                ]
+            ):
+            print_centered(
+                Style.BRIGHT + Fore.LIGHTGREEN_EX +
+                f'          TARGET: {new_player.target_number}\n'
+                + Fore.RESET
+            )            
         elif self.screen_data_param == 'show_conundrum':
             print_centered(
                 f"{new_player.name.upper()}, "
@@ -226,8 +247,15 @@ class Screen:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
+            # Add varying amount of spaceds
+            # based on length of round number string
+            if Screen.round_number == 1:
+                spaces_num = len(round_word) * (5 // Screen.round_number)
+            else: 
+                spaces_num = 5 + len(round_word) * (5 // Screen.round_number) + 2
+            spaces_str = ' ' * int(spaces_num)
             result = text2art(
-                f'            ROUND {round_word}', font='small'
+                f'{spaces_str}ROUND {round_word}', font='small'
                 )
             print(Style.BRIGHT + result)
 
@@ -287,7 +315,7 @@ class Screen:
         """
         Display the user score
         """
-        print_centered(f'Your Score: {new_player.score}\n')
+        print_centered(f'Your Score: {new_player.score}')
 
     def update_tiles(self, new_player=None):
         """
@@ -478,7 +506,9 @@ class Screen:
             user_prompt = 'letters_feedback'
         # Letters round feedback
         elif self.screen_data_param == 'letters_feedback':
-            # Get player's last guessed word
+            # Get player's last guessed word and check
+            # in dictionary
+            print('Checking your word in the dictionary...')
             user_word = new_player.guessed_words[Screen.round_number-1]
             if user_word == '':
                 print(
@@ -486,7 +516,7 @@ class Screen:
                     f"within the time limit. Better luck next round!"
                 )
             else:
-                valid_word = print_word_meaning(user_word, new_player)
+                valid_word = check_dictionary(user_word, new_player)
                 if valid_word:
                     round_score = new_player.update_score()
                     print(
@@ -512,9 +542,11 @@ class Screen:
         # Numbers round
         elif self.screen_data_param == 'numbers_round':
             print(
+                Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 f'Choose six numbers in total from the '
                 'following selection of Big\n' 
                 'Numbers and Small Numbers...\n'
+                + Fore.RESET
             )
             while True:
                 user_prompt = input(
@@ -536,8 +568,7 @@ class Screen:
                     )
                     # Generate target number and store in Player
                     # attribute
-                    target_number = new_numbers.random_target
-                    new_player.target_number = 0
+                    target_number = new_numbers.random_target()
                     new_player.target_number = target_number
 
                     # return flag to move to show letters
@@ -549,7 +580,7 @@ class Screen:
                 Fore.LIGHTGREEN_EX +
                 f'Using the 6 numbers in the tiles above \n'
                 'and basic mathematical operations (+ - * /) ' 
-                'reach the target number.\n'
+                'to reach the target number.\n'
                 'You can only use numbers as often as they are '
                 'shown above!\n'
                 'Remember order of operations!\n'                
@@ -884,8 +915,6 @@ def main():
     new_player = Player()
     new_letters = Letters()
     new_numbers = Numbers()
-    # print(new_numbers.numbers)
-    # sleep(5)
     new_conundrum = Conundrum()
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
     print('Back in main')

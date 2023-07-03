@@ -131,7 +131,7 @@ def validate_user_word(user_word, new_player):
         if check_letters_used(user_word, new_player) is False:
             raise ValueError("You can only user the letters above!")
         elif check_profanity(user_word) == 1:
-            raise ValueError("That word is not allowed")
+            raise ValueError("That word is on our profanity list and is not allowed.")
         elif user_word == '':
             raise ValueError('Please enter a word!')
         elif user_word.isalpha() is False:

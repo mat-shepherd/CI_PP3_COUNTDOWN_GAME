@@ -144,7 +144,7 @@ class Screen:
         user_prompt : string
             User inputted string
         """
-        print(Back.BLUE)
+        print(Style.BRIGHT + Back.BLUE)
         print(clear_screen())
         self.display_text_art()
         if self.screen_data_param in [
@@ -210,7 +210,7 @@ class Screen:
             result = text2art(
                 '        COUNTDOWN', font='small'
                 )
-            print(result)
+            print(Style.BRIGHT + result)
         elif self.screen_data_param not in ['intro', 'rules', 'enter_name']:
             round_word = num2words(
                 self.round_number, lang='en'
@@ -218,7 +218,7 @@ class Screen:
             result = text2art(
                 f'             ROUND {round_word}', font='small'
                 )
-            print(result)
+            print(Style.BRIGHT + result)
 
     def display_text(self):
         """
@@ -227,7 +227,7 @@ class Screen:
         try:
             with open(self.screen_data_file) as f:
                 text = f.read()
-                print(text)
+                print(Style.BRIGHT + text)
         except OSError as e:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
@@ -377,7 +377,7 @@ class Screen:
                 '(Once you choose a number of vowels, the '
                 'remaining letters will be \n'
                 'made up of consonants)\n'
-                + Style.NORMAL
+                + Fore.RESET
                 )
             # Get number of vowels and validate number
             while True:
@@ -411,13 +411,12 @@ class Screen:
         # Show letters and check if ready
         elif self.screen_data_param == 'show_letters':
             print(
-                Style.BRIGHT + Fore.LIGHTGREEN_EX +
+                Fore.LIGHTGREEN_EX +
                 f'Make the longest word possible using only '
                 'the letters in the tiles above!\n'
                 'The word must be longer than 2 letters long.\n'
                 'You can only use the letters as often as they are '
                 'shown above!\n'
-                + Style.NORMAL
             )
             # Pause execution and wait for keypress
             wait_for_keypress(
@@ -721,9 +720,10 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                         )
                 # Pause execution for key press to progress
                 wait_for_keypress(
-                    Fore.WHITE +
+                    Fore.LIGHTGREEN_EX +
                     '\nReady for the next round? Press any key to '
                     'continue...'
+                    + Fore.RESET
                 )                        
                 # If still in first 3 rounds set user response
                 # to loop back to start next round

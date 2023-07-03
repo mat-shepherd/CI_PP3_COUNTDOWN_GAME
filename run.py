@@ -227,7 +227,7 @@ class Screen:
                 self.round_number, lang='en'
                 ).upper()
             result = text2art(
-                f'             ROUND {round_word}', font='small'
+                f'            ROUND {round_word}', font='small'
                 )
             print(Style.BRIGHT + result)
 
@@ -314,7 +314,7 @@ class Screen:
                 # each letter to replace existing tile characters
                 self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
         elif Screen.round_number == 4:
-            # Replace 1,2 and ;ast chacracters with spaces
+            # Replace 1,2 and last characters with spaces
             self.letter_tiles = sub(r'\*', ' ', self.letter_tiles, count=1)
             self.letter_tiles = sub(r'\*', ' ', self.letter_tiles, count=1)
             self.letter_tiles = sub(r'\*(?!.*\*)', ' ', self.letter_tiles)
@@ -322,8 +322,19 @@ class Screen:
                 # Loop through player chosen numbers and convert
                 # each number to a string character to replace
                 # existing tile characters
+                # Calculate how many spaces to keep number
+                # centered
                 char = str(char)
-                self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
+                char_length = len(char)
+                spaces_left = 1
+                if char_length == 1:
+                    spaces_left = 2
+                if 1 <= char_length <= 2:
+                    spaces_right = 2
+                if char_length == 3:
+                    spaces_right = 1
+                centered_char = ' ' * spaces_left + char + ' ' * spaces_right
+                self.letter_tiles = sub(r'(\s*)\*(\s*)', centered_char, self.letter_tiles, count=1)
 
 
     def display_prompt(self,

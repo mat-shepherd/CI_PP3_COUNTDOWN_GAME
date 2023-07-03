@@ -307,11 +307,24 @@ class Screen:
                 ' '
             ]
         # Reset letter tiles
-        self.letter_tiles = sub(r'[a-zA-Z]', '*', self.letter_tiles)
-        for char in new_player.chosen_letters:
-            # Loop through player chosen letters and use
-            # each letter to replace letter tile
-            self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
+        self.letter_tiles = sub(r'[a-zA-Z0-9]', '*', self.letter_tiles)
+        if Screen.round_number != 4:
+            for char in new_player.chosen_letters:
+                # Loop through player chosen letters and use
+                # each letter to replace existing tile characters
+                self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
+        elif Screen.round_number == 4:
+            # Replace 1,2 and ;ast chacracters with spaces
+            self.letter_tiles = sub(r'\*', ' ', self.letter_tiles, count=1)
+            self.letter_tiles = sub(r'\*', ' ', self.letter_tiles, count=1)
+            self.letter_tiles = sub(r'\*(?!.*\*)', ' ', self.letter_tiles)
+            for char in new_player.chosen_numbers:
+                # Loop through player chosen numbers and convert
+                # each number to a string character to replace
+                # existing tile characters
+                char = str(char)
+                self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
+
 
     def display_prompt(self,
                        new_player=None,

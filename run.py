@@ -29,6 +29,8 @@ from colorama import Fore, Back, Style
 from colorama.ansi import clear_screen
 from art import text2art
 from num2words import num2words
+from anagram_solver.anagram_solver import find_possible, return_words
+from anagram_solver.stuff import word_set
 
 # Initialize colorama
 init()
@@ -700,6 +702,27 @@ class Letters:
         """
         letter_set = self.vowels if type == 'vowels' else self.consonants
         return random.sample(letter_set, count)
+
+    def longest_word(self):
+        """
+        Return the longest word we can find
+        Code adapted from 
+        https://github.com/patrickleweryharris/anagram-solver
+        """
+        anagram_lst = []
+        anagram = 'ethnaple'
+        for char in anagram:
+                anagram_lst.append(char)
+                
+        words = find_possible(anagram_lst)
+        print(words)
+        actual_words = return_words(words, word_set)
+
+        print('Solutions:')
+        if len(actual_words) == 0:
+            return False
+        else:
+            return actual_words
 
 
 class Numbers:

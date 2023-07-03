@@ -7,6 +7,9 @@ from PyDictionary import PyDictionary
 from collections import Counter
 import countdown_numbers_solver
 
+# Create instance of PyDictionary
+dictionary = PyDictionary()
+
 # Validation functions
 
 
@@ -79,7 +82,6 @@ def check_dictionary(word):
     """
     Check if word is used in PyDictionary
     """
-    dictionary = PyDictionary()
     word_meaning = dictionary.meaning(word)
     return word_meaning
 

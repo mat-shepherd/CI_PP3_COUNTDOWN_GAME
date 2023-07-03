@@ -249,6 +249,8 @@ class Screen:
                     timeout=countdown
                 )
                 time_remaining = int(countdown - (time() - start_time))
+                # Had to add additional timeout check
+                # and raise error to work on Heroku
                 if time_remaining == 0:
                     raise TimeoutOccurred("Time's Up!")
                 if validate_user_word(user_prompt, new_player):
@@ -476,7 +478,7 @@ class Screen:
                     # return flag to move to show letters
                     user_prompt = 'show_numbers'
                     break
-                # Show letters and check if ready
+        # Show numbers and check if ready
         elif self.screen_data_param == 'show_numbers':
             print(
                 Fore.LIGHTGREEN_EX +
@@ -493,9 +495,10 @@ class Screen:
                 'Ready to play? Press any key to start the timer...'
             )
             user_prompt = 'numbers_guess'
+        # Numbers round guessing prompt
         elif self.screen_data_param == 'numbers_guess':
             print('You have 30 seconds...\n')
-            # Get numbers guess
+            # Get numbers solution guess
             timer_prompt = (
                 Fore.WHITE + 'Enter your solution to reach the target number...'
             )
@@ -503,7 +506,7 @@ class Screen:
                 new_player,
                 timer_prompt
             )
-            # If valid word store player's round time
+            # If valid solution store player's round time
             if user_prompt:
                 new_player.round_time = time_remaining
             user_prompt = 'numbers_feedback'
@@ -796,6 +799,20 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
         if user_response == 'numbers_screen':
             Screen.round_number += 1
             user_response = numbers_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        elif user_response == 'show_numberss':
+            user_response = show_numbers.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        elif user_response == 'numbers_guess':
+            user_response = numbers_guess.render(
                 new_player,
                 new_letters,
                 new_numbers,

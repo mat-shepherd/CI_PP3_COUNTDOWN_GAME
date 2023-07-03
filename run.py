@@ -173,7 +173,7 @@ class Screen:
             'game_over'
         ]:
             print_centered(
-                Fore.YELLOW +
+                Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 self.letter_tiles +
                 Fore.RESET
                 )
@@ -217,7 +217,7 @@ class Screen:
                 self.round_number, lang='en'
                 ).upper()
             result = text2art(
-                f'            ROUND {round_word}', font='small'
+                f'             ROUND {round_word}', font='small'
                 )
             print(result)
 

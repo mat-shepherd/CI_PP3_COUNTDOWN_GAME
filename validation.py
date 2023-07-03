@@ -56,6 +56,7 @@ def validate_vowels(number):
         print(Fore.RED + 'Please enter only numbers between 3 and 9')
         return False
 
+
 def validate_numbers(number):
     """
     Check player has selected no less than 0 and no
@@ -147,7 +148,9 @@ def validate_user_word(user_word, new_player):
         if check_letters_used(user_word, new_player) is False:
             raise ValueError("You can only user the letters above!")
         elif check_profanity(user_word) >= 0.9:
-            raise ValueError("That word is on our profanity list and is not allowed.")
+            raise ValueError(
+                "That word is on our profanity list and is not allowed."
+            )
         elif user_word == '':
             raise ValueError('Please enter a word!')
         elif user_word.isalpha() is False:

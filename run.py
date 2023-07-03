@@ -203,7 +203,7 @@ class Screen:
                 'numbers_guess',
                 'numbers_feedback'
                 ]
-            ):
+        ):
             print_centered(
                 f"{new_player.name.upper()}, "
                 "WELCOME TO THE NUMBERS ROUND!\n"
@@ -216,7 +216,7 @@ class Screen:
                 'numbers_guess',
                 'numbers_feedback'
                 ]
-            ):
+        ):
             print_centered(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 f'          TARGET: {new_player.target_number}\n'
@@ -357,6 +357,7 @@ class Screen:
                 char = str(char)
                 char_length = len(char)
                 spaces_left = 1
+                spaces_right = 1
                 if char_length == 1:
                     spaces_left = 2
                 if 1 <= char_length <= 2:

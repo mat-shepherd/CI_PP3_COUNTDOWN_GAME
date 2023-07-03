@@ -80,7 +80,7 @@ class Player:
         elif 4 <= Screen.round_number <= 5:
             round_score = 10 * self.round_time
             self.score += round_score
-       
+
         return round_score
 
 
@@ -254,7 +254,10 @@ class Screen:
             if Screen.round_number == 1:
                 spaces_num = len(round_word) * (5 // Screen.round_number)
             else: 
-                spaces_num = 5 + len(round_word) * (5 // Screen.round_number) + 2
+                spaces_num = (
+                    5 + len(round_word) 
+                    * (5 // Screen.round_number) + 2
+                )
             spaces_str = ' ' * int(spaces_num)
             result = text2art(
                 f'{spaces_str}ROUND {round_word}', font='small'
@@ -312,7 +315,6 @@ class Screen:
 
         return user_prompt, time_remaining
 
-
     def display_score(self, new_player=None):
         """
         Display the user score
@@ -342,7 +344,10 @@ class Screen:
             for char in new_player.chosen_letters:
                 # Loop through player chosen letters and use
                 # each letter to replace existing tile characters
-                self.letter_tiles = sub(r'[*]', char, self.letter_tiles, count=1)
+                self.letter_tiles = sub(
+                    r'[*]', char, self.letter_tiles,
+                    count=1
+                )
         elif Screen.round_number == 4:
             # Replace 1,2 and last characters with spaces
             self.letter_tiles = sub(r'\*', ' ', self.letter_tiles, count=1)
@@ -365,7 +370,11 @@ class Screen:
                 if char_length == 3:
                     spaces_right = 1
                 centered_char = ' ' * spaces_left + char + ' ' * spaces_right
-                self.letter_tiles = sub(r'(\s*)\*(\s*)', centered_char, self.letter_tiles, count=1)
+                self.letter_tiles = sub(
+                    r'(\s*)\*(\s*)', centered_char,
+                    self.letter_tiles,
+                    count=1
+                )
 
     def display_prompt(self,
                        new_player=None,
@@ -526,11 +535,19 @@ class Screen:
                         f"\n{user_word.lower().capitalize()}, that's a "
                         f"{len(user_word)} letter word in "
                         f"{new_player.round_time} seconds. \n"
-                        f"{new_player.name}, you scored {round_score} points for "
-                        f"round {Screen.round_number}!"
+                        f"{new_player.name}, you scored {round_score} points "
+                        f"for round {Screen.round_number}!"
+                    )
+                elif valid_word is None:
+                    print(
+                        f"It appears '{user_word}' is NOT a word "
+                        "found in our  dictionary. Better luck "
+                        "next time!"
                     )
             # Print longest word if anagram solver can find one
-            longest_words, word_len = new_letters.longest_word(new_player.chosen_letters)
+            longest_words, word_len = new_letters.longest_word(
+                new_player.chosen_letters
+            )
             if longest_words:
                 print(
                     f"\nHere's a {word_len} letter word that we found!\n"
@@ -539,7 +556,10 @@ class Screen:
                     # Running through in set form prevents duplicates
                     print(item)
             else:
-                print("\nWe couldn't find any 9 letter words ourselves!")
+                print(
+                    "\nOur dictionary corner couldn't find any "
+                    "9 letter word either!"
+                )
             # Pause execution for key press to progress
             wait_for_keypress(
                 Fore.LIGHTGREEN_EX +
@@ -610,7 +630,9 @@ class Screen:
             print('You have 30 seconds...\n')
             # Get numbers solution guess
             timer_prompt = (
-                Fore.WHITE + 'Enter your solution to reach the target number...'
+                Fore.WHITE + 
+                'Enter your solution to reach the '
+                'target number...'
             )
             user_prompt, time_remaining = self.timed_input(
                 new_player,
@@ -960,4 +982,3 @@ def main():
 # Call main game function
 
 main()
-

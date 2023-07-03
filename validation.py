@@ -10,8 +10,6 @@ import countdown_numbers_solver
 # Create instance of PyDictionary
 dictionary = PyDictionary()
 
-# Validation functions
-
 
 def validate_name(name):
     try:
@@ -83,8 +81,12 @@ def check_dictionary(word):
     """
     Check if word is used in PyDictionary
     """
-    word_meaning = dictionary.meaning(word)
-    return word_meaning
+    try:
+        word_meaning = dictionary.meaning(word)
+    except IndexError:
+        return None
+    else:
+        return word_meaning
 
 
 def print_word_meaning(word, new_player):

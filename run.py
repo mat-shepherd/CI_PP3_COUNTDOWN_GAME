@@ -47,6 +47,7 @@ class Player:
                  current_round=0,
                  chosen_letters=[],
                  chosen_numbers=[],
+                 target_number=0,
                  guessed_words=[''],
                  guessed_solutions=['']
                  ):
@@ -57,6 +58,7 @@ class Player:
         self.current_round = current_round
         self.chosen_letters = chosen_letters
         self.chosen_numbers = chosen_numbers
+        self.target_number = target_number
         self.guessed_words = guessed_words
         self.guessed_solutions = guessed_solutions
 
@@ -450,13 +452,61 @@ class Screen:
                 user_prompt = input(
                     Fore.WHITE +
                     'How many big numbers (25, 50, 75, 100) '
-                    'would you like to select?'
+                    'would you like to select?\n'
                     '(Enter a value between 0 and 4)\n'
                 )
-                if validate_user_word(user_prompt, new_player):
+                if validate_numbers(user_prompt):
+                    # Empty player chosen numbers then
+                    # pick requested number of random big and small 
+                    # numbers and store in Player attribute
+                    big_numbers, small_numbers = new_numbers.random_numbers(
+                        int(user_prompt)
+                    )
+                    new_player.chosen_numbers = []
+                    new_player.chosen_numbers.extend(
+                        big_numbers, small_numbers
+                    )
+                    # Generate target number and store in Player
+                    # attribute
+                    target_number = new_numbers.random_target
+                    new_player.target_number = []
+                    new_player.target_number.extend(
+                        target_number
+                    )
+                    # return flag to move to show letters
+                    user_prompt = 'show_numbers'
                     break
-                else:
-                    continue
+                # Show letters and check if ready
+        elif self.screen_data_param == 'show_numbers':
+            print(
+                Fore.LIGHTGREEN_EX +
+                f'Using the 6 numbers in the tiles above \n'
+                'and basic mathematical operations (+ - * /) ' 
+                'reach the target number.\n'
+                'You can only use numbers as often as they are '
+                'shown above!\n'
+                'Remember order of operations!\n'                
+            )
+            # Pause execution and wait for keypress
+            wait_for_keypress(
+                Fore.WHITE +
+                'Ready to play? Press any key to start the timer...'
+            )
+            user_prompt = 'numbers_guess'
+        elif self.screen_data_param == 'numbers_guess':
+            print('You have 30 seconds...\n')
+            # Get numbers guess
+            timer_prompt = (
+                Fore.WHITE + 'Enter your solution to reach the target number...'
+            )
+            user_prompt, time_remaining = self.timed_input(
+                new_player,
+                timer_prompt
+            )
+            # If valid word store player's round time
+            if user_prompt:
+                new_player.round_time = time_remaining
+            user_prompt = 'numbers_feedback'
         # Conundrum round
         elif self.screen_data_param == 'conundrum_round':
             pass
@@ -557,18 +607,27 @@ class Numbers:
     The Numbers class to contain all numbers
     to choose from in the numbers round
     """
-    big = []
-    small = []
-    target = 999
 
-    def __init__(self,
-                 big=None,
-                 small=None,
-                 target=None
-                 ):
-        self.big = Numbers.big
-        self.small = Numbers.small
-        self.target = Numbers.target
+    def __init__(self):
+        self.big = [25, 50, 75, 100]
+        self.small = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        self.target = 999
+
+    def random_numbers(self, count):
+        """
+        Return the requested count of letters
+        from the requested set of letters
+        """        
+        big_numbers = random.sample(self.big, count)
+        small_numbers = random.sample(self.small, 6 - count)
+        return big_numbers, small_numbers
+
+    def random_target(self):
+        """
+        Generate a 3 digit target number
+        """
+        target_number = random.randint(100, 999)
+        return target_number
 
 
 class Conundrum:

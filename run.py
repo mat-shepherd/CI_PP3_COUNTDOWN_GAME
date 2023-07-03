@@ -520,6 +520,7 @@ class Screen:
                 if valid_word:
                     round_score = new_player.update_score()
                     print(
+                        f"\n{user_word}..."
                         f"\n{new_player.name}, that's a "
                         f"{len(user_word)} letter word in "
                         f"{new_player.round_time} seconds. \n"

@@ -367,7 +367,6 @@ class Screen:
                 centered_char = ' ' * spaces_left + char + ' ' * spaces_right
                 self.letter_tiles = sub(r'(\s*)\*(\s*)', centered_char, self.letter_tiles, count=1)
 
-
     def display_prompt(self,
                        new_player=None,
                        new_letters=None,
@@ -723,8 +722,8 @@ class Letters:
         """
         anagram_lst = []
         for char in anagram:
-                anagram_lst.append(char)
-                
+            anagram_lst.append(char)
+
         words = find_possible(anagram_lst)
         actual_words = return_words(words, word_set)
 
@@ -733,7 +732,7 @@ class Letters:
             eight_letters = ''.join(anagram_lst)
             self.longest_word(eight_letters)
             if len(actual_words) == 0:
-                return '' ,0
+                return '', 0
             else:
                 return actual_words, 8
         else:

@@ -14,6 +14,7 @@ from validation import (
     validate_name,
     validate_menu_value,
     validate_vowels,
+    validate_numbers,
     check_profanity,
     check_dictionary,
     print_word_meaning,
@@ -445,8 +446,8 @@ class Screen:
         elif self.screen_data_param == 'numbers_round':
             print(
                 f'Choose six numbers in total from the '
-                'following selection of Big Numbers and Small '
-                'Numbers...\n'
+                'following selection of Big\n' 
+                'Numbers and Small Numbers...\n'
             )
             while True:
                 user_prompt = input(
@@ -464,15 +465,14 @@ class Screen:
                     )
                     new_player.chosen_numbers = []
                     new_player.chosen_numbers.extend(
-                        big_numbers, small_numbers
+                        big_numbers + small_numbers
                     )
                     # Generate target number and store in Player
                     # attribute
                     target_number = new_numbers.random_target
-                    new_player.target_number = []
-                    new_player.target_number.extend(
-                        target_number
-                    )
+                    new_player.target_number = 0
+                    new_player.target_number = target_number
+
                     # return flag to move to show letters
                     user_prompt = 'show_numbers'
                     break

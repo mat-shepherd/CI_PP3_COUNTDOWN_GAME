@@ -53,6 +53,20 @@ def validate_vowels(number):
         print(Fore.RED + 'Please enter only numbers between 3 and 9')
         return False
 
+def validate_numbers(number):
+    """
+    Check player has selected no less than 0 and no
+    more than 4 big numbers
+    """
+    try:
+        if 0 <= int(number) <= 4:
+            return True
+        else:
+            raise ValueError
+    except ValueError:
+        print(Fore.RED + 'Please enter only numbers between 0 and 4')
+        return False
+
 
 def check_profanity(word):
     """

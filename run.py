@@ -246,6 +246,9 @@ class Screen:
                     prompt=timer_prompt,
                     timeout=countdown
                 )
+                time_remaining = int(countdown - (time() - start_time))
+                if time_remaining == 0:
+                    raise TimeoutOccurred("Time's Up!")
                 if validate_user_word(user_prompt, new_player):
                     # Store guessed words in Player attribute
                     # at index one less than round number

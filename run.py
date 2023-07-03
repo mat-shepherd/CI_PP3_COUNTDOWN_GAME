@@ -821,7 +821,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_numbers,
                 new_conundrum
             )
-        elif user_response == 'show_numberss':
+        elif user_response == 'show_numbers':
             user_response = show_numbers.render(
                 new_player,
                 new_letters,

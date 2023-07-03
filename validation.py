@@ -75,7 +75,7 @@ def check_profanity(word):
     return predict_prob([word])
 
 
-def check_dictionary(word, new_player):
+def check_dictionary(word):
     """
     Check if word is used in PyDictionary
     """

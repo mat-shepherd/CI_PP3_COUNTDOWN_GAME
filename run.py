@@ -508,7 +508,8 @@ class Screen:
         elif self.screen_data_param == 'letters_feedback':
             # Get player's last guessed word and check
             # in dictionary
-            print('Checking your word in the dictionary...')
+            print(f'Checking your word in the dictionary...\n')
+            print(f'This might take a few seconds. Hang in there!')
             user_word = new_player.guessed_words[Screen.round_number-1]
             if user_word == '':
                 print(
@@ -516,11 +517,11 @@ class Screen:
                     f"within the time limit. Better luck next round!"
                 )
             else:
-                valid_word = check_dictionary(user_word, new_player)
+                valid_word = check_dictionary(user_word)
                 if valid_word:
                     round_score = new_player.update_score()
                     print(
-                        f"\n{user_word}, that's a "
+                        f"\n{user_word.lower().capitalize()}, that's a "
                         f"{len(user_word)} letter word in "
                         f"{new_player.round_time} seconds. \n"
                         f"{new_player.name}, you scored {round_score} points for "

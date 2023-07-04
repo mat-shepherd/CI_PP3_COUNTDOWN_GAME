@@ -203,7 +203,7 @@ def validate_user_numbers(user_solution, new_player):
     try:
         # Check solution only uses chosen numbers
         if check_numbers_used(user_solution, new_player) is False:
-            raise ValueError('You can only user the numbers above!')
+            raise ValueError('You can only use the chosen numbers above!')
         # Look for non-allowable characters
         # or empty value in user_solution
         illegal_regex = r'[^0-9\(\)\*\+\/\-\s]'

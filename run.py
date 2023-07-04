@@ -19,6 +19,7 @@ from validation import (
     validate_user_word,
     validate_numbers,
     validate_user_numbers,
+    validate_user_solution,
     validate_user_conundrum
 )
 # Third Party
@@ -51,8 +52,8 @@ class Player:
                  chosen_letters=[],
                  chosen_numbers=[],
                  target_number=0,
-                 guessed_words=[''],
-                 guessed_solutions=['']
+                 guessed_words=[],
+                 guessed_solutions=[]
                  ):
         self.name = name
         self.score = score
@@ -280,7 +281,7 @@ class Screen:
         """
         Display timed input for 30 seconds
         """
-        countdown = 30
+        countdown = 60 if Screen.round_number == 4 else 30
         start_time = time()
 
         while True:
@@ -634,8 +635,8 @@ class Screen:
         elif self.screen_data_param == 'show_numbers':
             print(
                 Fore.LIGHTGREEN_EX +
-                f'Using the 6 numbers in the tiles above \n'
-                'and basic mathematical operations (+ - * /) '
+                f'Use any of the 6 numbers in the tiles above and basic\n'
+                'mathematical operators + - * / ( ) '
                 'to reach the target number.\n'
                 'You can only use numbers as often as they are '
                 'shown above!\n'
@@ -649,7 +650,7 @@ class Screen:
             user_prompt = 'numbers_guess'
         # Numbers round guessing prompt
         elif self.screen_data_param == 'numbers_guess':
-            print('You have 30 seconds...\n')
+            print('You have 60 seconds...\n')
             # Get numbers solution guess
             timer_prompt = (
                 Fore.WHITE +
@@ -664,6 +665,57 @@ class Screen:
             if user_prompt:
                 new_player.round_time = time_remaining
             user_prompt = 'numbers_feedback'
+        # Numbers round feedback
+        elif self.screen_data_param == 'numbers_feedback':
+            # Get player's last guessed solution and evaluate
+            # string to check if solution matches target number
+            print(f'Checking your solution...\n')
+            user_solution = new_player.guessed_solutions[0]
+            if user_solution == '':
+                print(
+                    f"\n{new_player.name}, you didn't provide a solution "
+                    f"within the time limit. Better luck next round!"
+                )
+            else:
+                valid_solution, solution_result, target_difference =\
+                    validate_user_solution(
+                        user_solution,
+                        new_player
+                    )
+                if valid_solution:
+                    round_score = new_player.update_score()
+                    print(
+                        f"\n{user_word.lower().capitalize()}, that's a "
+                        f"valid solution for reaching "
+                        f"{new_player.target_number}!\n"
+                        f"You solved it in {new_player.round_time} seconds. \n"
+                        f"{new_player.name}, you scored {round_score} points "
+                        f"for round {Screen.round_number}!"
+                    )
+                # If solution is close still congratulate player!
+                elif valid_solution is False and target_difference <= 50:
+                    print(
+                        f"Sorry you didn't reach the target number of "
+                        f"{new_player.target_number}!"
+                        f"Your solution of {user_solution} = "
+                        f"{solution_result}."
+                        f"But you were pretty close! So well done!"
+                    )                    
+                elif valid_solution is False:
+                    print(
+                        f"Sorry you didn't reach the target number of "
+                        f"{new_player.target_number}!"
+                        f"Your solution of {user_solution} = "
+                        f"{solution_result}."
+                        f"Better luck next time!"             
+                    )
+            # Pause execution for key press to progress
+            wait_for_keypress(
+                Fore.LIGHTGREEN_EX +
+                '\nReady for the next round? Press any key to '
+                'continue...'
+                + Fore.RESET
+            )
         # Conundrum round
         elif self.screen_data_param == 'conundrum_round':
             pass
@@ -971,6 +1023,13 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_numbers,
                 new_conundrum
             )
+        elif user_response == 'numbers_feedback':
+            user_response = numbers_feedback.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )        
         # Conundrum round
         elif user_response == 'conundrum_screen':
             Screen.round_number += 1

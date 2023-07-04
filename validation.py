@@ -216,6 +216,8 @@ def validate_user_numbers(user_solution, new_player):
                 'Please use only numbers or the '
                 'operators + - / * ()'
             )
+        else:
+            return True
     except ValueError as e:
         print(Fore.LIGHTRED_EX + str(e))
         return False
@@ -230,9 +232,12 @@ def validate_user_solution(solution, new_player):
     """
     target = new_player.target_number
     solution_result = int(ne.evaluate(solution))
-    result = True if solution_result == target else False
+    print(solution_result)
+    result_valid = True if solution_result == target else False
+    # Check is the solution close?
+    target_difference = abs(target - solution_result)
 
-    return result
+    return result_valid, solution_result, target_difference
 
 
 def validate_user_conundrum(user_word):

@@ -8,6 +8,7 @@ from colorama import Fore
 from profanity_check import predict_prob
 from PyDictionary import PyDictionary
 from collections import Counter
+import numexpr as ne
 import countdown_numbers_solver
 
 # Create instance of PyDictionary
@@ -218,6 +219,20 @@ def validate_user_numbers(user_solution, new_player):
     except ValueError as e:
         print(Fore.LIGHTRED_EX + str(e))
         return False
+
+
+def validate_user_solution(solution, new_player):
+    """
+    Evaluate user's solution is correct
+
+    Evaluate user solution string and compare
+    to target number
+    """
+    target = new_player.target_number
+    solution_result = int(ne.evaluate(solution))
+    result = True if solution_result == target else False
+
+    return result
 
 
 def validate_user_conundrum(user_word):

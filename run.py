@@ -13,11 +13,12 @@ from validation import (
     validate_name,
     validate_menu_value,
     validate_vowels,
-    validate_numbers,
     check_profanity,
     check_dictionary,
     print_word_meaning,
     validate_user_word,
+    validate_numbers,
+    validate_user_numbers,
     validate_user_conundrum
 )
 # Third Party
@@ -220,7 +221,7 @@ class Screen:
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 f'          TARGET: {new_player.target_number}\n'
                 + Fore.RESET
-            )            
+            )
         elif self.screen_data_param == 'show_conundrum':
             print_centered(
                 f"{new_player.name.upper()}, "
@@ -252,7 +253,7 @@ class Screen:
             # based on length of round number string
             if Screen.round_number == 1:
                 spaces_num = len(round_word) * (5 // Screen.round_number)
-            else: 
+            else:
                 spaces_num = (
                     5 + len(round_word) 
                     * (5 // Screen.round_number) + 2
@@ -293,15 +294,30 @@ class Screen:
                 # and raise error to work on Heroku
                 if time_remaining == 0:
                     raise TimeoutOccurred("Time's Up!")
-                if validate_user_word(user_prompt, new_player):
-                    # Store guessed words in Player attribute
-                    # at index one less than round number
-                    new_player.guessed_words.insert(
-                        Screen.round_number - 1,
-                        user_prompt
-                    )
-                    time_remaining = int(countdown - (time() - start_time))
-                    break
+                # Check round number so we know which
+                # validations to use
+                if 1 <= Screen.round_number <= 3:
+                    if validate_user_word(user_prompt, new_player):
+                        # Store guessed words in Player attribute
+                        # at index one less than round number
+                        new_player.guessed_words.insert(
+                            Screen.round_number - 1,
+                            user_prompt
+                        )
+                        time_remaining = int(countdown - (time() - start_time))
+                        break
+                elif Screen.round_number == 4:
+                    if validate_user_numbers(user_prompt, new_player):
+                        # Store guessed solutions in Player attribute
+                        # at index one less than round number
+                        new_player.guessed_solutions.insert(
+                            Screen.round_number - 1,
+                            user_prompt
+                        )
+                        time_remaining = int(countdown - (time() - start_time))
+                        break
+                elif Screen.round_number == 5:
+                    pass                   
             except TimeoutOccurred:
                 print("Time's Up!")
                 user_prompt = False
@@ -572,19 +588,19 @@ class Screen:
                 '\nReady for the next round? Press any key to '
                 'continue...'
                 + Fore.RESET
-            )                        
+            )
             # If still in first 3 rounds set user response
             # to loop back to start next round
             if Screen.round_number <= 2:
                 user_prompt = 'start_rounds'
             else:
-                user_prompt = 'numbers_screen'      
+                user_prompt = 'numbers_screen'
         # Numbers round
         elif self.screen_data_param == 'numbers_round':
             print(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 f'Choose six numbers in total from the '
-                'following selection of Big\n' 
+                'following selection of Big\n'
                 'Numbers and Small Numbers...\n'
                 + Fore.RESET
             )
@@ -597,7 +613,7 @@ class Screen:
                 )
                 if validate_numbers(user_prompt):
                     # Empty player chosen numbers then
-                    # pick requested number of random big and small 
+                    # pick requested number of random big and small
                     # numbers and store in Player attribute
                     big_numbers, small_numbers = new_numbers.random_numbers(
                         int(user_prompt)
@@ -619,11 +635,11 @@ class Screen:
             print(
                 Fore.LIGHTGREEN_EX +
                 f'Using the 6 numbers in the tiles above \n'
-                'and basic mathematical operations (+ - * /) ' 
+                'and basic mathematical operations (+ - * /) '
                 'to reach the target number.\n'
                 'You can only use numbers as often as they are '
                 'shown above!\n'
-                'Remember order of operations!\n'                
+                'Remember order of operations!\n'
             )
             # Pause execution and wait for keypress
             wait_for_keypress(
@@ -636,7 +652,7 @@ class Screen:
             print('You have 30 seconds...\n')
             # Get numbers solution guess
             timer_prompt = (
-                Fore.WHITE + 
+                Fore.WHITE +
                 'Enter your solution to reach the '
                 'target number...'
             )
@@ -781,7 +797,7 @@ class Numbers:
         """
         Return the requested count of letters
         from the requested set of letters
-        """        
+        """
         big_numbers = random.sample(self.big, count)
         small_numbers = random.sample(self.small, 6 - count)
         return big_numbers, small_numbers

@@ -1,4 +1,7 @@
 # Imports
+# Python
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from re import search, findall
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from colorama import Fore
@@ -52,21 +55,6 @@ def validate_vowels(number):
             raise ValueError
     except ValueError:
         print(Fore.RED + 'Please enter only numbers between 3 and 9')
-        return False
-
-
-def validate_numbers(number):
-    """
-    Check player has selected no less than 0 and no
-    more than 4 big numbers
-    """
-    try:
-        if 0 <= int(number) <= 4:
-            return True
-        else:
-            raise ValueError
-    except ValueError:
-        print(Fore.RED + 'Please enter only numbers between 0 and 4')
         return False
 
 
@@ -140,6 +128,21 @@ def check_letters_used(word, new_player):
     return True
 
 
+def validate_numbers(number):
+    """
+    Check player has selected no less than 0 and no
+    more than 4 big numbers
+    """
+    try:
+        if 0 <= int(number) <= 4:
+            return True
+        else:
+            raise ValueError
+    except ValueError:
+        print(Fore.RED + 'Please enter only numbers between 0 and 4')
+        return False
+
+
 def validate_user_word(user_word, new_player):
     """
     Check user letters round word is valid,
@@ -163,6 +166,55 @@ def validate_user_word(user_word, new_player):
             return True
         else:
             raise ValueError("Your word isn't valid!")
+    except ValueError as e:
+        print(Fore.LIGHTRED_EX + str(e))
+        return False
+
+
+def check_numbers_used(solution, new_player):
+    """
+    Check if the player's solution uses only
+    the numbers chosen for this round.
+    Code adapted from answer by ChatGPT by
+    https://openai.com.
+    """
+    chosen_counter = Counter(
+        num for num in new_player.chosen_numbers
+    )
+    # Find numbers in solution string
+    find_nums = r'\b\d+\b'
+    solution_nums = findall(find_nums, solution)
+    # Convert froms strings to numbers
+    solution_nums = [int(num) for num in solution_nums]
+    number_counter = Counter(solution_nums)
+
+    for num, count in number_counter.items():
+        print(num)
+        if num not in chosen_counter or count > chosen_counter[num]:
+            return False
+    return True
+
+
+def validate_user_numbers(user_solution, new_player):
+    """
+    Check user's numbers round solution is valid
+    Check only numbers and operators are used
+    """
+    try:
+        # Check solution only uses chosen numbers
+        if check_numbers_used(user_solution, new_player) is False:
+            raise ValueError('You can only user the numbers above!')
+        # Look for non-allowable characters
+        # or empty value in user_solution
+        illegal_regex = r'[^0-9\(\)\*\+\/\-\s]'
+        match = search(illegal_regex, user_solution)
+        if user_solution == '':
+            raise ValueError('Please enter a solution!')
+        elif match is not None:
+            raise ValueError(
+                'Please use only numbers or the '
+                'operators + - / * ()'
+            )
     except ValueError as e:
         print(Fore.LIGHTRED_EX + str(e))
         return False

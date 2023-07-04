@@ -537,7 +537,11 @@ class Screen:
             # in dictionary
             print(f'Checking your word in the dictionary...\n')
             print(f'This might take a few seconds. Hang in there!')
-            user_word = new_player.guessed_words[Screen.round_number-1]
+            # Check if user entered a word
+            if len(new_player.guessed_words) > 0:
+                user_word = new_player.guessed_words[Screen.round_number-1]
+            else:
+                user_word = ''
             if user_word == '':
                 print(
                     f"\n{new_player.name}, you didn't guess a word "

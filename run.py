@@ -74,7 +74,7 @@ class Player:
         """
         if 1 <= Screen.round_number <= 3:
             round_score = (
-                len(self.guessed_words[Screen.round_number-1]) *
+                len(self.guessed_words[-1]) *
                 self.round_time
             )
             self.score += round_score
@@ -533,13 +533,10 @@ class Screen:
             user_prompt = 'letters_feedback'
         # Letters round feedback
         elif self.screen_data_param == 'letters_feedback':
-            # Get player's last guessed word and check
-            # in dictionary
-            print(f'Checking your word in the dictionary...\n')
-            print(f'This might take a few seconds. Hang in there!')
             # Check if user entered a word
             if len(new_player.guessed_words) > 0:
-                user_word = new_player.guessed_words[Screen.round_number-1]
+                # Get player's last guessed word
+                user_word = new_player.guessed_words[-1]
             else:
                 user_word = ''
             if user_word == '':
@@ -548,6 +545,8 @@ class Screen:
                     f"within the time limit. Better luck next round!"
                 )
             else:
+                # Check if word in pydictionary
+                print(f'Checking your word in the dictionary...\n')                
                 valid_word = check_dictionary(user_word)
                 if valid_word:
                     round_score = new_player.update_score()
@@ -689,7 +688,7 @@ class Screen:
                 if valid_solution:
                     round_score = new_player.update_score()
                     print(
-                        f"\n{user_word.lower().capitalize()}, that's a "
+                        f"\n{user_solution} is a "
                         f"valid solution for reaching "
                         f"{new_player.target_number}!\n"
                         f"You solved it in {new_player.round_time} seconds. \n"
@@ -700,18 +699,18 @@ class Screen:
                 elif valid_solution is False and target_difference <= 50:
                     print(
                         f"Sorry you didn't reach the target number of "
-                        f"{new_player.target_number}!"
+                        f"{new_player.target_number}!\n"
                         f"Your solution of {user_solution} = "
-                        f"{solution_result}."
+                        f"{solution_result}.\n"
                         f"But you were pretty close! So well done!"
-                    )                    
+                    )
                 elif valid_solution is False:
                     print(
                         f"Sorry you didn't reach the target number of "
-                        f"{new_player.target_number}!"
+                        f"{new_player.target_number}!\n"
                         f"Your solution of {user_solution} = "
-                        f"{solution_result}."
-                        f"Better luck next time!"             
+                        f"{solution_result}.\n"
+                        f"Better luck next time!"
                     )
             # Pause execution for key press to progress
             wait_for_keypress(
@@ -720,6 +719,7 @@ class Screen:
                 'continue...'
                 + Fore.RESET
             )
+            user_prompt = 'conundrum_round'
         # Conundrum round
         elif self.screen_data_param == 'conundrum_round':
             pass

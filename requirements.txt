@@ -11,6 +11,7 @@ goslate==1.5.4
 inputimeout==1.0.4
 joblib==1.2.0
 num2words==0.5.12
+numexpr==2.8.4
 numpy==1.24.3
 PyDictionary==2.0.1
 scikit-learn==1.2.2

@@ -208,7 +208,9 @@ class Screen:
                 ]
         ):
             print_centered(
-                f"{new_player.name.upper()}, "
+                f"
+                Style.BRIGHT + Fore.WHITE +
+                {new_player.name.upper()}, "
                 "WELCOME TO THE NUMBERS ROUND!\n"
             )
         # Print Target Number in numbers round

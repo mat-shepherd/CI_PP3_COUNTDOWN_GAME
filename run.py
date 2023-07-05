@@ -274,8 +274,6 @@ class Screen:
                 )
             spaces_str = ' ' * int(spaces_num)
             if self.screen_data_param == 'game_over':
-                # Remove extra spacing to center
-                spaces_str = spaces_str[:-1]
                 result = text2art(
                     f'{spaces_str}GAME OVER', font='small'
                     )

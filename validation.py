@@ -232,7 +232,6 @@ def validate_user_solution(solution, new_player):
     """
     target = new_player.target_number
     solution_result = int(ne.evaluate(solution))
-    print(solution_result)
     result_valid = True if solution_result == target else False
     # Check is the solution close?
     target_difference = abs(target - solution_result)

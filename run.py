@@ -387,9 +387,10 @@ class Screen:
             # Check if this is conundrum round and whether
             # to show target or scrambled conundrum
             # otherwist show player chosen letters
-            print(f'Update Tiles Screen Param: {screen_param}')
+            
             if screen_param in ['show_conundrum','conundrum_guess']:
                 letters_object = list(new_conundrum.scrambled)
+                print(f'Test target: {new_conundrum.target}')
             elif screen_param == 'conundrum_feedback':
                 letters_object = list(new_conundrum.target)
             else:
@@ -832,7 +833,7 @@ class Screen:
             # Check if user entered a word
             if len(new_player.guessed_conundrum) > 0:
                 # Get player's last guessed word
-                user_word = new_player.guessed_conundrum
+                user_word = new_player.guessed_conundrum[0]
             else:
                 user_word = ''
             if user_word == '':
@@ -841,7 +842,7 @@ class Screen:
                     f"within the time limit. Better luck next round!"
                 )
             # Check if word matches target
-            elif new_player.guessed_conundrum == new_conundrum.target:
+            elif user_word == new_conundrum.target:
                 round_score = new_player.update_score()
                 print(
                     f"\n{new_player.name}, that's correct!\n"
@@ -857,7 +858,7 @@ class Screen:
                     f"That isn't our target word, but let's "
                     f'check your word in the dictionary...\n'
                     )
-                valid_word = check_dictionary(new_player.guessed_conundrum)
+                valid_word = check_dictionary(user_word)
                 if valid_word:
                     round_score = new_player.update_score()
                     print(
@@ -870,8 +871,8 @@ class Screen:
                     )
                 elif valid_word is None:
                     print(
-                        f"It appears '{user_word}' is NOT a word "
-                        "found in our dictionary.\n"
+                        f"It appears '{user_word.lower().capitalize()}' is "
+                        f"NOT a word found in our dictionary.\n"
                         f"Better luck next time!"
                     )
                 # Show valid conundrum

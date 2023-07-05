@@ -614,6 +614,8 @@ class Screen:
                         f"{new_player.name}, you scored {round_score} points "
                         f"for round {Screen.round_number}!"
                     )
+                    # Add short delay in case dictionary corner is fast
+                    sleep(2)
                 elif valid_word is None:
                     print(
                         f"It appears '{user_word}' is NOT a word "

@@ -883,12 +883,12 @@ class Screen:
                         f"NOT a word found in our dictionary.\n"
                         f"Better luck next time!"
                     )
-        # Pause before end game screen
-        wait_for_keypress(
-            Fore.YELLOW +
-            'Press any key to continue...'
-            + Fore.RESET
-        )
+            # Pause before end game screen
+            wait_for_keypress(
+                Fore.YELLOW +
+                'Press any key to continue...'
+                + Fore.RESET
+            )
         user_prompt = 'game_over'
         # Game Over
         elif self.screen_data_param == 'game_over':

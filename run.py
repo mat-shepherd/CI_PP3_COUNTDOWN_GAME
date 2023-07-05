@@ -769,6 +769,12 @@ class Screen:
             user_prompt = 'conundrum_round'
         # Conundrum round
         elif self.screen_data_param == 'conundrum_round':
+            # Generate conundrum
+            random_conundrum, scrambled_conundrum = new_conundrum.populate_conundrum()
+            # Store values in new conundrum attributes
+            new_conundrum.target =  random_conundrum
+            new_conundrum.scrambled = scrambled_conundrum         
+
             print(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
                 f'Final round {new_player.name}!\n'
@@ -985,13 +991,13 @@ class Conundrum:
         -------
         random_conundrum : string
             Randomly chosen 9 letter word
-        target_conundrum : string
+        scrambled_conundrum : string
             Scrambled version of conundrum
         """
         random_conundrum = random.sample(nine_letter_word_set, 1)[0]
-        target_conundrum = ''.join(random.sample(random_conundrum, len(random_conundrum)))
+        scrambled_conundrum = ''.join(random.sample(random_conundrum, len(random_conundrum)))
 
-        return random_conundrum, target_conundrum
+        return random_conundrum, scrambled_conundrum
 
 
 # Helper Functions

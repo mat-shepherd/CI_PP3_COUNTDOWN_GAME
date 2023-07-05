@@ -569,8 +569,8 @@ class Screen:
                 elif valid_word is None:
                     print(
                         f"It appears '{user_word}' is NOT a word "
-                        "found in our dictionary. Better luck "
-                        "next time!"
+                        "found in our dictionary.\n"
+                        f"Better luck next time!"
                     )
             # Print longest word if anagram solver can find one
             print(
@@ -597,16 +597,19 @@ class Screen:
                     )
                 for item in set(longest_words):
                     # Running through in set form prevents duplicates
+                    print(longest_words)
                     print(
                         Fore.YELLOW +
                         f'{item}'
                         + Fore.RESET
                         )
-                    print_word_meaning(item, new_player)
+                    # Don't print meaning message if none found
+                    if print_word_meaning(item, new_player):
+                        print_word_meaning(item, new_player) 
             else:
                 print(
                     Style.BRIGHT + Fore.WHITE +
-                    "\nOur dictionary corner couldn't find any "
+                    "Our dictionary corner couldn't find any "
                     "better words either!"
                 )
             # Pause execution for key press to progress

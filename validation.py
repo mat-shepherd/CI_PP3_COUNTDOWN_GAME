@@ -84,11 +84,8 @@ def print_word_meaning(word, new_player):
     """
     word_meaning_found = check_dictionary(word)
     if word_meaning_found is None:
-        print(
-            f"It appears '{word}' is NOT a word "
-            "found in our  dictionary. Better luck "
-            "next time!"
-        )
+        # Return false so calling function can handle
+        # printing no meaning found message
         valid_word = False
     else:
         valid_word = True

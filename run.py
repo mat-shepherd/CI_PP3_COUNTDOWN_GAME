@@ -1160,6 +1160,27 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_numbers,
                 new_conundrum
             )
+        elif user_response == 'show_conundrum':
+            user_response = show_conundrum.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )        
+        elif user_response == 'conundrum_guess':
+            user_response = conundrum_guess.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+        elif user_response == 'conundrum_feedback':
+            user_response = conundrum_feedback.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
         else:
             print('No more screens')
             break

@@ -462,6 +462,7 @@ class Screen:
                 user_prompt = input(
                     Fore.WHITE +
                     'Please enter your name\n'
+                    '(must be 2 to 10 letter characters long)...\n'
                 )
                 if validate_name(user_prompt):
                     new_player.name = user_prompt.lower().capitalize()
@@ -770,10 +771,12 @@ class Screen:
         # Conundrum round
         elif self.screen_data_param == 'conundrum_round':
             # Generate conundrum
-            random_conundrum, scrambled_conundrum = new_conundrum.populate_conundrum()
+            random_conundrum, scrambled_conundrum =\
+                new_conundrum.populate_conundrum()
             # Store values in new conundrum attributes
-            new_conundrum.target =  random_conundrum
-            new_conundrum.scrambled = scrambled_conundrum         
+            new_conundrum.target = random_conundrum
+            new_conundrum.scrambled =\
+                scrambled_conundrum
 
             print(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +

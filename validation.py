@@ -16,12 +16,15 @@ dictionary = PyDictionary()
 
 def validate_name(name):
     try:
-        if (len(name) > 2 and name.isalpha()):
+        if (2 <= len(name) <= 10 and name.isalpha()):
             return True
         elif name == '':
             raise ValueError('Please enter some text')
-        elif len(name) < 2:
-            raise ValueError('Please enter a name more than 2 characters long')
+        elif not 2 <= len(name) <= 10:
+            raise ValueError(
+            'Please enter a name more than 2 characters '
+            'and less than 10 characters long'
+            )
         else:
             raise ValueError('Please enter letters only')
     except ValueError as e:

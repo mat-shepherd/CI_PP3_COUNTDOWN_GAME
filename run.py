@@ -32,6 +32,7 @@ from art import text2art
 from num2words import num2words
 from anagram_solver.anagram_solver import find_possible, return_words
 from anagram_solver.stuff import word_set
+import countdown_numbers_solver
 
 # Initialize colorama
 init()
@@ -693,16 +694,18 @@ class Screen:
                         f"{new_player.target_number}!\n"
                         f"You solved it in {new_player.round_time} seconds. \n"
                         f"{new_player.name}, you scored {round_score} points "
-                        f"for round {Screen.round_number}!"
+                        f"for round {Screen.round_number}!\n"
                     )
                 # If solution is close still congratulate player!
                 elif valid_solution is False and target_difference <= 50:
                     print(
                         f"Sorry you didn't reach the target number of "
                         f"{new_player.target_number}!\n"
-                        f"Your solution of {user_solution} = "
+                        f"\nYour solution of {user_solution} = "
                         f"{solution_result}.\n"
-                        f"But you were pretty close! So well done!"
+                        f"\nBut you were within {target_difference} of "
+                        f"the target!"
+                        f"That's amazing! Well done!\n"
                     )
                 elif valid_solution is False:
                     print(
@@ -712,6 +715,9 @@ class Screen:
                         f"{solution_result}.\n"
                         f"Better luck next time!"
                     )
+            # Provide solutions to round
+            print(f"Let's see what our maths wiz came up with...\n")
+            solve_numbers_round(new_player)
             # Pause execution for key press to progress
             wait_for_keypress(
                 Fore.LIGHTGREEN_EX +
@@ -904,6 +910,20 @@ def wait_for_keypress(text):
         sys.stdin.read(1)
     finally:
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+
+
+def solve_numbers_round(new_player):
+    """
+    Solve for the target in the numbers round
+
+    Provide the user with solutions to reach
+    the target number using the chosen numbers.
+    Uses pypi.org/project/countdown-numbers-solver/
+    """
+    countdown_numbers_solver.solve(
+        new_player.chosen_numbers,
+        new_player.target_number
+    )
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

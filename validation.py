@@ -9,7 +9,6 @@ from profanity_check import predict_prob
 from PyDictionary import PyDictionary
 from collections import Counter
 import numexpr as ne
-import countdown_numbers_solver
 
 # Create instance of PyDictionary
 dictionary = PyDictionary()

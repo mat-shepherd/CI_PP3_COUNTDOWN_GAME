@@ -23,10 +23,10 @@ be selected from the 'small numbers group'. You are then provided with a
 random 3 digit target number.
 
 Your goal is to use your 6 numbers and basic mathematical operations
-(+ - * /) to reach the target number. Here's an example input to reach a 
-target number of 304:
+(+ - * /) to reach the target number withn 60 seconds. Here's an example 
+input to reach a target number of 304:
 
-100 * 3 + 12 / 3
+(100 * 3) + 12 / 3
 
 Remember order of operations when constructing your expression: 
 Parentheses, Exponents, Multiplication, and Division (from left to right),

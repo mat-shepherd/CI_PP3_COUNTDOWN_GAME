@@ -605,7 +605,7 @@ class Screen:
                     print_word_meaning(item, new_player)
             else:
                 print(
-                    STYLE.BRIGHT + Fore.WHITE +
+                    Style.BRIGHT + Fore.WHITE +
                     "\nOur dictionary corner couldn't find any "
                     "better words either!"
                 )

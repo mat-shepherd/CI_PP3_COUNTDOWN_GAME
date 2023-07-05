@@ -857,8 +857,8 @@ class Screen:
                     f"You guessed our conundrum is {new_conundrum.target}.\n"
                     f"You solved it in {new_player.round_time} seconds. \n"
                     f"{new_player.name}, you scored {round_score} points "
-                    f"for round {Screen.round_number}!\n"    
-                )       
+                    f"for round {Screen.round_number}!\n"
+                )
             else:
                 # Check if word in pydictionary
                 print(
@@ -883,13 +883,13 @@ class Screen:
                         f"NOT a word found in our dictionary.\n"
                         f"Better luck next time!"
                     )
-                # Pause before end game screen
-                wait_for_keypress(
-                    Fore.YELLOW +
-                    'Press any key to continue...'
-                    + Fore.RESET
-                )
-                user_prompt = 'game_over'
+        # Pause before end game screen
+        wait_for_keypress(
+            Fore.YELLOW +
+            'Press any key to continue...'
+            + Fore.RESET
+        )
+        user_prompt = 'game_over'
         # Game Over
         elif self.screen_data_param == 'game_over':
             wait_for_keypress(

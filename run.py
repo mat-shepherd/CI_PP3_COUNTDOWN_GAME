@@ -277,7 +277,7 @@ class Screen:
             spaces_str = ' ' * int(spaces_num)
             if Screen.round_number == 5:
                 # Add extra spacing to center
-                spaces_str = spaces_str + 3
+                spaces_str += spaces_str + ' ' * 3
                 result = text2art(
                 f'{spaces_str}GAME OVER', font='small'
                 )
@@ -394,10 +394,8 @@ class Screen:
             # Check if this is conundrum round and whether
             # to show target or scrambled conundrum
             # otherwist show player chosen letters
-            
-            if screen_param in ['show_conundrum','conundrum_guess']:
+            if screen_param in ['show_conundrum', 'conundrum_guess']:
                 letters_object = list(new_conundrum.scrambled)
-                print(f'Test target: {new_conundrum.target}')
             elif screen_param == 'conundrum_feedback':
                 letters_object = list(new_conundrum.target)
             else:

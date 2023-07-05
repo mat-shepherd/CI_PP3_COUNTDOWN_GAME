@@ -276,9 +276,9 @@ class Screen:
                 )
             spaces_str = ' ' * int(spaces_num)
             if Screen.round_number == 5:
-                 result = text2art(
-                    f'{spaces_str}GAME OVER', font='small'
-                    )
+                result = text2art(
+                f'{spaces_str}GAME OVER', font='small'
+                )
             else:
                 result = text2art(
                     f'{spaces_str}ROUND {round_word}', font='small'
@@ -868,9 +868,9 @@ class Screen:
                     round_score = new_player.update_score()
                     print(
                         f"{user_word.lower().capitalize()}, that's wasn't "
-                        f"our target word above, but it's still a valid"
-                        f"{len(user_word)} letter word! "
-                        f"You got it{new_player.round_time} seconds. \n"
+                        f"our target word above, but it's still a valid "
+                        f"{len(user_word)} letter word!\n"
+                        f"You got it {new_player.round_time} seconds. \n"
                         f"{new_player.name}, you scored {round_score} points "
                         f"for round {Screen.round_number}!"
                     )
@@ -880,14 +880,18 @@ class Screen:
                         f"NOT a word found in our dictionary.\n"
                         f"Better luck next time!"
                     )
-                # Show valid conundrum
-
+                # Pause before end game screen
+                wait_for_keypress(
+                    Fore.YELLOW +
+                    'Press any key to continue...'
+                    + Fore.RESET
+                )
                 user_prompt = 'game_over'
         # Game Over
         elif self.screen_data_param == 'game_over':
             wait_for_keypress(
                 Fore.YELLOW +
-                'Press a key to end game...'
+                'Press any key to end game...'
                 + Fore.RESET
             )
             user_prompt = ''
@@ -1082,9 +1086,9 @@ class Conundrum:
         """
         # while True:
         random_conundrum = random.sample(nine_letter_word_set, 1)[0]
-            # Make sure word isn't on profanity list
-            # if check_profanity(random_conundrum) >= 0.9:
-            #    break
+        # Make sure word isn't on profanity list
+        # if check_profanity(random_conundrum) >= 0.9:
+        #    break
         scrambled_conundrum = ''.join(
             random.sample(random_conundrum, len(random_conundrum))
         )

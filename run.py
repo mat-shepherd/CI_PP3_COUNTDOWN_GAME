@@ -24,7 +24,7 @@ from validation import (
     validate_user_conundrum
 )
 from word_set import word_set
-from nine_letter_word_set import nine_letter_word_set
+from nine_letter_word_list import nine_letter_word_list
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from inputimeout import inputimeout, TimeoutOccurred
@@ -275,7 +275,7 @@ class Screen:
             spaces_str = ' ' * int(spaces_num)
             if self.screen_data_param == 'game_over':
                 # Remove extra spacing to center
-                spaces_str = spaces_str[:-2]
+                spaces_str = spaces_str[:-1]
                 result = text2art(
                     f'{spaces_str}GAME OVER', font='small'
                     )
@@ -1096,7 +1096,7 @@ class Conundrum:
         and scramble the word.
         """
         # while True:
-        random_conundrum = random.sample(nine_letter_word_set, 1)[0].upper()
+        random_conundrum = random.sample(nine_letter_word_list, 1)[0].upper()
         # Make sure word isn't on profanity list
         # if check_profanity(random_conundrum) >= 0.9:
         #    break

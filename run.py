@@ -183,7 +183,7 @@ class Screen:
         ]:
             self.display_score(new_player)
             print_centered(
-                Style.BRIGHT + Fore.LIGHTGREEN_EX +
+                Style.BRIGHT + Fore.YELLOW +
                 self.letter_tiles +
                 Fore.RESET
             )
@@ -195,6 +195,7 @@ class Screen:
             ]
         ):
             print_centered(
+                Fore.WHITE +
                 f"{new_player.name.upper()}, "
                 "LET'S PLAY COUNTDOWN!\n"
             )
@@ -220,7 +221,7 @@ class Screen:
                 ]
         ):
             print_centered(
-                Style.BRIGHT + Fore.LIGHTGREEN_EX +
+                Style.BRIGHT + Fore.YELLOW +
                 f'          TARGET: {new_player.target_number}\n'
                 + Fore.RESET
             )
@@ -264,7 +265,7 @@ class Screen:
             result = text2art(
                 f'{spaces_str}ROUND {round_word}', font='small'
                 )
-            print(Style.BRIGHT + result)
+            print(Style.BRIGHT + Fore.WHITE + result)
 
     def display_text(self):
         """
@@ -513,13 +514,17 @@ class Screen:
             )
             # Pause execution and wait for keypress
             wait_for_keypress(
-                Fore.WHITE +
+                Fore.YELLOW +
                 'Ready to play? Press any key to start the timer...'
+                + Fore.RESET
             )
             user_prompt = 'letters_guess'
         # Letters round guessing prompt
         elif self.screen_data_param == 'letters_guess':
-            print('You have 30 seconds...\n')
+            print(
+                Fore.WHITE +
+                f'You have 30 seconds...\n'
+                )
             # Get word guess
             timer_prompt = (
                 Fore.WHITE + 'Enter your longest word...'
@@ -547,12 +552,15 @@ class Screen:
                 )
             else:
                 # Check if word in pydictionary
-                print(f'Checking your word in the dictionary...\n')                
+                print(
+                    Style.BRIGHT + Fore.WHITE + 
+                    f'Checking your word in the dictionary...\n'
+                    )
                 valid_word = check_dictionary(user_word)
                 if valid_word:
                     round_score = new_player.update_score()
                     print(
-                        f"\n{user_word.lower().capitalize()}, that's a "
+                        f"{user_word.lower().capitalize()}, that's a "
                         f"{len(user_word)} letter word in "
                         f"{new_player.round_time} seconds. \n"
                         f"{new_player.name}, you scored {round_score} points "
@@ -561,13 +569,15 @@ class Screen:
                 elif valid_word is None:
                     print(
                         f"It appears '{user_word}' is NOT a word "
-                        "found in our  dictionary. Better luck "
+                        "found in our dictionary. Better luck "
                         "next time!"
                     )
             # Print longest word if anagram solver can find one
             print(
+                Fore.LIGHTGREEN_EX +
                 f"\nChecking what our 'limited' dictionary corner found...\n"
                 f"This might take 5 to 10 seconds...\n"
+                + Fore.RESET
                 )
             longest_words, word_len = new_letters.longest_word(
                 new_player.chosen_letters
@@ -575,11 +585,13 @@ class Screen:
             if longest_words:
                 if len(longest_words) == 1:
                     print(
+                        Fore.WHITE +
                         f"\nHere's a {word_len} letter word that our "
                         f"dictionary corner found!\n"
                         )
                 else:
                     print(
+                        Fore.WHITE +
                         f"\nHere are some {word_len} letter words that our "
                         f"dictionary corner found!\n"
                     )
@@ -593,12 +605,13 @@ class Screen:
                     print_word_meaning(item, new_player)
             else:
                 print(
+                    STYLE.BRIGHT + Fore.WHITE +
                     "\nOur dictionary corner couldn't find any "
                     "better words either!"
                 )
             # Pause execution for key press to progress
             wait_for_keypress(
-                Fore.LIGHTGREEN_EX +
+                Fore.YELLOW +
                 '\nReady for the next round? Press any key to '
                 'continue...'
                 + Fore.RESET
@@ -657,8 +670,9 @@ class Screen:
             )
             # Pause execution and wait for keypress
             wait_for_keypress(
-                Fore.WHITE +
+                Fore.YELLOW +
                 'Ready to play? Press any key to start the timer...'
+                + Fore.RESET
             )
             user_prompt = 'numbers_guess'
         # Numbers round guessing prompt
@@ -713,7 +727,7 @@ class Screen:
                         f"\nYour solution of {user_solution} = "
                         f"{solution_result}.\n"
                         f"\nBut you were within {target_difference} of "
-                        f"the target!"
+                        f"the target!\n"
                         f"That's amazing! Well done!\n"
                     )
                 elif valid_solution is False:
@@ -725,11 +739,17 @@ class Screen:
                         f"Better luck next time!"
                     )
             # Provide solutions to round
-            print(f"Let's see what our maths wiz came up with...\n")
+            # add a second of delay to give the user time to read
+            sleep(1)
+            print(
+                Fore.LIGHTGREEN_EX +
+                f"Let's see what our maths wiz came up with...\n"
+                + Fore.RESET
+                )
             solve_numbers_round(new_player)
             # Pause execution for key press to progress
             wait_for_keypress(
-                Fore.LIGHTGREEN_EX +
+                Fore.YELLOW +
                 '\nReady for the next round? Press any key to '
                 'continue...'
                 + Fore.RESET

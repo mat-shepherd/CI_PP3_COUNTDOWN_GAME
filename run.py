@@ -615,7 +615,7 @@ class Screen:
                         f"for round {Screen.round_number}!"
                     )
                     # Add short delay in case dictionary corner is fast
-                    sleep(2)
+                    sleep(3)
                 elif valid_word is None:
                     print(
                         f"It appears '{user_word}' is NOT a word "
@@ -800,7 +800,7 @@ class Screen:
                 )
             # Provide solutions to round
             # add 4 seconds of delay to give the user time to read
-            sleep(4)                
+            sleep(5)
             solve_numbers_round(new_player)
             # Pause execution for key press to progress
             wait_for_keypress(

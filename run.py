@@ -107,11 +107,10 @@ class Screen:
         'show_numbers': 'game_screen_data.txt',
         'numbers_guess': 'game_screen_data.txt',
         'numbers_feedback': 'game_screen_data.txt',
-        'conundrum_round': 'game_screen_data.txt',
         'show_conundrum': 'game_screen_data.txt',
         'conundrum_guess': 'game_screen_data.txt',
         'conundrum_feedback': 'game_screen_data.txt',
-        'game_over': 'game_over_screen_data.txt'
+        'game_over': 'game_screen_data.txt'
     }
 
     letter_tiles = """
@@ -164,7 +163,8 @@ class Screen:
             'game_over'
         ]:
             self.display_text()
-        # Update tiles on enter_name or show screens
+        # Update tiles on enter_name,
+        # show and feedback screens
         if self.screen_data_param in [
             'enter_name',
             'show_letters',
@@ -177,7 +177,7 @@ class Screen:
             'conundrum_guess',
             'conundrum_feedback'
         ]:
-            self.update_tiles(new_player)
+            self.update_tiles(new_player, new_conundrum, self.screen_data_param)
         # Only print tiles and score during
         # enter name, rounds, and feedback screens
         if self.screen_data_param not in [
@@ -213,7 +213,7 @@ class Screen:
         ):
             print_centered(
                 Style.BRIGHT + Fore.WHITE +
-                f"{new_player.name.upper()}, "
+                f"     {new_player.name.upper()}, "
                 "WELCOME TO THE NUMBERS ROUND!\n"
             )
         # Print Target Number in numbers round
@@ -233,9 +233,16 @@ class Screen:
         elif self.screen_data_param == 'show_conundrum':
             print_centered(
                 Style.BRIGHT + Fore.WHITE +
-                f"{new_player.name.upper()}, "
-                "WELCOME TO THE CONUNDRUM ROUND!\n"
+                f"       {new_player.name.upper()}, "
+                "WELCOME TO THE FINAL CONUNDRUM ROUND!\n"
             )
+        elif self.screen_data_param == 'game_over':
+            print_centered(
+                Style.BRIGHT + Fore.WHITE +
+                f"{new_player.name.upper()}, "
+                f"GAME OVER!\n"
+                f"CONGRATULATIONS, {new_player.name.upper()}!\n"
+            )        
         user_prompt = self.display_prompt(
             new_player,
             new_letters,
@@ -289,7 +296,7 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
-    def timed_input(self, new_player=None, timer_prompt=None):
+    def timed_input(self, new_player=None, timer_prompt=None, new_conundrum=None):
         """
         Display timed input for 30 seconds
         """
@@ -330,7 +337,15 @@ class Screen:
                         time_remaining = int(countdown - (time() - start_time))
                         break
                 elif Screen.round_number == 5:
-                    pass
+                    if validate_user_conundrum(user_prompt, new_player, new_conundrum):
+                        # Store guessed solutions in Player attribute
+                        # at index one less than round number
+                        new_player.guessed_conundrum.insert(
+                            Screen.round_number - 1,
+                            user_prompt
+                        )
+                        time_remaining = int(countdown - (time() - start_time))
+                        break
             except TimeoutOccurred:
                 print("Time's Up!")
                 user_prompt = False
@@ -349,7 +364,7 @@ class Screen:
         """
         print_centered(f'Your Score: {new_player.score}')
 
-    def update_tiles(self, new_player=None):
+    def update_tiles(self, new_player=None, new_conundrum=None, screen_param=None):
         """
         Update letters tiles with chosen letters
         """
@@ -369,7 +384,19 @@ class Screen:
         # Reset letter tiles
         self.letter_tiles = sub(r'[a-zA-Z0-9]', '*', self.letter_tiles)
         if Screen.round_number != 4:
-            for char in new_player.chosen_letters:
+            # Check if this is conundrum round and whether
+            # to show target or scrambled conundrum
+            # otherwist show player chosen letters
+            print(f'Update Tiles Screen Param: {screen_param}')
+            if screen_param in ['show_conundrum','conundrum_guess']:
+                letters_object = list(new_conundrum.scrambled)
+            elif screen_param == 'conundrum_feedback':
+                letters_object = list(new_conundrum.target)
+            else:
+                letters_object = new_player.chosen_letters
+
+            print(f'Update Tiles Letters Object: {letters_object}')
+            for char in letters_object:
                 # Loop through player chosen letters and use
                 # each letter to replace existing tile characters
                 self.letter_tiles = sub(
@@ -751,14 +778,14 @@ class Screen:
                         f"{solution_result}.\n"
                         f"Better luck next time!"
                     )
-            # Provide solutions to round
-            # add a second of delay to give the user time to read
-            sleep(1)
             print(
                 Fore.LIGHTGREEN_EX +
-                f"Let's see what our maths wiz came up with...\n"
+                f"Let's see what solutions our maths wiz came up with...\n"
                 + Fore.RESET
                 )
+            # Provide solutions to round
+            # add 4 seconds of delay to give the user time to read
+            sleep(4)                
             solve_numbers_round(new_player)
             # Pause execution for key press to progress
             wait_for_keypress(
@@ -767,20 +794,11 @@ class Screen:
                 'continue...'
                 + Fore.RESET
             )
-            user_prompt = 'conundrum_round'
-        # Conundrum round
-        elif self.screen_data_param == 'conundrum_round':
-            # Generate conundrum
-            random_conundrum, scrambled_conundrum =\
-                new_conundrum.populate_conundrum()
-            # Store values in new conundrum attributes
-            new_conundrum.target = random_conundrum
-            new_conundrum.scrambled =\
-                scrambled_conundrum
-
+            user_prompt = 'show_conundrum'
+        # Show conundrum screen
+        elif self.screen_data_param == 'show_conundrum':
             print(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
-                f'Final round {new_player.name}!\n'
                 f'A scrambled 9 letter word is shown above.\n'
                 f'Solve this anagram within 30 seconds!\n'
                 + Fore.RESET
@@ -791,18 +809,84 @@ class Screen:
                 'Ready to play? Press any key to start the timer...'
                 + Fore.RESET
             )
-        # Else game is over
-        else:
-            while True:
-                user_prompt = input(
-                    Fore.WHITE +
-                    'Using the letters above, please enter'
-                    'your solution to the conundrum\n'
+            user_prompt = 'conundrum_guess'
+        # Numbers round guessing prompt
+        elif self.screen_data_param == 'conundrum_guess':
+            print('You have 30 seconds...\n')
+            # Get conundrum guess
+            timer_prompt = (
+                Fore.WHITE +
+                'Enter your solution to the conundrum... '
+            )
+            user_prompt, time_remaining = self.timed_input(
+                new_player,
+                timer_prompt,
+                new_conundrum
+            )
+            # If valid solution store player's round time
+            if user_prompt:
+                new_player.round_time = time_remaining
+            user_prompt = 'conundrum_feedback'
+        # Conundrum round feedback
+        elif self.screen_data_param == 'conundrum_feedback':
+            # Check if user entered a word
+            if len(new_player.guessed_conundrum) > 0:
+                # Get player's last guessed word
+                user_word = new_player.guessed_conundrum
+            else:
+                user_word = ''
+            if user_word == '':
+                print(
+                    f"\n{new_player.name}, you didn't guess a word "
+                    f"within the time limit. Better luck next round!"
                 )
-                if validate_user_conundrum(user_prompt):
-                    break
-                else:
-                    continue
+            # Check if word matches target
+            elif new_player.guessed_conundrum == new_conundrum.target:
+                round_score = new_player.update_score()
+                print(
+                    f"\n{new_player.name}, that's correct!\n"
+                    f"You guessed our conundrum is {new_conundrum.target}.\n"
+                    f"You solved it in {new_player.round_time} seconds. \n"
+                    f"{new_player.name}, you scored {round_score} points "
+                    f"for round {Screen.round_number}!\n"    
+                )       
+            else:
+                # Check if word in pydictionary
+                print(
+                    Style.BRIGHT + Fore.WHITE +
+                    f"That isn't our target word, but let's "
+                    f'check your word in the dictionary...\n'
+                    )
+                valid_word = check_dictionary(new_player.guessed_conundrum)
+                if valid_word:
+                    round_score = new_player.update_score()
+                    print(
+                        f"{user_word.lower().capitalize()}, that's wasn't "
+                        f"our target word above, but it's still a valid"
+                        f"{len(user_word)} letter word! "
+                        f"You got it{new_player.round_time} seconds. \n"
+                        f"{new_player.name}, you scored {round_score} points "
+                        f"for round {Screen.round_number}!"
+                    )
+                elif valid_word is None:
+                    print(
+                        f"It appears '{user_word}' is NOT a word "
+                        "found in our dictionary.\n"
+                        f"Better luck next time!"
+                    )
+                # Show valid conundrum
+
+                user_prompt = 'game_over'
+        # Game Over
+        elif self.screen_data_param == 'game_over':
+            wait_for_keypress(
+                Fore.YELLOW +
+                'Press a key to end game...'
+                + Fore.RESET
+            )
+            user_prompt = ''
+        # Else game is over
+
         # Return the user_prompt value back to round_handler
         # so we know which screen to render next
         return user_prompt
@@ -989,18 +1073,17 @@ class Conundrum:
         Generate conundrum word and scrambled word
         Choose a word from the 9 letter word list
         and scramble the word.
-
-        Returns
-        -------
-        random_conundrum : string
-            Randomly chosen 9 letter word
-        scrambled_conundrum : string
-            Scrambled version of conundrum
         """
+        # while True:
         random_conundrum = random.sample(nine_letter_word_set, 1)[0]
-        scrambled_conundrum = ''.join(random.sample(random_conundrum, len(random_conundrum)))
-
-        return random_conundrum, scrambled_conundrum
+            # Make sure word isn't on profanity list
+            # if check_profanity(random_conundrum) >= 0.9:
+            #    break
+        scrambled_conundrum = ''.join(
+            random.sample(random_conundrum, len(random_conundrum))
+        )
+        self.target = random_conundrum
+        self.scrambled = scrambled_conundrum
 
 
 # Helper Functions
@@ -1061,11 +1144,10 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     show_numbers = Screen('show_numbers')
     numbers_guess = Screen('numbers_guess')
     numbers_feedback = Screen('numbers_feedback')
-    conundrum_screen = Screen('conundrum_round')
     show_conundrum = Screen('show_conundrum')
     conundrum_guess = Screen('conundrum_guess')
     conundrum_feedback = Screen('conundrum_feedback')
-    game_over_screen = Screen('game_over')
+    game_over = Screen('game_over')
     # Capture user input and player object
     # when screens are rendered
     user_response = intro_screen.render(
@@ -1173,21 +1255,16 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_conundrum
             )
         # Conundrum round
-        elif user_response == 'conundrum_screen':
-            Screen.round_number += 1
-            user_response = conundrum_screen.render(
-                new_player,
-                new_letters,
-                new_numbers,
-                new_conundrum
-            )
         elif user_response == 'show_conundrum':
+            Screen.round_number += 1
+            # Generate target conundrum
+            new_conundrum.populate_conundrum()
             user_response = show_conundrum.render(
                 new_player,
                 new_letters,
                 new_numbers,
                 new_conundrum
-            )        
+            )
         elif user_response == 'conundrum_guess':
             user_response = conundrum_guess.render(
                 new_player,
@@ -1202,6 +1279,13 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_numbers,
                 new_conundrum
             )
+        elif user_response == 'game_over':
+            user_response = game_over.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )            
         else:
             print('No more screens')
             break

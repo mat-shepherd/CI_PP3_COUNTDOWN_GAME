@@ -240,7 +240,7 @@ class Screen:
             print_centered(
                 Style.BRIGHT + Fore.WHITE +
                 f"{new_player.name.upper()}, "
-                f"GAME OVER!\n"
+                f"YOUR FINAL SCORE IS {new_player.score}!\n"
                 f"CONGRATULATIONS, {new_player.name.upper()}!\n"
             )        
         user_prompt = self.display_prompt(
@@ -275,9 +275,14 @@ class Screen:
                     * (5 // Screen.round_number) + 2
                 )
             spaces_str = ' ' * int(spaces_num)
-            result = text2art(
-                f'{spaces_str}ROUND {round_word}', font='small'
-                )
+            if Screen.round_number == 5:
+                 result = text2art(
+                    f'{spaces_str}GAME OVER', font='small'
+                    )
+            else:
+                result = text2art(
+                    f'{spaces_str}ROUND {round_word}', font='small'
+                    )
             print(Style.BRIGHT + Fore.WHITE + result)
 
     def display_text(self):

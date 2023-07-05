@@ -56,7 +56,8 @@ class Player:
                  chosen_numbers=[],
                  target_number=0,
                  guessed_words=[],
-                 guessed_solutions=[]
+                 guessed_solutions=[],
+                 guessed_conundrum=[]
                  ):
         self.name = name
         self.score = score
@@ -68,6 +69,7 @@ class Player:
         self.target_number = target_number
         self.guessed_words = guessed_words
         self.guessed_solutions = guessed_solutions
+        self.guessed_conundrum = guessed_conundrum
 
     def update_score(self):
         """
@@ -957,12 +959,28 @@ class Conundrum:
     Conundrum word attributes for the
     Conundrum round
     """
-    target = "Conundrum"
-    scrambled = []
+    def __init__(self, target=[], scrambled=[]):
+        self.target = target
+        self.scrambled = scrambled
 
-    def __init__(self):
-        self.target = Conundrum.target
-        self.scrambled = Conundrum.scrambled
+    def populate_conundrum(self):
+        """
+        Generate conundrum word and scrambled word
+        Choose a word from the 9 letter word list
+        and scramble the word.
+
+        Returns
+        -------
+        random_conundrum : string
+            Randomly chosen 9 letter word
+        target_conundrum : string
+            Scrambled version of conundrum
+        """
+        random_conundrum = random.sample(nine_letter_word_set, 1)[0]
+        target_conundrum = ''.join(random.sample(random_conundrum, len(random_conundrum)))
+
+        return random_conundrum, target_conundrum
+
 
 # Helper Functions
 

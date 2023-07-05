@@ -101,9 +101,9 @@ def print_word_meaning(word, new_player):
         for part_of_speech, meanings in word_meaning_found.items():
             for meaning in meanings:
                 print(f"{part_of_speech} - {meaning}")
-                # Only print the first 3 meanings
+                # Only print the first 2 meanings
                 count += 1
-                if count >= 2:
+                if count >= 1:
                     break
     return valid_word
 

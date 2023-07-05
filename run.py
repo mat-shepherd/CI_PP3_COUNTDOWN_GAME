@@ -565,6 +565,10 @@ class Screen:
                         "next time!"
                     )
             # Print longest word if anagram solver can find one
+            print(
+                f"\nChecking what our 'limited' dictionary corner found...\n"
+                f"This might take 5 to 10 seconds...\n"
+                )
             longest_words, word_len = new_letters.longest_word(
                 new_player.chosen_letters
             )
@@ -581,7 +585,12 @@ class Screen:
                     )
                 for item in set(longest_words):
                     # Running through in set form prevents duplicates
-                    print(item)
+                    print(
+                        Fore.YELLOW +
+                        f'{item}'
+                        + Fore.RESET
+                        )
+                    print_word_meaning(item, new_player)
             else:
                 print(
                     "\nOur dictionary corner couldn't find any "
@@ -823,25 +832,47 @@ class Letters:
     def longest_word(self, anagram):
         """
         Return the longest word we can find
+        Create some random variations of the letter
+        list and loop through the anagram solver.
+        Less time consuming than creating all
+        permutations of a set of 9 letters, but
+        also not highly effective at finding words.
         Code adapted from
         https://github.com/patrickleweryharris/anagram-solver
         """
         anagram_lst = []
+        anagram_variations = []
+        # Create list of characters
         for char in anagram:
             anagram_lst.append(char)
 
-        words = find_possible(anagram_lst)
-        actual_words = return_words(words, word_set)
-        # Recurse the function by popping one letter off
-        # to see if we can quickly find a word
-        # without creating all permutations
-        if len(actual_words) == 0 and len(anagram) >= 5:
-            anagram_lst.pop(-1)
-            eight_letters = ''.join(anagram_lst)
-            new_actual_words, len_word = self.longest_word(eight_letters)
-            return new_actual_words, len_word
-        else:
-            return actual_words, len(anagram)
+        # Add initial list to variations list
+        anagram_variations.append(list(anagram_lst))
+        # Generate 2 additional mixed lists of anagrams
+        # and add to a list
+        for ind in range(1, 2):
+            random.shuffle(anagram_lst)
+            shuffled_lst = list(anagram_lst)
+            # Check the suffled list hasn't already been
+            # generated before adding
+            if not any(lst == shuffled_lst for lst in anagram_variations):
+                anagram_variations.append(shuffled_lst)
+
+        # Loop through variations until some words are found
+        for ind in range(len(anagram_variations)):
+            words = find_possible(anagram_variations[ind])
+            actual_words = return_words(words, word_set)
+            # Recurse the function by popping one letter off
+            # to see if we can quickly find a 4 letter words
+            # or longer without creating all permutations
+            if len(actual_words) == 0 and len(anagram) >= 4:
+                anagram_variations[ind].pop(-1)
+                smaller_anagram = ''.join(anagram_variations[ind])
+                new_actual_words, len_word = self.longest_word(smaller_anagram)
+                actual_words = new_actual_words
+            else:
+                len_word = len(anagram)
+        return actual_words, len_word
 
 
 class Numbers:

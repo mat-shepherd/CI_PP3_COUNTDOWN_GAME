@@ -769,7 +769,19 @@ class Screen:
             user_prompt = 'conundrum_round'
         # Conundrum round
         elif self.screen_data_param == 'conundrum_round':
-            pass
+            print(
+                Style.BRIGHT + Fore.LIGHTGREEN_EX +
+                f'Final round {new_player.name}!\n'
+                f'A scrambled 9 letter word is shown above.\n'
+                f'Solve this anagram within 30 seconds!\n'
+                + Fore.RESET
+            )
+            # Pause execution and wait for keypress
+            wait_for_keypress(
+                Fore.YELLOW +
+                'Ready to play? Press any key to start the timer...'
+                + Fore.RESET
+            )
         # Else game is over
         else:
             while True:

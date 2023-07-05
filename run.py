@@ -7,6 +7,7 @@ import random
 import termios
 import sys
 import tty
+import pager
 # Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from validation import (
@@ -259,7 +260,7 @@ class Screen:
                 spaces_num = len(round_word) * (5 // Screen.round_number)
             else:
                 spaces_num = (
-                    5 + len(round_word) 
+                    5 + len(round_word)
                     * (5 // Screen.round_number) + 2
                 )
             spaces_str = ' ' * int(spaces_num)
@@ -274,8 +275,12 @@ class Screen:
         """
         try:
             with open(self.screen_data_file) as f:
-                text = f.read()
-                print(Style.BRIGHT + text)
+                # Paginate text if on rules
+                if self.screen_data_file == 'rules_screen_data.txt':
+                    pager.page(f)
+                else:
+                    text = f.read()
+                    print(Style.BRIGHT + text)
         except OSError as e:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
@@ -321,7 +326,7 @@ class Screen:
                         time_remaining = int(countdown - (time() - start_time))
                         break
                 elif Screen.round_number == 5:
-                    pass                   
+                    pass
             except TimeoutOccurred:
                 print("Time's Up!")
                 user_prompt = False
@@ -554,7 +559,7 @@ class Screen:
             else:
                 # Check if word in pydictionary
                 print(
-                    Style.BRIGHT + Fore.WHITE + 
+                    Style.BRIGHT + Fore.WHITE +
                     f'Checking your word in the dictionary...\n'
                     )
                 valid_word = check_dictionary(user_word)
@@ -606,7 +611,7 @@ class Screen:
                         )
                     # Don't print meaning message if none found
                     if print_word_meaning(item, new_player):
-                        print_word_meaning(item, new_player) 
+                        print_word_meaning(item, new_player)
             else:
                 print(
                     Style.BRIGHT + Fore.WHITE +
@@ -1108,7 +1113,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_letters,
                 new_numbers,
                 new_conundrum
-            )        
+            )
         # Conundrum round
         elif user_response == 'conundrum_screen':
             Screen.round_number += 1

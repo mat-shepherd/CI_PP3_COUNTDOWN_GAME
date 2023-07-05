@@ -13,6 +13,7 @@ joblib==1.2.0
 num2words==0.5.12
 numexpr==2.8.4
 numpy==1.24.3
+pager==3.3
 PyDictionary==2.0.1
 scikit-learn==1.2.2
 scipy==1.10.1

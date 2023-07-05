@@ -237,9 +237,8 @@ class Screen:
                 "WELCOME TO THE FINAL CONUNDRUM ROUND!\n"
             )
         elif self.screen_data_param == 'game_over':
-            print_centered(
-                f"\n{new_player.name.upper()}!\n"
-            )
+            print('\n')
+            print_centered(f"{new_player.name.upper()}!\n")
             print_centered(f"YOUR FINAL SCORE IS {new_player.score}!\n")
             print_centered(f"CONGRATULATIONS!\n")
         user_prompt = self.display_prompt(
@@ -275,8 +274,8 @@ class Screen:
                 )
             spaces_str = ' ' * int(spaces_num)
             if self.screen_data_param == 'game_over':
-                # Add extra spacing to center
-                spaces_str += spaces_str + ' '
+                # Remove extra spacing to center
+                spaces_str = spaces_str[:-2]
                 result = text2art(
                     f'{spaces_str}GAME OVER', font='small'
                     )
@@ -356,6 +355,13 @@ class Screen:
                 print("Time's Up!")
                 user_prompt = False
                 time_remaining = 0
+                # Store empty word to not throw off looking up
+                # player's last guessed word
+                new_player.guessed_words.insert(
+                    Screen.round_number - 1,
+                    ' '
+                )
+                sleep(2)
                 break
 
             time_remaining = int(countdown - (time() - start_time))
@@ -395,7 +401,6 @@ class Screen:
             # otherwist show player chosen letters
             if screen_param in ['show_conundrum', 'conundrum_guess']:
                 letters_object = list(new_conundrum.scrambled)
-                print(f'Target: {new_conundrum.target}')
             elif screen_param == 'conundrum_feedback':
                 letters_object = list(new_conundrum.target)
             else:
@@ -583,12 +588,12 @@ class Screen:
         # Letters round feedback
         elif self.screen_data_param == 'letters_feedback':
             # Check if user entered a word
-            if len(new_player.guessed_words) > 0:
+            if len(new_player.guessed_words[-1]) > 0:
                 # Get player's last guessed word
                 user_word = new_player.guessed_words[-1]
             else:
                 user_word = ''
-            if user_word == '':
+            if user_word == '' or user_word == ' ':
                 print(
                     f"\n{new_player.name}, you didn't guess a word "
                     f"within the time limit. Better luck next round!"
@@ -853,6 +858,7 @@ class Screen:
             elif user_word.upper() == new_conundrum.target.upper():
                 round_score = new_player.update_score()
                 print(
+                    Style.BRIGHT + Fore.WHITE +
                     f"\n{new_player.name}, that's correct!\n"
                     f"You guessed our conundrum is {new_conundrum.target}.\n"
                     f"You solved it in {new_player.round_time} seconds. \n"
@@ -1003,7 +1009,7 @@ class Letters:
         for ind in range(1, 2):
             random.shuffle(anagram_lst)
             shuffled_lst = list(anagram_lst)
-            # Check the suffled list hasn't already been
+            # Check the shuffled list hasn't already been
             # generated before adding
             if not any(lst == shuffled_lst for lst in anagram_variations):
                 anagram_variations.append(shuffled_lst)
@@ -1300,7 +1306,6 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_conundrum
             )            
         else:
-            print('No more screens')
             break
 
 
@@ -1317,7 +1322,6 @@ def main():
     new_numbers = Numbers()
     new_conundrum = Conundrum()
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
-    print('Back in main')
 
 # Call main game function
 

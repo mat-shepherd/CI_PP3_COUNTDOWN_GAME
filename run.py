@@ -23,6 +23,8 @@ from validation import (
     validate_user_solution,
     validate_user_conundrum
 )
+from word_set import word_set
+from nine_letter_word_set import nine_letter_word_set
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from inputimeout import inputimeout, TimeoutOccurred
@@ -32,7 +34,6 @@ from colorama.ansi import clear_screen
 from art import text2art
 from num2words import num2words
 from anagram_solver.anagram_solver import find_possible, return_words
-from anagram_solver.stuff import word_set
 import countdown_numbers_solver
 
 # Initialize colorama
@@ -229,6 +230,7 @@ class Screen:
             )
         elif self.screen_data_param == 'show_conundrum':
             print_centered(
+                Style.BRIGHT + Fore.WHITE +
                 f"{new_player.name.upper()}, "
                 "WELCOME TO THE CONUNDRUM ROUND!\n"
             )
@@ -603,7 +605,6 @@ class Screen:
                     )
                 for item in set(longest_words):
                     # Running through in set form prevents duplicates
-                    print(longest_words)
                     print(
                         Fore.YELLOW +
                         f'{item}'
@@ -890,7 +891,11 @@ class Letters:
         # Loop through variations until some words are found
         for ind in range(len(anagram_variations)):
             words = find_possible(anagram_variations[ind])
+            # Importing custom scrabble word_set from file
+            # instead of importing word_set from
+            # the anagram_solver module
             actual_words = return_words(words, word_set)
+            print(actual_words)
             # Recurse the function by popping one letter off
             # to see if we can quickly find a 4 letter words
             # or longer without creating all permutations
@@ -901,6 +906,9 @@ class Letters:
                 actual_words = new_actual_words
             else:
                 len_word = len(anagram)
+        # Remove any duplicates by creating a set and than
+        # convert back to a list
+        actual_words = list(set(actual_words))
         return actual_words, len_word
 
 

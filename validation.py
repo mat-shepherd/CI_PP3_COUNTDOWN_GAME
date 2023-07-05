@@ -83,6 +83,7 @@ def print_word_meaning(word, new_player):
     and print the word length and meaning
     """
     word_meaning_found = check_dictionary(word)
+
     if word_meaning_found is None:
         # Return false so calling function can handle
         # printing no meaning found message

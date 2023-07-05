@@ -611,7 +611,7 @@ class Screen:
                         + Fore.RESET
                         )
                     # Don't print meaning message if none found
-                    if print_word_meaning(item, new_player):
+                    if check_dictionary(item):
                         print_word_meaning(item, new_player)
             else:
                 print(
@@ -895,7 +895,12 @@ class Letters:
             # instead of importing word_set from
             # the anagram_solver module
             actual_words = return_words(words, word_set)
-            print(actual_words)
+
+            # Break out of the check if words are found
+            if len(actual_words) > 0:
+                actual_words = list(set(actual_words))
+                return actual_words, len(actual_words[0])
+
             # Recurse the function by popping one letter off
             # to see if we can quickly find a 4 letter words
             # or longer without creating all permutations
@@ -904,9 +909,15 @@ class Letters:
                 smaller_anagram = ''.join(anagram_variations[ind])
                 new_actual_words, len_word = self.longest_word(smaller_anagram)
                 actual_words = new_actual_words
+
+                # Break out of the check if words are found
+                if len(actual_words) > 0:
+                    actual_words = list(set(actual_words))
+                    return actual_words, len(actual_words[0])
+
             else:
                 len_word = len(anagram)
-        # Remove any duplicates by creating a set and than
+        # Remove any duplicates by creating a set and then
         # convert back to a list
         actual_words = list(set(actual_words))
         return actual_words, len_word

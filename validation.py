@@ -82,8 +82,7 @@ def print_word_meaning(word, new_player):
     Check if word is used in PyDictionary
     and print the word length and meaning
     """
-    word_meaning_found = check_dictionary(word)
-
+    word_meaning_found = check_dictionary(word.lower())
     if word_meaning_found is None:
         # Return false so calling function can handle
         # printing no meaning found message
@@ -97,12 +96,12 @@ def print_word_meaning(word, new_player):
             )
         count = 0
         for part_of_speech, meanings in word_meaning_found.items():
+            # Only print the first 2 meanings
+            if count >= 1:
+                break
             for meaning in meanings:
-                print(f"{part_of_speech} - {meaning}")
-                # Only print the first 2 meanings
+                print(f"{part_of_speech} - {meaning}\n")
                 count += 1
-                if count >= 1:
-                    break
     return valid_word
 
 

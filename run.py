@@ -238,11 +238,10 @@ class Screen:
             )
         elif self.screen_data_param == 'game_over':
             print_centered(
-                Style.BRIGHT + Fore.WHITE +
-                f"\n{new_player.name.upper()}, "
+                f"\n{new_player.name.upper()}!\n"
             )
             print_centered(f"YOUR FINAL SCORE IS {new_player.score}!\n")
-            print_centered(f"CONGRATULATIONS, {new_player.name.upper()}!\n")
+            print_centered(f"CONGRATULATIONS!\n")
         user_prompt = self.display_prompt(
             new_player,
             new_letters,
@@ -275,12 +274,12 @@ class Screen:
                     * (5 // Screen.round_number) + 2
                 )
             spaces_str = ' ' * int(spaces_num)
-            if Screen.round_number == 5:
+            if self.screen_data_param == 'game_over':
                 # Add extra spacing to center
-                spaces_str += spaces_str + ' ' * 3
+                spaces_str += spaces_str + ' '
                 result = text2art(
-                f'{spaces_str}GAME OVER', font='small'
-                )
+                    f'{spaces_str}GAME OVER', font='small'
+                    )
             else:
                 result = text2art(
                     f'{spaces_str}ROUND {round_word}', font='small'
@@ -396,12 +395,12 @@ class Screen:
             # otherwist show player chosen letters
             if screen_param in ['show_conundrum', 'conundrum_guess']:
                 letters_object = list(new_conundrum.scrambled)
+                print(f'Target: {new_conundrum.target}')
             elif screen_param == 'conundrum_feedback':
                 letters_object = list(new_conundrum.target)
             else:
                 letters_object = new_player.chosen_letters
 
-            print(f'Update Tiles Letters Object: {letters_object}')
             for char in letters_object:
                 # Loop through player chosen letters and use
                 # each letter to replace existing tile characters
@@ -850,7 +849,8 @@ class Screen:
                     f"within the time limit. Better luck next round!"
                 )
             # Check if word matches target
-            elif user_word == new_conundrum.target:
+            # Convert to upper to avoid case mismatch
+            elif user_word.upper() == new_conundrum.target.upper():
                 round_score = new_player.update_score()
                 print(
                     f"\n{new_player.name}, that's correct!\n"

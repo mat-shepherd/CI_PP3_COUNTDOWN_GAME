@@ -239,10 +239,10 @@ class Screen:
         elif self.screen_data_param == 'game_over':
             print_centered(
                 Style.BRIGHT + Fore.WHITE +
-                f"{new_player.name.upper()}, "
-                f"YOUR FINAL SCORE IS {new_player.score}!\n"
-                f"CONGRATULATIONS, {new_player.name.upper()}!\n"
-            )        
+                f"\n{new_player.name.upper()}, "
+            )
+            print_centered(f"YOUR FINAL SCORE IS {new_player.score}!\n")
+            print_centered(f"CONGRATULATIONS, {new_player.name.upper()}!\n")
         user_prompt = self.display_prompt(
             new_player,
             new_letters,
@@ -276,6 +276,8 @@ class Screen:
                 )
             spaces_str = ' ' * int(spaces_num)
             if Screen.round_number == 5:
+                # Add extra spacing to center
+                spaces_str = spaces_str + 3
                 result = text2art(
                 f'{spaces_str}GAME OVER', font='small'
                 )
@@ -742,7 +744,10 @@ class Screen:
         elif self.screen_data_param == 'numbers_feedback':
             # Get player's last guessed solution and evaluate
             # string to check if solution matches target number
-            print(f'Checking your solution...\n')
+            print(
+                Style.BRIGHT + Fore.WHITE +
+                f'Checking your solution...\n'
+                )
             user_solution = new_player.guessed_solutions[0]
             if user_solution == '':
                 print(
@@ -870,9 +875,9 @@ class Screen:
                         f"{user_word.lower().capitalize()}, that's wasn't "
                         f"our target word above, but it's still a valid "
                         f"{len(user_word)} letter word!\n"
-                        f"You got it {new_player.round_time} seconds. \n"
+                        f"You got it in {new_player.round_time} seconds. \n"
                         f"{new_player.name}, you scored {round_score} points "
-                        f"for round {Screen.round_number}!"
+                        f"for round {Screen.round_number}\n!"
                     )
                 elif valid_word is None:
                     print(
@@ -1085,7 +1090,7 @@ class Conundrum:
         and scramble the word.
         """
         # while True:
-        random_conundrum = random.sample(nine_letter_word_set, 1)[0]
+        random_conundrum = random.sample(nine_letter_word_set, 1)[0].upper()
         # Make sure word isn't on profanity list
         # if check_profanity(random_conundrum) >= 0.9:
         #    break

@@ -38,6 +38,7 @@ import countdown_numbers_solver
 import gspread
 from google.oauth2.service_account import Credentials
 
+# Google drive and sheets scope
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -48,6 +49,10 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('countdown_game')
+
+player_scores = SHEET.worksheet("scores")
+
+scores_data = player_scores.get_all_values()
 
 # Initialize colorama
 init()
@@ -220,7 +225,6 @@ class Screen:
                 f"{new_player.name.upper()}, "
                 "LET'S PLAY COUNTDOWN!\n"
             )
-
         elif (
             Screen.round_number == 4
             and self.screen_data_param not in [
@@ -1232,6 +1236,32 @@ def solve_numbers_round(new_player):
         new_player.chosen_numbers,
         new_player.target_number
     )
+
+def print_high_scores(new_player):
+    """
+    Print high score from Google Sheet
+
+    Look up top 10 high scores in Countdown
+    Game Google Sheet and print.
+
+    Based on code from the Code Institute's 
+    Love Sandwiches project.
+    """
+    print(scores_data)
+
+
+def store_high_scores(new_player):
+    """
+    Store high scores in Google Sheet
+
+    Look up top 10 high scores in Countdown
+    Game Google Sheet and update if player's
+    score is in top ten.
+    
+    Based on code from the Code Institute's 
+    Love Sandwiches project.
+    """    
+    print(scores_data)
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

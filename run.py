@@ -177,7 +177,11 @@ class Screen:
             'conundrum_guess',
             'conundrum_feedback'
         ]:
-            self.update_tiles(new_player, new_conundrum, self.screen_data_param)
+            self.update_tiles(
+                new_player,
+                new_conundrum,
+                self.screen_data_param
+            )
         # Only print tiles and score during
         # enter name, rounds, and feedback screens
         if self.screen_data_param not in [
@@ -203,6 +207,7 @@ class Screen:
                 f"{new_player.name.upper()}, "
                 "LET'S PLAY COUNTDOWN!\n"
             )
+
         elif (
             Screen.round_number == 4
             and self.screen_data_param not in [
@@ -238,9 +243,9 @@ class Screen:
             )
         elif self.screen_data_param == 'game_over':
             print('\n')
-            print_centered(f"{new_player.name.upper()}!\n")
+            print_rainbow(f"{new_player.name.upper()}!\n")
+            print_rainbow(f"CONGRATULATIONS!\n")            
             print_centered(f"YOUR FINAL SCORE IS {new_player.score}!\n")
-            print_centered(f"CONGRATULATIONS!\n")
         user_prompt = self.display_prompt(
             new_player,
             new_letters,
@@ -274,6 +279,8 @@ class Screen:
                 )
             spaces_str = ' ' * int(spaces_num)
             if self.screen_data_param == 'game_over':
+                # Add additional space to center
+                spaces_str += ' '
                 result = text2art(
                     f'{spaces_str}GAME OVER', font='small'
                     )
@@ -299,7 +306,12 @@ class Screen:
             errno, strerror = e.args
             print(f'There is an I/O error number, {errno}: {strerror}.')
 
-    def timed_input(self, new_player=None, timer_prompt=None, new_conundrum=None):
+    def timed_input(
+        self,
+        new_player=None,
+        timer_prompt=None,
+        new_conundrum=None
+    ):
         """
         Display timed input for 30 seconds
         """
@@ -340,7 +352,11 @@ class Screen:
                         time_remaining = int(countdown - (time() - start_time))
                         break
                 elif Screen.round_number == 5:
-                    if validate_user_conundrum(user_prompt, new_player, new_conundrum):
+                    if validate_user_conundrum(
+                        user_prompt,
+                        new_player,
+                        new_conundrum
+                    ):
                         # Store guessed solutions in Player attribute
                         # at index one less than round number
                         new_player.guessed_conundrum.insert(
@@ -374,7 +390,12 @@ class Screen:
         """
         print_centered(f'Your Score: {new_player.score}')
 
-    def update_tiles(self, new_player=None, new_conundrum=None, screen_param=None):
+    def update_tiles(
+        self, 
+        new_player=None, 
+        new_conundrum=None,
+        screen_param=None
+    ):
         """
         Update letters tiles with chosen letters
         """
@@ -1115,6 +1136,46 @@ def print_centered(text):
     terminal_width = 80
     centered_text = text.center(terminal_width)
     print(centered_text)
+
+
+def print_rainbow(text, alignment=None):
+    """
+    Print text charcters in range of
+    rainbow colours
+    Adapted from answer by ChatGPT
+    by openai.com
+    """
+    colors = [
+        Fore.RED,
+        Fore.YELLOW,
+        Fore.GREEN,
+        Fore.CYAN,
+        Fore.MAGENTA
+    ]
+
+    # Store text letters as a list
+    characters = list(text)
+    color_text = ''
+
+    # Loop through characters and colors
+    # to build colorful string
+    for i in range(len(characters)):
+        char = characters[i]
+        color = colors[i % len(colors)]
+        color_text += (color + char)
+
+    color_text += (Fore.RESET)
+
+    # Check if we need to center align text
+    if alignment == 'center':
+        # Calculate how many Fore characters
+        # add to string length to adjust center
+        # calculation
+        string_diff = len(color_text) - len(text)
+        adj_terminal_width = 80 + string_diff
+        print(color_text.center(adj_terminal_width))
+    else:
+        print(color_text)
 
 
 def wait_for_keypress(text):

@@ -50,10 +50,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('countdown_game')
 
-player_scores = SHEET.worksheet("scores")
-
-scores_data = player_scores.get_all_values()
-
 # Initialize colorama
 init()
 
@@ -1237,7 +1233,7 @@ def solve_numbers_round(new_player):
         new_player.target_number
     )
 
-def print_high_scores(new_player):
+def print_high_scores():
     """
     Print high score from Google Sheet
 
@@ -1247,7 +1243,13 @@ def print_high_scores(new_player):
     Based on code from the Code Institute's 
     Love Sandwiches project.
     """
-    print(scores_data)
+    scores_worksheet = SHEET.worksheet('scores')
+    high_scores = scores_worksheet.get_all_values()
+
+    # Iterate through high score rows and print to terminal
+    for rows in high_scores:
+        spaced_row = '   '.join(row)
+        print(spaced_row)
 
 
 def store_high_scores(new_player):
@@ -1261,8 +1263,24 @@ def store_high_scores(new_player):
     Based on code from the Code Institute's 
     Love Sandwiches project.
     """    
-    print(scores_data)
-
+    scores_worksheet = SHEET.worksheet('scores')
+    # Get high scores from second column
+    high_score_numbers = scores_worksheet.col_values(2)
+    # get player's name and score from their player object
+    player_name = new_player.name
+    player_score = new_player.score
+    # Loop through column values ignoring
+    # heading cell
+    for ind in range(1, 11):
+        if player_score >= int(high_score_numbers[ind]):
+            # Set row where new score will be inserted
+            row_index = ind + 1
+            # Break once next highest score found
+            break
+    # Insert new score row
+    scores_worksheet.insert_row([player_name , player_score], row_index)
+    # Delete last row to remove lowest score to keep to 10 scores
+    scores_worksheet.delete_row(12)
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
@@ -1435,6 +1453,7 @@ def main():
     Create game objects
     Run all program functions
     """
+    print_high_scores()
     new_player = Player()
     new_letters = Letters()
     new_numbers = Numbers()

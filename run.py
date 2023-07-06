@@ -1379,7 +1379,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                 new_letters,
                 new_numbers,
                 new_conundrum
-            )            
+            )
         else:
             break
 

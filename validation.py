@@ -197,7 +197,6 @@ def check_numbers_used(solution, new_player):
     number_counter = Counter(solution_nums)
 
     for num, count in number_counter.items():
-        print(num)
         if num not in chosen_counter or count > chosen_counter[num]:
             return False
     return True

@@ -896,7 +896,7 @@ class Screen:
             if user_word == '':
                 print(
                     f"\n{new_player.name}, you didn't guess a word "
-                    f"within the time limit. Better luck next round!"
+                    f"within the time limit. Better luck next time!"
                 )
             # Check if word matches target
             # Convert to upper to avoid case mismatch

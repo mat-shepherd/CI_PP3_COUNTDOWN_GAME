@@ -37,6 +37,7 @@ from anagram_solver.anagram_solver import find_possible, return_words
 import countdown_numbers_solver
 import gspread
 from google.oauth2.service_account import Credentials
+from prettytable import PrettyTable
 
 # Google drive and sheets scope
 SCOPE = [
@@ -63,7 +64,6 @@ class Player:
     def __init__(self,
                  name='Player',
                  score=0,
-                 high_score=0,
                  round_time=0,
                  current_round=0,
                  chosen_letters=[],
@@ -75,7 +75,6 @@ class Player:
                  ):
         self.name = name
         self.score = score
-        self.high_score = high_score
         self.round_time = round_time
         self.current_round = current_round
         self.chosen_letters = chosen_letters
@@ -1241,15 +1240,43 @@ def print_high_scores():
     Game Google Sheet and print.
 
     Based on code from the Code Institute's 
-    Love Sandwiches project.
+    Love Sandwiches project and PrettyTable
+    suggestions from ChatGPT by Openai.com.
     """
     scores_worksheet = SHEET.worksheet('scores')
     high_scores = scores_worksheet.get_all_values()
 
-    # Iterate through high score rows and print to terminal
-    for rows in high_scores:
-        spaced_row = '   '.join(row)
-        print(spaced_row)
+    # Create a PrettyTable 
+    table = PrettyTable()
+
+    # Add column headings with color
+    # to the table
+    color_headings = [
+        f"{Fore.YELLOW}{heading}{Fore.RESET}"
+        for heading in high_scores[0]
+    ]
+    table.field_names = color_headings
+
+    # Iterate through high score rows, 
+    # excluding header row and add rows
+    # to the table
+    for rows in high_scores[1:]:
+        table.add_row(rows)
+        # spaced_row = '   '.join(rows)
+        # print(spaced_row)
+    
+    # Center align table and print
+    table.align = "c"
+
+    # Output the table to the terminal
+    table_string = table.get_string()
+    terminal_width = 80
+    padding = (terminal_width - len(table_string.split("\n")[0])) // 2
+
+    # Apply padding to each line of the table
+    centered_table = "\n".join([" " * padding + line for line in table_string.split("\n")])
+
+    print(centered_table)
 
 
 def store_high_scores(new_player):
@@ -1453,7 +1480,6 @@ def main():
     Create game objects
     Run all program functions
     """
-    print_high_scores()
     new_player = Player()
     new_letters = Letters()
     new_numbers = Numbers()

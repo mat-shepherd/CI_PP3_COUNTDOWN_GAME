@@ -243,9 +243,12 @@ class Screen:
             )
         elif self.screen_data_param == 'game_over':
             print('\n')
-            print_rainbow(f"{new_player.name.upper()}!\n")
-            print_rainbow(f"CONGRATULATIONS!\n")            
-            print_centered(f"YOUR FINAL SCORE IS {new_player.score}!\n")
+            print_rainbow(f"{new_player.name.upper()}!\n", "center")
+            print_rainbow(f"CONGRATULATIONS!\n", "center")
+            print_centered(
+                Style.BRIGHT + Fore. WHITE +
+                f"          YOUR FINAL SCORE IS {new_player.score}!\n"
+            )
         user_prompt = self.display_prompt(
             new_player,
             new_letters,
@@ -628,26 +631,31 @@ class Screen:
                     round_score = new_player.update_score()
                     print(
                         f"{user_word.lower().capitalize()}, that's a "
-                        f"{len(user_word)} letter word in "
-                        f"{new_player.round_time} seconds. \n"
+                        f"{len(user_word)} letter word with "
+                        f"{new_player.round_time} seconds remaining. \n"
                         f"{new_player.name}, you scored {round_score} points "
                         f"for round {Screen.round_number}!"
                     )
-                    # Add short delay in case dictionary corner is fast
-                    sleep(3)
                 elif valid_word is None:
                     print(
                         f"It appears '{user_word}' is NOT a word "
                         "found in our dictionary.\n"
                         f"Better luck next time!"
                     )
+            # Pause execution for key press to progress
+            wait_for_keypress(
+                Fore.YELLOW +
+                '\nPress any key to see what our dictionary corner '
+                'found...'
+                + Fore.RESET
+            )
             # Print longest word if anagram solver can find one
             print(
                 Fore.LIGHTGREEN_EX +
                 f"\nChecking what our 'limited' dictionary corner found...\n"
                 f"This might take 5 to 10 seconds...\n"
                 + Fore.RESET
-                )
+            )
             longest_words, word_len = new_letters.longest_word(
                 new_player.chosen_letters
             )
@@ -657,7 +665,7 @@ class Screen:
                         Fore.WHITE +
                         f"\nHere's a {word_len} letter word that our "
                         f"dictionary corner found!\n"
-                        )
+                    )
                 else:
                     print(
                         Fore.WHITE +
@@ -670,7 +678,7 @@ class Screen:
                         Fore.YELLOW +
                         f'{item}'
                         + Fore.RESET
-                        )
+                    )
                     # Don't print meaning message if none found
                     if check_dictionary(item):
                         print_word_meaning(item, new_player)
@@ -789,7 +797,7 @@ class Screen:
                         f"\n{user_solution} is a "
                         f"valid solution for reaching "
                         f"{new_player.target_number}!\n"
-                        f"You solved it in {new_player.round_time} seconds. \n"
+                        f"You had {new_player.round_time} seconds remaining. \n"
                         f"{new_player.name}, you scored {round_score} points "
                         f"for round {Screen.round_number}!\n"
                     )
@@ -812,14 +820,18 @@ class Screen:
                         f"{solution_result}.\n"
                         f"Better luck next time!"
                     )
+            # Pause to give the user time to read
+            wait_for_keypress(
+                Fore.YELLOW +
+                '\nHit any key to see the solutions we found...'
+                + Fore.RESET
+            )                    
             print(
                 Fore.LIGHTGREEN_EX +
-                f"Let's see what solutions our maths wiz came up with...\n"
+                f"Here's what our maths wiz came up with...\n"
                 + Fore.RESET
                 )
             # Provide solutions to round
-            # add 4 seconds of delay to give the user time to read
-            sleep(5)
             solve_numbers_round(new_player)
             # Pause execution for key press to progress
             wait_for_keypress(
@@ -882,7 +894,8 @@ class Screen:
                     Style.BRIGHT + Fore.WHITE +
                     f"\n{new_player.name}, that's correct!\n"
                     f"You guessed our conundrum is {new_conundrum.target}.\n"
-                    f"You solved it in {new_player.round_time} seconds. \n"
+                    f"You solved it with {new_player.round_time} "
+                    f"seconds remaining. \n"
                     f"{new_player.name}, you scored {round_score} points "
                     f"for round {Screen.round_number}!\n"
                 )
@@ -900,7 +913,8 @@ class Screen:
                         f"{user_word.lower().capitalize()}, that's wasn't "
                         f"our target word above, but it's still a valid "
                         f"{len(user_word)} letter word!\n"
-                        f"You got it in {new_player.round_time} seconds. \n"
+                        f"You got it with {new_player.round_time} "
+                        f"seconds remaining. \n"
                         f"{new_player.name}, you scored {round_score} points "
                         f"for round {Screen.round_number}\n!"
                     )

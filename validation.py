@@ -16,7 +16,11 @@ dictionary = PyDictionary()
 
 def validate_name(name):
     try:
-        if (2 <= len(name) <= 10 and name.isalpha()):
+        if check_profanity(name) >= 0.9:
+            raise ValueError(
+                "That name doesn't pass our profanity check"
+            )
+        elif (2 <= len(name) <= 10 and name.isalpha()):
             return True
         elif name == '':
             raise ValueError('Please enter some text')

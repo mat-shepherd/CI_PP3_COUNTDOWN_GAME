@@ -1390,17 +1390,21 @@ def store_high_scores(new_player):
             row_index = ind + 1
             # Output the high scores and a congrats
             # message for the game over screen
-            print(
+            print_centered(
                 "THAT'S A NEW HIGH SCORE!\n"
+            )
+            print_rainbow(
                 "WELCOME TO THE LEADERBOARD!\n"
             )
+            # Give scores time to update
+            sleep(3)
             print_high_scores()
             # Break once next highest score found
             break
     # Insert new score row
     scores_worksheet.insert_row([player_name, player_score], row_index)
     # Delete last row to remove lowest score to keep to 10 scores
-    scores_worksheet.delete_row(12)
+    scores_worksheet.delete_rows(12)
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

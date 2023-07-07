@@ -15,6 +15,23 @@ dictionary = PyDictionary()
 
 
 def validate_name(name):
+    """
+    Check name input is valid.
+
+    Check name input is between 2 and 10
+    alphabet characters only and that name passes
+    profanity filter.
+
+    Parameters
+    ----------
+    name : string
+        Name string input by player.
+
+    Returns
+    -------
+    boolean
+        Returns False on ValueError.
+    """
     try:
         if check_profanity(name) >= 0.9:
             raise ValueError(
@@ -46,10 +63,23 @@ def validate_name(name):
 
 def validate_menu_value(number, current_screen):
     """
-    Check menu values are 1, 2 or 3
+    Check menu values are 1, 2 or 3.
 
     Check values are 1, 2 or 3 in intro screen
-    else check values are 1 or 2
+    else check values are 1 or 2.
+
+    Parameters
+    ----------
+    number : string
+        Number string input by player.
+    current_screen : string
+        Keyword indicating current screen
+        player is viewing.
+
+    Returns
+    -------
+    boolean
+        Returns False on ValueError.
     """
     try:
         if current_screen in ['intro']:
@@ -73,7 +103,17 @@ def validate_menu_value(number, current_screen):
 def validate_vowels(number):
     """
     Check player has selected no less than 3 and no
-    more than 9 vowels
+    more than 9 vowels.
+
+    Parameters
+    ----------
+    number : string
+        Number string input by player.
+
+    Returns
+    -------
+    boolean
+        Returns False on ValueError.
     """
     try:
         if 3 <= int(number) <= 9:
@@ -88,6 +128,16 @@ def validate_vowels(number):
 def check_profanity(word):
     """
     Check if word uses profanity
+
+    Parameters
+    ----------
+    word : string
+        String input by player.
+
+    Returns
+    -------
+    return predict_prob([word]) : float
+        Probablity that a string contains profanity.
     """
     return predict_prob([word])
 
@@ -95,6 +145,16 @@ def check_profanity(word):
 def check_dictionary(word):
     """
     Check if word is used in PyDictionary
+
+    Parameters
+    ----------
+    word : string
+        String input by player.
+
+    Returns
+    -------
+    word_meaning : list or None
+        Word meaning if found in PyDictionary.
     """
     try:
         word_meaning = dictionary.meaning(word, disable_errors=True)
@@ -108,6 +168,19 @@ def print_word_meaning(word, new_player):
     """
     Check if word is used in PyDictionary
     and print the word length and meaning
+
+    Parameters
+    ----------
+    word : string
+        String input by player.
+    new_player : object
+        Current Player Object.
+
+    Returns
+    -------
+    valid_word: boolean
+        True if word found in PyDictionary
+        and false if not.
     """
     word_meaning_found = check_dictionary(word.lower())
     if word_meaning_found is None:
@@ -140,6 +213,21 @@ def check_letters_used(word, new_player, new_conundrum=[]):
     the letters chosen for this round.
     Code adapted from answer by ChatGPT by
     https://openai.com.
+
+    Parameters
+    ----------
+    word : string
+        String input by player.
+    new_player : object
+        Current Player Object.
+    new_conundrum : object
+        Current Conundrum Object.
+
+    Returns
+    -------
+    boolean
+        True if word only users letters in
+        conundrum and false if not.
     """
     # Convert user input word and conundrum letters
     # or chosen letters to counter dictionaries
@@ -165,7 +253,18 @@ def check_letters_used(word, new_player, new_conundrum=[]):
 def validate_numbers(number):
     """
     Check player has selected no less than 0 and no
-    more than 4 big numbers
+    more than 4 big numbers.
+
+    Parameters
+    ----------
+    number : string
+        Number string input by player.
+
+    Returns
+    -------
+    boolean
+        True if number is 0 to 4 and
+        False if not.
     """
     try:
         if 0 <= int(number) <= 4:
@@ -180,7 +279,20 @@ def validate_numbers(number):
 def validate_user_word(user_word, new_player):
     """
     Check user letters round word is valid,
-    using only the letters provided
+    using only the letters provided.
+
+    Parameters
+    ----------
+    user_word : string
+        String input by player.
+    new_player : object
+        Current Player Object.
+
+    Returns
+    -------
+    boolean
+        True if word is valid and only users
+        chosen letters and False if not.
     """
     try:
         # Check if word is profane
@@ -211,6 +323,19 @@ def check_numbers_used(solution, new_player):
     the numbers chosen for this round.
     Code adapted from answer by ChatGPT by
     https://openai.com.
+
+    Parameters
+    ----------
+    solution : string
+        Solution string input by player.
+    new_player : object
+        Current Player Object.
+
+    Returns
+    -------
+    boolean
+        True if only uses numbers from chosen
+        numbers and False if not.
     """
     chosen_counter = Counter(
         num for num in new_player.chosen_numbers
@@ -232,6 +357,20 @@ def validate_user_numbers(user_solution, new_player):
     """
     Check user's numbers round solution is valid
     Check only numbers and operators are used
+
+    Parameters
+    ----------
+    user_solution : string
+        Solution string input by player.
+    new_player : object
+        Current Player Object.
+
+    Returns
+    -------
+    boolean
+        True if only uses numbers from chosen
+        numbers, only uses numbers, and only uses
+        allowed operators and False if not.
     """
     try:
         # Check solution only uses chosen numbers
@@ -257,10 +396,28 @@ def validate_user_numbers(user_solution, new_player):
 
 def validate_user_solution(solution, new_player):
     """
-    Evaluate user's solution is correct
+    Evaluate user's solution is correct.
 
     Evaluate user solution string and compare
-    to target number
+    to target number.
+
+    Parameters
+    ----------
+    solution : string
+        Solution string input by player.
+    new_player : object
+        Current Player Object.
+
+    Returns
+    -------
+    result_valid : boolean
+        True if solution achieves target number
+        and Fasse if not.
+    solution_result : int
+        Evaluated number result of solution string.
+    target_difference : int
+        Difference, if any, between evaluated number
+        result of solution string and target number.
     """
     target = new_player.target_number
     solution_result = int(ne.evaluate(solution))
@@ -274,11 +431,25 @@ def validate_user_solution(solution, new_player):
 def validate_user_conundrum(user_word, new_player=None, new_conundrum=None):
     """
     Check user conundrum word is valid,
-    using only the letters provided
-    """
-    """
-    Check user letters round word is valid,
-    using only the letters provided
+    using only the letters provided.
+
+    Check conundrum input passes profanity
+    filter, only uses letters, and is exactly
+    9 letters long.
+
+   Parameters
+    ----------
+    user_word : string
+        Solution string input by player.
+    new_player : object
+        Current Player Object.
+    new_conundrum : object
+        Current Conundrum Object.
+
+    Returns
+    -------
+    boolean
+        True if valid and False if ValueError.
     """
     try:
         # Check if word is profane

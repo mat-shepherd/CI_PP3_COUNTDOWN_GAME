@@ -271,7 +271,10 @@ class Screen:
             )
         elif self.screen_data_param == 'game_over':
             print('\n')
-            print_rainbow(f"CONGRATULATIONS {new_player.name.upper()}!\n", "center")
+            print_rainbow(
+                f"CONGRATULATIONS {new_player.name.upper()}!\n",
+                "center"
+            )
             print_centered(
                 Style.BRIGHT + Fore. WHITE +
                 f"          YOUR FINAL SCORE IS {new_player.score}!\n"
@@ -1329,51 +1332,51 @@ def solve_numbers_round(new_player):
 
 
 def print_high_scores():
-        """
-        Print high score from Google Sheet
+    """
+    Print high score from Google Sheet
 
-        Look up top 10 high scores in Countdown
-        Game Google Sheet and print.
+    Look up top 10 high scores in Countdown
+    Game Google Sheet and print.
 
-        Based on code from the Code Institute's
-        Love Sandwiches project and PrettyTable
-        suggestions from ChatGPT by Openai.com.
-        """
-        scores_worksheet = SHEET.worksheet('scores')
-        high_scores = scores_worksheet.get_all_values()
+    Based on code from the Code Institute's
+    Love Sandwiches project and PrettyTable
+    suggestions from ChatGPT by Openai.com.
+    """
+    scores_worksheet = SHEET.worksheet('scores')
+    high_scores = scores_worksheet.get_all_values()
 
-        # Create a PrettyTable
-        table = PrettyTable()
+    # Create a PrettyTable
+    table = PrettyTable()
 
-        # Add column headings with color
-        # to the table
-        color_headings = [
-            f"{Fore.YELLOW}{heading}{Fore.WHITE}"
-            for heading in high_scores[0]
-        ]
-        table.field_names = color_headings
+    # Add column headings with color
+    # to the table
+    color_headings = [
+        f"{Fore.YELLOW}{heading}{Fore.WHITE}"
+        for heading in high_scores[0]
+    ]
+    table.field_names = color_headings
 
-        # Iterate through high score rows,
-        # excluding header row and add rows
-        # to the table
-        for rows in high_scores[1:]:
-            table.add_row(rows)
+    # Iterate through high score rows,
+    # excluding header row and add rows
+    # to the table
+    for rows in high_scores[1:]:
+        table.add_row(rows)
 
-        # Center align table and print
-        table.align = "c"
+    # Center align table and print
+    table.align = "c"
 
-        # Output the table to the terminal
-        table_string = table.get_string()
-        terminal_width = 80
-        padding = (terminal_width - len(table_string.split("\n")[0])) // 2
+    # Output the table to the terminal
+    table_string = table.get_string()
+    terminal_width = 80
+    padding = (terminal_width - len(table_string.split("\n")[0])) // 2
 
-        # Apply padding to each line of the table
-        centered_table = "\n".join([
-            " " * padding + line
-            for line in table_string.split("\n")
-        ])
+    # Apply padding to each line of the table
+    centered_table = "\n".join([
+        " " * padding + line
+        for line in table_string.split("\n")
+    ])
 
-        print(f'{centered_table}\n')
+    print(f'{centered_table}\n')
 
 
 def store_high_scores(new_player):

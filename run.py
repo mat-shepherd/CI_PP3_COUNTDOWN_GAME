@@ -1425,6 +1425,15 @@ class Numbers:
         count : int
             Number of small numbers selected by the
             player.
+
+        Returns
+        -------
+        big_numbers : list
+            List of big numbers of size requested by the
+            player.
+        small_numbers : list
+            List of small numbers of size requested by the
+            player.
         """
         big_numbers = random.sample(self.big, count)
         small_numbers = random.sample(self.small, 6 - count)
@@ -1434,6 +1443,11 @@ class Numbers:
         """
         Generate a three digit target number for the
         numbers round.
+
+        Returns
+        -------
+        target_number : int
+            Three digit target number for numbers round.      
         """
         target_number = random.randint(100, 999)
         return target_number

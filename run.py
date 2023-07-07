@@ -168,7 +168,7 @@ class Screen:
         user_prompt : string
             User inputted string
         """
-        print(Style.BRIGHT + Back.BLUE)
+        print(Style.BRIGHT + Back.BLUE + Fore.WHITE)
         print(clear_screen())
         self.display_text_art()
         if self.screen_data_param in [
@@ -1585,6 +1585,12 @@ def main():
     Create game objects
     Run all program functions
     """
+    # Reset round number in case
+    # this is a repeat game
+    Screen.round_number = 0
+    # Create new game object 
+    # instances and pass to round
+    # handler
     new_player = Player()
     new_letters = Letters()
     new_numbers = Numbers()

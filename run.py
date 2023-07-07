@@ -208,7 +208,13 @@ class Screen:
                 self.letter_tiles +
                 Fore.RESET
             )
-        # Only print subheading on certain rounds
+        if self.screen_data_param in [
+            'enter_name'
+        ]:
+            # Add additional vertical spacing on
+            # enter name screen
+            print('\n')
+
         if (
             Screen.round_number == 1
             and new_player.chosen_letters == [
@@ -809,7 +815,8 @@ class Screen:
                         f"\n{user_solution} is a "
                         f"valid solution for reaching "
                         f"{new_player.target_number}!\n"
-                        f"You had {new_player.round_time} seconds remaining. \n"
+                        f"You had {new_player.round_time} seconds "
+                        f"remaining. \n"
                         f"{new_player.name}, you scored {round_score} points "
                         f"for round {Screen.round_number}!\n"
                     )
@@ -1232,6 +1239,7 @@ def solve_numbers_round(new_player):
         new_player.target_number
     )
 
+
 def print_high_scores():
     """
     Print high score from Google Sheet
@@ -1239,7 +1247,7 @@ def print_high_scores():
     Look up top 10 high scores in Countdown
     Game Google Sheet and print.
 
-    Based on code from the Code Institute's 
+    Based on code from the Code Institute's
     Love Sandwiches project and PrettyTable
     suggestions from ChatGPT by Openai.com.
     """
@@ -1274,7 +1282,10 @@ def print_high_scores():
     padding = (terminal_width - len(table_string.split("\n")[0])) // 2
 
     # Apply padding to each line of the table
-    centered_table = "\n".join([" " * padding + line for line in table_string.split("\n")])
+    centered_table = "\n".join([
+    " " * padding + line
+    for line in table_string.split("\n")
+    ])
 
     print(centered_table)
 
@@ -1286,8 +1297,8 @@ def store_high_scores(new_player):
     Look up top 10 high scores in Countdown
     Game Google Sheet and update if player's
     score is in top ten.
-    
-    Based on code from the Code Institute's 
+
+    Based on code from the Code Institute's
     Love Sandwiches project.
     """    
     scores_worksheet = SHEET.worksheet('scores')
@@ -1305,9 +1316,10 @@ def store_high_scores(new_player):
             # Break once next highest score found
             break
     # Insert new score row
-    scores_worksheet.insert_row([player_name , player_score], row_index)
+    scores_worksheet.insert_row([player_name, player_score], row_index)
     # Delete last row to remove lowest score to keep to 10 scores
     scores_worksheet.delete_row(12)
+
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
@@ -1485,6 +1497,7 @@ def main():
     new_numbers = Numbers()
     new_conundrum = Conundrum()
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
+
 
 # Call main game function
 

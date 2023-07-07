@@ -563,7 +563,7 @@ class Screen:
         Parameters
         ----------
         new_player : object
-            Current Player Object.        
+            Current Player Object.
         """
         print_centered(f'Your Score: {new_player.score}')
 
@@ -1181,8 +1181,29 @@ class Screen:
 
 class Letters:
     """
-    The Letters class to contain all letters
-    to choose from in the letters round
+    Contains all letter types and letters to
+    choose from in the letters round.
+
+    Attributes
+    ----------
+    vowels : list
+        List of vowels populated to player's specification.
+    consonants : list
+        List of consonants populated to player's specification.    
+
+    Methods
+    -------
+    populate_vowels()
+        Populate a requested number of vowels to player
+        object attribute.
+    populate_consonants()
+        Populate a requested number of consonants to player
+        object attribute.
+    random_letters(type, count)
+        Return the requested count of letters from the
+        requested type of letters.
+    longest_word(anagram)
+        Return the longest anagaram solution we can find.
     """
 
     def __init__(self):
@@ -1191,8 +1212,17 @@ class Letters:
 
     def populate_vowels(self):
         """
-        Add a selection of vowels with
-        weighting used in Scrabble
+        Populate vowels to player object attribute.
+
+        Populate a requested number of vowels to player
+        object attribute using a selection of vowels with
+        weighting used in Scrabble.
+
+        Returns
+        ----------
+        vowels : list
+            List of vowels of size requested by the
+            player.
         """
         vowels = []
         vowel_counts = {
@@ -1211,8 +1241,17 @@ class Letters:
 
     def populate_consonants(self):
         """
-        Add a selection of consonants with
-        weighting used in Scrabble
+        Populate consonants to player object attribute.
+
+        Populate a requested number of consonants to player
+        object attribute using a selection of consonants
+        with weighting used in Scrabble.
+
+        Returns
+        -------
+        consonants : list
+            List of consonants of size requested by the
+            player.
         """
         consonants = []
         consonant_counts = {
@@ -1248,14 +1287,28 @@ class Letters:
     def random_letters(self, type, count):
         """
         Return the requested count of letters
-        from the requested set of letters
+        from the requested type of letters.
+
+        Parameters
+        ----------
+        type : string
+            Type of letters to generate.
+        count : int
+            Size of letter list to generate.
+
+        Returns
+        -------
+        random.sample(letter_set, count) : list
+            List of letters of type and count requested
+            by the player.
         """
         letter_set = self.vowels if type == 'vowels' else self.consonants
         return random.sample(letter_set, count)
 
     def longest_word(self, anagram):
         """
-        Return the longest word we can find
+        Return the longest anagaram solution we can find.
+
         Create some random variations of the letter
         list and loop through the anagram solver.
         Less time consuming than creating all
@@ -1263,6 +1316,21 @@ class Letters:
         also not highly effective at finding words.
         Code adapted from
         https://github.com/patrickleweryharris/anagram-solver
+
+        Parameters
+        ----------
+        anagram : list
+            List of letters representing the anagram in the
+            conundrum round.
+
+        Returns
+        -------
+        actual_words : list
+            List of words generated from the anagram.
+
+        len_word : int
+            Length of words generated from the anagram.
+
         """
         anagram_lst = []
         anagram_variations = []
@@ -1319,8 +1387,8 @@ class Letters:
 
 class Numbers:
     """
-    The Numbers class to contain all numbers
-    to choose from in the numbers round
+    Contains all types of numbers to choose from
+    and solve for in the numbers round
     """
 
     def __init__(self):
@@ -1347,9 +1415,8 @@ class Numbers:
 
 class Conundrum:
     """
-    The Conundrum class to contain the
-    Conundrum word attributes for the
-    Conundrum round
+    Contains the Conundrum word attributes for the
+    Conundrum round.
     """
     def __init__(self, target=[], scrambled=[]):
         self.target = target

@@ -24,13 +24,18 @@ def validate_name(name):
             return True
         elif name == '':
             raise ValueError('Please enter some text')
+        elif not name.isalpha():
+            raise ValueError('Please enter letters only')
         elif not 2 <= len(name) <= 10:
             raise ValueError(
                 'Please enter a name more than 2 characters '
                 'and less than 10 characters long'
             )
         else:
-            raise ValueError('Please enter letters only')
+            raise ValueError(
+                'Please enter a name more than 2 characters '
+                'and less than 10 characters long'
+            )
     except ValueError as e:
         print(Fore.RED + str(e))
         return False

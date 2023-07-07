@@ -111,7 +111,7 @@ class Screen:
     screen_data = {
         'intro': 'intro_screen_data.txt',
         'rules': 'rules_screen_data.txt',
-        'scores': 'game_screen_data.txt',        
+        'scores': 'game_screen_data.txt',
         'enter_name': 'game_screen_data.txt',
         'letters_round': 'game_screen_data.txt',
         'show_letters': 'game_screen_data.txt',
@@ -324,7 +324,7 @@ class Screen:
             if self.screen_data_param == 'scores':
                 result = text2art(
                     f'{spaces_str}HIGH SCORES', font='small'
-                    )            
+                    )
             elif self.screen_data_param == 'game_over':
                 # Add additional space to center
                 spaces_str += ' '
@@ -969,7 +969,7 @@ class Screen:
                     f"You guessed our conundrum is {new_conundrum.target}.\n"
                     f"You solved it with {new_player.round_time} "
                     f"seconds remaining. \n"
-                    f"{new_player.name}, you scored {round_score} points "
+                    f"\n{new_player.name}, you scored {round_score} points "
                     f"for round {Screen.round_number}!\n"
                 )
             else:
@@ -1008,10 +1008,14 @@ class Screen:
         elif self.screen_data_param == 'game_over':
             wait_for_keypress(
                 Fore.YELLOW +
-                'Press any key to end game...'
-                + Fore.RESET
+                'Press any key to start a new game or ESC to end game...'
+                + Fore.RESET,
+                allow_escape=True
             )
             user_prompt = ''
+            # If the user pressed any key other
+            # than esacpe start a new game
+            main()
         # Else game is over
 
         # Return the user_prompt value back to round_handler
@@ -1319,7 +1323,7 @@ def print_rainbow(text, alignment=None):
         print(color_text)
 
 
-def wait_for_keypress(text):
+def wait_for_keypress(text, allow_escape=False):
     """
     Block code execution and wait for keypress
     Code from answer by ChatGPT by openai.com
@@ -1329,7 +1333,14 @@ def wait_for_keypress(text):
     old_settings = termios.tcgetattr(sys.stdin)
     try:
         tty.setraw(sys.stdin.fileno())
-        sys.stdin.read(1)
+        if allow_escape:
+            char = sys.stdin.read(1)
+            if char == '\x1b':
+                # Exit the program if Escape
+                # key is pressed
+                sys.exit()
+        else:
+            sys.stdin.read(1)
     finally:
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 
@@ -1462,7 +1473,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                         new_numbers,
                         new_conundrum
                     )
-                    break                
+                    break
     # If still in first 3 letter rounds
     # loop again
     while True:

@@ -271,8 +271,7 @@ class Screen:
             )
         elif self.screen_data_param == 'game_over':
             print('\n')
-            print_centered(f"{new_player.name.upper()}!\n")
-            print_rainbow(f"CONGRATULATIONS!\n", "center")
+            print_rainbow(f"CONGRATULATIONS {new_player.name.upper()}!\n", "center")
             print_centered(
                 Style.BRIGHT + Fore. WHITE +
                 f"          YOUR FINAL SCORE IS {new_player.score}!\n"
@@ -1359,8 +1358,6 @@ def print_high_scores():
         # to the table
         for rows in high_scores[1:]:
             table.add_row(rows)
-            # spaced_row = '   '.join(rows)
-            # print(spaced_row)
 
         # Center align table and print
         table.align = "c"

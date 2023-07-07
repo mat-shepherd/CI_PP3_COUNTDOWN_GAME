@@ -36,17 +36,30 @@ def validate_name(name):
         return False
 
 
-def validate_menu_value(number):
+def validate_menu_value(number, current_screen):
     """
-    Check menu values are 1 or 2
+    Check menu values are 1, 2 or 3
+
+    Check values are 1, 2 or 3 in intro screen
+    else check values are 1 or 2
     """
     try:
-        if 1 <= int(number) <= 2:
-            return True
+        if current_screen in ['intro']:
+            print('Validation Intro')
+            if 1 <= int(number) <= 3:
+                return True
+            else:
+                raise ValueError
         else:
-            raise ValueError
+            if 1 <= int(number) <= 2:
+                return True
+            else:
+                raise ValueError
     except ValueError:
-        print(Fore.RED + 'Please enter only 1 or 2')
+        if current_screen in ['intro']:
+            print(Fore.RED + 'Please enter only 1, 2 or 3')
+        else:
+            print(Fore.RED + 'Please enter only 1 or 2')
         return False
 
 

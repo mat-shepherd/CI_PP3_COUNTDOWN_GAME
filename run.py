@@ -111,6 +111,7 @@ class Screen:
     screen_data = {
         'intro': 'intro_screen_data.txt',
         'rules': 'rules_screen_data.txt',
+        'scores': 'game_screen_data.txt',        
         'enter_name': 'game_screen_data.txt',
         'letters_round': 'game_screen_data.txt',
         'show_letters': 'game_screen_data.txt',
@@ -200,6 +201,7 @@ class Screen:
         if self.screen_data_param not in [
             'intro',
             'rules',
+            'scores',
             'game_over'
         ]:
             self.display_score(new_player)
@@ -208,13 +210,19 @@ class Screen:
                 self.letter_tiles +
                 Fore.RESET
             )
-        if self.screen_data_param in [
+        elif self.screen_data_param in [
+            'scores'
+        ]:
+            print_rainbow(
+                'HALL OF FAME!\n',
+                'center'
+            )
+        elif self.screen_data_param in [
             'enter_name'
         ]:
             # Add additional vertical spacing on
             # enter name screen
             print('\n')
-
         if (
             Screen.round_number == 1
             and new_player.chosen_letters == [
@@ -267,6 +275,10 @@ class Screen:
                 Style.BRIGHT + Fore. WHITE +
                 f"          YOUR FINAL SCORE IS {new_player.score}!\n"
             )
+        # Render high scores table
+        if self.screen_data_param == 'scores':
+            self.print_high_scores()
+        # Render user prompt
         user_prompt = self.display_prompt(
             new_player,
             new_letters,
@@ -280,12 +292,22 @@ class Screen:
         """
         Output text as ASCII art via Art library
         """
-        if self.screen_data_param in ['intro', 'rules', 'enter_name']:
+        if self.screen_data_param in [
+            'intro',
+            'rules',
+            'scores',
+            'enter_name'
+        ]:
             result = text2art(
                 '        COUNTDOWN', font='small'
                 )
             print(Style.BRIGHT + result)
-        elif self.screen_data_param not in ['intro', 'rules', 'enter_name']:
+        elif self.screen_data_param not in [
+            'intro',
+            'rules',
+            'scores',
+            'enter_name'
+        ]:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
@@ -299,7 +321,11 @@ class Screen:
                     * (5 // Screen.round_number) + 2
                 )
             spaces_str = ' ' * int(spaces_num)
-            if self.screen_data_param == 'game_over':
+            if self.screen_data_param == 'scores':
+                result = text2art(
+                    f'{spaces_str}HIGH SCORES', font='small'
+                    )            
+            elif self.screen_data_param == 'game_over':
                 # Add additional space to center
                 spaces_str += ' '
                 result = text2art(
@@ -516,10 +542,15 @@ class Screen:
             while True:
                 user_prompt = input(
                     Fore.WHITE +
-                    'Enter 1 to Start the Game or 2'
-                    ' to See the Game Rules\n'
+                    'Enter 1 to Start the Game, 2 '
+                    'to See the Game Rules,\n'
+                    'or 3 to See the Scores '
+                    'Leaderboard\n'
                 )
-                if validate_menu_value(user_prompt):
+                if validate_menu_value(
+                    user_prompt,
+                    self.screen_data_param
+                ):
                     break
                 else:
                     continue
@@ -530,7 +561,24 @@ class Screen:
                     'Enter 1 to Start the Game or 2'
                     ' to Return to the Intro Screen\n'
                 )
-                if validate_menu_value(user_prompt):
+                if validate_menu_value(
+                    user_prompt,
+                    self.screen_data_param
+                ):
+                    break
+                else:
+                    continue
+        elif self.screen_data_param == 'scores':
+            while True:
+                user_prompt = input(
+                    Fore.WHITE +
+                    'Enter 1 to Start the Game or 2'
+                    ' to Return to the Intro Screen\n'
+                )
+                if validate_menu_value(
+                    user_prompt,
+                    self.screen_data_param
+                ):
                     break
                 else:
                     continue
@@ -970,6 +1018,55 @@ class Screen:
         # so we know which screen to render next
         return user_prompt
 
+    def print_high_scores(self):
+        """
+        Print high score from Google Sheet
+
+        Look up top 10 high scores in Countdown
+        Game Google Sheet and print.
+
+        Based on code from the Code Institute's
+        Love Sandwiches project and PrettyTable
+        suggestions from ChatGPT by Openai.com.
+        """
+        scores_worksheet = SHEET.worksheet('scores')
+        high_scores = scores_worksheet.get_all_values()
+
+        # Create a PrettyTable
+        table = PrettyTable()
+
+        # Add column headings with color
+        # to the table
+        color_headings = [
+            f"{Fore.YELLOW}{heading}{Fore.WHITE}"
+            for heading in high_scores[0]
+        ]
+        table.field_names = color_headings
+
+        # Iterate through high score rows,
+        # excluding header row and add rows
+        # to the table
+        for rows in high_scores[1:]:
+            table.add_row(rows)
+            # spaced_row = '   '.join(rows)
+            # print(spaced_row)
+
+        # Center align table and print
+        table.align = "c"
+
+        # Output the table to the terminal
+        table_string = table.get_string()
+        terminal_width = 80
+        padding = (terminal_width - len(table_string.split("\n")[0])) // 2
+
+        # Apply padding to each line of the table
+        centered_table = "\n".join([
+            " " * padding + line
+            for line in table_string.split("\n")
+        ])
+
+        print(f'{centered_table}\n')
+
 
 class Letters:
     """
@@ -1251,56 +1348,6 @@ def solve_numbers_round(new_player):
     )
 
 
-def print_high_scores():
-    """
-    Print high score from Google Sheet
-
-    Look up top 10 high scores in Countdown
-    Game Google Sheet and print.
-
-    Based on code from the Code Institute's
-    Love Sandwiches project and PrettyTable
-    suggestions from ChatGPT by Openai.com.
-    """
-    scores_worksheet = SHEET.worksheet('scores')
-    high_scores = scores_worksheet.get_all_values()
-
-    # Create a PrettyTable
-    table = PrettyTable()
-
-    # Add column headings with color
-    # to the table
-    color_headings = [
-        f"{Fore.YELLOW}{heading}{Fore.RESET}"
-        for heading in high_scores[0]
-    ]
-    table.field_names = color_headings
-
-    # Iterate through high score rows,
-    # excluding header row and add rows
-    # to the table
-    for rows in high_scores[1:]:
-        table.add_row(rows)
-        # spaced_row = '   '.join(rows)
-        # print(spaced_row)
-
-    # Center align table and print
-    table.align = "c"
-
-    # Output the table to the terminal
-    table_string = table.get_string()
-    terminal_width = 80
-    padding = (terminal_width - len(table_string.split("\n")[0])) // 2
-
-    # Apply padding to each line of the table
-    centered_table = "\n".join([
-        " " * padding + line
-        for line in table_string.split("\n")
-    ])
-
-    print(centered_table)
-
-
 def store_high_scores(new_player):
     """
     Store high scores in Google Sheet
@@ -1340,6 +1387,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
     intro_screen = Screen('intro')
     rules_screen = Screen('rules')
+    scores_screen = Screen('scores')
     name_screen = Screen('enter_name')
     letters_screen = Screen('letters_round')
     show_letters = Screen('show_letters')
@@ -1361,7 +1409,8 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
         new_numbers,
         new_conundrum
     )
-    # Render intro, rules and first round screens
+    # Render intro, rules, scores
+    # and first round screens
     while True:
         if user_response == '1':
             user_response = name_screen.render(
@@ -1392,6 +1441,28 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
                         new_conundrum
                     )
                     break
+        # High scores screen
+        elif user_response == '3':
+            user_response = scores_screen.render(
+                new_player,
+                new_letters,
+                new_numbers,
+                new_conundrum
+            )
+            # Inner loop to loop between scores screen
+            # and intro screen until 1 selected
+            # then continue to outer loop
+            while True:
+                if user_response == '1':
+                    break
+                else:
+                    user_response = intro_screen.render(
+                        new_player,
+                        new_letters,
+                        new_numbers,
+                        new_conundrum
+                    )
+                    break                
     # If still in first 3 letter rounds
     # loop again
     while True:

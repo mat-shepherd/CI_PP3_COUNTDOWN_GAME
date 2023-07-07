@@ -1389,6 +1389,25 @@ class Numbers:
     """
     Contains all types of numbers to choose from
     and solve for in the numbers round
+
+    Attributes
+    ----------
+    big : list
+        List of big numbers for the numbers round.
+    small : list
+        List of small numbers for the numbers round.
+    target : int
+        Three digit random;ly generated target number
+        for the numbers round.    
+
+    Methods
+    -------
+    random_numbers(count)
+        Return the requested count of numbers
+        from big and small numbers lists.
+    random_target()
+        Generate a three digit target number
+        for the numbers round.
     """
 
     def __init__(self):
@@ -1398,8 +1417,14 @@ class Numbers:
 
     def random_numbers(self, count):
         """
-        Return the requested count of letters
-        from the requested set of letters
+        Return the requested count of numbers
+        from big and small numbers lists.
+
+        Parameters
+        ----------
+        count : int
+            Number of small numbers selected by the
+            player.
         """
         big_numbers = random.sample(self.big, count)
         small_numbers = random.sample(self.small, 6 - count)
@@ -1407,7 +1432,8 @@ class Numbers:
 
     def random_target(self):
         """
-        Generate a 3 digit target number
+        Generate a three digit target number for the
+        numbers round.
         """
         target_number = random.randint(100, 999)
         return target_number

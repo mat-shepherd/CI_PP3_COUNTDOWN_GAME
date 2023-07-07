@@ -64,6 +64,7 @@ class Player:
     def __init__(self,
                  name='Player',
                  score=0,
+                 leaderboard_score=0,
                  round_time=0,
                  current_round=0,
                  chosen_letters=[],
@@ -75,6 +76,7 @@ class Player:
                  ):
         self.name = name
         self.score = score
+        self. leaderboard_score = leaderboard_score
         self.round_time = round_time
         self.current_round = current_round
         self.chosen_letters = chosen_letters
@@ -269,7 +271,7 @@ class Screen:
             )
         elif self.screen_data_param == 'game_over':
             print('\n')
-            print_rainbow(f"{new_player.name.upper()}!\n", "center")
+            print_centered(f"{new_player.name.upper()}!\n")
             print_rainbow(f"CONGRATULATIONS!\n", "center")
             print_centered(
                 Style.BRIGHT + Fore. WHITE +
@@ -538,9 +540,6 @@ class Screen:
         user_prompt : string
             User inputted string
         """
-        # Set new_high_score flag here
-        # to access within if blocks
-        leaderboard_score = False
         # Start testing for which screen
         # to render
         if self.screen_data_param == 'intro':
@@ -994,7 +993,7 @@ class Screen:
                         f"You got it with {new_player.round_time} "
                         f"seconds remaining. \n"
                         f"{new_player.name}, you scored {round_score} points "
-                        f"for round {Screen.round_number}\n!"
+                        f"for round {Screen.round_number}!\n"
                     )
                 elif valid_word is None:
                     print(
@@ -1006,7 +1005,7 @@ class Screen:
             # leaderboard and insert if in
             # top 10. Doing before game over
             # to give time to update
-            leaderboard_score = store_high_scores(new_player)
+            new_player.leaderboard_score = store_high_scores(new_player)
             # Pause before end game screen
             wait_for_keypress(
                 Fore.YELLOW +
@@ -1016,8 +1015,7 @@ class Screen:
             user_prompt = 'game_over'
         # Game Over
         elif self.screen_data_param == 'game_over':
-            print(f'High score value in elif: {leaderboard_score}')
-            if leaderboard_score:
+            if new_player.leaderboard_score > 0:
                 # Output the high scores and a congrats
                 # message for the game over screen
                 print_rainbow(
@@ -1330,6 +1328,7 @@ def solve_numbers_round(new_player):
         new_player.target_number
     )
 
+
 def print_high_scores():
         """
         Print high score from Google Sheet
@@ -1399,7 +1398,7 @@ def store_high_scores(new_player):
     player_score = new_player.score
     # Loop through column values ignoring
     # heading cell
-    new_high_score = False
+    new_high_score = 0
     for ind in range(1, 11):
         # If player's score is higher than an existing
         # entry in the top 10 add it to the table
@@ -1408,7 +1407,7 @@ def store_high_scores(new_player):
             row_index = ind + 1
             # Set flag that player achieved new
             # leaderboard high score
-            new_high_score = True
+            new_high_score = player_score
             # Break once next highest score found
             break
     if new_high_score:

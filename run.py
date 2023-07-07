@@ -155,6 +155,13 @@ class Screen:
 
     Attributes
     -------
+    screen_data_param : string
+        Shortened keyword to represent screen data file to use
+        when rendering. Passed via paramater when creating
+        object instance of Screen.
+    screen_data_file : string
+        Screen data file to use when creating object
+        instance of Screen.
     screen_data : object
         Stores the text file to render for each screen.
     letter_tiles : string

@@ -59,16 +59,49 @@ init()
 
 class Player:
     """
-    The Player class to contain all player attributes
+    Stores all player attributes
 
+    Keeps track of player name, score, letters,
+    numbers, and words as the player progresses
+    through rounds of the game.
 
+    Attributes
+    -------
+    screen_data : object
+        Text file to render for each screen.
+    name : string
+        Player's name
+    score : int
+        Player's score
+    leaderboard_score : int
+        Score if playe'rs final score beats current
+        top 10 leaderboard scores.
+    round_time : int
+        Player's time to complete last round.
+    chosen_letters : list
+        Player's assigned letters for letters round.
+    chosen_numbers : list
+        Player's assigned numbers for numbers round.
+    target_number : int
+        Player's assigned target number for numbers round.
+    guessed_words : list
+        Player's guessed words for each round.
+    guessed_solutions : list
+        Player's guessed solution for numbers round.
+    guessed_conundrum : list
+        Player's guessed word for conundrum round.
+
+    Methods
+    -------
+    update_score()
+        Update the Player score for the current
+        round.
     """
     def __init__(self,
                  name='Player',
                  score=0,
                  leaderboard_score=0,
                  round_time=0,
-                 current_round=0,
                  chosen_letters=[],
                  chosen_numbers=[],
                  target_number=0,
@@ -80,7 +113,6 @@ class Player:
         self.score = score
         self. leaderboard_score = leaderboard_score
         self.round_time = round_time
-        self.current_round = current_round
         self.chosen_letters = chosen_letters
         self.chosen_numbers = chosen_numbers
         self.target_number = target_number
@@ -92,7 +124,12 @@ class Player:
         """
         Update the Player score for the current
         round based on the player's guess and time
-        remaining
+        remaining.
+
+        Returns
+        -------
+        round_score : int
+            Calculated score for round
         """
         if 1 <= Screen.round_number <= 3:
             round_score = (
@@ -110,10 +147,10 @@ class Player:
 class Screen:
     """
     Stores the attributes of all game screen elements
-    to be rendered
+    to be rendered.
 
     Called by round_handler to creare Screen object instances
-    to render the correct screen elements depending on the 
+    to render the correct screen elements depending on the
     screen_data_param and/or round_number.
 
     Attributes
@@ -125,7 +162,7 @@ class Screen:
         Used to populate letters and numbers into tile
         string.
     round_number : int
-        Keeps track of the round number
+        Keeps track of the round number.
 
     Methods
     -------
@@ -139,13 +176,13 @@ class Screen:
     display_text_art()
         Output text as ASCII art via Art library.
     display_text()
-        Retrieve screen text from data files
+        Retrieve screen text from data files.
     timed_input(
         new_player=None,
         timer_prompt=None,
         new_conundrum=None
     )
-        Display timed input for 30 or 60 seconds
+        Display timed input for 30 or 60 seconds.
     display_score(new_player=None)
         Display the user score
     update_tiles(
@@ -153,14 +190,14 @@ class Screen:
         new_conundrum=None,
         screen_param=None
     )
-        Update letters tiles with chosen letters
+        Update letters tiles with chosen letters.
     display_prompt(
         new_player=None,
         new_letters=None,
         new_numbers=None,
         new_conundrum=None
     )
-        Display relevant user prompt for screen.   
+        Display relevant user prompt for screen.
     """
     screen_data = {
         'intro': 'intro_screen_data.txt',

@@ -538,6 +538,11 @@ class Screen:
         user_prompt : string
             User inputted string
         """
+        # Set new_high_score flag here
+        # to access within if blocks
+        leaderboard_score = False
+        # Start testing for which screen
+        # to render
         if self.screen_data_param == 'intro':
             while True:
                 user_prompt = input(
@@ -997,6 +1002,11 @@ class Screen:
                         f"NOT a word found in our dictionary.\n"
                         f"Better luck next time!"
                     )
+            # Check player score against
+            # leaderboard and insert if in
+            # top 10. Doing before game over
+            # to give time to update
+            leaderboard_score = store_high_scores(new_player)
             # Pause before end game screen
             wait_for_keypress(
                 Fore.YELLOW +
@@ -1006,10 +1016,17 @@ class Screen:
             user_prompt = 'game_over'
         # Game Over
         elif self.screen_data_param == 'game_over':
-            # Check player score against
-            # leaderboard and insert if in
-            # top 10
-            store_high_scores(new_player)
+            print(f'High score value in elif: {leaderboard_score}')
+            if leaderboard_score:
+                # Output the high scores and a congrats
+                # message for the game over screen
+                print_rainbow(
+                    "THAT'S A NEW HIGH SCORE!\n",
+                    'center'
+                )
+                print_high_scores()
+            # Let user choose to start new game
+            # or end game
             wait_for_keypress(
                 Fore.YELLOW +
                 'Press any key to start a new game or ESC to end game...'
@@ -1018,7 +1035,7 @@ class Screen:
             )
             user_prompt = ''
             # If the user pressed any key other
-            # than esacpe start a new game
+            # than escape start a new game
             main()
         # Else game is over
 
@@ -1382,30 +1399,25 @@ def store_high_scores(new_player):
     player_score = new_player.score
     # Loop through column values ignoring
     # heading cell
+    new_high_score = False
     for ind in range(1, 11):
         # If player's score is higher than an existing
         # entry in the top 10 add it to the table
         if player_score >= int(high_score_numbers[ind]):
             # Set row where new score will be inserted
             row_index = ind + 1
-            # Output the high scores and a congrats
-            # message for the game over screen
-            print_centered(
-                "THAT'S A NEW HIGH SCORE!\n"
-            )
-            print_rainbow(
-                'WELCOME TO THE LEADERBOARD!...\n',
-                'center'
-            )
-            # Give leaderboard time to update
-            sleep(5)
-            print_high_scores()
+            # Set flag that player achieved new
+            # leaderboard high score
+            new_high_score = True
             # Break once next highest score found
             break
-    # Insert new score row
-    scores_worksheet.insert_row([player_name, player_score], row_index)
-    # Delete last row to remove lowest score to keep to 10 scores
-    scores_worksheet.delete_rows(12)
+    if new_high_score:
+        # Insert new score row
+        scores_worksheet.insert_row([player_name, player_score], row_index)
+        # Delete last row to remove lowest score to keep to 10 scores
+        scores_worksheet.delete_rows(12)
+
+    return new_high_score
 
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):

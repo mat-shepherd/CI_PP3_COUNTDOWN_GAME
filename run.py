@@ -1394,10 +1394,11 @@ def store_high_scores(new_player):
                 "THAT'S A NEW HIGH SCORE!\n"
             )
             print_rainbow(
-                "WELCOME TO THE LEADERBOARD!\n"
+                'WELCOME TO THE LEADERBOARD!...\n',
+                'center'
             )
-            # Give scores time to update
-            sleep(3)
+            # Give leaderboard time to update
+            sleep(5)
             print_high_scores()
             # Break once next highest score found
             break

@@ -277,7 +277,7 @@ class Screen:
             )
         # Render high scores table
         if self.screen_data_param == 'scores':
-            self.print_high_scores()
+            print_high_scores()
         # Render user prompt
         user_prompt = self.display_prompt(
             new_player,
@@ -1006,6 +1006,10 @@ class Screen:
             user_prompt = 'game_over'
         # Game Over
         elif self.screen_data_param == 'game_over':
+            # Check player score against
+            # leaderboard and insert if in
+            # top 10
+            store_high_scores(new_player)
             wait_for_keypress(
                 Fore.YELLOW +
                 'Press any key to start a new game or ESC to end game...'
@@ -1021,55 +1025,6 @@ class Screen:
         # Return the user_prompt value back to round_handler
         # so we know which screen to render next
         return user_prompt
-
-    def print_high_scores(self):
-        """
-        Print high score from Google Sheet
-
-        Look up top 10 high scores in Countdown
-        Game Google Sheet and print.
-
-        Based on code from the Code Institute's
-        Love Sandwiches project and PrettyTable
-        suggestions from ChatGPT by Openai.com.
-        """
-        scores_worksheet = SHEET.worksheet('scores')
-        high_scores = scores_worksheet.get_all_values()
-
-        # Create a PrettyTable
-        table = PrettyTable()
-
-        # Add column headings with color
-        # to the table
-        color_headings = [
-            f"{Fore.YELLOW}{heading}{Fore.WHITE}"
-            for heading in high_scores[0]
-        ]
-        table.field_names = color_headings
-
-        # Iterate through high score rows,
-        # excluding header row and add rows
-        # to the table
-        for rows in high_scores[1:]:
-            table.add_row(rows)
-            # spaced_row = '   '.join(rows)
-            # print(spaced_row)
-
-        # Center align table and print
-        table.align = "c"
-
-        # Output the table to the terminal
-        table_string = table.get_string()
-        terminal_width = 80
-        padding = (terminal_width - len(table_string.split("\n")[0])) // 2
-
-        # Apply padding to each line of the table
-        centered_table = "\n".join([
-            " " * padding + line
-            for line in table_string.split("\n")
-        ])
-
-        print(f'{centered_table}\n')
 
 
 class Letters:
@@ -1358,6 +1313,55 @@ def solve_numbers_round(new_player):
         new_player.target_number
     )
 
+def print_high_scores():
+        """
+        Print high score from Google Sheet
+
+        Look up top 10 high scores in Countdown
+        Game Google Sheet and print.
+
+        Based on code from the Code Institute's
+        Love Sandwiches project and PrettyTable
+        suggestions from ChatGPT by Openai.com.
+        """
+        scores_worksheet = SHEET.worksheet('scores')
+        high_scores = scores_worksheet.get_all_values()
+
+        # Create a PrettyTable
+        table = PrettyTable()
+
+        # Add column headings with color
+        # to the table
+        color_headings = [
+            f"{Fore.YELLOW}{heading}{Fore.WHITE}"
+            for heading in high_scores[0]
+        ]
+        table.field_names = color_headings
+
+        # Iterate through high score rows,
+        # excluding header row and add rows
+        # to the table
+        for rows in high_scores[1:]:
+            table.add_row(rows)
+            # spaced_row = '   '.join(rows)
+            # print(spaced_row)
+
+        # Center align table and print
+        table.align = "c"
+
+        # Output the table to the terminal
+        table_string = table.get_string()
+        terminal_width = 80
+        padding = (terminal_width - len(table_string.split("\n")[0])) // 2
+
+        # Apply padding to each line of the table
+        centered_table = "\n".join([
+            " " * padding + line
+            for line in table_string.split("\n")
+        ])
+
+        print(f'{centered_table}\n')
+
 
 def store_high_scores(new_player):
     """
@@ -1379,9 +1383,18 @@ def store_high_scores(new_player):
     # Loop through column values ignoring
     # heading cell
     for ind in range(1, 11):
+        # If player's score is higher than an existing
+        # entry in the top 10 add it to the table
         if player_score >= int(high_score_numbers[ind]):
             # Set row where new score will be inserted
             row_index = ind + 1
+            # Output the high scores and a congrats
+            # message for the game over screen
+            print(
+                "THAT'S A NEW HIGH SCORE!\n"
+                "WELCOME TO THE LEADERBOARD!\n"
+            )
+            print_high_scores()
             # Break once next highest score found
             break
     # Insert new score row

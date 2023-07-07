@@ -50,7 +50,6 @@ def validate_menu_value(number, current_screen):
     """
     try:
         if current_screen in ['intro']:
-            print('Validation Intro')
             if 1 <= int(number) <= 3:
                 return True
             else:

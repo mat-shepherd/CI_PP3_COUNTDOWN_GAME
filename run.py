@@ -60,6 +60,8 @@ init()
 class Player:
     """
     The Player class to contain all player attributes
+
+
     """
     def __init__(self,
                  name='Player',
@@ -107,8 +109,58 @@ class Player:
 
 class Screen:
     """
-    The Screen class to contain all screen
-    definitions and attributes
+    Stores the attributes of all game screen elements
+    to be rendered
+
+    Called by round_handler to creare Screen object instances
+    to render the correct screen elements depending on the 
+    screen_data_param and/or round_number.
+
+    Attributes
+    -------
+    screen_data : object
+        Stores the text file to render for each screen.
+    letter_tiles : string
+        Stores an ASCII string to represent letter tiles.
+        Used to populate letters and numbers into tile
+        string.
+    round_number : int
+        Keeps track of the round number
+
+    Methods
+    -------
+    render(
+        new_player=None,
+        new_letters=None,
+        new_numbers=None,
+        new_conundrum=None
+    )
+        Render screen elements to the terminal.
+    display_text_art()
+        Output text as ASCII art via Art library.
+    display_text()
+        Retrieve screen text from data files
+    timed_input(
+        new_player=None,
+        timer_prompt=None,
+        new_conundrum=None
+    )
+        Display timed input for 30 or 60 seconds
+    display_score(new_player=None)
+        Display the user score
+    update_tiles(
+        new_player=None,
+        new_conundrum=None,
+        screen_param=None
+    )
+        Update letters tiles with chosen letters
+    display_prompt(
+        new_player=None,
+        new_letters=None,
+        new_numbers=None,
+        new_conundrum=None
+    )
+        Display relevant user prompt for screen.   
     """
     screen_data = {
         'intro': 'intro_screen_data.txt',
@@ -364,7 +416,7 @@ class Screen:
         new_conundrum=None
     ):
         """
-        Display timed input for 30 seconds
+        Display timed input for 30 or 60 seconds
         """
         countdown = 60 if Screen.round_number == 4 else 30
         start_time = time()

@@ -63,7 +63,8 @@ class Player:
 
     Keeps track of player name, score, letters,
     numbers, and words as the player progresses
-    through rounds of the game.
+    through rounds of the game. Contains method
+    to update player score.
 
     Attributes
     -------
@@ -466,7 +467,7 @@ class Screen:
         depening on round number. Validates user's
         input and stores valid input in player object
         attributes. Returns time remaining when the
-        user enters input. Displays timeout message 
+        user enters input. Displays timeout message
         and removes prompt if time has elapsed.
 
         Parameters
@@ -1182,14 +1183,15 @@ class Screen:
 class Letters:
     """
     Contains all letter types and letters to
-    choose from in the letters round.
+    choose from in the letters round and letter
+    generation methods.
 
     Attributes
     ----------
     vowels : list
         List of vowels populated to player's specification.
     consonants : list
-        List of consonants populated to player's specification.    
+        List of consonants populated to player's specification.
 
     Methods
     -------
@@ -1388,7 +1390,8 @@ class Letters:
 class Numbers:
     """
     Contains all types of numbers to choose from
-    and solve for in the numbers round
+    and solve for in the numbers round and numbers
+    generation methods.
 
     Attributes
     ----------
@@ -1398,7 +1401,7 @@ class Numbers:
         List of small numbers for the numbers round.
     target : int
         Three digit random;ly generated target number
-        for the numbers round.    
+        for the numbers round.
 
     Methods
     -------
@@ -1447,7 +1450,7 @@ class Numbers:
         Returns
         -------
         target_number : int
-            Three digit target number for numbers round.      
+            Three digit target number for numbers round.
         """
         target_number = random.randint(100, 999)
         return target_number
@@ -1456,7 +1459,22 @@ class Numbers:
 class Conundrum:
     """
     Contains the Conundrum word attributes for the
-    Conundrum round.
+    Conundrum round and methods to populate and
+    solve the conundrum.
+
+    Attributes
+    ----------
+    target : list
+        Randomly sampled word from nine letter
+        word list.
+    scrambled : string
+        Scambled version of the chosen conundrum
+        word.
+
+    Methods
+    -------
+    populate_conundrum()
+        Generates conundrum word and scrambled word.
     """
     def __init__(self, target=[], scrambled=[]):
         self.target = target
@@ -1464,9 +1482,11 @@ class Conundrum:
 
     def populate_conundrum(self):
         """
-        Generate conundrum word and scrambled word
-        Choose a word from the 9 letter word list
-        and scramble the word.
+        Generates conundrum word and scrambled word.
+
+        Chooses a word from the 9 letter word list
+        and scrambles the word. Stores the target and
+        scrambled words in Conundrum attributes.
         """
         while True:
             random_conundrum = random.sample(
@@ -1490,7 +1510,12 @@ class Conundrum:
 
 def print_centered(text):
     """
-    Print text centered in terminal
+    Print text centered in terminal.
+
+    Parameters
+    ----------
+    text : string
+        Text to print centered.
     """
     terminal_width = 80
     centered_text = text.center(terminal_width)
@@ -1499,10 +1524,16 @@ def print_centered(text):
 
 def print_rainbow(text, alignment=None):
     """
-    Print text charcters in range of
+    Print text characters in range of
     rainbow colours
     Adapted from answer by ChatGPT
     by openai.com
+
+    Parameters
+    ----------
+    alignment : string
+        Flag to indicate if text should be
+        centered or not.
     """
     colors = [
         Fore.RED,
@@ -1541,6 +1572,12 @@ def wait_for_keypress(text, allow_escape=False):
     """
     Block code execution and wait for keypress
     Code from answer by ChatGPT by openai.com
+
+    Parameters
+    ----------
+    allow_escape : boolean
+        Flag to indicate if keypress should
+        listen for ESC key and exit program.
     """
     print(text)
     sys.stdin.flush()
@@ -1566,6 +1603,11 @@ def solve_numbers_round(new_player):
     Provide the user with solutions to reach
     the target number using the chosen numbers.
     Uses pypi.org/project/countdown-numbers-solver/
+
+    Parameters
+    ----------
+    new_player : object
+        Current Player Object
     """
     countdown_numbers_solver.solve(
         new_player.chosen_numbers,
@@ -1575,7 +1617,7 @@ def solve_numbers_round(new_player):
 
 def print_high_scores():
     """
-    Print high score from Google Sheet
+    Print high score from Scores Google Sheet.
 
     Look up top 10 high scores in Countdown
     Game Google Sheet and print.
@@ -1631,6 +1673,17 @@ def store_high_scores(new_player):
 
     Based on code from the Code Institute's
     Love Sandwiches project.
+
+    Parameters
+    ----------
+    new_player : object
+        Current Player Object
+
+    Returns
+    -------
+    new_high_score : int
+        Player score if higher than leaderboard
+        score. 0 if not higher.
     """
     scores_worksheet = SHEET.worksheet('scores')
     # Get high scores from second column
@@ -1663,9 +1716,23 @@ def store_high_scores(new_player):
 
 def round_handler(new_player, new_letters, new_numbers, new_conundrum):
     """
-    Load the initial game screen and
-    create the next screen based on
-    user input
+    Handles game flow by determing which screen
+    to render next.
+
+    Load the initial game intro screen and
+    then create render subsequnet screens based
+    on user input.
+
+    Parameters
+    ----------
+    new_player : object
+        Current Player Object
+    new_letters : object
+        Current Letters Object
+    new_numbers : object
+        Current Numbers Object
+    new_conundrum : object
+        Current Conundrum Object
     """
     intro_screen = Screen('intro')
     rules_screen = Screen('rules')

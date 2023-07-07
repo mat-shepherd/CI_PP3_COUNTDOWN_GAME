@@ -1617,7 +1617,7 @@ def main():
     # Reset round number in case
     # this is a repeat game
     Screen.round_number = 0
-    # Create new game object 
+    # Create new game object
     # instances and pass to round
     # handler
     new_player = Player()
@@ -1630,4 +1630,4 @@ def main():
 # Call main game function
 
 main()
-
+# End of code...phew...thanks for reading!

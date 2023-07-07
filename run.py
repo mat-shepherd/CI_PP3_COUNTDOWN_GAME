@@ -127,9 +127,9 @@ class Screen:
     }
 
     letter_tiles = """
-            +-----+-----+-----+-----+-----+-----+-----+-----+-----+  
-            |  *  |  *  |  *  |  *  |  *  |  *  |  *  |  *  |  *  |  
-            +-----+-----+-----+-----+-----+-----+-----+-----+-----+  
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            |  *  |  *  |  *  |  *  |  *  |  *  |  *  |  *  |  *  |
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+
     """
 
     round_number = 0
@@ -412,8 +412,8 @@ class Screen:
         print_centered(f'Your Score: {new_player.score}')
 
     def update_tiles(
-        self, 
-        new_player=None, 
+        self,
+        new_player=None,
         new_conundrum=None,
         screen_param=None
     ):
@@ -635,8 +635,9 @@ class Screen:
                 user_word = ''
             if user_word == '' or user_word == ' ':
                 print(
+                    Fore.WHITE +
                     f"\n{new_player.name}, you didn't guess a word "
-                    f"within the time limit. Better luck next round!"
+                    f"within the time limit. Better luck next round!\n"
                 )
             else:
                 # Check if word in pydictionary
@@ -800,8 +801,9 @@ class Screen:
             user_solution = new_player.guessed_solutions[0]
             if user_solution == '':
                 print(
+                    Fore.WHITE +
                     f"\n{new_player.name}, you didn't provide a solution "
-                    f"within the time limit. Better luck next round!"
+                    f"within the time limit. Better luck next round!\n"
                 )
             else:
                 valid_solution, solution_result, target_difference =\
@@ -812,6 +814,7 @@ class Screen:
                 if valid_solution:
                     round_score = new_player.update_score()
                     print(
+                        Fore.WHITE +
                         f"\n{user_solution} is a "
                         f"valid solution for reaching "
                         f"{new_player.target_number}!\n"
@@ -823,6 +826,7 @@ class Screen:
                 # If solution is close still congratulate player!
                 elif valid_solution is False and target_difference <= 50:
                     print(
+                        Fore.WHITE +
                         f"Sorry you didn't reach the target number of "
                         f"{new_player.target_number}!\n"
                         f"\nYour solution of {user_solution} = "
@@ -833,18 +837,19 @@ class Screen:
                     )
                 elif valid_solution is False:
                     print(
+                        Fore.WHITE +
                         f"Sorry you didn't reach the target number of "
                         f"{new_player.target_number}!\n"
                         f"Your solution of {user_solution} = "
                         f"{solution_result}.\n"
-                        f"Better luck next time!"
+                        f"Better luck next time!\n"
                     )
             # Pause to give the user time to read
             wait_for_keypress(
                 Fore.YELLOW +
                 '\nHit any key to see the solutions we found...'
                 + Fore.RESET
-            )                    
+            )
             print(
                 Fore.LIGHTGREEN_EX +
                 f"Here's what our maths wiz came up with...\n"
@@ -902,8 +907,9 @@ class Screen:
                 user_word = ''
             if user_word == '':
                 print(
+                    Fore.WHITE +
                     f"\n{new_player.name}, you didn't guess a word "
-                    f"within the time limit. Better luck next time!"
+                    f"within the time limit. Better luck next time!\n"
                 )
             # Check if word matches target
             # Convert to upper to avoid case mismatch
@@ -1147,11 +1153,16 @@ class Conundrum:
         Choose a word from the 9 letter word list
         and scramble the word.
         """
-        # while True:
-        random_conundrum = random.sample(nine_letter_word_list, 1)[0].upper()
-        # Make sure word isn't on profanity list
-        # if check_profanity(random_conundrum) >= 0.9:
-        #    break
+        while True:
+            random_conundrum = random.sample(
+                nine_letter_word_list, 1
+            )[0].upper()
+            # Make sure word isn't on profanity list
+            # to avoid validated user conundrum not
+            # matching generated conundrum
+            # stop looping if valid word found
+            if check_profanity(random_conundrum) < 0.9:
+                break
         scrambled_conundrum = ''.join(
             random.sample(random_conundrum, len(random_conundrum))
         )
@@ -1254,7 +1265,7 @@ def print_high_scores():
     scores_worksheet = SHEET.worksheet('scores')
     high_scores = scores_worksheet.get_all_values()
 
-    # Create a PrettyTable 
+    # Create a PrettyTable
     table = PrettyTable()
 
     # Add column headings with color
@@ -1265,14 +1276,14 @@ def print_high_scores():
     ]
     table.field_names = color_headings
 
-    # Iterate through high score rows, 
+    # Iterate through high score rows,
     # excluding header row and add rows
     # to the table
     for rows in high_scores[1:]:
         table.add_row(rows)
         # spaced_row = '   '.join(rows)
         # print(spaced_row)
-    
+
     # Center align table and print
     table.align = "c"
 
@@ -1283,8 +1294,8 @@ def print_high_scores():
 
     # Apply padding to each line of the table
     centered_table = "\n".join([
-    " " * padding + line
-    for line in table_string.split("\n")
+        " " * padding + line
+        for line in table_string.split("\n")
     ])
 
     print(centered_table)
@@ -1300,7 +1311,7 @@ def store_high_scores(new_player):
 
     Based on code from the Code Institute's
     Love Sandwiches project.
-    """    
+    """
     scores_worksheet = SHEET.worksheet('scores')
     # Get high scores from second column
     high_score_numbers = scores_worksheet.col_values(2)
@@ -1502,3 +1513,4 @@ def main():
 # Call main game function
 
 main()
+

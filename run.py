@@ -157,7 +157,7 @@ class Screen:
     -------
     screen_data_param : string
         Shortened keyword to represent screen data file to use
-        when rendering. Passed via paramater when creating
+        when rendering. Passed via parameter when creating
         object instance of Screen.
     screen_data_file : string
         Screen data file to use when creating object
@@ -461,6 +461,31 @@ class Screen:
     ):
         """
         Display timed input for 30 or 60 seconds
+
+        Display a user prompt for 30 or 60 seconds
+        depening on round number. Validates user's
+        input and stores valid input in player object
+        attributes. Returns time remaining when the
+        user enters input. Displays timeout message 
+        and removes prompt if time has elapsed.
+
+        Parameters
+        ----------
+        new_player : object
+            Current Player Object.
+        timer_prompt : string
+            String to print as input prompt.
+        new_conundrum : object
+            Current Conundrum Object.
+
+        Returns
+        -------
+         user_prompt : string or boolean
+            Users input or False if no input
+            entered.
+         time_remaining : int
+            Time reamining when user enters
+            their input.
         """
         countdown = 60 if Screen.round_number == 4 else 30
         start_time = time()
@@ -534,6 +559,11 @@ class Screen:
     def display_score(self, new_player=None):
         """
         Display the user score
+
+        Parameters
+        ----------
+        new_player : object
+            Current Player Object.        
         """
         print_centered(f'Your Score: {new_player.score}')
 
@@ -545,6 +575,15 @@ class Screen:
     ):
         """
         Update letters tiles with chosen letters
+
+        Parameters
+        ----------
+        new_player : object
+            Current Player Object.
+        new_conundrum : object
+            Current Conundrum Object.
+        screen_param : string
+            Keyword to represent current screen rendered.
         """
         # If enter_name screen populate letters with Ready?
         if len(new_player.chosen_letters) == 0:

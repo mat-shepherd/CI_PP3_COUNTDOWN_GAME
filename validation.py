@@ -99,16 +99,18 @@ def print_word_meaning(word, new_player):
         formatted_word = word.lower().capitalize()
         print(
             f"\nAccording to our dictionary the top "
-            f"definitions of '{formatted_word}' are:\n"
+            f"definition(s) of '{formatted_word}' is/are:\n"
             )
         count = 0
         for part_of_speech, meanings in word_meaning_found.items():
             # Only print the first 2 meanings
-            if count >= 1:
+            if count > 1:
                 break
             for meaning in meanings:
                 print(f"{part_of_speech} - {meaning}\n")
                 count += 1
+                if count > 1:
+                    break
     return valid_word
 
 

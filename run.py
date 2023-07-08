@@ -7,7 +7,6 @@ import random
 import termios
 import sys
 import tty
-import pager
 # Internal
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from validation import (
@@ -33,6 +32,7 @@ from colorama import Fore, Back, Style
 from colorama.ansi import clear_screen
 from art import text2art
 from num2words import num2words
+import pager
 from anagram_solver.anagram_solver import find_possible, return_words
 import countdown_numbers_solver
 import gspread

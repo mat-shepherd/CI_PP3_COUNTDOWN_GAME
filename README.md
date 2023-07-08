@@ -29,7 +29,7 @@
     5. [Testing user stories](#testing-user-stories)
 8. [Bugs](#Bugs)
 9. [Deployment](#deployment)
-    - [Deploying in Heroku](#deploying-the-website-in-heroko)
+    - [Deploying in Heroku](#deploying-the-website-in-heroku)
     - [Forking the GitHub Repository](#forking-the-github-repository)
     - [Cloning of Repository i GitHub](#cloning-the-repository-in-github)
 10. [Credits](#credits)
@@ -310,14 +310,14 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
 ## Deployment
 
-### Deploying the website in Heroko:
-- The website was deployed to Heroko using following steps:
+### Deploying the website in Heroku:
+- The website was deployed to Heroku using following steps:
 #### Login or create an account at Heroku
 - Make an account in Heroku and login
 
 <details>
     <summary>Heroku Login Page</summary>
-    <img src="assets/heroku/heroku_login.png" alt="Heroko login page">
+    <img src="assets/heroku/heroku_login.png" alt="Heroku login page">
 </details>
 
 #### Creating an app
@@ -327,20 +327,23 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
 <details>
     <summary>Create App</summary>
-    <img src="assets/heroku/createapp.png" alt="Heroko create app screenshot">
+    <img src="assets/heroku/create_app.png" alt="Heroku create app screenshot">
+    <img src="assets/heroku/create_app2.png" alt="Heroku create app screenshot">
 </details>
 
 #### Open settings Tab
-  ##### Click on config var
-  - Store CREDS file from gitpod in key and add the values
+  ##### Click on Reveal Config Vars
+  - Store CREDS file from Codeanywhere in key and add the values
   - Store PORT in key and value
 
 <details>
-    <summary>Config var</summary>
+    <summary>Config Vars</summary>
     <img src="assets/heroku/config.png" alt="Config var screenshot">
+    <img src="assets/heroku/config_2.png" alt="Config var screenshot">
 </details>
 
   ##### Add Buildpacks
+  - From the settings tab find the 'Add buildpack' button
   - Add python buildpack first
   - Add Nodejs buildpack after that
 
@@ -351,12 +354,12 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
  #### Open Deploy Tab
    ##### Choose deployment method
-  - Connect GITHUB
+  - Connect GitHub
   - Login if prompted
 
 <details>
     <summary>Deployment method</summary>
-    <img src="assets/heroku/method.png" alt="Deployment method screenshot">
+    <img src="assets/heroku/deployment_method.png" alt="Deployment method screenshot">
 </details>
 
    ##### Connect to Github
@@ -364,16 +367,16 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
   - Click "Connect"
 
 <details>
-    <summary> Repo Connect</summary>
-    <img src="assets/heroku/repo-connect.png" alt="Repo connect screenshot">
+    <summary>Repo Connect</summary>
+    <img src="assets/heroku/repo_connect.png" alt="Repo connect screenshot">
 </details>
 
   ##### Automatic and Manual deploy
   - Choose a method to deploy
-  - After Deploy is clicked it will install various file
+  - After Deploy is clicked it will install various files
 
 <details>
-    <summary> Deploy methods</summary>
+    <summary>Deploy methods</summary>
     <img src="assets/heroku/deploy.png" alt="deploy method screenshot">
 </details>
 

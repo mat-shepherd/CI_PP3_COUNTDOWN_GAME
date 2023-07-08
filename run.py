@@ -428,7 +428,7 @@ class Screen:
                     )
             elif self.screen_data_param == 'game_over':
                 # Add additional space to center
-                spaces_str += ' '
+                spaces_str += '  '
                 result = text2art(
                     f'{spaces_str}GAME OVER', font='small'
                     )
@@ -1161,7 +1161,7 @@ class Screen:
                     'center'
                 )
                 # Add delay so user can read top of terminal
-                sleep(2)
+                sleep(4)
                 # Print leaderboard
                 print_high_scores()
             # Let user choose to start new game

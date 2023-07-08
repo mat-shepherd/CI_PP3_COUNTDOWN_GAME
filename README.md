@@ -114,41 +114,119 @@ I have divided my user stories into users and the site owner, as each of these u
 
 ### Third Party Python Libraries
 [Colorama](https://pypi.org/project/colorama/)
-[Inputimeout]()
-[Art]()
-[Num2words]()
+[Inputimeout](https://pypi.org/project/inputimeout/)
+[Art](https://pypi.org/project/art/)
+[Num2words](https://pypi.org/project/num2words/)
 [Pager](https://pypi.org/project/pager/)
 [PyDictionary](https://pypi.org/project/PyDictionary/)
 [Alt-profanity-check](https://pypi.org/project/alt-profanity-check/)
 [Numexpr](https://pypi.org/project/numexpr/2.6.1/)
-[Countdown_numbers_solver]()
-[gspread]()
-[google.oauth2.service_account]()
-[prettytable]()
-[]()
+[Countdown_numbers_solver](https://pypi.org/project/countdown-numbers-solver/)
+[gspread](https://docs.gspread.org/en/v5.10.0/)
+[google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html)
+[prettytable](https://pypi.org/project/prettytable/)
 
 
 [Back to Table of Contents](#table-of-contents)
 
 ## Features
-The app consists of...
+The game consists of a series of screens with the following features:
 
-### Intro Screen
+### Introduction Screen
 - 
+- User stories covered: 
 
-![Intro Screen]()
+![Introduction Screen]()
+
+### Rules Screen
+- 
+- User stories covered: 
+
+![Rules Screen]()
+
+### High Scores Screen
+- 
+- User stories covered: 
+
+![High Scores Screen]()
 
 ### Enter Name Screen
 - 
+- User stories covered: 
 
 ![Enter Name Screen]()
 
-
-### Anagram Solver
+### Letters Round Screen
 - 
+- User stories covered: 
 
-![Enter Name Screen]()
+![Letters Round Screen]()
 
+### Show Letters Screen
+- 
+- User stories covered: 
+
+![Show Letters Screen]()
+
+### Letters Guess Screen
+- 
+- User stories covered: 
+
+![Letters Guess Screen]()
+
+### Letters Feedback Screen
+- 
+- User stories covered: 
+
+![Letters Feedback Screen]()
+
+### Numbers Round Screen
+- 
+- User stories covered: 
+
+![Numbers Round Screen]()
+
+### Show Numbers Screen
+- 
+- User stories covered: 
+
+![Show Numbers Screen]()
+
+### Numbers Guess Screen
+- 
+- User stories covered: 
+
+![Numbers Guess Screen]()
+
+### Numbers Feedback Screen
+- Countdown solver
+- User stories covered: 
+
+![Numbers Feedback Screen]()
+
+### Show Conundrum Screen
+- 
+- User stories covered: 
+
+![Show Conundrum Screen]()
+
+### Conundrum Guess Screen
+- 
+- User stories covered: 
+
+![Conundrum Guess Screen]()
+
+### Conundrum Feedback Screen
+- Anagram solver
+- User stories covered: 
+
+![Conundrum Feedback Screen]()
+
+### Game Over Screen
+- 
+- User stories covered: 
+
+![Game Over Screen]()
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -342,13 +420,11 @@ The deployment steps for the project were adapted from the following readme.md f
 
 - Google sheets code: The method and code (Google drive and sheets scope and creds code, print_high_scores(), and store_high_scores() functions) to update, retrieve, and print leaderboard scores via a Google Sheet were adpated from the [LoveSandwiches Project](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1) by the [Code Institute](https://codeinstitute.net/)
 
-- Round numbers to ASCII words code: The use of the Num2Words library was based on a suggestion from [ChatGPT](https://chat.openai.com/)
-    by [openai.com](https://openai.com/). The code was adapted from examples provided by [num2words](https://github.com/savoirfairelinux/num2words) by [savoirfairelinux](https://github.com/savoirfairelinux)
+- Round numbers to ASCII words code: The use of the Num2Words library was based on a suggestion from [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/). The code was adapted from examples provided by [num2words](https://github.com/savoirfairelinux/num2words) by [savoirfairelinux](https://github.com/savoirfairelinux)
 
 - Print text center code: The method for printing text in the center of the terminal was adapted from the [Python String center() Method](https://www.w3schools.com/python/ref_string_center.asp) article by [W3Schools](https://www.w3schools.com/)
 
-- Rainbow text code: The approach to print text in a rainbow color (print_rainbow()) using Colorama was adapted from an answer by [ChatGPT](https://chat.openai.com/)
-    by [openai.com](https://openai.com/)
+- Rainbow text code: The approach to print text in a rainbow color (print_rainbow()) using Colorama was adapted from an answer by [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
 
 - Wait for keypress code: The code to block code execution while waiting for the user to press a key (wait_for_keypress()) was largely provided by an answer from [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
 

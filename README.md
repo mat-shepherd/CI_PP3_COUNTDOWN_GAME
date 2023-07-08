@@ -133,6 +133,8 @@ I have divided my user stories into users and the site owner, as each of these u
 ## Features
 The game consists of a series of screens with the following features:
 
+### Existing Features
+
 ### Introduction Screen
 - 
 - User stories covered: 
@@ -229,6 +231,9 @@ The game consists of a series of screens with the following features:
 
 ![Game Over Screen]()
 
+### Features Left to Implement
+
+#### Time input countdown
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -243,7 +248,20 @@ The website was tested on the following browsers:
 ### PEP8 Python Validator
 The PEP8 Python Validator (from Code Institute) was used to validate all Python code. All files pass with no errors no warnings to show.
 <details>
-<summary>Run.py</summary>
+<summary>run.py</summary>
+
+</details>
+
+
+<summary>validation.py</summary>
+
+</details>
+
+<summary>word_set.py</summary>
+
+</details>
+
+<summary>nine_letter_word_list.py</summary>
 
 </details>
 
@@ -300,7 +318,7 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
 | **Bug** | **Fix** |
 | ----------- | ----------- |
-| | |
+| Timed Input Countdown Overwriting Input | |
 | | |
 | | |
 | | |

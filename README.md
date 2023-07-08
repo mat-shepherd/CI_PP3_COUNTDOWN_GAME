@@ -104,9 +104,28 @@ I have divided my user stories into users and the site owner, as each of these u
 - CodeAnywhere
 
 ### Python Libraries
+[time](https://docs.python.org/3/library/time.html)
+[re](https://docs.python.org/3/library/re.html)
+[random](https://docs.python.org/3/library/random.html)
+[termios](https://docs.python.org/3/library/termios.html)
+[sys](https://docs.python.org/3/library/sys.html)
+[tty](https://docs.python.org/3/library/tty.html)
+[collections](https://docs.python.org/3/library/collections.html)
 
 ### Third Party Python Libraries
 [PyDictionary](https://pypi.org/project/PyDictionary/)
+[Colorama](https://pypi.org/project/colorama/)
+[Alt-profanity-check](https://pypi.org/project/alt-profanity-check/)
+[Numexpr](https://pypi.org/project/numexpr/2.6.1/)
+[Pager](https://pypi.org/project/pager/)
+[Inputimeout]()
+[Art]()
+[Num2words]()
+[Countdown_numbers_solver]()
+[gspread]()
+[google.oauth2.service_account]()
+[prettytable]()
+[]()
 
 
 [Back to Table of Contents](#table-of-contents)

@@ -437,7 +437,7 @@ def validate_user_conundrum(user_word, new_player=None, new_conundrum=None):
     filter, only uses letters, and is exactly
     9 letters long.
 
-   Parameters
+    Parameters
     ----------
     user_word : string
         Solution string input by player.

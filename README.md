@@ -113,14 +113,14 @@ I have divided my user stories into users and the site owner, as each of these u
 [collections](https://docs.python.org/3/library/collections.html)
 
 ### Third Party Python Libraries
-[PyDictionary](https://pypi.org/project/PyDictionary/)
 [Colorama](https://pypi.org/project/colorama/)
-[Alt-profanity-check](https://pypi.org/project/alt-profanity-check/)
-[Numexpr](https://pypi.org/project/numexpr/2.6.1/)
-[Pager](https://pypi.org/project/pager/)
 [Inputimeout]()
 [Art]()
 [Num2words]()
+[Pager](https://pypi.org/project/pager/)
+[PyDictionary](https://pypi.org/project/PyDictionary/)
+[Alt-profanity-check](https://pypi.org/project/alt-profanity-check/)
+[Numexpr](https://pypi.org/project/numexpr/2.6.1/)
 [Countdown_numbers_solver]()
 [gspread]()
 [google.oauth2.service_account]()
@@ -142,6 +142,13 @@ The app consists of...
 - 
 
 ![Enter Name Screen]()
+
+
+### Anagram Solver
+- 
+
+![Enter Name Screen]()
+
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -319,15 +326,11 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 ## Credits
 
 ### Content
-In order of appearance:
 
-Index Page
-- [Image](https://www.hubspot.com/brand-kit-generator/) by [Author](https://www.hubspot.com/)
-    <details><summary>Logo</summary>
-    <img src="docs/credits/logo-variations.webp">
-    </details>   
+- The word set used in word_set.py was generated from the [sowpods.txt](https://github.com/jesstess/Scrabble/blob/master/scrabble/sowpods.txt) Scrabble word set by [jesstess](https://github.com/jesstess)
+- The nine letter word list in nine_letter_word_list.py was generated from the [Common 9 Letter Words list](https://www.unscramblerer.com/common-nine-letter-words/) by [unscramblerer.com](https://www.unscramblerer.com/)
 
-  
+
 ### Code
 The markdown structure of this readme was based on the structure of the following readme.md files from other Code Institute student projects:
 - https://github.com/4n4ru/CI_MS1_BodelschwingherHof
@@ -336,6 +339,34 @@ The markdown structure of this readme was based on the structure of the followin
 
 The deployment steps for the project were adapted from the following readme.md file by Jeremy Simons:
 - https://github.com/jeremyhsimons/CI_PP3_DungeonEscape
+
+- Google sheets code: The method and code (Google drive and sheets scope and creds code, print_high_scores(), and store_high_scores() functions) to update, retrieve, and print leaderboard scores via a Google Sheet were adpated from the [LoveSandwiches Project](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1) by the [Code Institute](https://codeinstitute.net/)
+
+- Round numbers to ASCII words code: The use of the Num2Words library was based on a suggestion from [ChatGPT](https://chat.openai.com/)
+    by [openai.com](https://openai.com/). The code was adapted from examples provided by [num2words](https://github.com/savoirfairelinux/num2words) by [savoirfairelinux](https://github.com/savoirfairelinux)
+
+- Print text center code: The method for printing text in the center of the terminal was adapted from the [Python String center() Method](https://www.w3schools.com/python/ref_string_center.asp) article by [W3Schools](https://www.w3schools.com/)
+
+- Rainbow text code: The approach to print text in a rainbow color (print_rainbow()) using Colorama was adapted from an answer by [ChatGPT](https://chat.openai.com/)
+    by [openai.com](https://openai.com/)
+
+- Wait for keypress code: The code to block code execution while waiting for the user to press a key (wait_for_keypress()) was largely provided by an answer from [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
+
+- Randomly shuffle letters code: The method for shuffling a list of letters was adapted from the [Python Random shuffle() Method](https://www.w3schools.com/python/ref_random_shuffle.asp) article by [W3Schools](https://www.w3schools.com/)
+
+- Dictionary meaning check code: The code used to check words against a dictionary and return their meanings (check_dictionary() and print_word_meaning()) uses the library and code examples provided in [PyDictionary](https://github.com/geekpradd/PyDictionary) written by [geekpradd](https://github.com/geekpradd)
+
+- Profanity check code: The code used to check words against a profanity list (check_profanity()) uses the library and code examples provided in [Alt-profanity-check](https://github.com/dimitrismistriotis/alt-profanity-check) written by [dimitrismistriotis](https://github.com/dimitrismistriotis) which is based on [profanity-check](https://github.com/vzhou842/profanity-check) by [Victor Zhou](https://github.com/vzhou842)
+
+- Check letters used validation: The approach to use a Counter to check the player's input only uses the chosen / conundrum letters (check_letters_used()) was adapted from an answer by [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
+
+- Check numbers used validation: The approach to use a Counter to check the player's input only uses the chosen numbers (check_numbers_used()) was adapted from an answer by [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
+
+- Anagram solver code: The code used to solve an anagram (longest_word()) uses the library and code examples (with an adapted approach - see [Anagram Solver Feature](#anagram-solver)) provided in [anagram-solver](https://github.com/patrickleweryharris/anagram-solver) written by [patrickleweryharris](https://github.com/patrickleweryharris)
+
+- Numbers round solver code: The code used to provide solutions to the numbers round (solve_numbers_round()) uses the library and code examples provided in [countdown-numbers-solver](https://github.com/exitexit) written by [exitexit](https://github.com/exitexit)
+
+- Leaderboard table format: The use of PrettyTable to print the high score leaderboard in an ASCII table format was based on a suggestion by [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
 
 [Back to Table of Contents](#table-of-contents)
 

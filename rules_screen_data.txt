@@ -9,9 +9,12 @@ This game is variation on the Countdown game you have seen on TV.
 * This is a one-player game consisting of three letters rounds, one
 numbers round, and one conundrum round.
 
+* Each round is timed, the faster you provide a solution the more 
+you score. In the letters rounds, the longer your word, the more you score.
+
 * In each letters round, you are given nine random letters and must form
 valid words using those letters within 30 seconds. To be valid, words 
-need to be found in PyDictionary and more than 2 letters long. You earn
+need to be found in PyDictionary and be more than 2 letters long. You earn
 1 point for each letter in your word multiplied by the time remaining.
 
 * In the numbers round, you are asked to choose six numbers which will be 
@@ -23,8 +26,9 @@ be selected from the 'small numbers group'. You are then provided with a
 random 3 digit target number.
 
 Your goal is to use your 6 numbers and basic mathematical operations
-(+ - * /) to reach the target number withn 60 seconds. Here's an example 
-input to reach a target number of 304:
+(+ - * /) to reach the target number within 60 seconds. 
+
+Here's an example input to reach a target number of 304:
 
 (100 * 3) + 12 / 3
 
@@ -37,9 +41,13 @@ each valid solution you find.
 
 * The conundrum round features a nine-letter anagram that you need to 
 unscramble within the given time limit. You earn 10 points for a correct
-guess based multiplied by your time remaining If you guess a word
-that is valid but not our target word, we'll let you know, and you still
-score 10 points!
+guess based multiplied by your time remaining.
+
+If you guess a word that is valid but not our target word, we'll let you
+know, and you still score 10 points multiplied by the time remaining!
 
 * Your total score is calculated by summing the points earned in each 
 round.
+
+* If you achieve a score higher than the top ten scores on our leaderboard
+your name and your score will be added to the leaderboard!

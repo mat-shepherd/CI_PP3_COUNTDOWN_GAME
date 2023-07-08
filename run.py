@@ -720,9 +720,13 @@ class Screen:
                     continue
         elif self.screen_data_param == 'enter_name':
             while True:
+                # Add additional newlines to push
+                # countdown title up the terminal
+                # as this screen doesn't have much
+                # content
                 user_prompt = input(
                     Fore.WHITE +
-                    '\n\nPlease enter your name\n'
+                    '\n\n\n\nPlease enter your name\n'
                     '(must be 2 to 10 letter characters long)...\n'
                 )
                 if validate_name(user_prompt):

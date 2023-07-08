@@ -96,7 +96,7 @@ I have divided my user stories into users and the site owner, as each of these u
 ## Technologies Used
 
 ### Languages
-- Python
+- [Python](https://www.python.org/)
 
 ### Tools
 - [Git](https://git-scm.com/)
@@ -419,9 +419,10 @@ The markdown structure of this readme was based on the structure of the followin
 - https://github.com/4n4ru/CI_MS1_BodelschwingherHof
 - https://github.com/jamie2210/CI_MS1_TBC
 - https://github.com/jeremyhsimons/CI_PP3_DungeonEscape
+- https://github.com/Sinha5714/hangman-pp3
 
-The deployment steps for the project were adapted from the following readme.md file by Jeremy Simons:
-- https://github.com/jeremyhsimons/CI_PP3_DungeonEscape
+The deployment steps for the project were adapted from the following readme.md file by Shubham Sinha:
+- https://github.com/Sinha5714/hangman-pp3
 
 - Google sheets code: The method and code (Google drive and sheets scope and creds code, print_high_scores(), and store_high_scores() functions) to update, retrieve, and print leaderboard scores via a Google Sheet were adpated from the [LoveSandwiches Project](https://github.com/Code-Institute-Solutions/love-sandwiches-p5-sourcecode/tree/master/05-deployment/01-deployment-part-1) by the [Code Institute](https://codeinstitute.net/)
 

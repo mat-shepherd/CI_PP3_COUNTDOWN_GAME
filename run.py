@@ -316,12 +316,6 @@ class Screen:
                 'HALL OF FAME!\n',
                 'center'
             )
-        elif self.screen_data_param in [
-            'enter_name'
-        ]:
-            # Add additional vertical spacing on
-            # enter name screen
-            print('\n\n')
         if (
             Screen.round_number == 1
             and new_player.chosen_letters == [
@@ -728,7 +722,7 @@ class Screen:
             while True:
                 user_prompt = input(
                     Fore.WHITE +
-                    'Please enter your name\n'
+                    '\n\nPlease enter your name\n'
                     '(must be 2 to 10 letter characters long)...\n'
                 )
                 if validate_name(user_prompt):

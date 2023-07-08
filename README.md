@@ -51,6 +51,8 @@ The goals of this app include:
 - Play the game as often as desired
 - Achieve a top ten high score that appears on the game leaderboard
 
+[Back to Table of Contents](#table-of-contents)
+
 ## User Experience
 
 ### Target Audience
@@ -58,10 +60,16 @@ The goals of this app include:
 
 ### User Requirements and Expectations
 - An intuitive and easy to navigate game interface
-- Ability to quickly find game rules or start the game
+- A fun and educational gameplay experience with feedback on word and number game solutions
+- Ability to quickly find game rules, view the score leaderboard, or start the game
+- Ability to personalise the game by entering a player name
+- Score tracking during the game and feedback if a top ten score is achieved
+- Clear feedback on any input errors during gameplay and how to proceed
+- Ability to have their name and score added to the leaderboard if a top ten score is achieved
+
 
 ### User Stories
-I have divided my user stories into prospective customers, existing customers, and site owners, as each of these users will have a distinct set of needs and goals.
+I have divided my user stories into users and the site owner, as each of these users will have a distinct set of needs and goals.
 
 #### Users
 1. As a user, I want...
@@ -70,6 +78,7 @@ I have divided my user stories into prospective customers, existing customers, a
 #### Site Owner 
 13. As a site owner, I want...
 
+[Back to Table of Contents](#table-of-contents)
 
 ## Technical Design
 
@@ -79,6 +88,7 @@ I have divided my user stories into prospective customers, existing customers, a
 ### Data Model
 
 
+[Back to Table of Contents](#table-of-contents)
 
 ## Technologies Used
 
@@ -91,6 +101,9 @@ I have divided my user stories into prospective customers, existing customers, a
 - CodeAnywhere
 
 ### Python Libraries
+
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Features
 The app consists of...
@@ -105,6 +118,8 @@ The app consists of...
 
 ![Enter Name Screen]()
 
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Testing
 
@@ -179,12 +194,104 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 | | |
 | | |
 
-## Deployment
-The website was deployed using GitHub Pages by following these steps:
 
+[Back to Table of Contents](#table-of-contents)
+
+## Deployment
+
+### Deploying the website in Heroko:
+- The website was deployed to Heroko using following steps:
+#### Login or create an account at Heroku
+- Make an account in Heroko and login
+
+<details>
+    <summary>Heroko Login Page</summary>
+    <img src="assets/heroku/heroku_login.png" alt="Heroko login page">
+</details>
+
+#### Creating an app
+  - Create new app in the top right of the screen and add an app name.
+  - Select region
+  - Then click "create app".
+
+<details>
+    <summary>Create App</summary>
+    <img src="assets/heroku/createapp.png" alt="Heroko create app screenshot">
+</details>
+
+#### Open settings Tab
+  ##### Click on config var
+  - Store CREDS file from gitpod in key and add the values
+  - Store PORT in key and value
+
+<details>
+    <summary>Config var</summary>
+    <img src="assets/heroku/config.png" alt="Config var screenshot">
+</details>
+
+  ##### Add Buildpacks
+  - Add python buildpack first
+  - Add Nodejs buildpack after that
+
+<details>
+    <summary>Buildpacks</summary>
+    <img src="assets/heroku/buildpacks.png" alt="Buildpacks screenshot">
+</details>
+
+ #### Open Deploy Tab
+   ##### Choose deployment method
+  - Connect GITHUB
+  - Login if prompted
+
+<details>
+    <summary>Deployment method</summary>
+    <img src="assets/heroku/method.png" alt="Deployment method screenshot">
+</details>
+
+   ##### Connect to Github
+  - Choose repositories you want to connect
+  - Click "Connect"
+
+<details>
+    <summary> Repo Connect</summary>
+    <img src="assets/heroku/repo-connect.png" alt="Repo connect screenshot">
+</details>
+
+  ##### Automatic and Manual deploy
+  - Choose a method to deploy
+  - After Deploy is clicked it will install various file
+
+<details>
+    <summary> Deploy methods</summary>
+    <img src="assets/heroku/deploy.png" alt="deploy method screenshot">
+</details>
+
+  ##### Final Deployment
+  - A view button will display
+  - Once clicked the website will open
+
+<details>
+    <summary> Deploy</summary>
+    <img src="assets/heroku/view.png" alt="view screenshot">
+</details>
+
+### Forking the GitHub Repository
+1. Go to the GitHub repository
+2. Click on Fork button in top right corner
+3. You will then have a copy of the repository in your own GitHub account.
+4. [GitHub Repository](https://github.com/mat-shepherd/CI_PP3_COUNTDOWN_GAME)
+
+### Cloning the repository in GitHub
+1. Visit the GitHub page of the website's repository
+2. Click the “Clone” button on top of the page
+3. Click on “HTTPS”
+4. Click on the copy button next to the link to copy it
+5. Open your IDE
+6. Type ```git clone <copied URL>``` into the terminal
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Credits
-Images and logos not referenced below are owned or created by the developer.
 
 ### Content
 In order of appearance:
@@ -202,5 +309,17 @@ The markdown structure of this readme was based on the structure of the followin
 - https://github.com/jamie2210/CI_MS1_TBC
 - https://github.com/jeremyhsimons/CI_PP3_DungeonEscape
 
+The deployment steps for the project were adapted from the following readme.md file by Jeremy Simons:
+- https://github.com/jeremyhsimons/CI_PP3_DungeonEscape
+
+[Back to Table of Contents](#table-of-contents)
 
 ## Acknowledgements
+- My mentor Mo Shami for your support, guidance, and encouragement as always!
+- Alan Bushell and the February 2023 Student Cohort for their knowledge sharing, advice, and camaraderie during our weekly standup calls and in Slack
+- ... for reviewing my project and providing great constructive feedback
+- The Code Institute and their tutor support team for an excellent experience and great support leading up to this second project
+- My wife for her exceptional patience and support while I sat in front of the computer for days on end and for listening to my constant updates and ramblings about this third project
+- My son  William for helping me test the game, providing feedback and ideas, and for spotting bugs!
+
+[Back to Table of Contents](#table-of-contents)

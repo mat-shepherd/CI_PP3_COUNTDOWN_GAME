@@ -35,17 +35,21 @@
 ## Project Goals 
 The goals of this app include:
 
-### Developer Goals
-- Increase brand awareness
-- Convey the expertise, capabilities, and track record of the consultant to build trust in the brand
-- Increase qualified leads for the consultant's services
-- Build an SEO-optimised website with a great user experience to increase our search engine visibility and showcase the quality of the consultant's work
+### Site Owner Goals
+- Create a fun interactive game that furthers my understanding of problem solving through code and the Python language
+- Create an attractive and easy to use game
+- Ensure the user understands the rules of the game
+- Ensure the user is provided with clear instructions on how to play on each screen
+- Ensure the user is provided with clear feedback on any errors and how to proceed
+- Allow the user to keep track of their score in the game
+- Allow the user to have thier score displaye don the leaderboard if it is a top ten high score
 
 ### User Goals
-- Play a fun and interactive online game of logic and luck against a virtual opponent
+- Play a fun and interactive online numbers and words puzzle game similar to the U.K. T.V. gameshow Countdown 
 - Quickly understand the rules of the game and how to play
 - Be able to keep track of the game score and to try to beat their previous high score
-- Play the game as often as desired and have the game remember their name and details
+- Play the game as often as desired
+- Achieve a top ten high score that appears on the game leaderboard
 
 ## User Experience
 
@@ -53,13 +57,8 @@ The goals of this app include:
 - Countdown is typically played by anyone age 12 and up, that can follow the rules to solve challenging word and number games.
 
 ### User Requirements and Expectations
-- An intuitive and easy to locate navigation system regardless of screen size
-- Ability to quickly find relevant information on the business and its services
-- Quick and easy ways to contact the business
-- A visually appealing and instuitively structured website that works well and is easy to read on all screen sizes
-- Informative and relevant content that is easy to locate and read
-- A website that loads quickly on all devices and connections
-- A website that is accessible to all users 
+- An intuitive and easy to navigate game interface
+- Ability to quickly find game rules or start the game
 
 ### User Stories
 I have divided my user stories into prospective customers, existing customers, and site owners, as each of these users will have a distinct set of needs and goals.

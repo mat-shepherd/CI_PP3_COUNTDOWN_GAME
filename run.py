@@ -1160,6 +1160,9 @@ class Screen:
                     "THAT'S A NEW HIGH SCORE!\n",
                     'center'
                 )
+                # Add delay so user can read top of terminal
+                sleep(2)
+                # Print leaderboard
                 print_high_scores()
             # Let user choose to start new game
             # or end game

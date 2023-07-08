@@ -29,6 +29,9 @@
     5. [Testing user stories](#testing-user-stories)
 8. [Bugs](#Bugs)
 9. [Deployment](#deployment)
+    - [Deploying in Heroku](#deploying-the-website-in-heroko)
+    - [Forking the GitHub Repository](#forking-the-github-repository)
+    - [Cloning of Repository i GitHub](#cloning-the-repository-in-github)
 10. [Credits](#credits)
 11. [Acknowledgements](#acknowledgements)
 
@@ -101,6 +104,9 @@ I have divided my user stories into users and the site owner, as each of these u
 - CodeAnywhere
 
 ### Python Libraries
+
+### Third Party Python Libraries
+[PyDictionary](https://pypi.org/project/PyDictionary/)
 
 
 [Back to Table of Contents](#table-of-contents)

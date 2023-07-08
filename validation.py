@@ -2,12 +2,12 @@
 # Python
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from re import search, findall
+from collections import Counter
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from colorama import Fore
 from profanity_check import predict_prob
 from PyDictionary import PyDictionary
-from collections import Counter
 import numexpr as ne
 
 # Create instance of PyDictionary

@@ -99,9 +99,10 @@ I have divided my user stories into users and the site owner, as each of these u
 - Python
 
 ### Tools
-- Git
-- GitHub
-- CodeAnywhere
+- [Git](https://git-scm.com/)
+- [GitHub](https://github.com/)
+- [CodeAnywhere](https://codeanywhere.com/)
+- [Heroku](https://heroku.com/)
 
 ### Python Libraries
 [time](https://docs.python.org/3/library/time.html)
@@ -312,10 +313,10 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 ### Deploying the website in Heroko:
 - The website was deployed to Heroko using following steps:
 #### Login or create an account at Heroku
-- Make an account in Heroko and login
+- Make an account in Heroku and login
 
 <details>
-    <summary>Heroko Login Page</summary>
+    <summary>Heroku Login Page</summary>
     <img src="assets/heroku/heroku_login.png" alt="Heroko login page">
 </details>
 
@@ -407,6 +408,7 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
 - The word set used in word_set.py was generated from the [sowpods.txt](https://github.com/jesstess/Scrabble/blob/master/scrabble/sowpods.txt) Scrabble word set by [jesstess](https://github.com/jesstess)
 - The nine letter word list in nine_letter_word_list.py was generated from the [Common 9 Letter Words list](https://www.unscramblerer.com/common-nine-letter-words/) by [unscramblerer.com](https://www.unscramblerer.com/)
+- The letter tiles ASCII art pattern was adapted from a larger pattern found in the [Patterns section of ASCII Art Archive](https://www.asciiart.eu/art-and-design/patterns)
 
 
 ### Code

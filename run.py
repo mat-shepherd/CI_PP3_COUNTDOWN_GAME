@@ -321,7 +321,7 @@ class Screen:
         ]:
             # Add additional vertical spacing on
             # enter name screen
-            print('\n')
+            print('\n\n')
         if (
             Screen.round_number == 1
             and new_player.chosen_letters == [
@@ -412,7 +412,7 @@ class Screen:
             round_word = num2words(
                 self.round_number, lang='en'
                 ).upper()
-            # Add varying amount of spaceds
+            # Add varying amount of spaces
             # based on length of round number string
             if Screen.round_number == 1:
                 spaces_num = len(round_word) * (5 // Screen.round_number)

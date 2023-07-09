@@ -380,7 +380,7 @@ def validate_user_numbers(user_solution, new_player=None):
         # or empty value in user_solution
         illegal_regex = r'[^0-9\(\)\*\+\/\-\s]'
         match = search(illegal_regex, user_solution)
-        if user_solution == '':
+        if user_solution == '' or user_solution == ' ':
             raise ValueError('Please enter a solution!')
         elif match is not None:
             raise ValueError(

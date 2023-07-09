@@ -59,7 +59,7 @@ init()
 
 class Player:
     """
-    Stores all player attributes
+    Contains all player attributes.
 
     Keeps track of player name, score, letters,
     numbers, and words as the player progresses
@@ -147,10 +147,10 @@ class Player:
 
 class Screen:
     """
-    Stores the attributes of all game screen elements
-    to be rendered.
+    Contains the attributes and methods of all game screen 
+    elements to be rendered.
 
-    Called by round_handler to creare Screen object instances
+    Called by round_handler to create Screen object instances
     to render the correct screen elements depending on the
     screen_data_param and/or round_number.
 

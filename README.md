@@ -89,6 +89,21 @@ I have divided my user stories into users and the site owner, as each of these u
 
 
 ### Data Model
+- Five classes were used to represent key elements of the game:
+    - Screen - Contains the attributes and methods of all game screen elements to be rendered. Called by round_handler to create Screen object instances to render the correct screen elements depending on the screen_data_param and/or round_number.
+    - Player - Contains all player attributes. Keeps track of player name, score, letters, numbers, and words as the player progresses through rounds of the game. Contains a method to update player score.
+    - Numbers - Contains all types of numbers to choose from and solve for in the numbers round and numbers generation methods.
+    - Letters - Contains all letter types and letters to choose from in the letters round and letter generation methods.
+    - Conundrums - Contains the Conundrum word attributes for the Conundrum round and methods to populate and solve the conundrum.
+- Three text files were used to store and reuse blocks of ASCII art and text to be displayed at the beginning of the game screen render or on the rules screen.
+    - intro_screen_data.txt - Welcome message in ASCII tiles and sub-heading
+    - game_screen_data.txt - Countdown heading in ASCII tiles
+    - rules_screen_data.txt - Rules heading in ASCII tiles and rules text
+- A Set was used to create a word set against which the anagram solver could check for valid words. This was used instead of checking against PyDictionary as calls to PyDictionary for a large number of potential words turned out to be expensive, blocking code execution for long periods of time.
+    - word_set.py
+- A List was used to store nine letter words for use in the conundrum round as anagrams. This was used instead of word_set as the larger set of words contains less common words that would be harder for the user to guess. The list was genereatd from a set of commonly used 9 letter words.
+    - nine_letter_word_list.py
+- Google Sheets and the Google Sheets API was used to store high score data to create the top ten leaderboard. This allows player names and scores to persist beyong the game session if the user acieves a top ten high score.
 
 
 [Back to Table of Contents](#table-of-contents)

@@ -74,6 +74,8 @@ class Player:
         Player's name
     score : int
         Player's score
+    high_score : int
+        Player's high score from previous games
     leaderboard_score : int
         Score if playe'rs final score beats current
         top 10 leaderboard scores.
@@ -95,8 +97,7 @@ class Player:
     Methods
     -------
     update_score()
-        Update the Player score for the current
-        round.
+        Update the Player score and high score.
     """
     def __init__(self,
                  name='',
@@ -829,8 +830,8 @@ class Screen:
                 Fore.LIGHTGREEN_EX +
                 f'Make the longest word possible using only '
                 'the letters in the tiles above!\n'
-                '\nThe word must be longer than 2 letters long.\n'
-                '\nYou can only use the letters as often as they are '
+                'The word must be longer than 2 letters long.\n'
+                'You can only use the letters as often as they are '
                 'shown above!\n'
             )
             # Pause execution and wait for keypress
@@ -1969,8 +1970,13 @@ def main(new_player=None):
     Create game objects
     Run all program functions
     """
-    # Reset round number in case this is a repeat game
+    # Reset round number and previous inputs
+    # in case this is a repeat game
     Screen.round_number = 0
+    user_word = ''
+    user_solution = ''
+    user_response = ''
+    user_prompt = ''
     # If this is a repeat game and new_player object passed
     # store player's name
     existing_name = ''

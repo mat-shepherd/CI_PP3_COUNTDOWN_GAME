@@ -276,14 +276,17 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
     <img src="docs/validation/run_pylint.PNG" alt="run.py Pylint screenshot">
 </details>
 
+<details>
 <summary>validation.py</summary>
     <img src="docs/validation/validation_pylint.PNG" alt="validation.py Pylint screenshot">
 </details>
 
+<details>
 <summary>word_set.py</summary>
     <img src="docs/validation/word_set_pylint.PNG" alt="word_set.py Pylint screenshto">
 </details>
 
+<details>
 <summary>nine_letter_word_list.py</summary>
     <img src="docs/validation/nine_letter_word_list_pylint.PNG" alt="nine_letter_word_list.py Pylint screenshot">
 </details>
@@ -297,8 +300,9 @@ Thirteen unit tests were written to test the project's validation functions. The
 
 One test failed for validate_user_numbers function, which higlighted the need to check for a sting that contains just spaces. This was corrected using the  isspace() method.
 
-After this all test passed OK.
+After this all tests passed OK.
 
+<details>
 <summary>Unit Test Results</summary>
     <img src="docs/unittests/unit_test_1.PNG" alt="Unit test screenshot 1">
     <img src="docs/unittests/unit_test_2.PNG" alt="Unit test screenshot 2">    

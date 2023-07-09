@@ -300,7 +300,8 @@ One test failed for validate_user_numbers function, which higlighted the need to
 After this all test passed OK.
 
 <summary>Unit Test Results</summary>
-    <img src="docs/validation/nine_letter_word_list_pylint.PNG" alt="nine_letter_word_list.py Pylint screenshot">
+    <img src="docs/unittests/unit_test_1.PNG" alt="Unit test screenshot 1">
+    <img src="docs/unittests/unit_test_2.PNG" alt="Unit test screenshot 2">    
 </details>
 
 

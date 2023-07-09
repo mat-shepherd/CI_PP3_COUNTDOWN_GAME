@@ -141,34 +141,34 @@ class TestValidation(unittest.TestCase):
         new_conundrum.target = [
             'v', 'a', 'l', 'i', 'd', 'a', 't', 'e', 'd'
         ]
-        self.assertEqual(check_letters_used("programme", new_player), True)
-        self.assertEqual(check_letters_used("gamer", new_player), True)
-        self.assertEqual(check_letters_used("party", new_player), False)
-        self.assertEqual(check_letters_used("excellent", new_player), False)
-        self.assertEqual(check_letters_used("000", new_player), False)
-        self.assertEqual(check_letters_used(" ", new_player), False)
+        self.assertEqual(check_letters_used('programme', new_player), True)
+        self.assertEqual(check_letters_used('gamer', new_player), True)
+        self.assertEqual(check_letters_used('party', new_player), False)
+        self.assertEqual(check_letters_used('excellent', new_player), False)
+        self.assertEqual(check_letters_used('000', new_player), False)
+        self.assertEqual(check_letters_used(' ', new_player), False)
         self.assertEqual(
-            check_letters_used("validated", new_player, new_conundrum),
+            check_letters_used('validated', new_player, new_conundrum),
             True
         )
         self.assertEqual(
-            check_letters_used("dilate", new_player, new_conundrum),
+            check_letters_used('dilate', new_player, new_conundrum),
             True
         )
         self.assertEqual(
-            check_letters_used("bodacious", new_player, new_conundrum),
+            check_letters_used('bodacious', new_player, new_conundrum),
             False
         )
         self.assertEqual(
-            check_letters_used("partyon", new_player, new_conundrum),
+            check_letters_used('partyon', new_player, new_conundrum),
             False
         )
         self.assertEqual(
-            check_letters_used("000", new_player, new_conundrum),
+            check_letters_used('000', new_player, new_conundrum),
             False
         )
         self.assertEqual(
-            check_letters_used(" ", new_player, new_conundrum),
+            check_letters_used(' ', new_player, new_conundrum),
             False
         )
 
@@ -198,12 +198,12 @@ class TestValidation(unittest.TestCase):
         new_player.chosen_letters = [
             'r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g'
         ]
-        self.assertEqual(check_letters_used("programme", new_player), True)
-        self.assertEqual(check_letters_used("gamer", new_player), True)
-        self.assertEqual(check_letters_used("000", new_player), False)
-        self.assertEqual(check_letters_used(" ", new_player), False)
-        self.assertEqual(check_letters_used("party", new_player), False)
-        self.assertEqual(check_letters_used("excellent", new_player), False)
+        self.assertEqual(check_letters_used('programme', new_player), True)
+        self.assertEqual(check_letters_used('gamer', new_player), True)
+        self.assertEqual(check_letters_used('000', new_player), False)
+        self.assertEqual(check_letters_used(' ', new_player), False)
+        self.assertEqual(check_letters_used('party', new_player), False)
+        self.assertEqual(check_letters_used('excellent', new_player), False)
 
     def test_check_numbers_used(self):
         '''
@@ -215,18 +215,18 @@ class TestValidation(unittest.TestCase):
         '''
         new_player = Player()
         new_player.chosen_numbers = [25, 75, 100, 3, 7, 2]
-        self.assertEqual(check_numbers_used("25 + 75 + 100", new_player), True)
+        self.assertEqual(check_numbers_used('25 + 75 + 100', new_player), True)
         self.assertEqual(
-            check_numbers_used("(7 - 3) + 100 *  2", new_player), True
+            check_numbers_used('(7 - 3) + 100 *  2', new_player), True
         )
         self.assertEqual(
-            check_numbers_used("25 * 75 + 3 / 100 + 7 - 2", new_player), True
+            check_numbers_used('25 * 75 + 3 / 100 + 7 - 2', new_player), True
         )
         self.assertEqual(
-            check_numbers_used("4 + 25 + 100", new_player), False
+            check_numbers_used('4 + 25 + 100', new_player), False
         )
         self.assertEqual(
-            check_numbers_used("25 + 25 + 100", new_player), False
+            check_numbers_used('25 + 25 + 100', new_player), False
         )
 
     def test_validate_user_numbers(self):
@@ -240,31 +240,31 @@ class TestValidation(unittest.TestCase):
         new_player = Player()
         new_player.chosen_numbers = [50, 75, 100, 4, 8, 1]
         self.assertEqual(
-            validate_user_numbers("50 + 75 + 100", new_player),
+            validate_user_numbers('50 + 75 + 100', new_player),
             True
         )
         self.assertEqual(
-            validate_user_numbers("(8 - 4) + 100 *  50", new_player),
+            validate_user_numbers('(8 - 4) + 100 *  50', new_player),
             True
         )
         self.assertEqual(
-            validate_user_numbers("50 * 75 + 4 / 100 + 8 - 1", new_player),
+            validate_user_numbers('50 * 75 + 4 / 100 + 8 - 1', new_player),
             True
         )
         self.assertEqual(
-            validate_user_numbers("4 + 25 + 100", new_player),
+            validate_user_numbers('4 + 25 + 100', new_player),
             False
         )
         self.assertEqual(
-            validate_user_numbers("50 x 4 / 100", new_player),
+            validate_user_numbers('50 x 4 / 100', new_player),
             False
         )
         self.assertEqual(
-            validate_user_numbers("50 * a / 4", new_player),
+            validate_user_numbers('50 * a / 4', new_player),
             False
         )
-        self.assertEqual(validate_user_numbers("", new_player), False)
-        self.assertEqual(validate_user_numbers(" ", new_player), False)
+        self.assertEqual(validate_user_numbers('', new_player), False)
+        self.assertEqual(validate_user_numbers(' ', new_player), False)
 
     def test_validate_user_solution(self):
         '''
@@ -277,16 +277,49 @@ class TestValidation(unittest.TestCase):
         new_player = Player()
         new_player.target_number = 247
         self.assertEqual(
-            validate_user_solution("(100 * 2) + (75 - 25 - 3)", new_player),
+            validate_user_solution('(100 * 2) + (75 - 25 - 3)', new_player),
             (True, 247, 0)
         )
         self.assertEqual(
-            validate_user_solution("(75 - 25) * (7 - 2) - 3", new_player),
+            validate_user_solution('(75 - 25) * (7 - 2) - 3', new_player),
             (True, 247, 0)
         )
         self.assertEqual(
-            validate_user_solution("75 * 3", new_player),
+            validate_user_solution('75 * 3', new_player),
             (False, 225, 22)
+        )
+
+    def test_validate_user_conundrum(self):
+        '''
+        Tests if validate_user_solution function
+        returns expected values. Should return True
+        if conundrum input passes profanity
+        filter, only uses letters, and is exactly
+        9 letters long.
+        '''
+        new_conundrum = Conundrum()
+        new_conundrum.target = [
+            'v', 'a', 'l', 'i', 'd', 'a', 't', 'e', 'd'
+        ]
+        self.assertEqual(
+            validate_user_conundrum('validated', None, new_conundrum),
+            True
+        )
+        self.assertEqual(
+            validate_user_conundrum('validate', None, new_conundrum),
+            False
+        )
+        self.assertEqual(
+            validate_user_conundrum(' ', None, new_conundrum),
+            False
+        )
+        self.assertEqual(
+            validate_user_conundrum('', None, new_conundrum),
+            False
+        )
+        self.assertEqual(
+            validate_user_conundrum('123456789', None, new_conundrum),
+            False
         )
 
 

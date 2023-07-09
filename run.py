@@ -753,8 +753,8 @@ class Screen:
                 if new_player.name == '':
                     user_prompt = input(
                         Fore.WHITE +
-                        'Please enter your name\n'
-                        '(must be 2 to 10 letter characters long)...\n'
+                        'Please enter your name...\n'
+                        '(must be 2 to 10 letter characters long)\n'
                     )
                 else:
                     # If player name already exists ask if they want

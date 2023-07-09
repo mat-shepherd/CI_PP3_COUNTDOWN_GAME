@@ -341,10 +341,9 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
 | **Bug** | **Fix** |
 | ----------- | ----------- |
-| Timed Input Countdown Overwriting Input | |
-| | |
-| | |
-| | |
+| Timed input countdown timer text overwriting input | I tried to implement a countdown that printed the time remaining above or below while the input timer was still counting down. While I managed to use various threading solutions and libraries to allow the timer to update while the input was waiting for user input I couldn't get around the cursor moving up and down between the user input and the countdown line, which led to issues with user input getting overwritten or appearing on the wrong line. In the end I ahd to remove this feature. To implement in the future will likely need a more sophisticated GUI using something like curses and threading. |
+| Player guesses from previous games carrying over to nww game | When I implemented the feature alllowing players to start a new game and preserve thier name and score the player's previous word and number guesses were persisting. The expected behaviour of calling main() again woud be that new_player would be associated with a new Player object instance, which would not contain any attrbiute values of the previous new_player object. It turns out as I was setting the default value of the list attrbutes to [] instead of None, these lists were using the previous player object's list objects as default values, which caused previous user input to be carried over. Setting these default values to None and intialising the player attrbiutes as lists elsewhere fixed this issue. |
+| PyDictionary printing error when meaning not found | When PyDictionary is used to find the meaning of a word it would print an error if the meaning was not found. I didn't want this default error text to display as the word validation is already handling telling the user if a word is found or not and if a meaning isn't found for a word it just prints the word. I found the solution to this bug in this [Stack Overflow answer](https://stackoverflow.com/a/52564005) by [Jenner Felton](https://stackoverflow.com/users/4044442/jenner-felton), which pointed to using a disable_errors paramter, meaning(word, disable_errors=True), which I didn't find in PyDictionary's documentation. |
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -482,6 +481,8 @@ The method and style code to center the Heroku terminal and change the backgroun
 - Randomly shuffle letters code: The method for shuffling a list of letters was adapted from the [Python Random shuffle() Method](https://www.w3schools.com/python/ref_random_shuffle.asp) article by [W3Schools](https://www.w3schools.com/)
 
 - Dictionary meaning check code: The code used to check words against a dictionary and return their meanings (check_dictionary() and print_word_meaning()) uses the library and code examples provided in [PyDictionary](https://github.com/geekpradd/PyDictionary) written by [geekpradd](https://github.com/geekpradd)
+
+- Fix for PyDictionary printing an error message when no meaning found was resolved using the meaning(word, disable_errors=True) example provided by this [Stack Overflow answer](https://stackoverflow.com/a/52564005) by [Jenner Felton](https://stackoverflow.com/users/4044442/jenner-felton).
 
 - Profanity check code: The code used to check words against a profanity list (check_profanity()) uses the library and code examples provided in [Alt-profanity-check](https://github.com/dimitrismistriotis/alt-profanity-check) written by [dimitrismistriotis](https://github.com/dimitrismistriotis) which is based on [profanity-check](https://github.com/vzhou842/profanity-check) by [Victor Zhou](https://github.com/vzhou842)
 

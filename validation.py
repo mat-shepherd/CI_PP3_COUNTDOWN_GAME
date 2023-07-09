@@ -207,7 +207,7 @@ def print_word_meaning(word, new_player=None):
     return valid_word
 
 
-def check_letters_used(word, new_player, new_conundrum=[]):
+def check_letters_used(word, new_player=None, new_conundrum=[]):
     """
     Check if the player's word uses only
     the letters chosen for this round.
@@ -276,7 +276,7 @@ def validate_numbers(number):
         return False
 
 
-def validate_user_word(user_word, new_player):
+def validate_user_word(user_word, new_player=None):
     """
     Check user letters round word is valid,
     using only the letters provided.
@@ -317,7 +317,7 @@ def validate_user_word(user_word, new_player):
         return False
 
 
-def check_numbers_used(solution, new_player):
+def check_numbers_used(solution, new_player=None):
     """
     Check if the player's solution uses only
     the numbers chosen for this round.
@@ -353,7 +353,7 @@ def check_numbers_used(solution, new_player):
     return True
 
 
-def validate_user_numbers(user_solution, new_player):
+def validate_user_numbers(user_solution, new_player=None):
     """
     Check user's numbers round solution is valid
     Check only numbers and operators are used
@@ -394,7 +394,7 @@ def validate_user_numbers(user_solution, new_player):
         return False
 
 
-def validate_user_solution(solution, new_player):
+def validate_user_solution(solution, new_player=None):
     """
     Evaluate user's solution is correct.
 

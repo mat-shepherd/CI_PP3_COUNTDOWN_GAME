@@ -19,6 +19,7 @@ from validation import (
     validate_user_solution,
     validate_user_conundrum
 )
+from run import Player, Letters, Numbers, Conundrum
 # Third Party
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 from profanity_check import predict_prob
@@ -123,6 +124,21 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(print_word_meaning('jig'), True)
         self.assertEqual(print_word_meaning('snozzberry'), False)
         self.assertEqual(print_word_meaning('flibbidyflobbedy'), False)
+
+    def test_check_letters_used(self):
+        new_player = Player()
+        new_conundrum = Conundrum()
+        new_player.letters = ['r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g']
+        new_conundrum.target = ['v', 'a', 'l', 'i', 'd', 'a', 't', 'e', 'd']
+        self.assertEqual(check_letters_used("programme", new_player), True)
+        self.assertEqual(check_letters_used("gamer", new_player), True)
+        self.assertEqual(check_letters_used("party", new_player), False)
+        self.assertEqual(check_letters_used("excellent", new_player), False)
+        self.assertEqual(check_letters_used("validated", new_conundrum), True)
+        self.assertEqual(check_letters_used("dilate", new_conundrum), True)
+        self.assertEqual(check_letters_used("bodacious", new_conundrum), False)
+        self.assertEqual(check_letters_used("partyon", new_conundrum), False)
+
 
 if __name__ == '__main__':
     unittest.main()

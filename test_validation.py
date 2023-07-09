@@ -129,10 +129,10 @@ class TestValidation(unittest.TestCase):
         '''
         Tests if check_letters_used function
         returns expected values. Should return False if
-        word uses letters not found in Player chosen 
+        word uses letters not found in Player chosen
         letters or conundrum target letters list else
         returns True.
-        '''        
+        '''
         new_player = Player()
         new_conundrum = Conundrum()
         new_player.chosen_letters = [
@@ -145,6 +145,8 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(check_letters_used("gamer", new_player), True)
         self.assertEqual(check_letters_used("party", new_player), False)
         self.assertEqual(check_letters_used("excellent", new_player), False)
+        self.assertEqual(check_letters_used("000", new_player), False)
+        self.assertEqual(check_letters_used(" ", new_player), False)         
         self.assertEqual(
             check_letters_used("validated", new_player, new_conundrum),
             True
@@ -161,6 +163,14 @@ class TestValidation(unittest.TestCase):
             check_letters_used("partyon", new_player, new_conundrum),
             False
         )
+        self.assertEqual(
+            check_letters_used("000", new_player, new_conundrum),
+            False
+        )
+        self.assertEqual(
+            check_letters_used(" ", new_player, new_conundrum),
+            False
+        )
 
     def test_validate_numbers(self):
         '''
@@ -172,10 +182,28 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(validate_numbers('0'), True)
         self.assertEqual(validate_numbers('2'), True)
         self.assertEqual(validate_numbers('4'), True)
-        self.assertEqual(validate_numbers('a'), False)          
-        self.assertEqual(validate_numbers('-1'), False)        
+        self.assertEqual(validate_numbers('a'), False)
+        self.assertEqual(validate_numbers('-1'), False)
         self.assertEqual(validate_numbers('-1'), False)
         self.assertEqual(validate_numbers('5'), False)
+
+    def test_validate_user_word(self):
+        '''
+        Tests if validate_user_word function
+        returns expected values. Returns True if
+        letters round word is valid and uses only
+        the letters provided else retruns False.
+        '''
+        new_player = Player()
+        new_player.chosen_letters = [
+            'r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g'
+        ]
+        self.assertEqual(check_letters_used("programme", new_player), True)
+        self.assertEqual(check_letters_used("gamer", new_player), True)
+        self.assertEqual(check_letters_used("000", new_player), False)
+        self.assertEqual(check_letters_used(" ", new_player), False)           
+        self.assertEqual(check_letters_used("party", new_player), False)
+        self.assertEqual(check_letters_used("excellent", new_player), False)
 
 
 if __name__ == '__main__':

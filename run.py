@@ -2006,6 +2006,7 @@ def main(existing_name='', existing_high_score=0):
 
 
 # Call main game function
+if __name__ == "__main__":
+    main()
 
-main()
 # End of code...phew...thanks for reading!

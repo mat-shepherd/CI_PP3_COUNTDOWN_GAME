@@ -99,7 +99,7 @@ class Player:
         round.
     """
     def __init__(self,
-                 name='Player',
+                 name='',
                  score=0,
                  leaderboard_score=0,
                  round_time=0,
@@ -722,15 +722,43 @@ class Screen:
             # Add additional vertical spacing
             print('\n\n\n\n')
             while True:
-                # Add additional newlines to push
-                # countdown title up the terminal
-                # as this screen doesn't have much
-                # content
-                user_prompt = input(
-                    Fore.WHITE +
-                    'Please enter your name\n'
-                    '(must be 2 to 10 letter characters long)...\n'
-                )
+                # Check if player name exists from
+                # previous round
+                if new_player.name == '':
+                    user_prompt = input(
+                        Fore.WHITE +
+                        'Please enter your name\n'
+                        '(must be 2 to 10 letter characters long)...\n'
+                    )
+                else:
+                # If player name already exists ask if they want
+                # to keep it or change it
+                    while True:
+                        user_prompt = input(
+                            Fore.WHITE +
+                            f'Type 1 to keep the name '
+                            + Fore.YELLOW +
+                            f'{new_player.name} '
+                            + Fore.WHITE +
+                            f'or 2 to enter a new name\n'
+                        )
+                        if validate_menu_value(
+                            user_prompt,
+                            self.screen_data_param
+                        ):
+                            if user_prompt == '1':
+                                user_prompt = new_player.name
+                                break
+                            elif user_prompt == '2':
+                                user_prompt = input(
+                                    Fore.WHITE +
+                                    'Please enter your name\n'
+                                    '(must be 2 to 10 letter characters long)...\n'
+                                )
+                                if validate_name(user_prompt):
+                                    break
+                        else:
+                            continue
                 if validate_name(user_prompt):
                     new_player.name = user_prompt.lower().capitalize()
                     # Return start_game flag to
@@ -1175,7 +1203,7 @@ class Screen:
             user_prompt = ''
             # If the user pressed any key other
             # than escape start a new game
-            main()
+            main(new_player)
         # Else game is over
 
         # Return the user_prompt value back to round_handler
@@ -1921,7 +1949,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
 # Main game functions
 
 
-def main():
+def main(new_player=None):
     """
     Create game objects
     Run all program functions
@@ -1929,6 +1957,12 @@ def main():
     # Reset round number in case
     # this is a repeat game
     Screen.round_number = 0
+    # If this is a repeat game and
+    # new_player object passed store
+    # player's name
+    existing_name = ''
+    if new_player:
+        existing_name = new_player.name
     # Create new game object
     # instances and pass to round
     # handler
@@ -1936,6 +1970,9 @@ def main():
     new_letters = Letters()
     new_numbers = Numbers()
     new_conundrum = Conundrum()
+    # Retrieve existing player
+    if existing_name:
+        new_player.name = existing_name
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
 
 

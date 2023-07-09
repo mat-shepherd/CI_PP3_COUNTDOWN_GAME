@@ -75,7 +75,16 @@ The goals of this app include:
 I have divided my user stories into users and the site owner, as each of these users will have a distinct set of needs and goals.
 
 #### Users
-1. As a user, I want...
+1. As a user, I want to play a fun, challenging, and educational game with feedback on word and number game solutions.
+2. As a user, I want to be given clear instructions on each screen on how to play the game and how to progress.
+3. As a user, I want to be able to view the rules of the game.
+4. As a user, I want to be able to start a new game and enter my player name.
+5. As a user, 
+6. As a user, 
+7. As a user, 
+8. As a user, 
+9. As a user, 
+10. As a user, 
 
 
 #### Site Owner 

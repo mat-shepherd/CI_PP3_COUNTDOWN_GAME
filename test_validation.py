@@ -205,6 +205,30 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(check_letters_used("party", new_player), False)
         self.assertEqual(check_letters_used("excellent", new_player), False)
 
+    def test_check_numbers_used(self):
+        '''
+        Tests if check_numbers_used function
+        returns expected values. Should return False if
+        solution string uses numbers not found in Player
+        chosen numbers list, or uses numbers more than shown,
+        else returns True.
+        '''
+        new_player = Player()
+        new_player.chosen_numbers = [25, 75, 100, 3, 7, 2]
+        self.assertEqual(check_numbers_used("25 + 75 + 100", new_player), True)
+        self.assertEqual(
+            check_numbers_used("(7 - 3) + 100 *  2", new_player), True
+        )
+        self.assertEqual(
+            check_numbers_used("25 * 75 + 3 / 100 + 7 - 2", new_player), True
+        )
+        self.assertEqual(
+            check_numbers_used("4 + 25 + 100", new_player), False
+        )
+        self.assertEqual(
+            check_numbers_used("25 + 25 + 100", new_player), False
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

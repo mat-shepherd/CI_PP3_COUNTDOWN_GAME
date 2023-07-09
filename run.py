@@ -51,7 +51,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('countdown_game')
 
-# Initialize colorama
+# Initialise colorama
 init()
 
 # Classes
@@ -105,12 +105,12 @@ class Player:
                  high_score=0,
                  leaderboard_score=0,
                  round_time=0,
-                 chosen_letters=[],
-                 chosen_numbers=[],
+                 chosen_letters=None,
+                 chosen_numbers=None,
                  target_number=0,
-                 guessed_words=[],
-                 guessed_solutions=[],
-                 guessed_conundrum=[]
+                 guessed_words=None,
+                 guessed_solutions=None,
+                 guessed_conundrum=None
                  ):
         self.name = name
         self.score = score
@@ -496,6 +496,14 @@ class Screen:
         """
         countdown = 60 if Screen.round_number == 4 else 30
         start_time = time()
+        # Initialise player guess attributes as lists if 
+        # not yet created 
+        if new_player.guessed_words is None:
+            new_player.guessed_words = []
+        if new_player.guessed_solutions is None:
+            new_player.guessed_solutions = []
+        if new_player.guessed_conundrum is None:
+            new_player.guessed_conundrum = []
 
         while True:
             try:
@@ -547,13 +555,14 @@ class Screen:
             except TimeoutOccurred:
                 print("Time's Up!")
                 user_prompt = False
-                time_remaining = 0
-                # Store empty word to not throw off looking up
-                # player's last guessed word
-                new_player.guessed_words.insert(
-                    Screen.round_number - 1,
-                    ' '
-                )
+                time_remaining = 0         
+                # Store empty word during letter's rounds to not 
+                # throw off looking up player's last guessed word
+                if 1 <= Screen.round_number <= 3:
+                    new_player.guessed_words.insert(
+                        Screen.round_number - 1,
+                        ' '
+                    )
                 sleep(2)
                 break
 
@@ -597,7 +606,8 @@ class Screen:
             Keyword to represent current screen rendered.
         """
         # If enter_name screen populate letters with Ready?
-        if len(new_player.chosen_letters) == 0:
+        if (new_player.chosen_letters is None or
+                len(new_player.chosen_letters) == 0):
             new_player.chosen_letters = [
                 ' ',
                 ' ',
@@ -1219,7 +1229,10 @@ class Screen:
             user_prompt = ''
             # If the user pressed any key other
             # than escape start a new game
-            main(new_player)
+            # and pass existing name and high score
+            existing_name = new_player.name
+            existing_high_score = new_player.high_score
+            main(existing_name, existing_high_score)
         # Else game is over
 
         # Return the user_prompt value back to round_handler
@@ -1965,7 +1978,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
 # Main game functions
 
 
-def main(new_player=None):
+def main(existing_name = '', existing_high_score = 0):
     """
     Create game objects
     Run all program functions
@@ -1976,14 +1989,7 @@ def main(new_player=None):
     user_word = ''
     user_solution = ''
     user_response = ''
-    user_prompt = ''
-    # If this is a repeat game and new_player object passed
-    # store player's name
-    existing_name = ''
-    existing_high_score = 0
-    if new_player:
-        existing_name = new_player.name
-        existing_high_score = new_player.high_score
+    user_prompt = ''    
     # Create new game object instances and pass to round
     # handler
     new_player = Player()

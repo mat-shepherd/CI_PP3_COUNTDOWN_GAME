@@ -164,7 +164,7 @@ def check_dictionary(word):
         return word_meaning
 
 
-def print_word_meaning(word, new_player):
+def print_word_meaning(word, new_player=None):
     """
     Check if word is used in PyDictionary
     and print the word length and meaning

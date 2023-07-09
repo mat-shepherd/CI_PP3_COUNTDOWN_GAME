@@ -101,6 +101,7 @@ class Player:
     def __init__(self,
                  name='',
                  score=0,
+                 high_score=0,
                  leaderboard_score=0,
                  round_time=0,
                  chosen_letters=[],
@@ -112,6 +113,7 @@ class Player:
                  ):
         self.name = name
         self.score = score
+        self.high_score = high_score
         self. leaderboard_score = leaderboard_score
         self.round_time = round_time
         self.chosen_letters = chosen_letters
@@ -123,9 +125,13 @@ class Player:
 
     def update_score(self):
         """
-        Update the Player score for the current
+        Update the Player score and high score.
+        
+        Update player's score for the current
         round based on the player's guess and time
-        remaining.
+        remaining. If the player's score is now
+        higher than their high score update the
+        high score.
 
         Returns
         -------
@@ -141,6 +147,11 @@ class Player:
         elif 4 <= Screen.round_number <= 5:
             round_score = 10 * self.round_time
             self.score += round_score
+
+        # If score is now higher than previous high
+        # score update player's high score
+        if self.score > self.high_score:
+            self.high_score = self.score
 
         return round_score
 
@@ -553,14 +564,18 @@ class Screen:
 
     def display_score(self, new_player=None):
         """
-        Display the user score
+        Display the user score and previous
+        high score if known
 
         Parameters
         ----------
         new_player : object
             Current Player Object.
         """
-        print_centered(f'Your Score: {new_player.score}')
+        print_centered(
+            f'Your Score: {new_player.score}   '
+            f'Previous High Score: {new_player.high_score}'
+        )
 
     def update_tiles(
         self,
@@ -814,8 +829,8 @@ class Screen:
                 Fore.LIGHTGREEN_EX +
                 f'Make the longest word possible using only '
                 'the letters in the tiles above!\n'
-                'The word must be longer than 2 letters long.\n'
-                'You can only use the letters as often as they are '
+                '\nThe word must be longer than 2 letters long.\n'
+                '\nYou can only use the letters as often as they are '
                 'shown above!\n'
             )
             # Pause execution and wait for keypress
@@ -1954,25 +1969,26 @@ def main(new_player=None):
     Create game objects
     Run all program functions
     """
-    # Reset round number in case
-    # this is a repeat game
+    # Reset round number in case this is a repeat game
     Screen.round_number = 0
-    # If this is a repeat game and
-    # new_player object passed store
-    # player's name
+    # If this is a repeat game and new_player object passed
+    # store player's name
     existing_name = ''
+    existing_high_score = 0
     if new_player:
         existing_name = new_player.name
-    # Create new game object
-    # instances and pass to round
+        existing_high_score = new_player.high_score
+    # Create new game object instances and pass to round
     # handler
     new_player = Player()
     new_letters = Letters()
     new_numbers = Numbers()
     new_conundrum = Conundrum()
-    # Retrieve existing player
+    # Retrieve existing player name and high score
     if existing_name:
         new_player.name = existing_name
+    if existing_high_score:
+        new_player.high_score = existing_high_score        
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
 
 

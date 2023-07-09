@@ -128,16 +128,28 @@ class TestValidation(unittest.TestCase):
     def test_check_letters_used(self):
         new_player = Player()
         new_conundrum = Conundrum()
-        new_player.letters = ['r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g']
+        new_player.chosen_letters = ['r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g']
         new_conundrum.target = ['v', 'a', 'l', 'i', 'd', 'a', 't', 'e', 'd']
         self.assertEqual(check_letters_used("programme", new_player), True)
         self.assertEqual(check_letters_used("gamer", new_player), True)
         self.assertEqual(check_letters_used("party", new_player), False)
         self.assertEqual(check_letters_used("excellent", new_player), False)
-        self.assertEqual(check_letters_used("validated", new_conundrum), True)
-        self.assertEqual(check_letters_used("dilate", new_conundrum), True)
-        self.assertEqual(check_letters_used("bodacious", new_conundrum), False)
-        self.assertEqual(check_letters_used("partyon", new_conundrum), False)
+        self.assertEqual(
+            check_letters_used("validated", new_player, new_conundrum),
+            True
+        )
+        self.assertEqual(
+            check_letters_used("dilate", new_player, new_conundrum),
+            True
+        )
+        self.assertEqual(
+            check_letters_used("bodacious", new_player, new_conundrum),
+            False
+        )
+        self.assertEqual(
+            check_letters_used("partyon", new_player, new_conundrum),
+            False
+        )
 
 
 if __name__ == '__main__':

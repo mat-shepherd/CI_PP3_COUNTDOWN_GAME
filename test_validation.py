@@ -126,10 +126,21 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(print_word_meaning('flibbidyflobbedy'), False)
 
     def test_check_letters_used(self):
+        '''
+        Tests if check_letters_used function
+        returns expected values. Should return False if
+        word uses letters not found in Player chosen 
+        letters or conundrum target letters list else
+        returns True.
+        '''        
         new_player = Player()
         new_conundrum = Conundrum()
-        new_player.chosen_letters = ['r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g']
-        new_conundrum.target = ['v', 'a', 'l', 'i', 'd', 'a', 't', 'e', 'd']
+        new_player.chosen_letters = [
+            'r', 'a', 'p', 'r', 'm', 'e', 'm', 'o', 'g'
+        ]
+        new_conundrum.target = [
+            'v', 'a', 'l', 'i', 'd', 'a', 't', 'e', 'd'
+        ]
         self.assertEqual(check_letters_used("programme", new_player), True)
         self.assertEqual(check_letters_used("gamer", new_player), True)
         self.assertEqual(check_letters_used("party", new_player), False)
@@ -150,6 +161,21 @@ class TestValidation(unittest.TestCase):
             check_letters_used("partyon", new_player, new_conundrum),
             False
         )
+
+    def test_validate_numbers(self):
+        '''
+        Tests if validate_numbers function
+        returns expected values. Should only
+        accept number values in user input of
+        no less than 0 and no more than 4.
+        '''
+        self.assertEqual(validate_numbers('0'), True)
+        self.assertEqual(validate_numbers('2'), True)
+        self.assertEqual(validate_numbers('4'), True)
+        self.assertEqual(validate_numbers('a'), False)          
+        self.assertEqual(validate_numbers('-1'), False)        
+        self.assertEqual(validate_numbers('-1'), False)
+        self.assertEqual(validate_numbers('5'), False)
 
 
 if __name__ == '__main__':

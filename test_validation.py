@@ -146,7 +146,7 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(check_letters_used("party", new_player), False)
         self.assertEqual(check_letters_used("excellent", new_player), False)
         self.assertEqual(check_letters_used("000", new_player), False)
-        self.assertEqual(check_letters_used(" ", new_player), False)         
+        self.assertEqual(check_letters_used(" ", new_player), False)
         self.assertEqual(
             check_letters_used("validated", new_player, new_conundrum),
             True
@@ -201,7 +201,7 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(check_letters_used("programme", new_player), True)
         self.assertEqual(check_letters_used("gamer", new_player), True)
         self.assertEqual(check_letters_used("000", new_player), False)
-        self.assertEqual(check_letters_used(" ", new_player), False)           
+        self.assertEqual(check_letters_used(" ", new_player), False)
         self.assertEqual(check_letters_used("party", new_player), False)
         self.assertEqual(check_letters_used("excellent", new_player), False)
 
@@ -265,6 +265,29 @@ class TestValidation(unittest.TestCase):
         )
         self.assertEqual(validate_user_numbers("", new_player), False)
         self.assertEqual(validate_user_numbers(" ", new_player), False)
+
+    def test_validate_user_solution(self):
+        '''
+        Tests if validate_user_solution function
+        returns expected values. Should return True
+        solution_result and target_difference if
+        solution achieves target number and False
+        solution_result and target_difference if not.
+        '''
+        new_player = Player()
+        new_player.target_number = 247
+        self.assertEqual(
+            validate_user_solution("(100 * 2) + (75 - 25 - 3)", new_player),
+            (True, 247, 0)
+        )
+        self.assertEqual(
+            validate_user_solution("(75 - 25) * (7 - 2) - 3", new_player),
+            (True, 247, 0)
+        )
+        self.assertEqual(
+            validate_user_solution("75 * 3", new_player),
+            (False, 225, 22)
+        )
 
 
 if __name__ == '__main__':

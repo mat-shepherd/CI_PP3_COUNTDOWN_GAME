@@ -377,7 +377,7 @@ def validate_user_numbers(user_solution, new_player=None):
         if check_numbers_used(user_solution, new_player) is False:
             raise ValueError('You can only use the chosen numbers above!')
         # Look for non-allowable characters,
-        # empty value, or just spaces in 
+        # empty value, or just spaces in
         # user_solution
         illegal_regex = r'[^0-9\(\)\*\+\/\-\s]'
         match = search(illegal_regex, user_solution)

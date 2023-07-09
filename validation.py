@@ -207,7 +207,7 @@ def print_word_meaning(word, new_player=None):
     return valid_word
 
 
-def check_letters_used(word, new_player=None, new_conundrum=[]):
+def check_letters_used(word, new_player=None, new_conundrum=None):
     """
     Check if the player's word uses only
     the letters chosen for this round.

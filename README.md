@@ -282,6 +282,11 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 </details>
 
 <details>
+<summary>test_validation.py</summary>
+    <img src="docs/validation/test_validation_pylint.PNG" alt="validation.py Pylint screenshot">
+</details>
+
+<details>
 <summary>word_set.py</summary>
     <img src="docs/validation/word_set_pylint.PNG" alt="word_set.py Pylint screenshto">
 </details>

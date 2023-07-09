@@ -273,20 +273,19 @@ The website was tested on the following browsers:
 The PEP8 Python Validator (from Code Institute) was used to validate all Python code. All files pass with no errors no warnings to show.
 <details>
 <summary>run.py</summary>
-
+    <img src="docs/validation/run_pylint.PNG" alt="run.py Pylint screenshot">
 </details>
 
-
 <summary>validation.py</summary>
-
+    <img src="docs/validation/validation_pylint.PNG" alt="validation.py Pylint screenshot">
 </details>
 
 <summary>word_set.py</summary>
-
+    <img src="docs/validation/word_set_pylint.PNG" alt="word_set.py Pylint screenshto">
 </details>
 
 <summary>nine_letter_word_list.py</summary>
-
+    <img src="docs/validation/nine_letter_word_list_pylint.PNG" alt="nine_letter_word_list.py Pylint screenshot">
 </details>
 
 

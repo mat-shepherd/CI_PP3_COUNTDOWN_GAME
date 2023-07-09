@@ -229,6 +229,35 @@ class TestValidation(unittest.TestCase):
             check_numbers_used("25 + 25 + 100", new_player), False
         )
 
+    def test_validate_user_numbers(self):
+        '''
+        Tests if validate_user_numbers function
+        returns expected values. Should return True
+        if only uses numbers from chosen numbers,
+        only uses numbers, and only uses
+        allowed operators and False if not.
+        '''        
+        new_player = Player()
+        new_player.chosen_numbers = [50, 75, 100, 4, 8, 1]
+        self.assertEqual(validate_user_numbers("50 + 75 + 100", new_player), True)
+        self.assertEqual(
+            validate_user_numbers("(8 - 4) + 100 *  50", new_player), True
+        )
+        self.assertEqual(
+            validate_user_numbers("50 * 75 + 4 / 100 + 8 - 1", new_player), True
+        )
+        self.assertEqual(
+            validate_user_numbers("4 + 25 + 100", new_player), False
+        )
+        self.assertEqual(
+            validate_user_numbers("50 x 4 / 100", new_player), False
+        )
+        self.assertEqual(
+            validate_user_numbers("50 * a / 4", new_player), False
+        )
+        self.assertEqual(validate_user_numbers("", new_player), False)
+        self.assertEqual(validate_user_numbers(" ", new_player), False)
+
 
 if __name__ == '__main__':
     unittest.main()

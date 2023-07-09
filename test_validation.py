@@ -26,7 +26,8 @@ class TestValidation(unittest.TestCase):
     def test_validate_name(self):
         """
         Tests if validate_name function returns
-        expected values.
+        expected values. Should only accept
+        2 to 10 letter characters from user input.
         """
         self.assertEqual(validate_name("Matthew"), True)
         self.assertEqual(validate_name("Will"), True)
@@ -46,7 +47,10 @@ class TestValidation(unittest.TestCase):
     def test_validate_menu_value(self):
         """
         Tests if validate_menu_value function
-        returns expected values.
+        returns expected values. Should only
+        accept number values in user input bewteen
+        1 and 3 on intro screen and between 1 and 2
+        rules screen.
         """
         self.assertEqual(validate_menu_value(1, "intro"), True)
         self.assertEqual(validate_menu_value(2, "intro"), True)
@@ -59,6 +63,21 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(validate_menu_value('b', "rules"), False)
         self.assertEqual(validate_menu_value(0, "rules"), False)
         self.assertEqual(validate_menu_value(3, "rules"), False)
+
+    def test_validate_vowels(self):
+        """
+        Tests if validate_vowels function
+        returns expected values. Should only
+        accept a user input of 3 to 9 for number
+        of vowels - input is string.
+        """
+        self.assertEqual(validate_vowels('3'), True)
+        self.assertEqual(validate_vowels('7'), True)
+        self.assertEqual(validate_vowels('2'), False)
+        self.assertEqual(validate_vowels('10'), False)
+        self.assertEqual(validate_vowels('a'), False)
+        self.assertEqual(validate_vowels(' '), False)
+        self.assertEqual(validate_vowels('0'), False)
 
 
 if __name__ == '__main__':

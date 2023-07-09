@@ -25,22 +25,40 @@ class TestValidation(unittest.TestCase):
 
     def test_validate_name(self):
         """
-        Tests if validate_name function returns expected values.
+        Tests if validate_name function returns
+        expected values.
         """
-        self.assertTrue(validate_name("Matthew"))
-        self.assertTrue(validate_name("Will"))
-        self.assertTrue(validate_name("MS"))
-        self.assertTrue(validate_name("MatShep"))
-        self.assertFalse(validate_name("M"))
-        self.assertFalse(validate_name("123"))
-        self.assertFalse(validate_name("@#'"))
-        self.assertFalse(validate_name("Mat123"))
-        self.assertFalse(validate_name(""))
-        self.assertFalse(validate_name(" Mat"))
-        self.assertFalse(validate_name("   "))
-        self.assertFalse(validate_name("Mat Shep"))
-        self.assertFalse(validate_name("M@t"))
-        self.assertFalse(validate_name("MatShepherd"))
+        self.assertEqual(validate_name("Matthew"), True)
+        self.assertEqual(validate_name("Will"), True)
+        self.assertEqual(validate_name("MS"), True)
+        self.assertEqual(validate_name("MatShep"), True)
+        self.assertEqual(validate_name("M"), False)
+        self.assertEqual(validate_name("123"), False)
+        self.assertEqual(validate_name("@#'"), False)
+        self.assertEqual(validate_name("Mat123"), False)
+        self.assertEqual(validate_name(""), False)
+        self.assertEqual(validate_name(" Mat"), False)
+        self.assertEqual(validate_name("   "), False)
+        self.assertEqual(validate_name("Mat Shep"), False)
+        self.assertEqual(validate_name("M@t"), False)
+        self.assertEqual(validate_name("MatShepherd"), False)
+
+    def test_validate_menu_value(self):
+        """
+        Tests if validate_menu_value function
+        returns expected values.
+        """
+        self.assertEqual(validate_menu_value(1, "intro"), True)
+        self.assertEqual(validate_menu_value(2, "intro"), True)
+        self.assertEqual(validate_menu_value(3, "intro"), True)
+        self.assertEqual(validate_menu_value('a', "intro"), False)
+        self.assertEqual(validate_menu_value(0, "intro"), False)
+        self.assertEqual(validate_menu_value(4, "intro"), False)
+        self.assertEqual(validate_menu_value(1, "rules"), True)
+        self.assertEqual(validate_menu_value(2, "rules"), True)
+        self.assertEqual(validate_menu_value('b', "rules"), False)
+        self.assertEqual(validate_menu_value(0, "rules"), False)
+        self.assertEqual(validate_menu_value(3, "rules"), False)
 
 
 if __name__ == '__main__':

@@ -19,7 +19,11 @@ from validation import (
     validate_user_solution,
     validate_user_conundrum
 )
-
+# Third Party
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+from profanity_check import predict_prob
+from PyDictionary import PyDictionary
+import numexpr as ne
 
 class TestValidation(unittest.TestCase):
 
@@ -79,6 +83,18 @@ class TestValidation(unittest.TestCase):
         self.assertEqual(validate_vowels(' '), False)
         self.assertEqual(validate_vowels('0'), False)
 
+    def test_check_profanity(self):
+        """
+        Tests if check_profanity function
+        returns expected values. Should return a value
+        less than 0.9 for safe words and greater than 0.9
+        for profane words.
+        """
+        self.assertLess(check_profanity("hello"), 0.9)
+        self.assertLess(check_profanity("pythonic"), 0.9)
+        self.assertLess(check_profanity("dictionary"), 0.9)
+        self.assertGreater(check_profanity("shit"), 0.9)
+        self.assertGreater(check_profanity("bastard"), 0.9)
 
 if __name__ == '__main__':
     unittest.main()

@@ -127,7 +127,7 @@ class Player:
     def update_score(self):
         """
         Update the Player score and high score.
-        
+
         Update player's score for the current
         round based on the player's guess and time
         remaining. If the player's score is now
@@ -159,7 +159,7 @@ class Player:
 
 class Screen:
     """
-    Contains the attributes and methods of all game screen 
+    Contains the attributes and methods of all game screen
     elements to be rendered.
 
     Called by round_handler to create Screen object instances
@@ -496,8 +496,8 @@ class Screen:
         """
         countdown = 60 if Screen.round_number == 4 else 30
         start_time = time()
-        # Initialise player guess attributes as lists if 
-        # not yet created 
+        # Initialise player guess attributes as lists if
+        # not yet created
         if new_player.guessed_words is None:
             new_player.guessed_words = []
         if new_player.guessed_solutions is None:
@@ -555,8 +555,8 @@ class Screen:
             except TimeoutOccurred:
                 print("Time's Up!")
                 user_prompt = False
-                time_remaining = 0         
-                # Store empty word during letter's rounds to not 
+                time_remaining = 0
+                # Store empty word during letter's rounds to not
                 # throw off looking up player's last guessed word
                 if 1 <= Screen.round_number <= 3:
                     new_player.guessed_words.insert(
@@ -757,8 +757,8 @@ class Screen:
                         '(must be 2 to 10 letter characters long)...\n'
                     )
                 else:
-                # If player name already exists ask if they want
-                # to keep it or change it
+                    # If player name already exists ask if they want
+                    # to keep it or change it
                     while True:
                         user_prompt = input(
                             Fore.WHITE +
@@ -779,7 +779,8 @@ class Screen:
                                 user_prompt = input(
                                     Fore.WHITE +
                                     'Please enter your name\n'
-                                    '(must be 2 to 10 letter characters long)...\n'
+                                    '(must be 2 to 10 letter characters long) '
+                                    '...\n'
                                 )
                                 if validate_name(user_prompt):
                                     break
@@ -1978,7 +1979,7 @@ def round_handler(new_player, new_letters, new_numbers, new_conundrum):
 # Main game functions
 
 
-def main(existing_name = '', existing_high_score = 0):
+def main(existing_name='', existing_high_score=0):
     """
     Create game objects
     Run all program functions
@@ -1989,7 +1990,7 @@ def main(existing_name = '', existing_high_score = 0):
     user_word = ''
     user_solution = ''
     user_response = ''
-    user_prompt = ''    
+    user_prompt = ''
     # Create new game object instances and pass to round
     # handler
     new_player = Player()
@@ -2000,7 +2001,7 @@ def main(existing_name = '', existing_high_score = 0):
     if existing_name:
         new_player.name = existing_name
     if existing_high_score:
-        new_player.high_score = existing_high_score        
+        new_player.high_score = existing_high_score
     round_handler(new_player, new_letters, new_numbers, new_conundrum)
 
 

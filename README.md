@@ -293,7 +293,15 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 
 
 ### Automated Testing
+Thirteen unit tests were written to test the project's validation functions. The tests check that the validation functions, which check user input values, return the expected results.
 
+One test failed for validate_user_numbers function, which higlighted the need to check for a sting that contains just spaces. This was corrected using the  isspace() method.
+
+After this all test passed OK.
+
+<summary>Unit Test Results</summary>
+    <img src="docs/validation/nine_letter_word_list_pylint.PNG" alt="nine_letter_word_list.py Pylint screenshot">
+</details>
 
 
 ### Testing user stories

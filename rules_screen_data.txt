@@ -49,5 +49,10 @@ know, and you still score 10 points multiplied by the time remaining!
 * Your total score is calculated by summing the points earned in each 
 round.
 
+* If you choose to play the game again the game will keep track of your 
+previous high scores during the game session so you can try and beat 
+your personal best!
+
 * If you achieve a score higher than the top ten scores on our leaderboard
-your name and your score will be added to the leaderboard!
+your name and your score will be added to the leaderboard at the end of the
+game!

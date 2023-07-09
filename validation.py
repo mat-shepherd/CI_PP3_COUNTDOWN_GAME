@@ -376,11 +376,12 @@ def validate_user_numbers(user_solution, new_player=None):
         # Check solution only uses chosen numbers
         if check_numbers_used(user_solution, new_player) is False:
             raise ValueError('You can only use the chosen numbers above!')
-        # Look for non-allowable characters
-        # or empty value in user_solution
+        # Look for non-allowable characters,
+        # empty value, or just spaces in 
+        # user_solution
         illegal_regex = r'[^0-9\(\)\*\+\/\-\s]'
         match = search(illegal_regex, user_solution)
-        if user_solution == '' or user_solution == ' ':
+        if user_solution == '' or user_solution.isspace():
             raise ValueError('Please enter a solution!')
         elif match is not None:
             raise ValueError(
@@ -412,7 +413,7 @@ def validate_user_solution(solution, new_player=None):
     -------
     result_valid : boolean
         True if solution achieves target number
-        and Fasse if not.
+        and False if not.
     solution_result : int
         Evaluated number result of solution string.
     target_difference : int

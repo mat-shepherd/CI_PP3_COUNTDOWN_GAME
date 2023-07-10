@@ -787,6 +787,8 @@ The method and style code to center the Heroku terminal and change the backgroun
 
 - Leaderboard table format: The use of PrettyTable to print the high score leaderboard in an ASCII table format was based on a suggestion by [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
 
+- Regular expressions used in validation functions were provided by [ChatGPT](https://chat.openai.com/) by [openai.com](https://openai.com/)
+
 [Back to Table of Contents](#table-of-contents)
 
 ## Acknowledgements

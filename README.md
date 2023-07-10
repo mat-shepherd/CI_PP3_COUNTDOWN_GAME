@@ -1,7 +1,7 @@
 # Countdown Game
 (Developer: Matthew Shepherd)
 
-![Mockup image](docs/amiresponsivepp3.PNG)
+![Mockup image](docs/amiresponsivepp.PNG)
 
 [Live webpage](https://countdown-game-ccaca8c4e1a7.herokuapp.com/)
 

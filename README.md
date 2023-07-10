@@ -83,12 +83,15 @@ I have divided my user stories into users and the site owner, as each of these u
 6. As a user, I want my input to be validated with clear feedback on how to correct any input errors. 
 7. As a user, I want to be given clear instructions on each screen on how to play the game and how to progress.
 8. As a user, I want feedback on my word and number guesses with potential solutions provided by the game.
-9. As a user, I want to keep track of my current score and previous high score as the game progresses.
+9. As a user, I want to be provided with a score for each round and keep track of my current score and previous high score as the game progresses.
 10. As a user, I want to be told when the game is over, the score I achieved, my high score, and be shown the leaderboard if I achieve a top ten high score.
 
-
 #### Site Owner 
-13. As a site owner, I want...
+11. As a site owner, I want to provide a fun, family friendly, challenging, and educational game.
+13. As a site owner, I want to ensure users understand the rules of the game and are provided clear instrcutions on how to play throughout the game.
+14. As a site owner, I want to ensure input is validated to avoid the game breaking or errors displaying tha twill cause a poor user experience.
+15. As a site owner, I want to ensure the user can keep playing the game while retining their name and high score.
+
 
 [Back to Table of Contents](#table-of-contents)
 

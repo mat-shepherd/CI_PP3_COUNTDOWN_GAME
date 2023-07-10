@@ -548,7 +548,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
 | Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
 | Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
-| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
+| Numbers Round Screen | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
 | Numbers Guess Screen | User inputs solution using chosen numbers and available operators | User's solution checked for use of chosen numbers and valid operators, if valid progress to feedback screen or validation error if incorrect value entered | Works as expected |
 | Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
 
@@ -673,7 +673,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
 | Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
 | Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
-| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
+| Numbers Round Screen | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
 | Numbers Guess Screen | User inputs solution using chosen numbers and available operators | User's solution checked for use of chosen numbers and valid operators, if valid progress to feedback screen or validation error if incorrect value entered | Works as expected |
 | Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
 

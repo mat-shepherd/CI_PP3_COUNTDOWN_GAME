@@ -169,7 +169,7 @@ The game consists of a series of screens with the following features:
 - Displays the game title and welcome message in ASCII art and a sub-heading.
 - Prompts the user to start the game, read the game rules or view the high scores leaderboard.
 - The prompt provides specific feedback if invalid values are entered.
-- User stories covered: 1, 2, 3, 4, 6, 7, 11, 12, 13
+- User stories covered: 1, 2, 3, 6, 7, 11, 12, 13
 <details><summary>Screenshots</summary>
 <img src="docs/features/intro_screen.PNG" alt="Game Introduction Screen">
 </details>
@@ -452,9 +452,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -464,9 +464,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| Introduction Screen |  User enters 2 on introduction screen | Rules screen displayed and output paged | Work as expected |
+| Rules Screen | User read rules and hits any key to page through rules | User can read all rules and then enters 1 to start the game or 2 to return to introduction screen |Work as expected |
+
 
 <details><summary>Screenshots</summary>
 
@@ -476,9 +476,8 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| Introduction Screen |  User enters 3 on introduction screen | High scores screen displayed and leaderboard printed to terminal | Work as expected |
+| High Scores Screen | User views high scores page  | User views high scores leaderboard and then enters 1 to start the game or 2 to return to introduction screen |Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -488,9 +487,17 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Work as expected |
+| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existng name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Work as expected |
+| Letters Round Screen | | Work as expected |
+| Show Letters Screen | | Work as expected |
+| Letters Feedback Screen | | Work as expected |
+| Numbers Round Screen | | Work as expected |
+| Show Numbers Screen | | Work as expected |
+| Numbers Feedback Screen | | Work as expected |
+| Show Conundrum Screen | | Work as expected |
+| Conundrum Feedback Screen | | Work as expected |
+| Game Over Screen | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -500,9 +507,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -512,9 +519,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -524,9 +531,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -536,9 +543,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -548,9 +555,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -560,9 +567,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -574,9 +581,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -586,9 +593,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -598,9 +605,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -610,9 +617,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | |
-| | | |
-| | | |
+| | | Work as expected |
+| | | Work as expected |
+| | | Work as expected |
 
 <details><summary>Screenshots</summary>
 

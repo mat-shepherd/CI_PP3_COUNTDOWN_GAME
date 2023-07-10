@@ -489,15 +489,15 @@ After this, all tests passed OK.
 |-------------|------------|---------------------|-------------------|
 | Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Work as expected |
 | Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existng name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Work as expected |
-| Letters Round Screen | | Work as expected |
-| Show Letters Screen | | Work as expected |
-| Letters Feedback Screen | | Work as expected |
-| Numbers Round Screen | | Work as expected |
-| Show Numbers Screen | | Work as expected |
-| Numbers Feedback Screen | | Work as expected |
-| Show Conundrum Screen | | Work as expected |
-| Conundrum Feedback Screen | | Work as expected |
-| Game Over Screen | | Work as expected |
+| Letters Round Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Show Letters Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Letters Feedback Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Numbers Round Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Show Numbers Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Numbers Feedback Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Show Conundrum Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Conundrum Feedback Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Game Over Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
 
 <details><summary>Screenshots</summary>
 

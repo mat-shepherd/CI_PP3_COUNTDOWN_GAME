@@ -192,7 +192,7 @@ The game consists of a series of screens with the following features:
 - Displays the most recent top ten player high scores and the corrsponding player name.
 - Prompts the user to start the game or return to the introduction screen.
 - The prompt provides specific feedback if invalid values are entered.
-- User stories covered: 1, 3, 7, 9, 11, 12, 13, 14
+- User stories covered: 1, 3, 4, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/high_scores_screen.PNG" alt="High Scores Screen">
@@ -264,7 +264,7 @@ Enter Name Screen Remembers Name from Previous Game:
 - Displays a list of words found using the chosen letters and the meaning of those words if available.
 - Pauses and displays a message for the user to press a key when they are ready to proceed to the next round.
 - If the player has completed three letters rounds the game progresses to the numbers round, otherwise, it repeats a letters round.
-- User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
+- User stories covered: 1, 4, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Letters Feedback Screen:
@@ -293,7 +293,7 @@ Letters Feedback Screen with Solutions:
 - Displays the randomly generated target three digit number the user is solving for.
 - Displays brief instructions on how to play the numbers round, including which operators are allowed, and a reminder to consider order of operations.
 - Pauses and displays a message for the user to press a key when they are ready to start the timer and input their solution.
-- User stories covered: 1, 4, 6, 7, 9, 11, 12, 14
+- User stories covered: 1, 4, 7, 9, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_numbers_screen.PNG" alt="Show Numbers Screen">
@@ -324,7 +324,7 @@ Letters Feedback Screen with Solutions:
 - Displays a message that the game is checking what solutions the 'maths wiz' has found, in case there is a delay.
 - Displays a list of all possible solutions to achieve the target number using the chosen numbers and available operators.
 - Pauses and displays a message for the user to press a key when they are ready to proceed to the next round.
-- User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
+- User stories covered: 1, 4, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Numbers Feedback Screen:
@@ -366,7 +366,7 @@ Numbers Feedback Screen with Solutions:
 - If the user's conundrum solution matches the target word, the user's name is displayed along with the number of points they score for the round based on their correct answer and time remaining.
 - If the user's conundrum solution does not match the target word but uses all of the conundrum letters and the word is found in the dictionary the user's solution is accepted as valid. The user is told that this wasn't the target word but is still valid, and the user's name is displayed along with the number of points they score for the round based on their valid answer and time remaining.
 - Pauses and displays a message for the user to press a key when they are ready to continue.
-- User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
+- User stories covered: 1, 4, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/conundrum_feedback_screen.PNG" alt="Conundrum Feedback Screen">
@@ -452,20 +452,15 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| See all features and tests below | User plays the game| User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
 
-<details><summary>Screenshots</summary>
-
-</details>
 
 2. As a user, I want to be able to view the rules of the game.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Introduction Screen |  User enters 2 on introduction screen | Rules screen displayed and output paged | Work as expected |
-| Rules Screen | User read rules and hits any key to page through rules | User can read all rules and then enters 1 to start the game or 2 to return to introduction screen |Work as expected |
+| Introduction Screen |  User enters 2 on introduction screen | Rules screen displayed and output paged | Works as expected |
+| Rules Screen | User read rules and hits any key to page through rules | User can read all rules and then enters 1 to start the game or 2 to return to introduction screen | Works as expected |
 
 
 <details><summary>Screenshots</summary>
@@ -476,8 +471,8 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Introduction Screen |  User enters 3 on introduction screen | High scores screen displayed and leaderboard printed to terminal | Work as expected |
-| High Scores Screen | User views high scores page  | User views high scores leaderboard and then enters 1 to start the game or 2 to return to introduction screen |Work as expected |
+| Introduction Screen |  User enters 3 on introduction screen | High scores screen displayed and leaderboard printed to terminal | Works as expected |
+| High Scores Screen | User views high scores page  | User views high scores leaderboard and then enters 1 to start the game or 2 to return to introduction screen |Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -487,17 +482,18 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Work as expected |
-| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existng name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Work as expected |
-| Letters Round Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Show Letters Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Letters Feedback Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Numbers Round Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Show Numbers Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Numbers Feedback Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Show Conundrum Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Conundrum Feedback Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
-| Game Over Screen | Round screen loads | User's name as entered is displayed on screen | Work as expected |
+| Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Works as expected |
+| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Works as expected |
+| High Scores Screen | User achieves top ten high score and views high scores screen | User views high scores leaderboard and sees their entered name on the top ten leaderboard after achievng a top ten high score | Works as expected |
+| Letters Round Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Show Letters Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Letters Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Numbers Round Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Show Numbers Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Numbers Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Show Conundrum Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Conundrum Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
+| Game Over Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -507,9 +503,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Works as expected |
+| Enter Name Screen |  User repeats game and is asked if they want to keep existing name (name printed in prompt) or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, which is validated and stored to show in following screens| Works as expected |
+| Game Over Screen |  User hits any key to repeat game from game over screen | User is taken back to the introduction screen, selects 1 to start a new game and then is asked if they want to keep their existing name from the previous game (name printed in prompt) or enter new name | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -519,9 +515,14 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
+| Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
+| Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
+| Numbers Guess Screen | User inputs solution using chosen numbers and available operators | User's solution checked for use of chosen numbers and valid operators, if valid progress to feedback screen or validation error if incorrect value entered | Works as expected |
+| Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -531,9 +532,8 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| All screens | Screen loads and user is provided with instructions on how to play the game and what to enter to proceed | All screens provide instructions and prompts. See tests above and below. | Works as expected |
+
 
 <details><summary>Screenshots</summary>
 
@@ -543,9 +543,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| Letters Feedback Screen | User enters valid word guess | User is told if their word is found in the dictionary or not, and then, where found by the anagram solver, provided with other potential valid words and their meanings | Works as expected |
+| Numbers Feedback Screen | User enters valid target number solution guess | User is told if their solution achieves the target nubmer and if not what their expression evaluates to and how close they were to the target number. Then where found by the countdown solver, the user is provided with solutions to achieve the target number using the chosen numbers and available operators. | Works as expected |
+| Conundrum Feedback Screen | User enters valid conundrum guess | User is told if their conundrum guess matches the target word. If their word is not the target word but uses all conundrum letters and is found in the dictionary they are also infomred of this. If not the target word the user is told. | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -555,9 +555,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| | | Works as expected |
+| | | Works as expected |
+| | | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -567,9 +567,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| | | Works as expected |
+| | | Works as expected |
+| | | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -581,9 +581,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| | | Works as expected |
+| | | Works as expected |
+| | | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -593,9 +593,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| | | Works as expected |
+| | | Works as expected |
+| | | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -605,9 +605,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| | | Works as expected |
+| | | Works as expected |
+| | | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -617,9 +617,9 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Work as expected |
-| | | Work as expected |
-| | | Work as expected |
+| | | Works as expected |
+| | | Works as expected |
+| | | Works as expected |
 
 <details><summary>Screenshots</summary>
 

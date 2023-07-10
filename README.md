@@ -115,9 +115,9 @@ A flowchart of the game flow and logic was created using Mermaid Chart:
     - rules_screen_data.txt - Rules heading in ASCII tiles and rules text
 - A Set was used to create a word set against which the anagram solver could check for valid words. This was used instead of checking against PyDictionary as calls to PyDictionary for a large number of potential words turned out to be expensive, blocking code execution for long periods of time.
     - word_set.py
-- A List was used to store nine letter words for use in the conundrum round as anagrams. This was used instead of word_set as the larger set of words contains less common words that would be harder for the user to guess. The list was geneerated from a set of commonly used 9-letter words.
+- A List was used to store nine letter words for use in the conundrum round as anagrams. This was used instead of word_set as the larger set of words contains less common words that would be harder for the user to guess. The list was generated from a set of commonly used 9-letter words.
     - nine_letter_word_list.py
-- Google Sheets and the Google Sheets API was used to store high score data to create the top ten leaderboard. This allows player names and scores to persist beyond the game session if the user achieves a top ten high score.
+- Google Sheets and the Google Sheets API were used to store high score data to create the top ten leaderboard. This allows player names and scores to persist beyond the game session if the user achieves a top ten high score.
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -187,11 +187,11 @@ The game consists of a series of screens with the following features:
 </details>
 
 ### High Scores Screen
-- Displays the game title in ASCII art and hall of fame in raninbow text.
+- Displays the game title in ASCII art and hall of fame in rainbow text.
 - Outputs the high score leaderboard in an easy to read ASCII table format.
 - Displays the most recent top ten player high scores and the corrsponding player name.
-- Prompts the user to start the game or return to the the introduction screen.
-- The prompt provides specific feedback if invalid values are entered .
+- Prompts the user to start the game or return to the introduction screen.
+- The prompt provides specific feedback if invalid values are entered.
 - User stories covered: 1, 3, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
@@ -203,7 +203,7 @@ The game consists of a series of screens with the following features:
 - Displays the user's current score and any previous high score.
 - Displays a user prompt asking the user to enter their name and briefly explains valid name formatting.
 - If this is a repeat game, the prompt instead asks if the user wants to keep their existing name from their previous game or enter a new name.
-- Stores the user name to display on the following screens and to record user's score if a high score is achieved.
+- Stores the user name to display on the following screens and to record the user's score if a high score is achieved.
 - The prompt provides specific feedback if invalid values are entered.
 - User stories covered: 1, 4, 5, 6, 7, 9, 11, 12, 13, 14
 
@@ -253,7 +253,7 @@ Enter Name Screen Remembers Name from Previous Game:
 </details>
 
 ### Letters Feedback Screen
-- Displays the round number in in ASCII art and chosen letters within ASCII art tiles.
+- Displays the round number in ASCII art and chosen letters within ASCII art tiles.
 - Displays the user's current score and any previous high score.
 - Displays a message letting the user know their word is being checked in the dictionary as there can be a few seconds of a delay.
 - If their word is found in the dictionary, the user is told their word was found, the length of their word, and the time they had remaining when they entered their word.
@@ -262,8 +262,8 @@ Enter Name Screen Remembers Name from Previous Game:
 - Pauses and displays a message for the user to press a key when they are ready to see what words our 'dictionary corner' i.e. anagram solver function found.
 - Displays a message that the game is checking what words the 'dictionary corner' has found as there can be a few seconds of a delay.
 - Displays a list of words found using the chosen letters and the meaning of those words if available.
-- Pauses and displays a message for the user to press a key when they are ready to proceeed to the next round.
-- If the player has completed three letters rounds the game progresses to the numbers round, otherwise it repeats a letters round.
+- Pauses and displays a message for the user to press a key when they are ready to proceed to the next round.
+- If the player has completed three letters rounds the game progresses to the numbers round, otherwise, it repeats a letters round.
 - User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
@@ -291,7 +291,7 @@ Letters Feedback Screen with Solutions:
 - Displays the round number and chosen numbers within tiles in ASCII art.
 - Displays the user's current score and any previous high score.
 - Displays the randomly generated target three digit number the user is solving for.
-- Displays brief instructions on how to play the numbers round, including which operators are allowed, and reminding them to consider order operations.
+- Displays brief instructions on how to play the numbers round, including which operators are allowed, and a reminder to consider order of operations.
 - Pauses and displays a message for the user to press a key when they are ready to start the timer and input their solution.
 - User stories covered: 1, 4, 6, 7, 9, 11, 12, 14
 
@@ -314,16 +314,16 @@ Letters Feedback Screen with Solutions:
 </details>
 
 ### Numbers Feedback Screen
-- Displays the round number in in ASCII art and chosen numbers within ASCII art tiles.
+- Displays the round number in ASCII art and chosen numbers within ASCII art tiles.
 - Displays the user's current score and any previous high score.
 - Displays a message letting the user know their solution is being checked as there can be a few seconds of a delay.
 - If the user solution achieves the target number, the user is shown their solution and its evaluated answer and the time they had remaining when they entered their solution.
 - If their solution is valid, the user's name is displayed along with the number of points they score for the round based on their correct answer and time remaining.
-- If the user's solution does not achieve the target number, the user is shown their solution and its evaluated answer, and if they were within 50 of target, how close to the target number they got.
+- If the user's solution does not achieve the target number, the user is shown their solution and its evaluated answer, and if they were within 50 of the target number, how close to the target number they got.
 - Pauses and displays a message for the user to press a key when they are ready to see what solutions our 'maths wiz' i.e. countdown solver function found.
 - Displays a message that the game is checking what solutions the 'maths wiz' has found, in case there is a delay.
 - Displays a list of all possible solutions to achieve the target number using the chosen numbers and available operators.
-- Pauses and displays a message for the user to press a key when they are ready to proceeed to the next round.
+- Pauses and displays a message for the user to press a key when they are ready to proceed to the next round.
 - User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
@@ -360,10 +360,10 @@ Numbers Feedback Screen with Solutions:
 </details>
 
 ### Conundrum Feedback Screen
-- Displays the round number in in ASCII art and the unscrambled conundrum letters within ASCII art tiles.
+- Displays the round number in ASCII art and the unscrambled conundrum letters within ASCII art tiles.
 - Displays the user's current score and any previous high score.
-- If the user's condundrum solution matches the target word, the user is told their word is correct and the time they had remaining when they entered their word.
-- If the user's condundrum solution matches the target word, the user's name is displayed along with the number of points they score for the round based on their correct answer and time remaining.
+- If the user's conundrum solution matches the target word, the user is told their word is correct and the time they had remaining when they entered their word.
+- If the user's conundrum solution matches the target word, the user's name is displayed along with the number of points they score for the round based on their correct answer and time remaining.
 - If the user's conundrum solution does not match the target word but uses all of the conundrum letters and the word is found in the dictionary the user's solution is accepted as valid. The user is told that this wasn't the target word but is still valid, and the user's name is displayed along with the number of points they score for the round based on their valid answer and time remaining.
 - Pauses and displays a message for the user to press a key when they are ready to continue.
 - User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
@@ -374,7 +374,7 @@ Numbers Feedback Screen with Solutions:
 
 ### Game Over Screen
 - Displays 'Game Over' in ASCII art and 'Countdown' within ASCII art tiles.
-- Displays a congraultions message in rainbow text.
+- Displays a congratulations message in rainbow text.
 - Displays the user's final score and their highest score so far for this game session.
 - If the user's score for this game beats an existing top ten leaderboard high score, the user's score is added to the leaderboard and the leaderboard is printed to the terminal (after a few seconds delay to give the user time to read the text on screen.)
 - Pauses and displays a message for the user to press any key to start a new game or the ESC key to end the game.
@@ -570,7 +570,7 @@ After this, all tests passed OK.
 
 #### Site Owner
 
-11. As the site owner, I want to provide a fun, family friendly, challenging, and educational game.  
+11. As the site owner, I want to provide a fun, family-friendly, challenging, and educational game.  
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
@@ -624,13 +624,13 @@ After this, all tests passed OK.
 | **Bug** | **Fix** |
 | ----------- | ----------- |
 | Timed input countdown timer text overwriting input [Fixed but can be improved] | I tried to implement a countdown that printed the time remaining above or below while the input timer was still counting down. While I managed to use various threading solutions and libraries to allow the timer to update while the input was waiting for user input I couldn't get around the cursor moving up and down between the user input and the countdown line, which led to issues with user input getting overwritten or appearing on the wrong line. , I had to remove this feature. To implement in the future will likely need a more sophisticated GUI using something like curses and threading. |
-| Player guesses from previous games carrying over to new game [Fixed] | When I implemented the feature allowing players to start a new game and preserve their name and score the player's previous word and number guesses were persisting. The expected behaviour of calling main() again would be that new_player would be associated with a new Player object instance, which would not contain any attribute values of the previous new_player object. It turns out, as I was setting the default value of the list attrbutes to [] instead of None, these lists were using the previous player object's list objects as default values, which caused previous user input to be carried over. Setting these default values to None and initialising the player attrbiutes as lists elsewhere fixed this issue. |
+| Player guesses from previous games carrying over to new game [Fixed] | When I implemented the feature allowing players to start a new game and preserve their name and score the player's previous word and number guesses were persisting. The expected behaviour of calling main() again would be that new_player would be associated with a new Player object instance, which would not contain any attribute values of the previous new_player object. It turns out, as I was setting the default value of the list attributes to [] instead of None, these lists were using the previous player object's list objects as default values, which caused previous user input to be carried over. Setting these default values to None and initialising the player attributes as lists elsewhere fixed this issue. |
 | PyDictionary printing error when meaning not found [Fixed] | When PyDictionary is used to find the meaning of a word it would print an error if the meaning was not found. I didn't want this default error text to display as the word validation is already handling telling the user if a word is found or not and if a meaning isn't found for a word it just prints the word. I found the solution to this bug in this [Stack Overflow answer](https://stackoverflow.com/a/52564005) by [Jenner Felton](https://stackoverflow.com/users/4044442/jenner-felton), which pointed to using a disable_errors parameter, meaning(word, disable_errors=True), which I didn't find in PyDictionary's documentation. |
 | Word not found in PyDictionary but found in anagram solver dictionary [Not Fixed] | To provide potential word solutions to the letters rounds the anagram solver library and a scrabble word set were used, as checking a large number of random words against PyDictionary was too slow. PyDictionary is used instead of just using the Scrabble word set as it provides a much larger word set. This however introduces a bug whereby a word can be entered by the user and be rejected as it is not found in PyDictionary but is then found in the Scrabble word set and is suggested as a solution. This also produces a bug where some words suggested as solutions from the Scrabble word set will have no meanings returned as they don't exist in PyDictionary. Potential solutions to explore in future versions are to check the user's word against both dictionaries or to find a single dictionary with a large word set. |
-| Input trailing and leading spaces [Fixed] | Trailing and leading spaces on inputs wasn't raising validation errors and was causing numeric menu selection via input to fail. This was fixed by adding strip() to inputs and additional isnumeric() validation was added to validation functions. |
+| Input trailing and leading spaces [Fixed] | Trailing and leading spaces on inputs weren't raising validation errors and were causing numeric menu selection via input to fail. This was fixed by adding strip() to inputs and additional isnumeric() validation was added to validation functions. |
 | Numbers round string with space validation failure [Fixed] | Unit tests turned up the failure of the validate_user_numbers function to raise an error if the user submitted a string with just a space character. This was corrected using the isspace() method. |
 | Numbers round consecutive operators [Fixed] | The validate_user_numbers function and unit tests failed to test for consecutive operators in a user string which caused evaluation of the user's expression by numexpr to fail and raise an error. This was fixed using a regular expression search of consecutive operators with no numbers between them. |
-| Numbers round trailing and leading spaces [Fixed] | Add leading spaces to an expression caused evaluation of the user's expression by numexpr to fail and raise an error. This was fixed by using strip on the returned input string. |
+| Numbers round trailing and leading spaces [Fixed] | Add leading spaces to an expression caused evaluation of the user's expression by numexpr to fail and raise an error. This was fixed by using strip() on the returned input string. |
 | Numbers round empty input [Fixed] | If a user didn't enter a solution in the numbers round and the input timed out no value was stored in the player guessed_solutions attribute, which raised an error when trying to access the solution in guessed_solutions[0] for validation. This was fixed by checking the len of guessed_solutions[0] and if not greater than 0 setting the value to an empty string ''. |
 
 

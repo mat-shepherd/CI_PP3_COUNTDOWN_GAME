@@ -548,7 +548,7 @@ After this all tests passed OK.
 | Numbers round string with space validation failure [Fixed] | Unit tests turned up the failure of the validate_user_numbers function to raise an error if the user submitted a string with just a space character. This was corrected using the isspace() method. |
 | Numbers round consecutive operators [Fixed] | The validate_user_numbers function and unit tests failed to test for consecutive operators in a user string which caused evaluation of the user's expression by numexpr to fail and raise an error. This was fixed using a regular expression search of conesctuvei operators with no numbers between them. |
 | Numbers round traiing and leading spaces [Fixed] | Add leading spaces to an expression caused evaluation of the user's expression by numexpr to fail and raise an error. This was fixed by using strip on the returned input string. |
-| Numbers round empty input [Fixed] | If a user didn't enter a solution in the number's round and the input timed out no value was stored in the player guessed_solutions attribute, which raised an error when trying to access the solution for validation. This was fixed by checking the len of guessed_solutions[0] and if not greater than 0 setting the value to an empty string ''. |
+| Numbers round empty input [Fixed] | If a user didn't enter a solution in the numbers round and the input timed out no value was stored in the player guessed_solutions attribute, which raised an error when trying to access the solution in guessed_solutions[0] for validation. This was fixed by checking the len of guessed_solutions[0] and if not greater than 0 setting the value to an empty string ''. |
 
 
 

@@ -58,17 +58,17 @@ class TestValidation(unittest.TestCase):
         1 and 3 on intro screen and between 1 and 2
         rules screen.
         '''
-        self.assertEqual(validate_menu_value(1, 'intro'), True)
-        self.assertEqual(validate_menu_value(2, 'intro'), True)
-        self.assertEqual(validate_menu_value(3, 'intro'), True)
+        self.assertEqual(validate_menu_value('1', 'intro'), True)
+        self.assertEqual(validate_menu_value('2', 'intro'), True)
+        self.assertEqual(validate_menu_value('3', 'intro'), True)
         self.assertEqual(validate_menu_value('a', 'intro'), False)
-        self.assertEqual(validate_menu_value(0, 'intro'), False)
-        self.assertEqual(validate_menu_value(4, 'intro'), False)
-        self.assertEqual(validate_menu_value(1, 'rules'), True)
-        self.assertEqual(validate_menu_value(2, 'rules'), True)
+        self.assertEqual(validate_menu_value('0', 'intro'), False)
+        self.assertEqual(validate_menu_value('4', 'intro'), False)
+        self.assertEqual(validate_menu_value('1', 'rules'), True)
+        self.assertEqual(validate_menu_value('2', 'rules'), True)
         self.assertEqual(validate_menu_value('b', 'rules'), False)
-        self.assertEqual(validate_menu_value(0, 'rules'), False)
-        self.assertEqual(validate_menu_value(3, 'rules'), False)
+        self.assertEqual(validate_menu_value('0', 'rules'), False)
+        self.assertEqual(validate_menu_value('3', 'rules'), False)
 
     def test_validate_vowels(self):
         '''

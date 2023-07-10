@@ -422,7 +422,7 @@ After this all tests passed OK.
 
 <details>
     <summary>Heroku Login Page</summary>
-    <img src="assets/heroku/heroku_login.png" alt="Heroku login page">
+    <img src="docs/heroku/heroku_login.PNG" alt="Heroku login page">
 </details>
 
 #### Creating an app
@@ -432,8 +432,8 @@ After this all tests passed OK.
 
 <details>
     <summary>Create App</summary>
-    <img src="assets/heroku/create_app.png" alt="Heroku create app screenshot">
-    <img src="assets/heroku/create_app2.png" alt="Heroku create app screenshot">
+    <img src="docs/heroku/create_app.PNG" alt="Heroku create app screenshot">
+    <img src="docs/heroku/create_app_2.PNG" alt="Heroku create app screenshot">
 </details>
 
 #### Open settings Tab
@@ -443,8 +443,8 @@ After this all tests passed OK.
 
 <details>
     <summary>Config Vars</summary>
-    <img src="assets/heroku/config.png" alt="Config var screenshot">
-    <img src="assets/heroku/config_2.png" alt="Config var screenshot">
+    <img src="docs/heroku/config.PNG" alt="Config var screenshot">
+    <img src="docs/heroku/config_2.PNG" alt="Config var screenshot">
 </details>
 
   ##### Add Buildpacks
@@ -454,7 +454,7 @@ After this all tests passed OK.
 
 <details>
     <summary>Buildpacks</summary>
-    <img src="assets/heroku/buildpacks.png" alt="Buildpacks screenshot">
+    <img src="docs/heroku/buildpacks.PNG" alt="Buildpacks screenshot">
 </details>
 
  #### Open Deploy Tab
@@ -464,7 +464,7 @@ After this all tests passed OK.
 
 <details>
     <summary>Deployment method</summary>
-    <img src="assets/heroku/deployment_method.png" alt="Deployment method screenshot">
+    <img src="docs/heroku/deployment_method.PNG" alt="Deployment method screenshot">
 </details>
 
    ##### Connect to Github
@@ -473,7 +473,7 @@ After this all tests passed OK.
 
 <details>
     <summary>Repo Connect</summary>
-    <img src="assets/heroku/repo_connect.png" alt="Repo connect screenshot">
+    <img src="docs/heroku/repo_connect.PNG" alt="Repo connect screenshot">
 </details>
 
   ##### Automatic and Manual deploy
@@ -482,7 +482,7 @@ After this all tests passed OK.
 
 <details>
     <summary>Deploy methods</summary>
-    <img src="assets/heroku/deploy.png" alt="deploy method screenshot">
+    <img src="docs/heroku/deploy.PNG" alt="deploy method screenshot">
 </details>
 
   ##### Final Deployment
@@ -491,7 +491,7 @@ After this all tests passed OK.
 
 <details>
     <summary> Deploy</summary>
-    <img src="assets/heroku/view.png" alt="view screenshot">
+    <img src="docs/heroku/view.PNG" alt="view screenshot">
 </details>
 
 ### Forking the GitHub Repository

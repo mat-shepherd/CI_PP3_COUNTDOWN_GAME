@@ -380,7 +380,8 @@ class Screen:
             )
             print_centered(
                 Style.BRIGHT + Fore. WHITE +
-                f"          YOUR FINAL SCORE IS {new_player.score}!\n"
+                f"         YOUR FINAL SCORE: {new_player.score}   "
+                f'YOUR HIGHEST SCORE: {new_player.high_score}\n'
             )
         # Render high scores table
         if self.screen_data_param == 'scores':
@@ -1214,7 +1215,7 @@ class Screen:
                 # Output the high scores and a congrats
                 # message for the game over screen
                 print_rainbow(
-                    "THAT'S A NEW HIGH SCORE!\n",
+                    "THAT'S A NEW LEADERBOARD HIGH SCORE!\n",
                     'center'
                 )
                 # Add delay so user can read top of terminal

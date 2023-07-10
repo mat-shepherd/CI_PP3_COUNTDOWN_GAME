@@ -97,7 +97,7 @@ def validate_menu_value(number, current_screen):
                 else:
                     raise ValueError
             else:
-                raise ValueError                
+                raise ValueError
     except ValueError:
         if current_screen in ['intro']:
             print(Fore.RED + 'Please enter only 1, 2 or 3')

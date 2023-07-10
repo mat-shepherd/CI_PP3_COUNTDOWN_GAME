@@ -205,7 +205,7 @@ The game consists of a series of screens with the following features:
 - If this is a repeat game, the prompt instead asks if the user wants to keep their existing name from their previous game or enter a new name.
 - Stores the user name to display on the following screens and to record the user's score if a high score is achieved.
 - The prompt provides specific feedback if invalid values are entered.
-- User stories covered: 1, 4, 5, 6, 7, 9, 11, 12, 13, 14
+- User stories covered: 1, 4, 5, 6, 7, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Enter Name Screen:
@@ -555,7 +555,7 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Works as expected |
+| High Scores Screen | | Works as expected |
 | | | Works as expected |
 | | | Works as expected |
 

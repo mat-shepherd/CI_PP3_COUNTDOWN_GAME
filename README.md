@@ -245,6 +245,7 @@ Enter Name Screen Remembers Name from Previous Game:
 - Displays a message indicating the 30 second timer has started.
 - Displays a user prompt asking the user to input their longest word.
 - The prompt provides specific feedback if invalid values or letters not shown in the chosen letters are entered.
+- If the user fails to enter input within the time provided the input is removed, the user is told they didn't enter a solution within the time provided, and the game continues.
 - User stories covered: 1, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
@@ -305,6 +306,7 @@ Letters Feedback Screen with Solutions:
 - Displays a message indicating the 60 second timer has started.
 - Displays a user prompt asking the user to input their solution to reach the target number.
 - The prompt provides specific feedback if invalid values, invalid operators, or numbers not shown in the chosen numbers are entered.
+- If the user fails to enter input within the time provided the input is removed, the user is told they didn't enter a solution within the time provided, and the game continues.
 - User stories covered: 1, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
@@ -333,7 +335,7 @@ Numbers Feedback Screen with Solutions:
 </details>
 
 ### Show Conundrum Screen
-- Displays the round number and conundrum letters within tiles in ASCII art.
+- Displays the round number and the scrambled conundrum letters within tiles in ASCII art.
 - Displays the user's current score and any previous high score.
 - Displays the user's name and a message to indicate the conundrum round is starting.
 - Displays brief instructions on how to play the conundrum round.
@@ -345,29 +347,25 @@ Numbers Feedback Screen with Solutions:
 </details>
 
 ### Conundrum Guess Screen
-- Displays the round number and conundrum letters within tiles in ASCII art.
+- Displays the round number and the scrambled conundrum letters within tiles in ASCII art.
 - Displays the user's current score and any previous high score.
 - Displays a message indicating the 30 second timer has started.
 - Displays a user prompt asking the user to input their conundrum solution.
 - The prompt provides specific feedback if invalid values or letters not shown in the conundrum letters are entered.
+- If the user fails to enter input within the time provided the input is removed, the user is told they didn't enter a solution within the time provided, and the game continues.
 - User stories covered: 1, 6, 7, 9, 11, 12, 14
-
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/conundrum_guess_screen.PNG" alt="Conundrum Guess Screen">
 </details>
 
 ### Conundrum Feedback Screen
-- Displays the round number in in ASCII art and conundrum letters within ASCII art tiles.
-- Displays the user's current score and any previous high score..
-- If the user's condundrum solution word matches the target word, the user is told their word is correct and the time they had remaining when they entered their word.
-- If their word is found, the user's name is displayed along with the number of points they score for the round based on their word length and time remaining.
-- If the user's word is not found the user is told the word was not found in the dictionary.
-- Pauses and displays a message for the user to press a key when they are ready to see what words our 'dictionary corner' i.e. anagram solver function found.
-- Displays a message that the game is checking what words the 'dictionary corner' has found as there can be a few seconds of a delay.
-- Displays a list of words found using the chosen letters and the meaning of those words if available.
-- Pauses and displays a message for the user to press a key when they are ready to proceeed to the next round.
-- If the player has completed three letters rounds the game progresses to the numbers round, otherwise it repeats a letters round.
+- Displays the round number in in ASCII art and the unscrambled conundrum letters within ASCII art tiles.
+- Displays the user's current score and any previous high score.
+- If the user's condundrum solution matches the target word, the user is told their word is correct and the time they had remaining when they entered their word.
+- If the user's condundrum solution matches the target word, the user's name is displayed along with the number of points they score for the round based on their correct answer and time remaining.
+- If the user's conundrum solution does not match the target word but uses all of the conundrum letters and the word is found in the dictionary the user's solution is accepted as valid. The user is told that this wasn't the target word but is still valid, and the user's name is displayed along with the number of points they score for the round based on their valid answer and time remaining.
+- Pauses and displays a message for the user to press a key when they are ready to continue.
 - User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
@@ -375,8 +373,13 @@ Numbers Feedback Screen with Solutions:
 </details>
 
 ### Game Over Screen
-- 
-- User stories covered: 
+- Displays 'Game Over' in ASCII art and 'Countdown' within ASCII art tiles.
+- Displays a congraultions message in rainbow text.
+- Displays the user's final score and their highest score so far for this game session.
+- If the user's score for this game beats an existing top ten leaderboard high score, the user's score is added to the leaderboard and the leaderboard is printed to the terminal (after a few seconds delay to give the user time to read the text on screen.)
+- Pauses and displays a message for the user to press any key to start a new game or the ESC key to end the game.
+- If the user starts a new game, their name and high score for their gaming session is carried over to the new game. 
+- User stories covered: 1, 3, 4, 5, 7, 9, 10, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/game_over_screen.PNG" alt="Game Over Screen">

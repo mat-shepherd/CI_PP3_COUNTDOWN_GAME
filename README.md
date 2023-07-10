@@ -431,6 +431,8 @@ The PEP8 Python Validator (from Code Institute) was used to validate all Python 
 </details>
 
 ### Automated Testing
+
+#### Unit Tests
 Thirteen unit tests were written to test the project's validation functions. The tests check that the validation functions, which check user input values, return the expected results.
 
 One test failed for validate_user_numbers function, which highlighted the need to check for a string that contains just spaces. This was corrected using the isspace() method.
@@ -443,7 +445,14 @@ After this, all tests passed OK.
     <img src="docs/unit_tests/unit_test_2.PNG" alt="Unit test screenshot 2">    
 </details>
 
-### Manual Testing
+#### Coverage Report
+
+A coverage report was run against the unit tests using the [Coverage.py](https://coverage.readthedocs.io/en/7.2.7/) tool. This shows there is definite room for improvement in future unit tests to achieve 100% coverage of the validation.py functions and the opportunity to introduce additional unit tests for the code in run.py:
+<details>
+<summary>Unit Test Results</summary>
+    <img src="docs/unit_tests/coverage.PNG" alt="Unit test coverage report">
+  
+</details>### Manual Testing
 #### Testing user stories
 
 #### Users

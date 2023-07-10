@@ -133,6 +133,7 @@ A flowchart of the game flow and logic was created using Mermaid Chart:
 - [GitHub](https://github.com/)
 - [CodeAnywhere](https://codeanywhere.com/)
 - [Heroku](https://heroku.com/)
+- [Coverage.py](https://coverage.readthedocs.io/en/7.2.7/) 
 
 ### Python Libraries
 - [time](https://docs.python.org/3/library/time.html) was used to calculate the time taken for the user to submit a value in the timed input and to access the sleep method to pause code execution.
@@ -448,11 +449,15 @@ After this, all tests passed OK.
 #### Coverage Report
 
 A coverage report was run against the unit tests using the [Coverage.py](https://coverage.readthedocs.io/en/7.2.7/) tool. This shows there is definite room for improvement in future unit tests to achieve 100% coverage of the validation.py functions and the opportunity to introduce additional unit tests for the code in run.py:
+
 <details>
-<summary>Unit Test Results</summary>
+<summary>Coverage Report</summary>C</summary>
     <img src="docs/unit_tests/coverage.PNG" alt="Unit test coverage report">
   
-</details>### Manual Testing
+</details>
+
+### Manual Testing
+
 #### Testing user stories
 
 #### Users
@@ -564,19 +569,19 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| High Scores Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Letters Round Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Show Letters Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Letters Guess Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Letters Feedback Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Numbers Round Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Show Numbers Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Numbers Guess Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Numbers Feedback Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Show Conundrum Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Conundrum Guess Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Conundrum Feedback Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
-| Game Over Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| High Scores Screen | User requests high score screen from introduction screen and screen loads | User's current score and previous high score is displayed | Works as expected |
+| Letters Round Screen | Screen loads after entering name | User's current score and previous high score is displayed | Works as expected |
+| Show Letters Screen | Screen loads after selecting letters | User's current score and previous high score is displayed | Works as expected |
+| Letters Guess Screen | Screen loads after show letters screen | User's current score and previous high score is displayed | Works as expected |
+| Letters Feedback Screen | Screen loads after user submits letters guess | User's current score and previous high score is displayed | Works as expected |
+| Numbers Round Screen | Screen loads after letters feedback screen | User's current score and previous high score is displayed | Works as expected |
+| Show Numbers Screen | Screen loads after selecting numbers | User's current score and previous high score is displayed | Works as expected |
+| Numbers Guess Screen | Screen loads after | User's current score and previous high score is displayed | Works as expected |
+| Numbers Feedback Screen | Screen loads after user submits numbers solution guess | User's current score and previous high score is displayed | Works as expected |
+| Show Conundrum Screen | Screen loads after numbers feedback screen | User's current score and previous high score is displayed | Works as expected |
+| Conundrum Guess Screen | Screen loads after  | User's current score and previous high score is displayed | Works as expected |
+| Conundrum Feedback Screen | Screen loads after user submits conundrum guess | User's current score and previous high score is displayed | Works as expected |
+| Game Over Screen | Screen loads after conundrum feedback screen | User's current score and previous high score is displayed. If user has achieved a high score, congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -586,7 +591,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Works as expected |
+| Game Over Screen | User complete's final round of game and game screen loads | User's current score and previous high score is displayed. If user has achieved a high score, congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
 | | | Works as expected |
 | | | Works as expected |
 

@@ -969,8 +969,10 @@ class Screen:
         elif self.screen_data_param == 'numbers_round':
             print(
                 Style.BRIGHT + Fore.LIGHTGREEN_EX +
-                f'Choose six numbers in total from the '
-                'following selection of Big\n'
+                'You will be given a three digit number to '
+                'reach using a selection of \nnumbers and '
+                'operators. Choose six numbers in total '
+                'from the following \nselection of Big '
                 'Numbers and Small Numbers...\n'
                 + Fore.RESET
             )

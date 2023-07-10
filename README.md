@@ -77,7 +77,7 @@ I have divided my user stories into users and the site owner, as each of these u
 1. As a user, I want to play a fun, family-friendly, challenging, and educational game.
 2. As a user, I want to be able to view the rules of the game.
 3. As a user, I want to be able to view the high scores leaderboard.
-4. As a user, I want to be able to start a new game and enter my player name.
+4. As a user, I want to be able to enter my player name to personalise my game experience and track my score.
 5. As a user, I want the game to remember my name if I play again and have the choice to keep my name or change it.
 6. As a user, I want my input to be validated with clear feedback on how to correct any input errors. 
 7. As a user, I want to be given clear instructions on each screen on how to play the game and how to progress.
@@ -166,32 +166,46 @@ A flowchart of the game flow and logic was created using Mermaid Chart:
 The game consists of a series of screens with the following features:
 
 ### Introduction Screen
-- Displays the game title and welcome message in ASCII art and a sub-heading
-- Prompts the user to start the game, read the game rules or view the high scores leaderboard
+- Displays the game title and welcome message in ASCII art and a sub-heading.
+- Prompts the user to start the game, read the game rules or view the high scores leaderboard.
+- The prompt provides specific feedback if invalid values are entered.
 - User stories covered: 1, 2, 3, 4, 6, 7, 11, 12, 13
 <details><summary>Screenshots</summary>
 <img src="docs/features/intro_screen.PNG" alt="Game Introduction Screen">
 </details>
 
 ### Rules Screen
-- 
-- User stories covered: 
+- Displays the game title and rules screen in ASCII art.
+- Displays the game rules allowing the user to learn how to play the game.
+- Outputs game rules in a paged format allowing the user to read the rules without having to scroll the terminal.
+- The final page of rules provides the user with a prompt to return to start the game or return to the introduction screen.
+- The prompt provides specific feedback if invalid values are entered.
+- User stories covered: 1, 2, 6, 7, 11, 12, 13
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/rules_screen.PNG" alt="Rules Screen">
 </details>
 
 ### High Scores Screen
-- 
-- User stories covered: 
+- Displays the game title in ASCII art and hall of fame in raninbow text.
+- Outputs the high score leaderboard in an easy to read ASCII table format.
+- Displays the most recent top ten player high scores and the corrsponding player name.
+- Prompts the user to start the game or return to the the introduction screen.
+- The prompt provides specific feedback if invalid values are entered .
+- User stories covered: 1, 3, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/high_scores_screen.PNG" alt="High Scores Screen">
 </details>
 
 ### Enter Name Screen
-- 
-- User stories covered: 
+- Displays the game title in ASCII and a ready message in ASCII art.
+- Displays the user current score and any previous high score.
+- Displays a user prompt asking the user to enter their name and briefly explains valid name formatting.
+- If this is a repeat game, the prompt instead asks if the user wants to keep their existing name from their previous game or enter a new name.
+- Stores the user name to display on the following screens and to record user's score if a high score is achieved.
+- The prompt provides specific feedback if invalid values are entered.
+- User stories covered: 1, 4, 5, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Enter Name Screen:
@@ -404,7 +418,7 @@ After this, all tests passed OK.
 
 </details>
 
-4. As a user, I want to be able to start a new game and enter my player name.
+4. As a user, I want to be able to enter my player name to personalise my game experience and track my score.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|

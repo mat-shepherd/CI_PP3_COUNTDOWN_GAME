@@ -163,97 +163,133 @@ The game consists of a series of screens with the following features:
 - 
 - User stories covered: 
 
-![Introduction Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/intro_screen.PNG" alt="Game Introduction Screen">
+</details>
 
 ### Rules Screen
 - 
 - User stories covered: 
 
-![Rules Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/rules_screen.PNG" alt="Rules Screen">
+</details>
 
 ### High Scores Screen
 - 
 - User stories covered: 
 
-![High Scores Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/high_scores_screen.PNG" alt="High Scores Screen">
+</details>
 
 ### Enter Name Screen
 - 
 - User stories covered: 
 
-![Enter Name Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/enter_name_screen.PNG" alt="Enter name screen">
+<img src="docs/features/enter_name_screen_2.PNG" alt="Enter name scree remembers name from previous game">
+</details>
 
 ### Letters Round Screen
 - 
 - User stories covered: 
 
-![Letters Round Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/letters_round_screen.PNG" alt="Letters Round Screen">
+</details>
 
 ### Show Letters Screen
 - 
 - User stories covered: 
 
-![Show Letters Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/show_letters_screen.PNG" alt="Show Letters Screen">
+</details>
 
 ### Letters Guess Screen
 - 
 - User stories covered: 
 
-![Letters Guess Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/letters_guess_screen.PNG" alt="Letters Guess Screen">
+</details>
 
 ### Letters Feedback Screen
 - 
 - User stories covered: 
 
-![Letters Feedback Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/letters_feedback_screen.PNG" alt="Letters Feedback Screen">
+<img src="docs/features/letters_feedback_screen_2.PNG" alt="Letters Feedback Screen with Solutions">
+</details>
 
 ### Numbers Round Screen
 - 
 - User stories covered: 
 
-![Numbers Round Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/numbers_round_screen.PNG" alt="Numbers Round Screen">
+</details>
 
 ### Show Numbers Screen
 - 
 - User stories covered: 
 
-![Show Numbers Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/show_numbers_screen.PNG" alt="Show Numbers Screen">
+</details>
 
 ### Numbers Guess Screen
 - 
 - User stories covered: 
 
-![Numbers Guess Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/numbers_guess_screen.PNG" alt="Numbers Guess Screen">
+</details>
 
 ### Numbers Feedback Screen
 - Countdown solver
 - User stories covered: 
 
-![Numbers Feedback Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/numbers_feedback_screen.PNG" alt="Numbers Feedback Screen">
+<img src="docs/features/numbers_feedback_screen_2.PNG" alt="Numbers Feedback Screen with Solutions">
+</details>
 
 ### Show Conundrum Screen
 - 
 - User stories covered: 
 
-![Show Conundrum Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/show_conundrum_screen.PNG" alt="Show Conundrum Screen">
+</details>
 
 ### Conundrum Guess Screen
 - 
 - User stories covered: 
 
-![Conundrum Guess Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/conundrum_guess_screen.PNG" alt="Conundrum Guess Screen">
+</details>
 
 ### Conundrum Feedback Screen
 - Anagram solver
 - User stories covered: 
 
-![Conundrum Feedback Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/conundrum_feedback_screen.PNG" alt="Conundrum Feedback Screen">
+</details>
 
 ### Game Over Screen
 - 
 - User stories covered: 
 
-![Game Over Screen]()
+<details><summary>Screenshots</summary>
+<img src="docs/features/game_over_screen.PNG" alt="Game Over Screen">
+<img src="docs/features/game_over_screen_2.PNG" alt="Game Over Screen with Leaderboard">
+</details>
 
 ### Features Left to Implement
 

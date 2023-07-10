@@ -466,7 +466,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| See all features and tests below | User plays the game| User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
+| See all features and tests below | User plays the game | User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
 
 
 2. As a user, I want to be able to view the rules of the game.
@@ -591,9 +591,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Game Over Screen | User complete's final round of game and game screen loads | User's current score and previous high score is displayed. If user has achieved a high score, congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
-| | | Works as expected |
-| | | Works as expected |
+| Game Over Screen | User complete's final round of game and game screen loads | User's current score and previous high score is displayed. If user has achieved a high score, a congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
+
 
 <details><summary>Screenshots</summary>
 
@@ -605,9 +604,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Works as expected |
-| | | Works as expected |
-| | | Works as expected |
+| See all features and tests above | User plays the game | User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
 
 <details><summary>Screenshots</summary>
 
@@ -617,9 +614,10 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Works as expected |
-| | | Works as expected |
-| | | Works as expected |
+| Introduction Screen |  User enters 2 on introduction screen | Rules screen displayed and output paged | Works as expected |
+| Rules Screen | User read rules and hits any key to page through rules | User can read all rules and then enters 1 to start the game or 2 to return to introduction screen | Works as expected |
+| All screens | Screen loads and user is provided with instructions on how to play the game and what to enter to proceed | All screens provide instructions and prompts. See tests above and below. | Works as expected |
+
 
 <details><summary>Screenshots</summary>
 
@@ -629,9 +627,15 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Works as expected |
-| | | Works as expected |
-| | | Works as expected |
+| Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
+| Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
+| Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
+| Numbers Guess Screen | User inputs solution using chosen numbers and available operators | User's solution checked for use of chosen numbers and valid operators, if valid progress to feedback screen or validation error if incorrect value entered | Works as expected |
+| Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+
 
 <details><summary>Screenshots</summary>
 
@@ -641,9 +645,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| | | Works as expected |
-| | | Works as expected |
-| | | Works as expected |
+| Game Over Screen | User complete's final round of game and game screen loads | User's current score and previous high score is displayed. If user has achieved a high score, a congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
+| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Works as expected |
 
 <details><summary>Screenshots</summary>
 

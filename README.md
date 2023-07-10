@@ -5,7 +5,7 @@
 
 [Live webpage](https://countdown-game-ccaca8c4e1a7.herokuapp.com/)
 
-## Table of Content
+## Table of Contents
 
 1. [Project Goals](#project-goals)
     1. [User Goals](#user-goals)
@@ -40,7 +40,6 @@ The goals of this app include:
 
 ### Site Owner Goals
 - Create a fun interactive game that furthers my understanding of problem solving through code and the Python language
-- Create an attractive and easy to use game
 - Ensure the user understands the rules of the game
 - Ensure the user is provided with clear instructions on how to play on each screen
 - Ensure the user is provided with clear feedback on any errors and how to proceed
@@ -48,9 +47,10 @@ The goals of this app include:
 - Allow the user to have thier score displaye don the leaderboard if it is a top ten high score
 
 ### User Goals
-- Play a fun and interactive online numbers and words puzzle game similar to the U.K. T.V. gameshow Countdown 
+- Play a fun, family friendly, interactive online numbers and words puzzle game similar to the U.K. T.V. gameshow Countdown 
 - Quickly understand the rules of the game and how to play
-- Be able to keep track of the game score and to try to beat their previous high score
+- Be able to keep track of the game score and try to beat their previous high score
+- Learn from the game through suggested words and number solutions 
 - Play the game as often as desired
 - Achieve a top ten high score that appears on the game leaderboard
 
@@ -63,7 +63,7 @@ The goals of this app include:
 
 ### User Requirements and Expectations
 - An intuitive and easy to navigate game interface
-- A fun and educational gameplay experience with feedback on word and number game solutions
+- A fun, family friendly, and educational gameplay experience with feedback on word and number game solutions
 - Ability to quickly find game rules, view the score leaderboard, or start the game
 - Ability to personalise the game by entering a player name
 - Score tracking during the game and feedback if a top ten score is achieved
@@ -75,16 +75,16 @@ The goals of this app include:
 I have divided my user stories into users and the site owner, as each of these users will have a distinct set of needs and goals.
 
 #### Users
-1. As a user, I want to play a fun, challenging, and educational game with feedback on word and number game solutions.
-2. As a user, I want to be given clear instructions on each screen on how to play the game and how to progress.
-3. As a user, I want to be able to view the rules of the game.
+1. As a user, I want to play a fun, family friendly, challenging, and educational game.
+2. As a user, I want to be able to view the rules of the game.
+3. As a user, I want to be able to view the high scores leaderboard.
 4. As a user, I want to be able to start a new game and enter my player name.
-5. As a user, 
-6. As a user, 
-7. As a user, 
-8. As a user, 
-9. As a user, 
-10. As a user, 
+5. As a user, I want the game to remember my name if I play again and have the choice to keep my name or change it.
+6. As a user, I want my input to be validated with clear feedback on how to correct any input errors. 
+7. As a user, I want to be given clear instructions on each screen on how to play the game and how to progress.
+8. As a user, I want feedback on my word and number guesses with potential solutions provided by the game.
+9. As a user, I want to keep track of my current score and previous high score as the game progresses.
+10. As a user, I want to be told when the game is over, the score I achieved, my high score, and be shown the leaderboard if I achieve a top ten high score.
 
 
 #### Site Owner 

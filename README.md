@@ -188,8 +188,11 @@ The game consists of a series of screens with the following features:
 - User stories covered: 
 
 <details><summary>Screenshots</summary>
+Enter Name Screen:
 <img src="docs/features/enter_name_screen.PNG" alt="Enter name screen">
-<img src="docs/features/enter_name_screen_2.PNG" alt="Enter name scree remembers name from previous game">
+
+Enter Name Screen Remembers Name from Previous Game:
+<img src="docs/features/enter_name_screen_2.PNG" alt="Enter name screen remembers name from previous game">
 </details>
 
 ### Letters Round Screen
@@ -217,11 +220,14 @@ The game consists of a series of screens with the following features:
 </details>
 
 ### Letters Feedback Screen
-- 
+- Anagram solver
 - User stories covered: 
 
 <details><summary>Screenshots</summary>
+Letters Feedback Screen:
 <img src="docs/features/letters_feedback_screen.PNG" alt="Letters Feedback Screen">
+
+Letters Feedback Screen with Solutions:
 <img src="docs/features/letters_feedback_screen_2.PNG" alt="Letters Feedback Screen with Solutions">
 </details>
 
@@ -254,7 +260,10 @@ The game consists of a series of screens with the following features:
 - User stories covered: 
 
 <details><summary>Screenshots</summary>
+Numbers Feedback Screen:
 <img src="docs/features/numbers_feedback_screen.PNG" alt="Numbers Feedback Screen">
+
+Numbers Feedback Screen with Solutions:
 <img src="docs/features/numbers_feedback_screen_2.PNG" alt="Numbers Feedback Screen with Solutions">
 </details>
 
@@ -275,7 +284,7 @@ The game consists of a series of screens with the following features:
 </details>
 
 ### Conundrum Feedback Screen
-- Anagram solver
+- 
 - User stories covered: 
 
 <details><summary>Screenshots</summary>

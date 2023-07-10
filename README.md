@@ -379,7 +379,7 @@ Numbers Feedback Screen with Solutions:
 - Displays the user's final score and their highest score so far for this game session.
 - If the user's score for this game beats an existing top ten leaderboard high score, the user's score is added to the leaderboard and the leaderboard is printed to the terminal (after a few seconds delay to give the user time to read the text on screen.)
 - Pauses and displays a message for the user to press any key to start a new game or the ESC key to end the game.
-- If the user starts a new game, their name and high score for their gaming session is carried over to the new game. 
+- If the user starts a new game, their name and high score for their gaming session are carried over to the new game. 
 - User stories covered: 1, 3, 4, 5, 7, 9, 10, 11, 12, 14
 
 <details><summary>Screenshots</summary>
@@ -465,7 +465,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| See all features and tests below | User plays the game | User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
+| See all features and tests below | User plays the game | User had fun solving challenging puzzles and has a chance to learn something new from round feedback | Works as expected |
 
 
 2. As a user, I want to be able to view the rules of the game.
@@ -497,9 +497,9 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Works as expected |
-| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Works as expected |
-| High Scores Screen | User achieves top ten high score and views high scores screen | User views high scores leaderboard and sees their entered name on the top ten leaderboard after achievng a top ten high score | Works as expected |
+| Enter Name Screen |  User enters name | User's name is validated and when valid stored to show in following screens | Works as expected |
+| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, which is validated and stored to show in following screens| Works as expected |
+| High Scores Screen | User achieves top ten high score and views high scores screen | User views high scores leaderboard and sees their entered name on the top ten leaderboard after achieving a top ten high score | Works as expected |
 | Letters Round Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Letters Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Numbers Round Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
@@ -522,7 +522,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Enter Name Screen |  User enters name | User's names is validated and when valid stored to show in following screens | Works as expected |
+| Enter Name Screen |  User enters name | User's name is validated and when valid stored to show in following screens | Works as expected |
 | Enter Name Screen |  User repeats game and is asked if they want to keep existing name (name printed in prompt) or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, which is validated and stored to show in following screens| Works as expected |
 | Game Over Screen |  User hits any key to repeat game from game over screen | User is taken back to the introduction screen, selects 1 to start a new game and then is asked if they want to keep their existing name from the previous game (name printed in prompt) or enter new name | Works as expected |
 
@@ -536,15 +536,15 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
-| Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
-| High Scores Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input received, validation error if incorrect value entered | Works as expected |
+| Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input received, validation error if incorrect value entered | Works as expected |
+| High Scores Screen | User inputs 1 or 2 | Progress to correct screen if valid number input received, validation error if incorrect value entered | Works as expected |
 | Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
-| Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
-| Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
-| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
+| Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
+| Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
 | Numbers Guess Screen | User inputs solution using chosen numbers and available operators | User's solution checked for use of chosen numbers and valid operators, if valid progress to feedback screen or validation error if incorrect value entered | Works as expected |
-| Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+| Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
 
 <details><summary>Screenshots</summary>
     <img src="docs/user_story_tests/intro_screen_validation.PNG" alt="Intro screen with validation">
@@ -570,8 +570,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
 | Letters Feedback Screen | User enters valid word guess | User is told if their word is found in the dictionary or not, and then, where found by the anagram solver, provided with other potential valid words and their meanings | Works as expected |
-| Numbers Feedback Screen | User enters valid target number solution guess | User is told if their solution achieves the target nubmer and if not what their expression evaluates to and how close they were to the target number. Then where found by the countdown solver, the user is provided with solutions to achieve the target number using the chosen numbers and available operators. | Works as expected |
-| Conundrum Feedback Screen | User enters valid conundrum guess | User is told if their conundrum guess matches the target word. If their word is not the target word but uses all conundrum letters and is found in the dictionary they are also infomred of this. If not the target word the user is told. | Works as expected |
+| Numbers Feedback Screen | User enters valid target number solution guess | User is told if their solution achieves the target number and if not what their expression evaluates to and how close they were to the target number. Then where found by the countdown solver, the user is provided with solutions to achieve the target number using the chosen numbers and available operators. | Works as expected |
+| Conundrum Feedback Screen | User enters valid conundrum guess | User is told if their conundrum guess matches the target word. If their word is not the target word but uses all conundrum letters and is found in the dictionary they are also informed of this. If not the target word the user is told. | Works as expected |
 
 <details><summary>Screenshots</summary>
    <img src="docs/user_story_tests/letters_feedback_screen.PNG" alt="Letters feedback screen">
@@ -585,19 +585,19 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| High Scores Screen | User requests high score screen from introduction screen and screen loads | User's current score and previous high score is displayed | Works as expected |
-| Letters Round Screen | Screen loads after entering name | User's current score and previous high score is displayed | Works as expected |
-| Show Letters Screen | Screen loads after selecting letters | User's current score and previous high score is displayed | Works as expected |
-| Letters Guess Screen | Screen loads after show letters screen | User's current score and previous high score is displayed | Works as expected |
-| Letters Feedback Screen | Screen loads after user submits letters guess | User's current score and previous high score is displayed | Works as expected |
-| Numbers Round Screen | Screen loads after letters feedback screen | User's current score and previous high score is displayed | Works as expected |
-| Show Numbers Screen | Screen loads after selecting numbers | User's current score and previous high score is displayed | Works as expected |
-| Numbers Guess Screen | Screen loads after | User's current score and previous high score is displayed | Works as expected |
-| Numbers Feedback Screen | Screen loads after user submits numbers solution guess | User's current score and previous high score is displayed | Works as expected |
-| Show Conundrum Screen | Screen loads after numbers feedback screen | User's current score and previous high score is displayed | Works as expected |
-| Conundrum Guess Screen | Screen loads after  | User's current score and previous high score is displayed | Works as expected |
-| Conundrum Feedback Screen | Screen loads after user submits conundrum guess | User's current score and previous high score is displayed | Works as expected |
-| Game Over Screen | Screen loads after conundrum feedback screen | User's current score and previous high score is displayed. If user has achieved a high score, congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
+| High Scores Screen | User requests high score screen from introduction screen and screen loads | User's current score and previous high score are displayed | Works as expected |
+| Letters Round Screen | Screen loads after entering name | User's current score and previous high score are displayed | Works as expected |
+| Show Letters Screen | Screen loads after selecting letters | User's current score and previous high score are displayed | Works as expected |
+| Letters Guess Screen | Screen loads after show letters screen | User's current score and previous high score are displayed | Works as expected |
+| Letters Feedback Screen | Screen loads after user submits letters guess | User's current score and previous high score are displayed | Works as expected |
+| Numbers Round Screen | Screen loads after letters feedback screen | User's current score and previous high score are displayed | Works as expected |
+| Show Numbers Screen | Screen loads after selecting numbers | User's current score and previous high score are displayed | Works as expected |
+| Numbers Guess Screen | Screen loads after | User's current score and previous high score are displayed | Works as expected |
+| Numbers Feedback Screen | Screen loads after user submits numbers solution guess | User's current score and previous high score are displayed | Works as expected |
+| Show Conundrum Screen | Screen loads after numbers feedback screen | User's current score and previous high score are displayed | Works as expected |
+| Conundrum Guess Screen | Screen loads after  | User's current score and previous high score are displayed | Works as expected |
+| Conundrum Feedback Screen | Screen loads after user submits conundrum guess | User's current score and previous high score are displayed | Works as expected |
+| Game Over Screen | Screen loads after conundrum feedback screen | User's current score and previous high score are displayed. If user has achieved a high score, congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
 
 <details><summary>Screenshots</summary>
     <img src="docs/user_story_tests/high_scores_screen.PNG" alt="High scores screen">  
@@ -619,7 +619,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Game Over Screen | User complete's final round of game and game screen loads | User's current score and previous high score is displayed. If user has achieved a high score, a congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
+| Game Over Screen | User completes final round of game and game screen loads | User's current score and previous high score are displayed. If user has achieved a high score, a congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
 
 
 <details><summary>Screenshots</summary>
@@ -654,14 +654,14 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
-| Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input received, validation error if incorrect value entered | Works as expected |
+| Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input received, validation error if incorrect value entered | Works as expected |
 | Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
-| Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
-| Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
-| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
+| Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
+| Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+| Numbers Round Screen | | User inputs number of big numbers 0 and 4 | Chosen number of big and small numbers shown if valid number input otherwise received, validation error if incorrect value entered | Works as expected |
 | Numbers Guess Screen | User inputs solution using chosen numbers and available operators | User's solution checked for use of chosen numbers and valid operators, if valid progress to feedback screen or validation error if incorrect value entered | Works as expected |
-| Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
+| Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters and if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
 
 
 <details><summary>Screenshots</summary>
@@ -680,8 +680,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| Game Over Screen | User complete's final round of game and game screen loads | User's current score and previous high score is displayed. If user has achieved a high score, a congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
-| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Works as expected |
+| Game Over Screen | User completes final round of game and game screen loads | User's current score and previous high score are displayed. If user has achieved a high score, a congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
+| Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, which is validated and stored to show in following screens| Works as expected |
 
 <details><summary>Screenshots</summary>
     <img src="docs/user_story_tests/game_over_screen.PNG" alt="Game over screen">

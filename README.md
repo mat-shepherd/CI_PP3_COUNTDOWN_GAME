@@ -555,9 +555,19 @@ After this, all tests passed OK.
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| High Scores Screen | | Works as expected |
-| | | Works as expected |
-| | | Works as expected |
+| High Scores Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Letters Round Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Show Letters Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Letters Guess Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Letters Feedback Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Numbers Round Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Show Numbers Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Numbers Guess Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Numbers Feedback Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Show Conundrum Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Conundrum Guess Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Conundrum Feedback Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
+| Game Over Screen | Screen loads | User's current score and previous high score is displayed | Works as expected |
 
 <details><summary>Screenshots</summary>
 

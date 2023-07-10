@@ -200,7 +200,7 @@ The game consists of a series of screens with the following features:
 
 ### Enter Name Screen
 - Displays the game title in ASCII and a ready message in ASCII art.
-- Displays the user current score and any previous high score.
+- Displays the user's current score and any previous high score.
 - Displays a user prompt asking the user to enter their name and briefly explains valid name formatting.
 - If this is a repeat game, the prompt instead asks if the user wants to keep their existing name from their previous game or enter a new name.
 - Stores the user name to display on the following screens and to record user's score if a high score is achieved.
@@ -216,8 +216,8 @@ Enter Name Screen Remembers Name from Previous Game:
 </details>
 
 ### Letters Round Screen
-- Displays the round number in and letter tiles in ASCII art.
-- Displays the user current score and any previous high score.
+- Displays the round number and letter tiles in ASCII art.
+- Displays the user's current score and any previous high score.
 - Displays the user's name and a message to indicate the game is starting.
 - Displays brief instructions on how to play the letters round.
 - Displays a user prompt asking the user to choose the number of vowels they would like and briefly explains valid input formatting.
@@ -229,21 +229,21 @@ Enter Name Screen Remembers Name from Previous Game:
 </details>
 
 ### Show Letters Screen
-- Displays the round number in and chosen letters within tiles in ASCII art.
-- Displays the user current score and any previous high score.
+- Displays the round number and chosen letters within tiles in ASCII art.
+- Displays the user's current score and any previous high score.
 - Displays brief instructions on how to play the letters round.
 - Pauses and displays a message for the user to press a key when they are ready to start the timer and input their word.
-- User stories covered: 1, 4, 6, 7, 9, 11, 12, 13, 14
+- User stories covered: 1, 4, 7, 9, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_letters_screen.PNG" alt="Show Letters Screen">
 </details>
 
 ### Letters Guess Screen
-- Displays the round number in and chosen letters within tiles in ASCII art.
-- Displays the user current score and any previous high score.
+- Displays the round number and chosen letters within tiles in ASCII art.
+- Displays the user's current score and any previous high score.
 - Displays a message indicating the 30 second timer has started.
-- Displays a user prompt asking the user to input thier longest word.
+- Displays a user prompt asking the user to input their longest word.
 - The prompt provides specific feedback if invalid values or letters not shown in the chosen letters are entered.
 - User stories covered: 1, 6, 7, 9, 11, 12, 13, 14
 
@@ -252,13 +252,18 @@ Enter Name Screen Remembers Name from Previous Game:
 </details>
 
 ### Letters Feedback Screen
-- Displays the round number in and chosen letters within tiles in ASCII art.
-- Displays the user current score and any previous high score.
-- Displays a message letting the user know their word is being checked in the dictionary.
-- If their word is found in the dictionary the user is told their word was found, the length of their word, and the time they had remaining when they entered their word.
-- If their word is found the user's name is displayed along with the numer of points they score for the round based on their word length and time remaining.
-- Pauses and displays a message for the user to press a key when they are ready to see what words our 'dictionary corner' i.e. anagram solver fucntion found.
-- User stories covered: 1, 4, 6, 7, 9, 11, 12, 13, 14
+- Displays the round number in in ASCII art and chosen letters within ASCII art tiles.
+- Displays the user's current score and any previous high score.
+- Displays a message letting the user know their word is being checked in the dictionary as there can be a few seconds of a delay.
+- If their word is found in the dictionary, the user is told their word was found, the length of their word, and the time they had remaining when they entered their word.
+- If their word is found, the user's name is displayed along with the number of points they score for the round based on their word length and time remaining.
+- If the user's word is not found the user is told the word was not found in the dictionary.
+- Pauses and displays a message for the user to press a key when they are ready to see what words our 'dictionary corner' i.e. anagram solver function found.
+- Displays a message that the game is checking what words the 'dictionary corner' has found as there can be a few seconds of a delay.
+- Displays a list of words found using the chosen letters and the meaning of those words if available.
+- Pauses and displays a message for the user to press a key when they are ready to proceeed to the next round.
+- If the player has completed three letters rounds the game progresses to the numbers round, otherwise it repeats a letters round.
+- User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Letters Feedback Screen:
@@ -269,32 +274,55 @@ Letters Feedback Screen with Solutions:
 </details>
 
 ### Numbers Round Screen
-- 
-- User stories covered: 
+- Displays the round number and tiles in ASCII art.
+- Displays the user's current score and any previous high score.
+- Displays the user's name and a message to indicate the numbers round is starting.
+- Displays brief instructions on how to play the numbers round.
+- Displays a user prompt asking the user to choose the number of 'big numbers' they would like and briefly explains valid input formatting.
+- The prompt provides specific feedback if invalid values are entered.
+- User stories covered: 1, 4, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/numbers_round_screen.PNG" alt="Numbers Round Screen">
 </details>
 
 ### Show Numbers Screen
-- 
-- User stories covered: 
+- Displays the round number and chosen numbers within tiles in ASCII art.
+- Displays the user's current score and any previous high score.
+- Displays the randomly generated target three digit number the user is solving for.
+- Displays brief instructions on how to play the numbers round, including which operators are allowed, and reminding them to consider order operations.
+- Pauses and displays a message for the user to press a key when they are ready to start the timer and input their solution.
+- User stories covered: 1, 4, 6, 7, 9, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_numbers_screen.PNG" alt="Show Numbers Screen">
 </details>
 
 ### Numbers Guess Screen
-- 
-- User stories covered: 
+- Displays the round number and chosen numbers within tiles in ASCII art.
+- Displays the user's current score and any previous high score.
+- Displays the randomly generated target three digit number the user is solving for.
+- Displays a message indicating the 60 second timer has started.
+- Displays a user prompt asking the user to input their solution to reach the target number.
+- The prompt provides specific feedback if invalid values, invalid operators, or numbers not shown in the chosen numbers are entered.
+- User stories covered: 1, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/numbers_guess_screen.PNG" alt="Numbers Guess Screen">
 </details>
 
 ### Numbers Feedback Screen
-- Countdown solver
-- User stories covered: 
+- Displays the round number in in ASCII art and chosen numbers within ASCII art tiles.
+- Displays the user's current score and any previous high score.
+- Displays a message letting the user know their solution is being checked as there can be a few seconds of a delay.
+- If the user solution achieves the target number, the user is shown their solution and its evaluated answer and the time they had remaining when they entered their solution.
+- If their solution is valid, the user's name is displayed along with the number of points they score for the round based on their correct answer and time remaining.
+- If the user's solution does not achieve the target number, the user is shown their solution and its evaluated answer, and if they were within 50 of target, how close to the target number they got.
+- Pauses and displays a message for the user to press a key when they are ready to see what solutions our 'maths wiz' i.e. countdown solver function found.
+- Displays a message that the game is checking what solutions the 'maths wiz' has found, in case there is a delay.
+- Displays a list of all possible solutions to achieve the target number using the chosen numbers and available operators.
+- Pauses and displays a message for the user to press a key when they are ready to proceeed to the next round.
+- User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Numbers Feedback Screen:
@@ -305,24 +333,42 @@ Numbers Feedback Screen with Solutions:
 </details>
 
 ### Show Conundrum Screen
-- 
-- User stories covered: 
+- Displays the round number and conundrum letters within tiles in ASCII art.
+- Displays the user's current score and any previous high score.
+- Displays the user's name and a message to indicate the conundrum round is starting.
+- Displays brief instructions on how to play the conundrum round.
+- Pauses and displays a message for the user to press a key when they are ready to start the timer and input their word.
+- User stories covered: 1, 4, 7, 9, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_conundrum_screen.PNG" alt="Show Conundrum Screen">
 </details>
 
 ### Conundrum Guess Screen
-- 
-- User stories covered: 
+- Displays the round number and conundrum letters within tiles in ASCII art.
+- Displays the user's current score and any previous high score.
+- Displays a message indicating the 30 second timer has started.
+- Displays a user prompt asking the user to input their conundrum solution.
+- The prompt provides specific feedback if invalid values or letters not shown in the conundrum letters are entered.
+- User stories covered: 1, 6, 7, 9, 11, 12, 14
+
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/conundrum_guess_screen.PNG" alt="Conundrum Guess Screen">
 </details>
 
 ### Conundrum Feedback Screen
-- 
-- User stories covered: 
+- Displays the round number in in ASCII art and conundrum letters within ASCII art tiles.
+- Displays the user's current score and any previous high score..
+- If the user's condundrum solution word matches the target word, the user is told their word is correct and the time they had remaining when they entered their word.
+- If their word is found, the user's name is displayed along with the number of points they score for the round based on their word length and time remaining.
+- If the user's word is not found the user is told the word was not found in the dictionary.
+- Pauses and displays a message for the user to press a key when they are ready to see what words our 'dictionary corner' i.e. anagram solver function found.
+- Displays a message that the game is checking what words the 'dictionary corner' has found as there can be a few seconds of a delay.
+- Displays a list of words found using the chosen letters and the meaning of those words if available.
+- Pauses and displays a message for the user to press a key when they are ready to proceeed to the next round.
+- If the player has completed three letters rounds the game progresses to the numbers round, otherwise it repeats a letters round.
+- User stories covered: 1, 4, 6, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/conundrum_feedback_screen.PNG" alt="Conundrum Feedback Screen">

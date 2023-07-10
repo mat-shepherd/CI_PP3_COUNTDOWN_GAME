@@ -356,7 +356,10 @@ def check_numbers_used(solution, new_player=None):
 def validate_user_numbers(user_solution, new_player=None):
     """
     Check user's numbers round solution is valid
-    Check only numbers and operators are used
+    Check only numbers and operators are used.
+
+    Regular expressions provided by ChatGT by
+    Openai.com
 
     Parameters
     ----------
@@ -381,8 +384,15 @@ def validate_user_numbers(user_solution, new_player=None):
         # user_solution
         illegal_regex = r'[^0-9\(\)\*\+\/\-\s]'
         match = search(illegal_regex, user_solution)
+        # Check for consecutive operators without a number in between
+        operator_regex = r'(\s*[+\-*/]\s*){2,}'
+        operator_match = search(operator_regex, user_solution)
+
         if user_solution == '' or user_solution.isspace():
             raise ValueError('Please enter a solution!')
+        elif operator_match is not None:
+            raise ValueError('Consecutive operators without a number in '
+                             'between are not allowed!')
         elif match is not None:
             raise ValueError(
                 'Please use only numbers or the '
@@ -421,6 +431,8 @@ def validate_user_solution(solution, new_player=None):
         result of solution string and target number.
     """
     target = new_player.target_number
+    # Remove any spaces around solution string
+    solution = solution.strip()
     solution_result = int(ne.evaluate(solution))
     result_valid = True if solution_result == target else False
     # Check is the solution close?

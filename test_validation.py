@@ -263,6 +263,18 @@ class TestValidation(unittest.TestCase):
             validate_user_numbers('50 * a / 4', new_player),
             False
         )
+        self.assertEqual(
+            validate_user_numbers('50 ** 4 / 100', new_player),
+            False
+        )
+        self.assertEqual(
+            validate_user_numbers('50 *+4', new_player),
+            False
+        )
+        self.assertEqual(
+            validate_user_numbers('50-*+4', new_player),
+            False
+        )
         self.assertEqual(validate_user_numbers('', new_player), False)
         self.assertEqual(validate_user_numbers(' ', new_player), False)
 

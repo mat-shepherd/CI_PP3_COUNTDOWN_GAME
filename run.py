@@ -508,10 +508,11 @@ class Screen:
 
         while True:
             try:
+                # Trim spaces around user input
                 user_prompt = inputimeout(
                     prompt=timer_prompt,
                     timeout=countdown
-                )
+                ).strip()
                 time_remaining = int(countdown - (time() - start_time))
                 # Had to add additional timeout check
                 # and raise error to work on Heroku
@@ -534,7 +535,7 @@ class Screen:
                         # Store guessed solutions in Player attribute
                         # at index one less than round number
                         new_player.guessed_solutions.insert(
-                            Screen.round_number - 1,
+                            0,
                             user_prompt
                         )
                         time_remaining = int(countdown - (time() - start_time))
@@ -545,10 +546,15 @@ class Screen:
                         new_player,
                         new_conundrum
                     ):
+                        # If user doesn't provide solution make
+                        # sure to store empty value so guesses
+                        # solutions isn't empty
+                        if user_prompt == '' or user_prompt is None:
+                            user_prompt = ' '
                         # Store guessed solutions in Player attribute
                         # at index one less than round number
                         new_player.guessed_conundrum.insert(
-                            Screen.round_number - 1,
+                            0,
                             user_prompt
                         )
                         time_remaining = int(countdown - (time() - start_time))
@@ -1046,7 +1052,11 @@ class Screen:
                 Style.BRIGHT + Fore.WHITE +
                 f'Checking your solution...\n'
                 )
-            user_solution = new_player.guessed_solutions[0]
+            # Make sure to check for empty input
+            if len(new_player.guessed_solutions) > 0:
+                user_solution = new_player.guessed_solutions[0]
+            else:
+                user_solution = ''
             if user_solution == '':
                 print(
                     Fore.WHITE +

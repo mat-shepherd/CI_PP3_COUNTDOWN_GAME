@@ -715,7 +715,7 @@ class Screen:
                     'to See the Game Rules,\n'
                     'or 3 to See the Scores '
                     'Leaderboard\n'
-                )
+                ).strip()
                 if validate_menu_value(
                     user_prompt,
                     self.screen_data_param
@@ -729,7 +729,7 @@ class Screen:
                     Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
                     ' to Return to the Intro Screen\n'
-                )
+                ).strip()
                 if validate_menu_value(
                     user_prompt,
                     self.screen_data_param
@@ -743,7 +743,7 @@ class Screen:
                     Fore.WHITE +
                     'Enter 1 to Start the Game or 2'
                     ' to Return to the Intro Screen\n'
-                )
+                ).strip()
                 if validate_menu_value(
                     user_prompt,
                     self.screen_data_param
@@ -762,7 +762,7 @@ class Screen:
                         Fore.WHITE +
                         'Please enter your name...\n'
                         '(must be 2 to 10 letter characters long)\n'
-                    )
+                    ).strip()
                 else:
                     # If player name already exists ask if they want
                     # to keep it or change it
@@ -774,7 +774,7 @@ class Screen:
                             f'{new_player.name} '
                             + Fore.WHITE +
                             f'or 2 to enter a new name\n'
-                        )
+                        ).strip()
                         if validate_menu_value(
                             user_prompt,
                             self.screen_data_param
@@ -788,7 +788,7 @@ class Screen:
                                     'Please enter your name\n'
                                     '(must be 2 to 10 letter characters long) '
                                     '...\n'
-                                )
+                                ).strip()
                                 if validate_name(user_prompt):
                                     break
                         else:
@@ -819,7 +819,7 @@ class Screen:
                     Fore.WHITE +
                     'How many vowels would you like for your word?\n'
                     '(Enter a value between 3 and 9)\n'
-                )
+                ).strip()
                 if validate_vowels(user_prompt):
                     # Empty player chosen letters then
                     # pick vowels and store in Player attribute
@@ -989,7 +989,7 @@ class Screen:
                     'How many big numbers (25, 50, 75, 100) '
                     'would you like to select?\n'
                     '(Enter a value between 0 and 4)\n'
-                )
+                ).strip()
                 if validate_numbers(user_prompt):
                     # Empty player chosen numbers then
                     # pick requested number of random big and small

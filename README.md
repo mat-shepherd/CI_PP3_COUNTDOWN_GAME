@@ -142,18 +142,19 @@ I have divided my user stories into users and the site owner, as each of these u
 [unittest](https://docs.python.org/3/library/unittest.html) was used to create automated unit tests of the game's validation functions
 
 ### Third Party Python Libraries
-[Colorama](https://pypi.org/project/colorama/)
-[Inputimeout](https://pypi.org/project/inputimeout/)
-[Art](https://pypi.org/project/art/)
-[Num2words](https://pypi.org/project/num2words/)
-[Pager](https://pypi.org/project/pager/)
-[PyDictionary](https://pypi.org/project/PyDictionary/)
-[Alt-profanity-check](https://pypi.org/project/alt-profanity-check/)
-[Numexpr](https://pypi.org/project/numexpr/2.6.1/)
-[Countdown_numbers_solver](https://pypi.org/project/countdown-numbers-solver/)
-[gspread](https://docs.gspread.org/en/v5.10.0/)
-[google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html)
-[prettytable](https://pypi.org/project/prettytable/)
+[Colorama](https://pypi.org/project/colorama/) was used to acess the Fore, Back, Style and clear_screen methods to change terminal background and text colours and to clear the terminal screen.
+[Inputimeout](https://pypi.org/project/inputimeout/) was used to create timed user inputs for the guessing stage of each round. 
+[Art](https://pypi.org/project/art/) was used to acess the text2art method to convert text to ASCII art for the screen headings.
+[Num2words](https://pypi.org/project/num2words/) was used to convert round numbers to their word equivalent to print as screen headings for each new round.
+[Pager](https://pypi.org/project/pager/) was used to output the rules_screen_data text file on the rules screen in a paged format, pausing output thwen the terminal screen is full of text until the user presses a key to load the next section of the rule file's content.
+[PyDictionary](https://pypi.org/project/PyDictionary/) was used to check the user's inputted words are valid and to retieve word meanings for suggested word solutions on the letters round feedback screen.
+[Alt-profanity-check](https://pypi.org/project/alt-profanity-check/) was used to check the user's name and solution input text doesn't contain profanity and to check the conundrum word doesn't contain profanity.  
+[Numexpr](https://pypi.org/project/numexpr/2.6.1/) was used to evaluate the user's number round string to return the result of the user's inputted expression to compare to the target number. This was used to avoud using insecure methods such as eval().
+[anagram_solver](https://github.com/patrickleweryharris/anagram-solver) was used to find the longest potential words using the letters provided in the letters round so the user could learn potential approaches to solving the problem. As a 9 letter word can generate 362,880 permutations, brute force checking all of these against a dictionary is extermely time consuming. As such, I took the approach of generating 3 random lists of the provided letters for words between 9 and 4 letters long and checking these against anagram solver's dictionary. Not ideal, but functional.
+[Countdown_numbers_solver](https://pypi.org/project/countdown-numbers-solver/) was used to provide the user with solutions to the numbers round on the numbers round feedback screen so the user could learn potential approaches to solving the problem. 
+[gspread](https://docs.gspread.org/en/v5.10.0/) was used to access and update the the high score leaderboard worksheet via Google Sheets.
+[google.oauth2.service_account](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) was used to authorise the connection with the Google Sheets API to access the high score leaderboard worksheet.
+[prettytable](https://pypi.org/project/prettytable/) was used to provide an ASCII formatted table layout for the leaderboard high scores when output in the terminal.
 
 
 [Back to Table of Contents](#table-of-contents)

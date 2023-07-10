@@ -646,7 +646,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 | **Feature** | **Action** | **Expected Result** | **Actual Result** |
 |-------------|------------|---------------------|-------------------|
-| See all features and tests above | User plays the game | User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
+| See all features and tests above | User plays the game | User had fun solving challenging puzzles and has a chance to learn something new from round feedback | Works as expected |
 
 
 12. As the site owner, I want to ensure users understand the rules of the game and are provided clear instructions on how to play throughout the game.

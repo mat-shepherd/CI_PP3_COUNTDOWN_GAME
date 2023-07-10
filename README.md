@@ -216,32 +216,49 @@ Enter Name Screen Remembers Name from Previous Game:
 </details>
 
 ### Letters Round Screen
-- 
-- User stories covered: 
+- Displays the round number in and letter tiles in ASCII art.
+- Displays the user current score and any previous high score.
+- Displays the user's name and a message to indicate the game is starting.
+- Displays brief instructions on how to play the letters round.
+- Displays a user prompt asking the user to choose the number of vowels they would like and briefly explains valid input formatting.
+- The prompt provides specific feedback if invalid values are entered.
+- User stories covered: 1, 4, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/letters_round_screen.PNG" alt="Letters Round Screen">
 </details>
 
 ### Show Letters Screen
-- 
-- User stories covered: 
+- Displays the round number in and chosen letters within tiles in ASCII art.
+- Displays the user current score and any previous high score.
+- Displays brief instructions on how to play the letters round.
+- Pauses and displays a message for the user to press a key when they are ready to start the timer and input their word.
+- User stories covered: 1, 4, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_letters_screen.PNG" alt="Show Letters Screen">
 </details>
 
 ### Letters Guess Screen
-- 
-- User stories covered: 
+- Displays the round number in and chosen letters within tiles in ASCII art.
+- Displays the user current score and any previous high score.
+- Displays a message indicating the 30 second timer has started.
+- Displays a user prompt asking the user to input thier longest word.
+- The prompt provides specific feedback if invalid values or letters not shown in the chosen letters are entered.
+- User stories covered: 1, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/letters_guess_screen.PNG" alt="Letters Guess Screen">
 </details>
 
 ### Letters Feedback Screen
-- Anagram solver
-- User stories covered: 
+- Displays the round number in and chosen letters within tiles in ASCII art.
+- Displays the user current score and any previous high score.
+- Displays a message letting the user know their word is being checked in the dictionary.
+- If their word is found in the dictionary the user is told their word was found, the length of their word, and the time they had remaining when they entered their word.
+- If their word is found the user's name is displayed along with the numer of points they score for the round based on their word length and time remaining.
+- Pauses and displays a message for the user to press a key when they are ready to see what words our 'dictionary corner' i.e. anagram solver fucntion found.
+- User stories covered: 1, 4, 6, 7, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Letters Feedback Screen:

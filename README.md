@@ -882,7 +882,7 @@ The method and style code to center the Heroku terminal and change the backgroun
 - My mentor Mo Shami for your support, guidance, and encouragement as always!
 - Alan Bushell and the February 2023 Student Cohort for their knowledge sharing, advice, and camaraderie during our weekly standup calls and in Slack
 - Carl Murray, Cesar Garcia, and Allen Gleeson for reviewing my project and providing great constructive feedback
-- The Code Institute and their tutor support team for an excellent experience and great support leading up to this second project
+- The Code Institute and their tutor support team for an excellent experience and great support leading up to this third project
 - My wife for her exceptional patience and support while I sat in front of the computer for days on end and for listening to my constant updates and ramblings about this third project
 - My son William for helping me test the game, providing feedback and ideas, and spotting bugs!
 

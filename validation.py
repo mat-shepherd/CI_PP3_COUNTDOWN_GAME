@@ -83,15 +83,21 @@ def validate_menu_value(number, current_screen):
     """
     try:
         if current_screen in ['intro']:
-            if 1 <= int(number) <= 3:
-                return True
+            if number.isnumeric():
+                if 1 <= int(number) <= 3:
+                    return True
+                else:
+                    raise ValueError
             else:
                 raise ValueError
         else:
-            if 1 <= int(number) <= 2:
-                return True
+            if number.isnumeric():
+                if 1 <= int(number) <= 2:
+                    return True
+                else:
+                    raise ValueError
             else:
-                raise ValueError
+                raise ValueError                
     except ValueError:
         if current_screen in ['intro']:
             print(Fore.RED + 'Please enter only 1, 2 or 3')

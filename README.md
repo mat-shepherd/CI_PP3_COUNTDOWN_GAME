@@ -132,13 +132,14 @@ I have divided my user stories into users and the site owner, as each of these u
 - [Heroku](https://heroku.com/)
 
 ### Python Libraries
-[time](https://docs.python.org/3/library/time.html)
-[re](https://docs.python.org/3/library/re.html)
-[random](https://docs.python.org/3/library/random.html)
-[termios](https://docs.python.org/3/library/termios.html)
-[sys](https://docs.python.org/3/library/sys.html)
-[tty](https://docs.python.org/3/library/tty.html)
-[collections](https://docs.python.org/3/library/collections.html)
+[time](https://docs.python.org/3/library/time.html) was used to calculate time taken for the user to submit a value in the timed input and to access the sleep method to pause code execution.
+[re](https://docs.python.org/3/library/re.html) was used to access the search and findall methods and use regular experssions in the game's validation function to find valid and invalid characters in user input.
+[random](https://docs.python.org/3/library/random.html) was used to access the following methods: radint to generate random 3 digit integers in the numbers round; sample to randomly select letters, numbers, and conundrum words; and shuffle to shuffle the list of vowels and consonants and to generate variations of the conundrum letters to find potential anagram solutions.
+[termios](https://docs.python.org/3/library/termios.html) was used in the wait_for_keypress function to pause code execution until a key is pressed. The following methods were used: tcgetattr to retrieve the current terminal attributes associated with the standard input (stdin), tcsetattr to restore the original terminal settings after modifying them temporarily for capturing user input, TCSADRAIN is used to indicate that the changes to the terminal attributes stored should be applied after any pending output from the terminal has been transmitted.
+[sys](https://docs.python.org/3/library/sys.html) was used in the wait_for_keypress function to pause code execution until a key is pressed. The following methods were used: sys.stdin to access methods for reading input from the user such as sys.stdin.read; sys.stdin.fileno to return the file descriptor associated with the standard input; sys.stdin.flush to clear the internal buffer associated with the standard input
+[tty](https://docs.python.org/3/library/tty.html) was used to access the setraw metod to sets the terminal mode to raw mode for the standard input (stdin). In raw mode, input is read character by character without any line editing or processing.
+[collections](https://docs.python.org/3/library/collections.html) was used to access the Counter method which was used to create dictionaries of letter and number counts to check the user's inputted letter or numbers only used the available letters or numbers.
+[unittest](https://docs.python.org/3/library/unittest.html) was used to create automated unit tests of the game's validation functions
 
 ### Third Party Python Libraries
 [Colorama](https://pypi.org/project/colorama/)

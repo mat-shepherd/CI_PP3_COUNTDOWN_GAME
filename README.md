@@ -306,8 +306,10 @@ Numbers Feedback Screen with Solutions:
 </details>
 
 ### Features Left to Implement
+- On screen countdown timer - Printing a constantly updating countdown timer along with an input in the terminal caused the cursor to move up and down and user input to be broken, leading to a poor user experience (even while using threading). To implement this in the future will likely need a more sophisticated GUI using something like curses and threading.
+- Better profanity check - The profanity check library is limited in its effectiveness at detecting profane words within a longer string, and detects some other common harmless words as profane. Other profanity filter libraries should be explored in future versions.
+- Better anagram solver - The anagram sovler is very limited, often returning words shorter than the player's guess or finding words whose meanings aren't found in PyDcitionary. This is because brute force checking all 362,880 permutations of porvided letters against a dictionary is extermely time consuming, blocking code execution for a long time. A limited brute force check of random letter combinations using the anagram solver provided a limited but working solution. More sophisticated anagram solving techniques are documented and should be explore din the future.
 
-#### Time input countdown
 
 [Back to Table of Contents](#table-of-contents)
 

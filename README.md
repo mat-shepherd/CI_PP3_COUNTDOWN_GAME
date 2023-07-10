@@ -105,7 +105,7 @@ A flowchart of the game flow and logic was created using Mermaid Chart:
 <img src="docs/technical_design/countdown_flowchart_numbers.png" alt="Game Introduction and Letters Round Flowchart">
 </details>
 <details><summary>Conundrum Round and Game Over Flowchart</summary>
-<img src="docs/technical_design/countdown_flowchart_letters.png" alt="Game Introduction and Letters Round Flowchart">
+<img src="docs/technical_design/countdown_flowchart_conundrum.png" alt="Conundrum Round and Game Over Flowchart">
 </details>
 
 ### Data Model

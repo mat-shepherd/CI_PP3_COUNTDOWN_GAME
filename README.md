@@ -234,7 +234,7 @@ Enter Name Screen Remembers Name from Previous Game:
 - Displays the user's current score and any previous high score.
 - Displays brief instructions on how to play the letters round.
 - Pauses and displays a message for the user to press a key when they are ready to start the timer and input their word.
-- User stories covered: 1, 4, 7, 9, 11, 12, 14
+- User stories covered: 1, 7, 9, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_letters_screen.PNG" alt="Show Letters Screen">
@@ -294,7 +294,7 @@ Letters Feedback Screen with Solutions:
 - Displays the randomly generated target three digit number the user is solving for.
 - Displays brief instructions on how to play the numbers round, including which operators are allowed, and a reminder to consider order of operations.
 - Pauses and displays a message for the user to press a key when they are ready to start the timer and input their solution.
-- User stories covered: 1, 4, 7, 9, 11, 12, 14
+- User stories covered: 1, 7, 9, 11, 12, 14
 
 <details><summary>Screenshots</summary>
 <img src="docs/features/show_numbers_screen.PNG" alt="Show Numbers Screen">
@@ -325,7 +325,7 @@ Letters Feedback Screen with Solutions:
 - Displays a message that the game is checking what solutions the 'maths wiz' has found, in case there is a delay.
 - Displays a list of all possible solutions to achieve the target number using the chosen numbers and available operators.
 - Pauses and displays a message for the user to press a key when they are ready to proceed to the next round.
-- User stories covered: 1, 4, 7, 8, 9, 11, 12, 13, 14
+- User stories covered: 1, 7, 8, 9, 11, 12, 13, 14
 
 <details><summary>Screenshots</summary>
 Numbers Feedback Screen:
@@ -451,9 +451,8 @@ After this, all tests passed OK.
 A coverage report was run against the unit tests using the [Coverage.py](https://coverage.readthedocs.io/en/7.2.7/) tool. This shows there is definite room for improvement in future unit tests to achieve 100% coverage of the validation.py functions and the opportunity to introduce additional unit tests for the code in run.py:
 
 <details>
-<summary>Coverage Report</summary>C</summary>
+<summary>Coverage Report</summary>
     <img src="docs/unit_tests/coverage.PNG" alt="Unit test coverage report">
-  
 </details>
 
 ### Manual Testing
@@ -478,7 +477,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/intro_screen_rules.PNG" alt="Intro screen view rules">
+    <img src="docs/user_story_tests/rules_screen.PNG" alt="Rules screen">
 </details>
 
 3. As a user, I want to be able to view the high scores leaderboard.
@@ -489,7 +489,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | High Scores Screen | User views high scores page  | User views high scores leaderboard and then enters 1 to start the game or 2 to return to introduction screen |Works as expected |
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/intro_screen_high_score.PNG" alt="Intro screen view high scores">
+    <img src="docs/user_story_tests/high_scores_screen.PNG" alt="High scores screen">    
 </details>
 
 4. As a user, I want to be able to enter my player name to personalise my game experience and track my score.
@@ -500,17 +501,21 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Works as expected |
 | High Scores Screen | User achieves top ten high score and views high scores screen | User views high scores leaderboard and sees their entered name on the top ten leaderboard after achievng a top ten high score | Works as expected |
 | Letters Round Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
-| Show Letters Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Letters Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Numbers Round Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
-| Show Numbers Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
-| Numbers Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Show Conundrum Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Conundrum Feedback Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 | Game Over Screen | Round screen loads | User's entered name is displayed on screen | Works as expected |
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/enter_name_repeat_game.png" alt="Enter name screen with previous name entered">
+    <img src="docs/user_story_tests/high_scores_screen_names.png" alt="High scores screen with user name">     
+    <img src="docs/user_story_tests/letters_round_name.png" alt="Letters round screen with user name">
+    <img src="docs/user_story_tests/letters_feedback_name.png" alt="Letters feedback screen with user name">
+    <img src="docs/user_story_tests/numbers_round_screen_name.png" alt="Numbers round screen with user name">
+    <img src="docs/user_story_tests/show_conundrum_screen_name.png" alt="Show conundrum screen with user name">
+    <img src="docs/user_story_tests/conundrum_feedback_screen_name.png" alt="Conundrum feedback screen with user name">
+    <img src="docs/user_story_tests/game_over_screen_name.png" alt="Game over screen with user name">        
 </details>
 
 5. As a user, I want the game to remember my name if I play again and have the choice to keep my name or change it.
@@ -522,7 +527,9 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Game Over Screen |  User hits any key to repeat game from game over screen | User is taken back to the introduction screen, selects 1 to start a new game and then is asked if they want to keep their existing name from the previous game (name printed in prompt) or enter new name | Works as expected |
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/enter_name_repeat_game.png" alt="Enter name screen with previous name entered">
+    <img src="docs/user_story_tests/letters_round_name.png" alt="Letters round screen with user name">
+    <img src="docs/user_story_tests/game_over_screen_name.png" alt="Game over screen with user name">        
 </details>
 
 6. As a user, I want my input to be validated with clear feedback on how to correct any input errors.
@@ -531,6 +538,7 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 |-------------|------------|---------------------|-------------------|
 | Introduction Screen | User inputs 1, 2 or 3 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
 | Rules Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
+| High Scores Screen | User inputs 1 or 2 | Progress to correct screen if valid number input receive validation error if incorrect value entered | Works as expected |
 | Enter Name Screen | User inputs name in letters | User's name stored if valid and shown on next screen or validation error if incorrect value entered | Works as expected |
 | Letters Round Screen | User inputs number of vowels between 3 and 9 | Chosen number of vowels and consonants shown if valid number input otherwise receive validation error if incorrect value entered | Works as expected |
 | Letters Guess Screen | User inputs word using chosen letters | User's word checked for use of chosen and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
@@ -539,7 +547,15 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Conundrum Guess Screen | User inputs word using conundrum letters | User's word checked for use of conundrum and valid letters annd if valid progresses to feedback screen or validation error if incorrect value entered | Works as expected |
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/intro_screen_validation.PNG" alt="Intro screen with validation">
+    <img src="docs/user_story_tests/rules_screen_validation.PNG" alt="Rules screen with validation">
+    <img src="docs/user_story_tests/high_scores_screen_validation.PNG" alt="High scores screen with validation">
+    <img src="docs/user_story_tests/enter_name_screen_validation.PNG" alt="Enter name screen with validation">    
+    <img src="docs/user_story_tests/letters_round_screen_validation.PNG" alt="Letters round screen with validation">
+    <img src="docs/user_story_tests/letters_guess_screen_validation.PNG" alt="Letters guess screen with validation">
+    <img src="docs/user_story_tests/numbers_round_screen_validation.PNG" alt="Numbers round screen with validation">
+    <img src="docs/user_story_tests/numbers_guess_screen_validation.PNG" alt="Numbers guess screen with validation">
+    <img src="docs/user_story_tests/conundrum_guess_screen_validation.PNG" alt="Conundrum guess screen with validation">                     
 </details>
 
 7. As a user, I want to be given clear instructions on each screen on how to play the game and how to progress.
@@ -548,10 +564,6 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 |-------------|------------|---------------------|-------------------|
 | All screens | Screen loads and user is provided with instructions on how to play the game and what to enter to proceed | All screens provide instructions and prompts. See tests above and below. | Works as expected |
 
-
-<details><summary>Screenshots</summary>
-
-</details>
 
 8. As a user, I want feedback on my word and number guesses with potential solutions provided by the game.
 
@@ -562,7 +574,11 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Conundrum Feedback Screen | User enters valid conundrum guess | User is told if their conundrum guess matches the target word. If their word is not the target word but uses all conundrum letters and is found in the dictionary they are also infomred of this. If not the target word the user is told. | Works as expected |
 
 <details><summary>Screenshots</summary>
-
+   <img src="docs/user_story_tests/letters_feedback_screen.PNG" alt="Letters feedback screen">
+   <img src="docs/user_story_tests/letters_feedback_screen.PNG" alt="Letters feedback screen">
+   <img src="docs/user_story_tests/numbers_feedback_screen.PNG" alt="Numbers feedback screen">
+   <img src="docs/user_story_tests/numbers_feedback_screen_2.PNG" alt="Numbers feedback screen 2">
+   <img src="docs/user_story_tests/conundrum_feedback_screen.PNG" alt="Conundrum feedback screen">       
 </details>
 
 9. As a user, I want to be provided with a score for each round and keep track of my current score and previous high score as the game progresses.
@@ -584,7 +600,19 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Game Over Screen | Screen loads after conundrum feedback screen | User's current score and previous high score is displayed. If user has achieved a high score, congratulations message is shown followed by the leaderboard table containing the user's name and high score | Works as expected |
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/high_scores_screen.PNG" alt="High scores screen">  
+    <img src="docs/user_story_tests/letters_round_screen_scores.png" alt="Letters round screen scores">
+    <img src="docs/user_story_tests/show_letters_screen_scores.png" alt="Show letters screen scores">    
+    <img src="docs/user_story_tests/letters_guess_screen_scores.png" alt="Letters guess screen scores"> 
+    <img src="docs/user_story_tests/letters_feedback_screen_scores.png" alt="Letters feedback screen scores"> 
+    <img src="docs/user_story_tests/numbers_round_screen_scores.png" alt="Numbers round screen scores"> 
+    <img src="docs/user_story_tests/show_numbers_screen_scores.png" alt="Shown numbers screen scores"> 
+    <img src="docs/user_story_tests/numbers_guess_screen_scores.png" alt="Numbers guess screen scores"> 
+    <img src="docs/user_story_tests/numbers_feedback_screen_scores.png" alt="Numbers feedback screen scores"> 
+    <img src="docs/user_story_tests/show_conundrum_screen_scores.png" alt="Show conundrum screen scores"> 
+    <img src="docs/user_story_tests/conundrum_guess_screen_scores.png" alt="Conundrum guess screen scores"> 
+    <img src="docs/user_story_tests/conundrum_feedback_screen_scores.png" alt="Conundrum feedback screen scores"> 
+    <img src="docs/user_story_tests/game_over_screen_scores.png" alt="Game over screen scores">                                           
 </details>
 
 10. As a user, I want to be told when the game is over, the score I achieved, my high score, and be shown the leaderboard if I achieve a top ten high score.
@@ -595,7 +623,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 
 <details><summary>Screenshots</summary>
-
+   <img src="docs/user_story_tests/game_over_screen.PNG" alt="Game over screen">
+   <img src="docs/user_story_tests/game_over_screen_2.PNG" alt="Game over screen 2">   
 </details>
 
 #### Site Owner
@@ -606,9 +635,6 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 |-------------|------------|---------------------|-------------------|
 | See all features and tests above | User plays the game | User had fun solving challenging puzlles and has a chance to learn something new from round feedback | Works as expected |
 
-<details><summary>Screenshots</summary>
-
-</details>
 
 12. As the site owner, I want to ensure users understand the rules of the game and are provided clear instructions on how to play throughout the game.
 
@@ -620,7 +646,8 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/intro_screen_rules.PNG" alt="Intro screen view rules">
+    <img src="docs/user_story_tests/rules_screen.PNG" alt="Rules screen">
 </details>
 
 13. As the site owner, I want to ensure input is validated to avoid the game breaking or errors displaying that will cause a poor user experience.
@@ -638,7 +665,15 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/intro_screen_validation.PNG" alt="Intro screen with validation">
+    <img src="docs/user_story_tests/rules_screen_validation.PNG" alt="Rules screen with validation">
+    <img src="docs/user_story_tests/high_scores_screen_validation.PNG" alt="High scores screen with validation">
+    <img src="docs/user_story_tests/enter_name_screen_validation.PNG" alt="Enter name screen with validation">    
+    <img src="docs/user_story_tests/letters_round_screen_validation.PNG" alt="Letters round screen with validation">
+    <img src="docs/user_story_tests/letters_guess_screen_validation.PNG" alt="Letters guess screen with validation">
+    <img src="docs/user_story_tests/numbers_round_screen_validation.PNG" alt="Numbers round screen with validation">
+    <img src="docs/user_story_tests/numbers_guess_screen_validation.PNG" alt="Numbers guess screen with validation">
+    <img src="docs/user_story_tests/conundrum_guess_screen_validation.PNG" alt="Conundrum guess screen with validation">                     
 </details>
 
 14. As the site owner, I want to ensure the user can keep playing the game while retaining their name and high score.
@@ -649,7 +684,9 @@ A coverage report was run against the unit tests using the [Coverage.py](https:/
 | Enter Name Screen |  User repeats game and is asked if they want to keep existing name or enter new name | User selects 1 to keep existing name and proceeds to Letter's round screen with existing name or enters 2 and is asked to enter name again, whcih is validated and stored to show in following screens| Works as expected |
 
 <details><summary>Screenshots</summary>
-
+    <img src="docs/user_story_tests/game_over_screen.PNG" alt="Game over screen">
+    <img src="docs/user_story_tests/game_over_screen_2.PNG" alt="Game over screen 2">   
+    <img src="docs/user_story_tests/enter_name_repeat_game.png" alt="Enter name screen with previous name entered">
 </details>
 
 
